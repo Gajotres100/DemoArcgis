@@ -1,0 +1,35 @@
+﻿@{
+
+}
+<script>
+    require([
+      "esri/urlUtils", "esri/map", "esri/dijit/Directions",
+      "dojo/parser",
+      "dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dojo/domReady!"
+     ], function (
+      urlUtils, Map, Directions,
+      parser
+    ) {
+         parser.parse();
+
+        var map = new Map("map", {
+            basemap: "streets",
+            center: [-98.56, 39.82],
+            sliderPosition: "top-right",
+            zoom: 5
+        });
+
+        var directions = new Directions({
+            map: map,
+            routeTaskUrl: "@System.Configuration.ConfigurationManager.AppSettings["routeTaskUrl"] https://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Network/USA/NAServer/Route",            
+        }, "dir");
+        directions.startup();
+    });
+</script>
+<div data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design:'headline', gutters:false"  style="width:100%;height:100%;">
+    <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'left'" style="width:250px;">
+        <div id="dir"></div>
+    </div>
+    <div id="map" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'"></div>
+</div>
+
