@@ -21,7 +21,7 @@
 
         var directions = new Directions({
             map: map,
-            routeTaskUrl: "@System.Configuration.ConfigurationManager.AppSettings["routeTaskUrl"] https://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Network/USA/NAServer/Route",            
+            routeTaskUrl: "@System.Configuration.ConfigurationManager.AppSettings["routeTaskUrl"]",            
         }, "dir");
         directions.startup();
     });
