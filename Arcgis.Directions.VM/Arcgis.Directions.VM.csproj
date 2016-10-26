@@ -48,6 +48,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModelBase.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Arcgis.Directions.Data.Model\Arcgis.Directions.Data.Model.csproj">
+      <Project>{94b8a695-e52e-481e-8509-752f36687033}</Project>
+      <Name>Arcgis.Directions.Data.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

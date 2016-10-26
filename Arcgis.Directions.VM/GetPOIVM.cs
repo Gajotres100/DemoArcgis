@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Arcgis.Directions.Data.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace Arcgis.Directions.VM
 {
     public class GetPOIVM : ViewModelBase
     {
-
+        public List<CusPoi> MyProperty { get; set; }
     }
 }
