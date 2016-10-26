@@ -9,6 +9,8 @@ namespace Arcgis.Directions.VM
 {
     public class GetPOIVM : ViewModelBase
     {
-        public List<CusPoi> MyProperty { get; set; }
+        public List<CusPoi> CusPoiList { get; set; }
+        public CusPoi CusPoi { get; set; }
+        public CusPoiInput CusPoiInput { get; set; }
     }
 }

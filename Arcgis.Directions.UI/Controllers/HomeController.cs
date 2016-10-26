@@ -14,5 +14,12 @@ namespace Arcgis.Directions.UI.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public JsonResult Index(string Prefix)
+        {
+            string a = "";
+            return Json(a, JsonRequestBehavior.AllowGet);
+        }
     }
 }
