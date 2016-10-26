@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectionsArcgis", "DemoArcgis\DirectionsArcgis.csproj", "{2A01B4A8-282A-46AF-A1E2-1DF7B03A18E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcgis.Directions.UI", "DemoArcgis\Arcgis.Directions.UI.csproj", "{2A01B4A8-282A-46AF-A1E2-1DF7B03A18E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcgis.Directions.BL", "Arcgis.Directions.BL\Arcgis.Directions.BL.csproj", "{9D4BEBBE-CA49-4AA1-B169-26C3E6D747C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{2A01B4A8-282A-46AF-A1E2-1DF7B03A18E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A01B4A8-282A-46AF-A1E2-1DF7B03A18E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A01B4A8-282A-46AF-A1E2-1DF7B03A18E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D4BEBBE-CA49-4AA1-B169-26C3E6D747C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D4BEBBE-CA49-4AA1-B169-26C3E6D747C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D4BEBBE-CA49-4AA1-B169-26C3E6D747C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D4BEBBE-CA49-4AA1-B169-26C3E6D747C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

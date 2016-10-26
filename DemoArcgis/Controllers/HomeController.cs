@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace DemoArcgis.Controllers
+namespace Arcgis.Directions.UI.Controllers
 {
     public class HomeController : Controller
     {
