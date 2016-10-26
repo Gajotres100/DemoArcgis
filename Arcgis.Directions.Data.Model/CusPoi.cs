@@ -14,10 +14,10 @@ namespace Arcgis.Directions.Data.Model
         public string SettleName { get; set; }
         public string Address { get; set; }
         public string HouseNr { get; set; }
-        public float GeocodeStatus { get; set; }
-        public float WmX { get; set; }
-        public float WmY { get; set; }
-        public float HtrsX { get; set; }
-        public float HTRS_Y { get; set; }
+        public double GeocodeStatus { get; set; }
+        public double? WmX { get; set; }
+        public double? WmY { get; set; }
+        public double? HtrsX { get; set; }
+        public double? HTRS_Y { get; set; }
     }
 }

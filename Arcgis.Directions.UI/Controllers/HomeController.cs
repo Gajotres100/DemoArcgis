@@ -12,6 +12,12 @@ namespace Arcgis.Directions.UI.Controllers
     {
         
         PoiService _poiService;
+        public HomeController()
+        {
+            
+        }
+
+        
 
         public ActionResult Index()
         {
@@ -23,6 +29,7 @@ namespace Arcgis.Directions.UI.Controllers
         public JsonResult GetPoiList(string keywords)
         {
             var vm = new GetPOIVM();
+            _poiService = new PoiService();
             vm = _poiService.GetAvailablePoi(keywords);
             return Json(vm, JsonRequestBehavior.AllowGet);
         }

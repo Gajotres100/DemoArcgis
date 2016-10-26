@@ -48,6 +48,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Arcgis.Directions.Data.Model\Arcgis.Directions.Data.Model.csproj">
+      <Project>{94B8A695-E52E-481E-8509-752F36687033}</Project>
+      <Name>Arcgis.Directions.Data.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Arcgis.Directions.Orm\Arcgis.Directions.Orm.csproj">
       <Project>{28a0f1d6-f61f-4b64-8078-8b57e773712a}</Project>
       <Name>Arcgis.Directions.Orm</Name>

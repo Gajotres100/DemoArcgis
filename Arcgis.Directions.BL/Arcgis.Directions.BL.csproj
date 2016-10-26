@@ -46,6 +46,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\Arcgis.Directions.Data.Model\Arcgis.Directions.Data.Model.csproj">
+      <Project>{94b8a695-e52e-481e-8509-752f36687033}</Project>
+      <Name>Arcgis.Directions.Data.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Arcgis.Directions.Data.Repository\Arcgis.Directions.Data.Repository.csproj">
       <Project>{87990572-b166-41a1-9ffa-10cee6e45a2e}</Project>
       <Name>Arcgis.Directions.Data.Repository</Name>

@@ -25,7 +25,7 @@ namespace Arcgis.Directions.BL.Services
         public GetPOIVM GetAvailablePoi(string keyword)
         {
             GetPOIVM item = new GetPOIVM();
-            
+            item.CusPoiList = _poiRepository.GetAvailablePoi(keyword);
             return item;
         }
 

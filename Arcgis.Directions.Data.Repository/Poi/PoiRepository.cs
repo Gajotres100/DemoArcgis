@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Arcgis.Directions.Data;
 using Arcgis.Directions.Orm;
+using Arcgis.Directions.Data.Model;
 
 namespace Arcgis.Directions.Data.Repository.Poi
 {
@@ -14,13 +15,25 @@ namespace Arcgis.Directions.Data.Repository.Poi
         {
 
         }
-        public void GetAvailablePoi()
+        public List<CusPoi> GetAvailablePoi(string keyword)
         {
             using (var context = new ProtalEntities())
             {
-
-            }
-            
+                    return context.FM_CUST_POI.Where(p => p.POI_NAME.Contains(keyword)).Select(x => new CusPoi()
+                    {
+                        PoiID = x.POI_ID,
+                        Address = x.ADDRESS,
+                        GeocodeStatus = x.GEOCODE_STATUS,
+                        HouseNr = x.HOUSE_NR,
+                        HtrsX = x.HTRS_X,
+                        HTRS_Y = x.HTRS_Y,
+                        PoiDesc = x.POI_DESC,
+                        PoiName = x.POI_NAME,
+                        SettleName = x.SETTL_NAME,
+                        WmX = x.WM_X,
+                        WmY = x.WM_Y
+                    }).ToList();
+            }            
         }
     }
 }
