@@ -1,0 +1,899 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProtalEntitiesDB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RN1805.dbo.FM_CUST_USERS_bkp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FM_CUST_USERS_bkp">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="USER_STATUS" />
+            <PropertyRef Name="CUST_ID" />
+            <PropertyRef Name="USER_NAME" />
+            <PropertyRef Name="CUST_ADMIN" />
+            <PropertyRef Name="ASSET_ADMIN" />
+            <PropertyRef Name="POI_ADMIN" />
+            <PropertyRef Name="TRACKING" />
+            <PropertyRef Name="REPORTING" />
+            <PropertyRef Name="PREF_LANG" />
+            <PropertyRef Name="ROWID" />
+          </Key>
+          <Property Name="USER_ID" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="USER_STATUS" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="CUST_ID" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="USER_NAME" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="USER_PWD" Type="varchar" MaxLength="30" />
+          <Property Name="USER_KEY" Type="varchar" MaxLength="30" />
+          <Property Name="USER_KEY_DT" Type="datetime2" Precision="0" />
+          <Property Name="CUST_ADMIN" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="ASSET_ADMIN" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="POI_ADMIN" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="TRACKING" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="REPORTING" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="PREF_LANG" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="ROWID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RN1805.dbo.FM_POI_Web_mer_Ags_sfer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FM_POI_Web_mer_Ags_sfer">
+          <Key>
+            <PropertyRef Name="OBJECTID" />
+          </Key>
+          <Property Name="OBJECTID" Type="int" Nullable="false" />
+          <Property Name="CUST_ID" Type="float" />
+          <Property Name="POI_NAME" Type="nvarchar" MaxLength="254" />
+          <Property Name="POI_DESC" Type="nvarchar" MaxLength="254" />
+          <Property Name="SETTL_NAME" Type="nvarchar" MaxLength="254" />
+          <Property Name="ADDRESS" Type="nvarchar" MaxLength="254" />
+          <Property Name="HOUSE_NR" Type="float" />
+          <Property Name="WORKING_HO" Type="nvarchar" MaxLength="254" />
+          <Property Name="PHONES" Type="nvarchar" MaxLength="254" />
+          <Property Name="GEOCODE_ST" Type="float" />
+          <Property Name="EOV_X" Type="float" />
+          <Property Name="EOV_Y" Type="float" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="FM_CUST_GRP">
+          <Key>
+            <PropertyRef Name="GRP_ID" />
+          </Key>
+          <Property Name="GRP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GRP_NAME" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="IMAGE_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="FM_CUST_GRP_OBJ">
+          <Key>
+            <PropertyRef Name="GRP_OBJ_ID" />
+          </Key>
+          <Property Name="GRP_OBJ_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GRP_NAME" Type="varchar" MaxLength="15" />
+          <Property Name="OBJ_SORT" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="OBJ_NAME" Type="varchar" MaxLength="18" />
+          <Property Name="POI_ID" Type="int" />
+          <Property Name="GRP_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="FM_CUST_POI">
+          <Key>
+            <PropertyRef Name="POI_ID" />
+          </Key>
+          <Property Name="POI_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="POI_NAME" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="POI_DESC" Type="nvarchar(max)" />
+          <Property Name="SETTL_NAME" Type="nvarchar(max)" />
+          <Property Name="ADDRESS" Type="nvarchar(max)" />
+          <Property Name="HOUSE_NR" Type="varchar" MaxLength="10" />
+          <Property Name="GEOCODE_STATUS" Type="float" Nullable="false" />
+          <Property Name="WM_X" Type="float" />
+          <Property Name="WM_Y" Type="float" />
+          <Property Name="HTRS_X" Type="float" />
+          <Property Name="HTRS_Y" Type="float" />
+        </EntityType>
+        <EntityType Name="FM_CUST_ROUTES">
+          <Key>
+            <PropertyRef Name="ROUTE_ID" />
+          </Key>
+          <Property Name="ROUTE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ROUTE_NAME" Type="varchar" MaxLength="15" />
+          <Property Name="ROUTE_DESC" Type="varchar" MaxLength="99" />
+          <Property Name="ROUTE_DATA" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RN1805.fm.FM_CUST_SETTINGS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FM_CUST_SETTINGS">
+          <Key>
+            <PropertyRef Name="CUST_ID" />
+            <PropertyRef Name="ASSET_DISPNAME_ORD" />
+            <PropertyRef Name="ASSET_FULLNAME_ORD" />
+            <PropertyRef Name="ASSET_MSISDN_ORD" />
+            <PropertyRef Name="ASSET_LBL_MINSCALE" />
+            <PropertyRef Name="ASSET_LBL_MAXSCALE" />
+            <PropertyRef Name="ASSET_SMALL_ICONSZ" />
+            <PropertyRef Name="ASSET_LARGE_ICONSZ" />
+            <PropertyRef Name="ASSET_ICON_MARGIN" />
+            <PropertyRef Name="ASSET_SMALL_LABELSZ" />
+            <PropertyRef Name="ASSET_LARGE_LABELSZ" />
+          </Key>
+          <Property Name="CUST_ID" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ASSET_DISPNAME_ORD" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="ASSET_FULLNAME_ORD" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="ASSET_MSISDN_ORD" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="ASSET_LBL_MINSCALE" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ASSET_LBL_MAXSCALE" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ASSET_SMALL_ICONSZ" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="ASSET_LARGE_ICONSZ" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="ASSET_ICON_MARGIN" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ASSET_SMALL_LABELSZ" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="ASSET_LARGE_LABELSZ" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FM_CUST_USERS">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="numeric" Precision="9" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_STATUS" Type="bit" />
+          <Property Name="USER_NAME" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="USER_PWD" Type="varchar" MaxLength="30" />
+          <Property Name="USER_KEY" Type="varchar" MaxLength="30" />
+          <Property Name="USER_KEY_DT" Type="datetime2" Precision="0" />
+          <Property Name="CUST_ADMIN" Type="bit" />
+          <Property Name="POI_ADMIN" Type="bit" />
+          <Property Name="PREF_LANG" Type="varchar" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FM_IMAGES">
+          <Key>
+            <PropertyRef Name="IMAGE_ID" />
+          </Key>
+          <Property Name="IMAGE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GRP_IMAGE" Type="varbinary(max)" Nullable="false" />
+          <Property Name="IMAGE_DESC" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RN1805.fm.FM_LOG' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FM_LOG">
+          <Key>
+            <PropertyRef Name="LOG_DTIME" />
+            <PropertyRef Name="ROWID" />
+          </Key>
+          <Property Name="LOG_ID" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="LOG_DTIME" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="CUST_ID" Type="numeric" Precision="9" Scale="0" />
+          <Property Name="CUST_USER_ID" Type="numeric" Precision="9" Scale="0" />
+          <Property Name="CC_USER_ID" Type="numeric" Precision="9" Scale="0" />
+          <Property Name="OBJ_ID" Type="numeric" Precision="3" Scale="0" />
+          <Property Name="ACTION_ID" Type="numeric" Precision="2" Scale="0" />
+          <Property Name="ACTION_TAG" Type="numeric" Precision="2" Scale="0" />
+          <Property Name="ROW_PK_ID" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ROW_TAG" Type="varchar" MaxLength="20" />
+          <Property Name="RESULT" Type="numeric" Precision="2" Scale="0" />
+          <Property Name="SQL_CMD" Type="varchar" MaxLength="4000" />
+          <Property Name="ROWID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FM_LOG_ACTIONS">
+          <Key>
+            <PropertyRef Name="ACTION_ID" />
+          </Key>
+          <Property Name="ACTION_ID" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="ACTION_NAME" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="ACTION_DESC" Type="varchar" MaxLength="99" />
+        </EntityType>
+        <EntityType Name="FM_LOG_OBJECTS">
+          <Key>
+            <PropertyRef Name="OBJ_ID" />
+          </Key>
+          <Property Name="OBJ_ID" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="APP_NAME" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="OBJ_NAME" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="OBJ_DESC" Type="varchar" MaxLength="99" />
+        </EntityType>
+        <EntityType Name="FM_OBJ_TYPES">
+          <Key>
+            <PropertyRef Name="OBJ_TYPE" />
+          </Key>
+          <Property Name="OBJ_TYPE" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="TYPE_DESC" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FM_REPORTS">
+          <Key>
+            <PropertyRef Name="RPT_ID" />
+          </Key>
+          <Property Name="RPT_ID" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="APP_NAME" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="RPT_NAME" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="RPT_LABEL" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FM_TASK_LOG">
+          <Key>
+            <PropertyRef Name="TASK_ID" />
+          </Key>
+          <Property Name="TASK_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TASK_LOG_DT" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="CUST_ID" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="CUST_USER_ID" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ASSET_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ASSET_MSISDN" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="TASK_MSG" Type="varchar" MaxLength="160" />
+          <Property Name="SMS_ID" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="TASK_TTC_DT" Type="datetime2" Precision="0" />
+          <Property Name="TASK_END_DT" Type="datetime2" Precision="0" />
+          <Property Name="TASK_MODIFIED_DT" Type="datetime2" Precision="0" />
+          <Property Name="TASK_STATUS" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="ROWID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CUST_GRP_ID">
+          <End Role="FM_CUST_GRP" Type="Self.FM_CUST_GRP" Multiplicity="0..1" />
+          <End Role="FM_CUST_GRP_OBJ" Type="Self.FM_CUST_GRP_OBJ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FM_CUST_GRP">
+              <PropertyRef Name="GRP_ID" />
+            </Principal>
+            <Dependent Role="FM_CUST_GRP_OBJ">
+              <PropertyRef Name="GRP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUST_GRP_IMAGE">
+          <End Role="FM_IMAGES" Type="Self.FM_IMAGES" Multiplicity="0..1" />
+          <End Role="FM_CUST_GRP" Type="Self.FM_CUST_GRP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FM_IMAGES">
+              <PropertyRef Name="IMAGE_ID" />
+            </Principal>
+            <Dependent Role="FM_CUST_GRP">
+              <PropertyRef Name="IMAGE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUST_POI_ID">
+          <End Role="FM_CUST_POI" Type="Self.FM_CUST_POI" Multiplicity="0..1" />
+          <End Role="FM_CUST_GRP_OBJ" Type="Self.FM_CUST_GRP_OBJ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FM_CUST_POI">
+              <PropertyRef Name="POI_ID" />
+            </Principal>
+            <Dependent Role="FM_CUST_GRP_OBJ">
+              <PropertyRef Name="POI_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProtalEntitiesDBStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FM_CUST_GRP" EntityType="Self.FM_CUST_GRP" Schema="fm" store:Type="Tables" />
+          <EntitySet Name="FM_CUST_GRP_OBJ" EntityType="Self.FM_CUST_GRP_OBJ" Schema="fm" store:Type="Tables" />
+          <EntitySet Name="FM_CUST_POI" EntityType="Self.FM_CUST_POI" Schema="fm" store:Type="Tables" />
+          <EntitySet Name="FM_CUST_ROUTES" EntityType="Self.FM_CUST_ROUTES" Schema="fm" store:Type="Tables" />
+          <EntitySet Name="FM_CUST_USERS" EntityType="Self.FM_CUST_USERS" Schema="fm" store:Type="Tables" />
+          <EntitySet Name="FM_IMAGES" EntityType="Self.FM_IMAGES" Schema="fm" store:Type="Tables" />
+          <EntitySet Name="FM_LOG_ACTIONS" EntityType="Self.FM_LOG_ACTIONS" Schema="fm" store:Type="Tables" />
+          <EntitySet Name="FM_LOG_OBJECTS" EntityType="Self.FM_LOG_OBJECTS" Schema="fm" store:Type="Tables" />
+          <EntitySet Name="FM_OBJ_TYPES" EntityType="Self.FM_OBJ_TYPES" Schema="fm" store:Type="Tables" />
+          <EntitySet Name="FM_REPORTS" EntityType="Self.FM_REPORTS" Schema="fm" store:Type="Tables" />
+          <EntitySet Name="FM_TASK_LOG" EntityType="Self.FM_TASK_LOG" Schema="fm" store:Type="Tables" />
+          <EntitySet Name="FM_CUST_USERS_bkp" EntityType="Self.FM_CUST_USERS_bkp" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[FM_CUST_USERS_bkp].[USER_ID] AS [USER_ID], 
+[FM_CUST_USERS_bkp].[USER_STATUS] AS [USER_STATUS], 
+[FM_CUST_USERS_bkp].[CUST_ID] AS [CUST_ID], 
+[FM_CUST_USERS_bkp].[USER_NAME] AS [USER_NAME], 
+[FM_CUST_USERS_bkp].[USER_PWD] AS [USER_PWD], 
+[FM_CUST_USERS_bkp].[USER_KEY] AS [USER_KEY], 
+[FM_CUST_USERS_bkp].[USER_KEY_DT] AS [USER_KEY_DT], 
+[FM_CUST_USERS_bkp].[CUST_ADMIN] AS [CUST_ADMIN], 
+[FM_CUST_USERS_bkp].[ASSET_ADMIN] AS [ASSET_ADMIN], 
+[FM_CUST_USERS_bkp].[POI_ADMIN] AS [POI_ADMIN], 
+[FM_CUST_USERS_bkp].[TRACKING] AS [TRACKING], 
+[FM_CUST_USERS_bkp].[REPORTING] AS [REPORTING], 
+[FM_CUST_USERS_bkp].[PREF_LANG] AS [PREF_LANG], 
+[FM_CUST_USERS_bkp].[ROWID] AS [ROWID]
+FROM [dbo].[FM_CUST_USERS_bkp] AS [FM_CUST_USERS_bkp]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="FM_POI_Web_mer_Ags_sfer" EntityType="Self.FM_POI_Web_mer_Ags_sfer" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[FM_POI_Web_mer_Ags_sfer].[OBJECTID] AS [OBJECTID], 
+[FM_POI_Web_mer_Ags_sfer].[CUST_ID] AS [CUST_ID], 
+[FM_POI_Web_mer_Ags_sfer].[POI_NAME] AS [POI_NAME], 
+[FM_POI_Web_mer_Ags_sfer].[POI_DESC] AS [POI_DESC], 
+[FM_POI_Web_mer_Ags_sfer].[SETTL_NAME] AS [SETTL_NAME], 
+[FM_POI_Web_mer_Ags_sfer].[ADDRESS] AS [ADDRESS], 
+[FM_POI_Web_mer_Ags_sfer].[HOUSE_NR] AS [HOUSE_NR], 
+[FM_POI_Web_mer_Ags_sfer].[WORKING_HO] AS [WORKING_HO], 
+[FM_POI_Web_mer_Ags_sfer].[PHONES] AS [PHONES], 
+[FM_POI_Web_mer_Ags_sfer].[GEOCODE_ST] AS [GEOCODE_ST], 
+[FM_POI_Web_mer_Ags_sfer].[EOV_X] AS [EOV_X], 
+[FM_POI_Web_mer_Ags_sfer].[EOV_Y] AS [EOV_Y]
+FROM [dbo].[FM_POI_Web_mer_Ags_sfer] AS [FM_POI_Web_mer_Ags_sfer]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="FM_CUST_SETTINGS" EntityType="Self.FM_CUST_SETTINGS" store:Type="Tables" store:Schema="fm">
+            <DefiningQuery>SELECT 
+[FM_CUST_SETTINGS].[CUST_ID] AS [CUST_ID], 
+[FM_CUST_SETTINGS].[ASSET_DISPNAME_ORD] AS [ASSET_DISPNAME_ORD], 
+[FM_CUST_SETTINGS].[ASSET_FULLNAME_ORD] AS [ASSET_FULLNAME_ORD], 
+[FM_CUST_SETTINGS].[ASSET_MSISDN_ORD] AS [ASSET_MSISDN_ORD], 
+[FM_CUST_SETTINGS].[ASSET_LBL_MINSCALE] AS [ASSET_LBL_MINSCALE], 
+[FM_CUST_SETTINGS].[ASSET_LBL_MAXSCALE] AS [ASSET_LBL_MAXSCALE], 
+[FM_CUST_SETTINGS].[ASSET_SMALL_ICONSZ] AS [ASSET_SMALL_ICONSZ], 
+[FM_CUST_SETTINGS].[ASSET_LARGE_ICONSZ] AS [ASSET_LARGE_ICONSZ], 
+[FM_CUST_SETTINGS].[ASSET_ICON_MARGIN] AS [ASSET_ICON_MARGIN], 
+[FM_CUST_SETTINGS].[ASSET_SMALL_LABELSZ] AS [ASSET_SMALL_LABELSZ], 
+[FM_CUST_SETTINGS].[ASSET_LARGE_LABELSZ] AS [ASSET_LARGE_LABELSZ]
+FROM [fm].[FM_CUST_SETTINGS] AS [FM_CUST_SETTINGS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="FM_LOG" EntityType="Self.FM_LOG" store:Type="Tables" store:Schema="fm">
+            <DefiningQuery>SELECT 
+[FM_LOG].[LOG_ID] AS [LOG_ID], 
+[FM_LOG].[LOG_DTIME] AS [LOG_DTIME], 
+[FM_LOG].[CUST_ID] AS [CUST_ID], 
+[FM_LOG].[CUST_USER_ID] AS [CUST_USER_ID], 
+[FM_LOG].[CC_USER_ID] AS [CC_USER_ID], 
+[FM_LOG].[OBJ_ID] AS [OBJ_ID], 
+[FM_LOG].[ACTION_ID] AS [ACTION_ID], 
+[FM_LOG].[ACTION_TAG] AS [ACTION_TAG], 
+[FM_LOG].[ROW_PK_ID] AS [ROW_PK_ID], 
+[FM_LOG].[ROW_TAG] AS [ROW_TAG], 
+[FM_LOG].[RESULT] AS [RESULT], 
+[FM_LOG].[SQL_CMD] AS [SQL_CMD], 
+[FM_LOG].[ROWID] AS [ROWID]
+FROM [fm].[FM_LOG] AS [FM_LOG]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_CUST_GRP_ID" Association="Self.FK_CUST_GRP_ID">
+            <End Role="FM_CUST_GRP" EntitySet="FM_CUST_GRP" />
+            <End Role="FM_CUST_GRP_OBJ" EntitySet="FM_CUST_GRP_OBJ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUST_GRP_IMAGE" Association="Self.FK_CUST_GRP_IMAGE">
+            <End Role="FM_IMAGES" EntitySet="FM_IMAGES" />
+            <End Role="FM_CUST_GRP" EntitySet="FM_CUST_GRP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUST_POI_ID" Association="Self.FK_CUST_POI_ID">
+            <End Role="FM_CUST_POI" EntitySet="FM_CUST_POI" />
+            <End Role="FM_CUST_GRP_OBJ" EntitySet="FM_CUST_GRP_OBJ" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProtalEntitiesDB" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="FM_CUST_GRP">
+          <Key>
+            <PropertyRef Name="GRP_ID" />
+          </Key>
+          <Property Name="GRP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GRP_NAME" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IMAGE_ID" Type="Int32" />
+          <NavigationProperty Name="FM_CUST_GRP_OBJ" Relationship="Self.FK_CUST_GRP_ID" FromRole="FM_CUST_GRP" ToRole="FM_CUST_GRP_OBJ" />
+          <NavigationProperty Name="FM_IMAGES" Relationship="Self.FK_CUST_GRP_IMAGE" FromRole="FM_CUST_GRP" ToRole="FM_IMAGES" />
+        </EntityType>
+        <EntityType Name="FM_CUST_GRP_OBJ">
+          <Key>
+            <PropertyRef Name="GRP_OBJ_ID" />
+          </Key>
+          <Property Name="GRP_OBJ_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GRP_NAME" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="OBJ_SORT" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="OBJ_NAME" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="POI_ID" Type="Int32" />
+          <Property Name="GRP_ID" Type="Int32" />
+          <NavigationProperty Name="FM_CUST_GRP" Relationship="Self.FK_CUST_GRP_ID" FromRole="FM_CUST_GRP_OBJ" ToRole="FM_CUST_GRP" />
+          <NavigationProperty Name="FM_CUST_POI" Relationship="Self.FK_CUST_POI_ID" FromRole="FM_CUST_GRP_OBJ" ToRole="FM_CUST_POI" />
+        </EntityType>
+        <EntityType Name="FM_CUST_POI">
+          <Key>
+            <PropertyRef Name="POI_ID" />
+          </Key>
+          <Property Name="POI_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="POI_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="POI_DESC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SETTL_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HOUSE_NR" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GEOCODE_STATUS" Type="Double" Nullable="false" />
+          <Property Name="WM_X" Type="Double" />
+          <Property Name="WM_Y" Type="Double" />
+          <Property Name="HTRS_X" Type="Double" />
+          <Property Name="HTRS_Y" Type="Double" />
+          <NavigationProperty Name="FM_CUST_GRP_OBJ" Relationship="Self.FK_CUST_POI_ID" FromRole="FM_CUST_POI" ToRole="FM_CUST_GRP_OBJ" />
+        </EntityType>
+        <EntityType Name="FM_CUST_ROUTES">
+          <Key>
+            <PropertyRef Name="ROUTE_ID" />
+          </Key>
+          <Property Name="ROUTE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ROUTE_NAME" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ROUTE_DESC" Type="String" MaxLength="99" FixedLength="false" Unicode="false" />
+          <Property Name="ROUTE_DATA" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="FM_CUST_USERS">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="Decimal" Precision="9" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_STATUS" Type="Boolean" />
+          <Property Name="USER_NAME" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USER_PWD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="USER_KEY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="USER_KEY_DT" Type="DateTime" Precision="0" />
+          <Property Name="CUST_ADMIN" Type="Boolean" />
+          <Property Name="POI_ADMIN" Type="Boolean" />
+          <Property Name="PREF_LANG" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FM_IMAGES">
+          <Key>
+            <PropertyRef Name="IMAGE_ID" />
+          </Key>
+          <Property Name="IMAGE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GRP_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="IMAGE_DESC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FM_CUST_GRP" Relationship="Self.FK_CUST_GRP_IMAGE" FromRole="FM_IMAGES" ToRole="FM_CUST_GRP" />
+        </EntityType>
+        <EntityType Name="FM_LOG_ACTIONS">
+          <Key>
+            <PropertyRef Name="ACTION_ID" />
+          </Key>
+          <Property Name="ACTION_ID" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="ACTION_NAME" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ACTION_DESC" Type="String" MaxLength="99" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FM_LOG_OBJECTS">
+          <Key>
+            <PropertyRef Name="OBJ_ID" />
+          </Key>
+          <Property Name="OBJ_ID" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="APP_NAME" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OBJ_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OBJ_DESC" Type="String" MaxLength="99" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FM_OBJ_TYPES">
+          <Key>
+            <PropertyRef Name="OBJ_TYPE" />
+          </Key>
+          <Property Name="OBJ_TYPE" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="TYPE_DESC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FM_REPORTS">
+          <Key>
+            <PropertyRef Name="RPT_ID" />
+          </Key>
+          <Property Name="RPT_ID" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="APP_NAME" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RPT_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RPT_LABEL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FM_TASK_LOG">
+          <Key>
+            <PropertyRef Name="TASK_ID" />
+          </Key>
+          <Property Name="TASK_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TASK_LOG_DT" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CUST_ID" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="CUST_USER_ID" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ASSET_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ASSET_MSISDN" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TASK_MSG" Type="String" MaxLength="160" FixedLength="false" Unicode="false" />
+          <Property Name="SMS_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TASK_TTC_DT" Type="DateTime" Precision="0" />
+          <Property Name="TASK_END_DT" Type="DateTime" Precision="0" />
+          <Property Name="TASK_MODIFIED_DT" Type="DateTime" Precision="0" />
+          <Property Name="TASK_STATUS" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="ROWID" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FM_CUST_USERS_bkp">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="USER_STATUS" />
+            <PropertyRef Name="CUST_ID" />
+            <PropertyRef Name="USER_NAME" />
+            <PropertyRef Name="CUST_ADMIN" />
+            <PropertyRef Name="ASSET_ADMIN" />
+            <PropertyRef Name="POI_ADMIN" />
+            <PropertyRef Name="TRACKING" />
+            <PropertyRef Name="REPORTING" />
+            <PropertyRef Name="PREF_LANG" />
+            <PropertyRef Name="ROWID" />
+          </Key>
+          <Property Name="USER_ID" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="USER_STATUS" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="CUST_ID" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="USER_NAME" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USER_PWD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="USER_KEY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="USER_KEY_DT" Type="DateTime" Precision="0" />
+          <Property Name="CUST_ADMIN" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="ASSET_ADMIN" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="POI_ADMIN" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="TRACKING" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="REPORTING" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="PREF_LANG" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ROWID" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FM_POI_Web_mer_Ags_sfer">
+          <Key>
+            <PropertyRef Name="OBJECTID" />
+          </Key>
+          <Property Name="OBJECTID" Type="Int32" Nullable="false" />
+          <Property Name="CUST_ID" Type="Double" />
+          <Property Name="POI_NAME" Type="String" MaxLength="254" FixedLength="false" Unicode="true" />
+          <Property Name="POI_DESC" Type="String" MaxLength="254" FixedLength="false" Unicode="true" />
+          <Property Name="SETTL_NAME" Type="String" MaxLength="254" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS" Type="String" MaxLength="254" FixedLength="false" Unicode="true" />
+          <Property Name="HOUSE_NR" Type="Double" />
+          <Property Name="WORKING_HO" Type="String" MaxLength="254" FixedLength="false" Unicode="true" />
+          <Property Name="PHONES" Type="String" MaxLength="254" FixedLength="false" Unicode="true" />
+          <Property Name="GEOCODE_ST" Type="Double" />
+          <Property Name="EOV_X" Type="Double" />
+          <Property Name="EOV_Y" Type="Double" />
+        </EntityType>
+        <EntityType Name="FM_CUST_SETTINGS">
+          <Key>
+            <PropertyRef Name="CUST_ID" />
+            <PropertyRef Name="ASSET_DISPNAME_ORD" />
+            <PropertyRef Name="ASSET_FULLNAME_ORD" />
+            <PropertyRef Name="ASSET_MSISDN_ORD" />
+            <PropertyRef Name="ASSET_LBL_MINSCALE" />
+            <PropertyRef Name="ASSET_LBL_MAXSCALE" />
+            <PropertyRef Name="ASSET_SMALL_ICONSZ" />
+            <PropertyRef Name="ASSET_LARGE_ICONSZ" />
+            <PropertyRef Name="ASSET_ICON_MARGIN" />
+            <PropertyRef Name="ASSET_SMALL_LABELSZ" />
+            <PropertyRef Name="ASSET_LARGE_LABELSZ" />
+          </Key>
+          <Property Name="CUST_ID" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ASSET_DISPNAME_ORD" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="ASSET_FULLNAME_ORD" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="ASSET_MSISDN_ORD" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="ASSET_LBL_MINSCALE" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ASSET_LBL_MAXSCALE" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ASSET_SMALL_ICONSZ" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="ASSET_LARGE_ICONSZ" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="ASSET_ICON_MARGIN" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ASSET_SMALL_LABELSZ" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="ASSET_LARGE_LABELSZ" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FM_LOG">
+          <Key>
+            <PropertyRef Name="LOG_DTIME" />
+            <PropertyRef Name="ROWID" />
+          </Key>
+          <Property Name="LOG_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="LOG_DTIME" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CUST_ID" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="CUST_USER_ID" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="CC_USER_ID" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="OBJ_ID" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="ACTION_ID" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="ACTION_TAG" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="ROW_PK_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ROW_TAG" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RESULT" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="SQL_CMD" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="ROWID" Type="Guid" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CUST_GRP_ID">
+          <End Role="FM_CUST_GRP" Type="Self.FM_CUST_GRP" Multiplicity="0..1" />
+          <End Role="FM_CUST_GRP_OBJ" Type="Self.FM_CUST_GRP_OBJ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FM_CUST_GRP">
+              <PropertyRef Name="GRP_ID" />
+            </Principal>
+            <Dependent Role="FM_CUST_GRP_OBJ">
+              <PropertyRef Name="GRP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUST_GRP_IMAGE">
+          <End Role="FM_IMAGES" Type="Self.FM_IMAGES" Multiplicity="0..1" />
+          <End Role="FM_CUST_GRP" Type="Self.FM_CUST_GRP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FM_IMAGES">
+              <PropertyRef Name="IMAGE_ID" />
+            </Principal>
+            <Dependent Role="FM_CUST_GRP">
+              <PropertyRef Name="IMAGE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUST_POI_ID">
+          <End Role="FM_CUST_POI" Type="Self.FM_CUST_POI" Multiplicity="0..1" />
+          <End Role="FM_CUST_GRP_OBJ" Type="Self.FM_CUST_GRP_OBJ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FM_CUST_POI">
+              <PropertyRef Name="POI_ID" />
+            </Principal>
+            <Dependent Role="FM_CUST_GRP_OBJ">
+              <PropertyRef Name="POI_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProtalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="FM_CUST_GRP" EntityType="Self.FM_CUST_GRP" />
+          <EntitySet Name="FM_CUST_GRP_OBJ" EntityType="Self.FM_CUST_GRP_OBJ" />
+          <EntitySet Name="FM_CUST_POI" EntityType="Self.FM_CUST_POI" />
+          <EntitySet Name="FM_CUST_ROUTES" EntityType="Self.FM_CUST_ROUTES" />
+          <EntitySet Name="FM_CUST_USERS" EntityType="Self.FM_CUST_USERS" />
+          <EntitySet Name="FM_IMAGES" EntityType="Self.FM_IMAGES" />
+          <EntitySet Name="FM_LOG_ACTIONS" EntityType="Self.FM_LOG_ACTIONS" />
+          <EntitySet Name="FM_LOG_OBJECTS" EntityType="Self.FM_LOG_OBJECTS" />
+          <EntitySet Name="FM_OBJ_TYPES" EntityType="Self.FM_OBJ_TYPES" />
+          <EntitySet Name="FM_REPORTS" EntityType="Self.FM_REPORTS" />
+          <EntitySet Name="FM_TASK_LOG" EntityType="Self.FM_TASK_LOG" />
+          <EntitySet Name="FM_CUST_USERS_bkp" EntityType="Self.FM_CUST_USERS_bkp" />
+          <EntitySet Name="FM_POI_Web_mer_Ags_sfer" EntityType="Self.FM_POI_Web_mer_Ags_sfer" />
+          <EntitySet Name="FM_CUST_SETTINGS" EntityType="Self.FM_CUST_SETTINGS" />
+          <EntitySet Name="FM_LOG" EntityType="Self.FM_LOG" />
+          <AssociationSet Name="FK_CUST_GRP_ID" Association="Self.FK_CUST_GRP_ID">
+            <End Role="FM_CUST_GRP" EntitySet="FM_CUST_GRP" />
+            <End Role="FM_CUST_GRP_OBJ" EntitySet="FM_CUST_GRP_OBJ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUST_GRP_IMAGE" Association="Self.FK_CUST_GRP_IMAGE">
+            <End Role="FM_IMAGES" EntitySet="FM_IMAGES" />
+            <End Role="FM_CUST_GRP" EntitySet="FM_CUST_GRP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUST_POI_ID" Association="Self.FK_CUST_POI_ID">
+            <End Role="FM_CUST_POI" EntitySet="FM_CUST_POI" />
+            <End Role="FM_CUST_GRP_OBJ" EntitySet="FM_CUST_GRP_OBJ" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProtalEntitiesDBStoreContainer" CdmEntityContainer="ProtalEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ProtalEntitiesDB.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FM_CUST_GRP">
+            <EntityTypeMapping TypeName="ProtalEntitiesDB.FM_CUST_GRP">
+              <MappingFragment StoreEntitySet="FM_CUST_GRP">
+                <ScalarProperty Name="GRP_ID" ColumnName="GRP_ID" />
+                <ScalarProperty Name="GRP_NAME" ColumnName="GRP_NAME" />
+                <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FM_CUST_GRP_OBJ">
+            <EntityTypeMapping TypeName="ProtalEntitiesDB.FM_CUST_GRP_OBJ">
+              <MappingFragment StoreEntitySet="FM_CUST_GRP_OBJ">
+                <ScalarProperty Name="GRP_OBJ_ID" ColumnName="GRP_OBJ_ID" />
+                <ScalarProperty Name="GRP_NAME" ColumnName="GRP_NAME" />
+                <ScalarProperty Name="OBJ_SORT" ColumnName="OBJ_SORT" />
+                <ScalarProperty Name="OBJ_NAME" ColumnName="OBJ_NAME" />
+                <ScalarProperty Name="POI_ID" ColumnName="POI_ID" />
+                <ScalarProperty Name="GRP_ID" ColumnName="GRP_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FM_CUST_POI">
+            <EntityTypeMapping TypeName="ProtalEntitiesDB.FM_CUST_POI">
+              <MappingFragment StoreEntitySet="FM_CUST_POI">
+                <ScalarProperty Name="POI_ID" ColumnName="POI_ID" />
+                <ScalarProperty Name="POI_NAME" ColumnName="POI_NAME" />
+                <ScalarProperty Name="POI_DESC" ColumnName="POI_DESC" />
+                <ScalarProperty Name="SETTL_NAME" ColumnName="SETTL_NAME" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="HOUSE_NR" ColumnName="HOUSE_NR" />
+                <ScalarProperty Name="GEOCODE_STATUS" ColumnName="GEOCODE_STATUS" />
+                <ScalarProperty Name="WM_X" ColumnName="WM_X" />
+                <ScalarProperty Name="WM_Y" ColumnName="WM_Y" />
+                <ScalarProperty Name="HTRS_X" ColumnName="HTRS_X" />
+                <ScalarProperty Name="HTRS_Y" ColumnName="HTRS_Y" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FM_CUST_ROUTES">
+            <EntityTypeMapping TypeName="ProtalEntitiesDB.FM_CUST_ROUTES">
+              <MappingFragment StoreEntitySet="FM_CUST_ROUTES">
+                <ScalarProperty Name="ROUTE_ID" ColumnName="ROUTE_ID" />
+                <ScalarProperty Name="ROUTE_NAME" ColumnName="ROUTE_NAME" />
+                <ScalarProperty Name="ROUTE_DESC" ColumnName="ROUTE_DESC" />
+                <ScalarProperty Name="ROUTE_DATA" ColumnName="ROUTE_DATA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FM_CUST_USERS">
+            <EntityTypeMapping TypeName="ProtalEntitiesDB.FM_CUST_USERS">
+              <MappingFragment StoreEntitySet="FM_CUST_USERS">
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="USER_STATUS" ColumnName="USER_STATUS" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="USER_PWD" ColumnName="USER_PWD" />
+                <ScalarProperty Name="USER_KEY" ColumnName="USER_KEY" />
+                <ScalarProperty Name="USER_KEY_DT" ColumnName="USER_KEY_DT" />
+                <ScalarProperty Name="CUST_ADMIN" ColumnName="CUST_ADMIN" />
+                <ScalarProperty Name="POI_ADMIN" ColumnName="POI_ADMIN" />
+                <ScalarProperty Name="PREF_LANG" ColumnName="PREF_LANG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FM_IMAGES">
+            <EntityTypeMapping TypeName="ProtalEntitiesDB.FM_IMAGES">
+              <MappingFragment StoreEntitySet="FM_IMAGES">
+                <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
+                <ScalarProperty Name="GRP_IMAGE" ColumnName="GRP_IMAGE" />
+                <ScalarProperty Name="IMAGE_DESC" ColumnName="IMAGE_DESC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FM_LOG_ACTIONS">
+            <EntityTypeMapping TypeName="ProtalEntitiesDB.FM_LOG_ACTIONS">
+              <MappingFragment StoreEntitySet="FM_LOG_ACTIONS">
+                <ScalarProperty Name="ACTION_ID" ColumnName="ACTION_ID" />
+                <ScalarProperty Name="ACTION_NAME" ColumnName="ACTION_NAME" />
+                <ScalarProperty Name="ACTION_DESC" ColumnName="ACTION_DESC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FM_LOG_OBJECTS">
+            <EntityTypeMapping TypeName="ProtalEntitiesDB.FM_LOG_OBJECTS">
+              <MappingFragment StoreEntitySet="FM_LOG_OBJECTS">
+                <ScalarProperty Name="OBJ_ID" ColumnName="OBJ_ID" />
+                <ScalarProperty Name="APP_NAME" ColumnName="APP_NAME" />
+                <ScalarProperty Name="OBJ_NAME" ColumnName="OBJ_NAME" />
+                <ScalarProperty Name="OBJ_DESC" ColumnName="OBJ_DESC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FM_OBJ_TYPES">
+            <EntityTypeMapping TypeName="ProtalEntitiesDB.FM_OBJ_TYPES">
+              <MappingFragment StoreEntitySet="FM_OBJ_TYPES">
+                <ScalarProperty Name="OBJ_TYPE" ColumnName="OBJ_TYPE" />
+                <ScalarProperty Name="TYPE_DESC" ColumnName="TYPE_DESC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FM_REPORTS">
+            <EntityTypeMapping TypeName="ProtalEntitiesDB.FM_REPORTS">
+              <MappingFragment StoreEntitySet="FM_REPORTS">
+                <ScalarProperty Name="RPT_ID" ColumnName="RPT_ID" />
+                <ScalarProperty Name="APP_NAME" ColumnName="APP_NAME" />
+                <ScalarProperty Name="RPT_NAME" ColumnName="RPT_NAME" />
+                <ScalarProperty Name="RPT_LABEL" ColumnName="RPT_LABEL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FM_TASK_LOG">
+            <EntityTypeMapping TypeName="ProtalEntitiesDB.FM_TASK_LOG">
+              <MappingFragment StoreEntitySet="FM_TASK_LOG">
+                <ScalarProperty Name="TASK_ID" ColumnName="TASK_ID" />
+                <ScalarProperty Name="TASK_LOG_DT" ColumnName="TASK_LOG_DT" />
+                <ScalarProperty Name="CUST_ID" ColumnName="CUST_ID" />
+                <ScalarProperty Name="CUST_USER_ID" ColumnName="CUST_USER_ID" />
+                <ScalarProperty Name="ASSET_ID" ColumnName="ASSET_ID" />
+                <ScalarProperty Name="ASSET_MSISDN" ColumnName="ASSET_MSISDN" />
+                <ScalarProperty Name="TASK_MSG" ColumnName="TASK_MSG" />
+                <ScalarProperty Name="SMS_ID" ColumnName="SMS_ID" />
+                <ScalarProperty Name="TASK_TTC_DT" ColumnName="TASK_TTC_DT" />
+                <ScalarProperty Name="TASK_END_DT" ColumnName="TASK_END_DT" />
+                <ScalarProperty Name="TASK_MODIFIED_DT" ColumnName="TASK_MODIFIED_DT" />
+                <ScalarProperty Name="TASK_STATUS" ColumnName="TASK_STATUS" />
+                <ScalarProperty Name="ROWID" ColumnName="ROWID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FM_CUST_USERS_bkp">
+            <EntityTypeMapping TypeName="ProtalEntitiesDB.FM_CUST_USERS_bkp">
+              <MappingFragment StoreEntitySet="FM_CUST_USERS_bkp">
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="USER_STATUS" ColumnName="USER_STATUS" />
+                <ScalarProperty Name="CUST_ID" ColumnName="CUST_ID" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="USER_PWD" ColumnName="USER_PWD" />
+                <ScalarProperty Name="USER_KEY" ColumnName="USER_KEY" />
+                <ScalarProperty Name="USER_KEY_DT" ColumnName="USER_KEY_DT" />
+                <ScalarProperty Name="CUST_ADMIN" ColumnName="CUST_ADMIN" />
+                <ScalarProperty Name="ASSET_ADMIN" ColumnName="ASSET_ADMIN" />
+                <ScalarProperty Name="POI_ADMIN" ColumnName="POI_ADMIN" />
+                <ScalarProperty Name="TRACKING" ColumnName="TRACKING" />
+                <ScalarProperty Name="REPORTING" ColumnName="REPORTING" />
+                <ScalarProperty Name="PREF_LANG" ColumnName="PREF_LANG" />
+                <ScalarProperty Name="ROWID" ColumnName="ROWID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FM_POI_Web_mer_Ags_sfer">
+            <EntityTypeMapping TypeName="ProtalEntitiesDB.FM_POI_Web_mer_Ags_sfer">
+              <MappingFragment StoreEntitySet="FM_POI_Web_mer_Ags_sfer">
+                <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+                <ScalarProperty Name="CUST_ID" ColumnName="CUST_ID" />
+                <ScalarProperty Name="POI_NAME" ColumnName="POI_NAME" />
+                <ScalarProperty Name="POI_DESC" ColumnName="POI_DESC" />
+                <ScalarProperty Name="SETTL_NAME" ColumnName="SETTL_NAME" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="HOUSE_NR" ColumnName="HOUSE_NR" />
+                <ScalarProperty Name="WORKING_HO" ColumnName="WORKING_HO" />
+                <ScalarProperty Name="PHONES" ColumnName="PHONES" />
+                <ScalarProperty Name="GEOCODE_ST" ColumnName="GEOCODE_ST" />
+                <ScalarProperty Name="EOV_X" ColumnName="EOV_X" />
+                <ScalarProperty Name="EOV_Y" ColumnName="EOV_Y" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FM_CUST_SETTINGS">
+            <EntityTypeMapping TypeName="ProtalEntitiesDB.FM_CUST_SETTINGS">
+              <MappingFragment StoreEntitySet="FM_CUST_SETTINGS">
+                <ScalarProperty Name="CUST_ID" ColumnName="CUST_ID" />
+                <ScalarProperty Name="ASSET_DISPNAME_ORD" ColumnName="ASSET_DISPNAME_ORD" />
+                <ScalarProperty Name="ASSET_FULLNAME_ORD" ColumnName="ASSET_FULLNAME_ORD" />
+                <ScalarProperty Name="ASSET_MSISDN_ORD" ColumnName="ASSET_MSISDN_ORD" />
+                <ScalarProperty Name="ASSET_LBL_MINSCALE" ColumnName="ASSET_LBL_MINSCALE" />
+                <ScalarProperty Name="ASSET_LBL_MAXSCALE" ColumnName="ASSET_LBL_MAXSCALE" />
+                <ScalarProperty Name="ASSET_SMALL_ICONSZ" ColumnName="ASSET_SMALL_ICONSZ" />
+                <ScalarProperty Name="ASSET_LARGE_ICONSZ" ColumnName="ASSET_LARGE_ICONSZ" />
+                <ScalarProperty Name="ASSET_ICON_MARGIN" ColumnName="ASSET_ICON_MARGIN" />
+                <ScalarProperty Name="ASSET_SMALL_LABELSZ" ColumnName="ASSET_SMALL_LABELSZ" />
+                <ScalarProperty Name="ASSET_LARGE_LABELSZ" ColumnName="ASSET_LARGE_LABELSZ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FM_LOG">
+            <EntityTypeMapping TypeName="ProtalEntitiesDB.FM_LOG">
+              <MappingFragment StoreEntitySet="FM_LOG">
+                <ScalarProperty Name="LOG_ID" ColumnName="LOG_ID" />
+                <ScalarProperty Name="LOG_DTIME" ColumnName="LOG_DTIME" />
+                <ScalarProperty Name="CUST_ID" ColumnName="CUST_ID" />
+                <ScalarProperty Name="CUST_USER_ID" ColumnName="CUST_USER_ID" />
+                <ScalarProperty Name="CC_USER_ID" ColumnName="CC_USER_ID" />
+                <ScalarProperty Name="OBJ_ID" ColumnName="OBJ_ID" />
+                <ScalarProperty Name="ACTION_ID" ColumnName="ACTION_ID" />
+                <ScalarProperty Name="ACTION_TAG" ColumnName="ACTION_TAG" />
+                <ScalarProperty Name="ROW_PK_ID" ColumnName="ROW_PK_ID" />
+                <ScalarProperty Name="ROW_TAG" ColumnName="ROW_TAG" />
+                <ScalarProperty Name="RESULT" ColumnName="RESULT" />
+                <ScalarProperty Name="SQL_CMD" ColumnName="SQL_CMD" />
+                <ScalarProperty Name="ROWID" ColumnName="ROWID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

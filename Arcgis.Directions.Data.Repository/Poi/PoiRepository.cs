@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcgis.Directions.Data;
+using Arcgis.Directions.Orm;
 
 namespace Arcgis.Directions.Data.Repository.Poi
 {
@@ -15,19 +16,11 @@ namespace Arcgis.Directions.Data.Repository.Poi
         }
         public void GetAvailablePoi()
         {
-            using (var context = new DbContext())
-            //using (var context = new BloggingContext())
-            //{
-            //    // Query for all blogs with names starting with B 
-            //    var blogs = from b in context.Blogs
-            //                where b.Name.StartsWith("B")
-            //                select b;
+            using (var context = new ProtalEntities())
+            {
 
-            //    // Query for the Blog named ADO.NET Blog 
-            //    var blog = context.Blogs
-            //                    .Where(b => b.Name == "ADO.NET Blog")
-            //                    .FirstOrDefault();
-            //}
+            }
+            
         }
     }
 }
