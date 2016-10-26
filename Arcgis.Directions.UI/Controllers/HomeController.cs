@@ -1,4 +1,5 @@
-﻿using Arcgis.Directions.VM;
+﻿using Arcgis.Directions.BL.Services;
+using Arcgis.Directions.VM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +10,21 @@ namespace Arcgis.Directions.UI.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
+        
+        PoiService _poiService;
+
         public ActionResult Index()
         {
             return View();
         }
 
+        
         [HttpPost]
-        public JsonResult Index(string Prefix)
+        public JsonResult GetPoiList(string keywords)
         {
-            string a = "";
-            return Json(a, JsonRequestBehavior.AllowGet);
+            var vm = new GetPOIVM();
+            vm = _poiService.GetAvailablePoi(keywords);
+            return Json(vm, JsonRequestBehavior.AllowGet);
         }
     }
 }

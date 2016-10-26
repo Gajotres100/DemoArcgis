@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9D4BEBBE-CA49-4AA1-B169-26C3E6D747C1}</ProjectGuid>
+    <ProjectGuid>{87990572-B166-41A1-9FFA-10CEE6E45A2E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Arcgis.Directions.BL</RootNamespace>
-    <AssemblyName>Arcgis.Directions.BL</AssemblyName>
+    <RootNamespace>Arcgis.Directions.Data.Repository</RootNamespace>
+    <AssemblyName>Arcgis.Directions.Data.Repository</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -41,18 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Poi\PoiRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\PoiService.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Arcgis.Directions.Data.Repository\Arcgis.Directions.Data.Repository.csproj">
-      <Project>{87990572-b166-41a1-9ffa-10cee6e45a2e}</Project>
-      <Name>Arcgis.Directions.Data.Repository</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Arcgis.Directions.VM\Arcgis.Directions.VM.csproj">
-      <Project>{1E0BFA29-0873-4EC6-A18B-92748008A7A4}</Project>
-      <Name>Arcgis.Directions.VM</Name>
+    <ProjectReference Include="..\Arcgis.Directions.Orm\Arcgis.Directions.Orm.csproj">
+      <Project>{28a0f1d6-f61f-4b64-8078-8b57e773712a}</Project>
+      <Name>Arcgis.Directions.Orm</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
