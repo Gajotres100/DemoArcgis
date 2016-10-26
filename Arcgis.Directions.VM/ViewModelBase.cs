@@ -9,7 +9,7 @@ namespace Arcgis.Directions.VM
 {
     public class ViewModelBase
     {
-        //public ViewModelBase();
+        public ViewModelBase() { }
         public string ReturnUrl { get; set; }
     }
 }

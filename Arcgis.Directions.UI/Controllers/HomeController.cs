@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Arcgis.Directions.VM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;

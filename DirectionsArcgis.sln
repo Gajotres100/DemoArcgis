@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcgis.Directions.UI", "DemoArcgis\Arcgis.Directions.UI.csproj", "{2A01B4A8-282A-46AF-A1E2-1DF7B03A18E1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcgis.Directions.BL", "Arcgis.Directions.BL\Arcgis.Directions.BL.csproj", "{9D4BEBBE-CA49-4AA1-B169-26C3E6D747C1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcgis.Directions.VM", "Arcgis.Directions.VM\Arcgis.Directions.VM.csproj", "{1E0BFA29-0873-4EC6-A18B-92748008A7A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcgis.Directions.UI", "Arcgis.Directions.UI\Arcgis.Directions.UI.csproj", "{2A01B4A8-282A-46AF-A1E2-1DF7B03A18E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcgis.Directions.Data.Model", "Arcgis.Directions.Data.Model\Arcgis.Directions.Data.Model.csproj", "{94B8A695-E52E-481E-8509-752F36687033}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2A01B4A8-282A-46AF-A1E2-1DF7B03A18E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2A01B4A8-282A-46AF-A1E2-1DF7B03A18E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A01B4A8-282A-46AF-A1E2-1DF7B03A18E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2A01B4A8-282A-46AF-A1E2-1DF7B03A18E1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9D4BEBBE-CA49-4AA1-B169-26C3E6D747C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9D4BEBBE-CA49-4AA1-B169-26C3E6D747C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D4BEBBE-CA49-4AA1-B169-26C3E6D747C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +25,14 @@ Global
 		{1E0BFA29-0873-4EC6-A18B-92748008A7A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E0BFA29-0873-4EC6-A18B-92748008A7A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E0BFA29-0873-4EC6-A18B-92748008A7A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A01B4A8-282A-46AF-A1E2-1DF7B03A18E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A01B4A8-282A-46AF-A1E2-1DF7B03A18E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A01B4A8-282A-46AF-A1E2-1DF7B03A18E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A01B4A8-282A-46AF-A1E2-1DF7B03A18E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94B8A695-E52E-481E-8509-752F36687033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94B8A695-E52E-481E-8509-752F36687033}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94B8A695-E52E-481E-8509-752F36687033}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94B8A695-E52E-481E-8509-752F36687033}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
