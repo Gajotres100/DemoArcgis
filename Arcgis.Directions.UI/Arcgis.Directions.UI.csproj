@@ -159,6 +159,10 @@
       <Project>{9d4bebbe-ca49-4aa1-b169-26c3e6d747c1}</Project>
       <Name>Arcgis.Directions.BL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Arcgis.Directions.Data.Model\Arcgis.Directions.Data.Model.csproj">
+      <Project>{94b8a695-e52e-481e-8509-752f36687033}</Project>
+      <Name>Arcgis.Directions.Data.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Arcgis.Directions.VM\Arcgis.Directions.VM.csproj">
       <Project>{1e0bfa29-0873-4ec6-a18b-92748008a7a4}</Project>
       <Name>Arcgis.Directions.VM</Name>

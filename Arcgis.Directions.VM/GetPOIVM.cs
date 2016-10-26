@@ -12,5 +12,9 @@ namespace Arcgis.Directions.VM
         public List<CusPoi> CusPoiList { get; set; }
         public CusPoi CusPoi { get; set; }
         public CusPoiInput CusPoiInput { get; set; }
+
+        public int PoiID { get; set; }
+        public string PoiName { get; set; }
+        public string PoiDesc { get; set; }
     }
 }

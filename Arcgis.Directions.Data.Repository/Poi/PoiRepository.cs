@@ -15,11 +15,11 @@ namespace Arcgis.Directions.Data.Repository.Poi
         {
 
         }
-        public List<CusPoi> GetAvailablePoi(string keyword)
+        public List<CusPoi> GetAvailablePoiByDescription(string keyword)
         {
             using (var context = new ProtalEntities())
             {
-                    return context.FM_CUST_POI.Where(p => p.POI_NAME.Contains(keyword)).Select(x => new CusPoi()
+                    return context.FM_CUST_POI.Where(p => p.POI_DESC.Contains(keyword)).Select(x => new CusPoi()
                     {
                         PoiID = x.POI_ID,
                         Address = x.ADDRESS,

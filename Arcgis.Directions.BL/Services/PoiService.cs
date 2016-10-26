@@ -22,10 +22,10 @@ namespace Arcgis.Directions.BL.Services
             _poiRepository = new PoiRepository();
         }
         #endregion
-        public GetPOIVM GetAvailablePoi(string keyword)
+        public GetPOIVM GetAvailablePoiByDescription(string keyword)
         {
             GetPOIVM item = new GetPOIVM();
-            item.CusPoiList = _poiRepository.GetAvailablePoi(keyword);
+            item.CusPoiList = _poiRepository.GetAvailablePoiByDescription(keyword);
             return item;
         }
 

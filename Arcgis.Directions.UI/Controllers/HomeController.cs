@@ -30,8 +30,8 @@ namespace Arcgis.Directions.UI.Controllers
         {
             var vm = new GetPOIVM();
             _poiService = new PoiService();
-            vm = _poiService.GetAvailablePoi(keywords);
-            return Json(vm, JsonRequestBehavior.AllowGet);
+            vm = _poiService.GetAvailablePoiByDescription(keywords);
+            return Json(vm.CusPoiList, JsonRequestBehavior.AllowGet);
         }
     }
 }

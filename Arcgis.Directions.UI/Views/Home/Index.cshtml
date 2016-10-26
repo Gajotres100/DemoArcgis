@@ -18,10 +18,10 @@
                     success: function (data) {
                         response($.map(data, function (item) {
                             return {
-                                label: item.value,
-                                value: item.value,
-                                id: item.id
-                            }
+                                label: item.PoiDesc,
+                                value: item.PoiDesc,
+                                id: item.PoiID
+                            };
                         }))
                     }
                 });
