@@ -1,7 +1,30 @@
-﻿@{
+﻿@model Arcgis.Directions.VM.GetPOIVM
+
+@{
 
 }
 <script>
+    $(document).ready(function () {
+        $("#CityName").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Home/Index",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Name, value: item.Name };
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "", results: ""
+            }
+        });
+    })
     require([
       "esri/urlUtils", "esri/map", "esri/dijit/Directions",
       "dojo/parser",
@@ -26,6 +49,7 @@
         directions.startup();
     });
 </script>
+@Html.EditorFor(model => model.CusPoiInput, new { htmlAttributes = new { @class = "form-control" } })  
 <div data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design:'headline', gutters:false"  style="width:100%;height:100%;">
     <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'left'" style="width:250px;">
         <div id="dir"></div>
