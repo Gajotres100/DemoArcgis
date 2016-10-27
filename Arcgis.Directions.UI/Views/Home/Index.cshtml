@@ -41,16 +41,25 @@
 
         var map = new Map("map", {
             basemap: "streets",
-            center: [-98.56, 39.82],
+            center: [15.20, 45.10],
             sliderPosition: "top-right",
-            zoom: 5
+            zoom: 7
         });
+      
 
         var directions = new Directions({
             map: map,
             routeTaskUrl: "@System.Configuration.ConfigurationManager.AppSettings["routeTaskUrl"]",            
         }, "dir");
-        directions.startup();
+         directions.startup();
+
+         var companyLocation = new esri.geometry.Point(45.10, 15.20);
+         navigator.geolocation.getCurrentPosition(function (position) {
+             var currentLocation = new esri.geometry.Point(position.coords);
+             alert(currentLocation);
+             //directions.AddStops([currentLocation, companyLocation]);
+         });
+        
     });
 </script> 
 @Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keywords-manual" })
