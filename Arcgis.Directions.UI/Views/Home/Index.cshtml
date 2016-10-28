@@ -51,13 +51,73 @@
             map: map,
             routeTaskUrl: "@System.Configuration.ConfigurationManager.AppSettings["routeTaskUrl"]",            
         }, "dir");
+
          directions.startup();
 
-         var companyLocation = new esri.geometry.Point(45.10, 15.20);
-         navigator.geolocation.getCurrentPosition(function (position) {
-             var currentLocation = new esri.geometry.Point(position.coords);
-             alert(currentLocation);
-             //directions.AddStops([currentLocation, companyLocation]);
+         directions.on("load", function () {
+             //adjust map div after the widget has loaded so our checkbox doesn't shift things
+             map.reposition();
+         });      
+
+         directions.on("directions-finish", function () {
+             //clickGraphicsLayer.clear();
+         });
+
+
+         //var checkbox = document.getElementById("keywords-manual");
+
+         //create an event listener that hooks up click events and turns them off when people interact with the checkbox
+         //checkbox.onchange = function () {
+         //    if (checkbox.checked == false) {
+         //        addGraphics.remove()
+         //    }
+         //    else
+         //        addGraphics = map.on('click', addGraphicPoints);
+         //}
+
+         ////wire up the map click event listener by default
+         //var addGraphics = map.on('click', addGraphicPoints);
+
+         ////create a separate graphics layer to display stops before the route has been solved
+         //var clickGraphicsLayer = new GraphicsLayer();
+         //map.addLayer(clickGraphicsLayer);
+
+         //function addGraphicPoints(evt) {
+
+         //    var existingBlank = false;
+         //    var graphic = new Graphic(evt.mapPoint, directions.stopSymbol);
+
+         //    for (var i = 0; i <= directions.stops.length - 1; i++) {
+         //        if (directions.stops[i].name === "") {
+         //            //update an existing stop and break out of the loop if you encounter one without an address
+         //            directions.updateStop(graphic, i);
+         //            clickGraphicsLayer.add(graphic);
+         //            existingBlank = true;
+         //            break;
+         //        }
+         //    }
+         //    //if all existing stops have an address supplied, add a new one
+         //    if (existingBlank == false)
+         //        directions.addStop(graphic);
+         //    clickGraphicsLayer.add(graphic);
+         //}
+
+
+         //var companyLocation = new esri.geometry.Point(45.10, 15.20);
+         //navigator.geolocation.getCurrentPosition(function (position) {
+         //    var currentLocation = new esri.geometry.Point(position.coords);
+         //    alert(currentLocation);
+         //    //directions.AddStops([currentLocation, companyLocation]);
+         //});
+
+         var extent = new esri.geometry.Extent({
+             "xmin": -8576501,
+             "ymin": 4705377,
+             "xmax": -8574612,
+             "ymax": 4706867,
+             "spatialReference": {
+                 "wkid": 3857
+             }
          });
         
     });
