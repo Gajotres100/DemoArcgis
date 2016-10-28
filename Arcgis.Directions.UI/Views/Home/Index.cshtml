@@ -49,20 +49,35 @@
 
         var directions = new Directions({
             map: map,
-            routeTaskUrl: "@System.Configuration.ConfigurationManager.AppSettings["routeTaskUrl"]",            
+            routeTaskUrl: "@System.Configuration.ConfigurationManager.AppSettings["routeTaskUrl"]",  
+            directionsLengthUnits: "esriKilometers",
+            optimalRoute: true,
+            showOptimalRouteOption : true,
+            showMilesKilometersOption : false
         }, "dir");
 
          directions.startup();
 
-         directions.on("load", function () {
-             //adjust map div after the widget has loaded so our checkbox doesn't shift things
-             map.reposition();
+         directions.on("load", function () {             
+             //var companyLocation = new esri.geometry.Point(45.10, 15.20);
+             //var a = new esri.geometry.Point(1778236.88355, 5750057.15218, new esri.SpatialReference({ wkid: 4326 }));
+             //directions.addStop(new esri.geometry.Point(16.133838 45.747699), 0);
+             directions.addStop("MINISTARSTVO OBRANE RH ORGAN UPRAVE", null);
+             directions.addStop(new esri.geometry.Point(16.133838, 45.747699), null);
+             directions.addStop(new esri.geometry.Point(15.993652, 45.677012), null);
+             directions.addStop(new esri.geometry.Point(15.993652, 45.777012), null);
          });      
 
-         directions.on("directions-finish", function () {
-             //clickGraphicsLayer.clear();
-         });
+         directions.on("map-click-active", function(state){
+             if(state.mapClickActive === true)
+                 alert("Klik na mapi");
+                 if(state.mapClickActive === false)
+                     alert("Klik na mapi");
+         });        
 
+         //directions.on("directions-finish", function () {
+         //    //clickGraphicsLayer.clear();
+         //});  
 
          //var checkbox = document.getElementById("keywords-manual");
 
@@ -78,7 +93,7 @@
          ////wire up the map click event listener by default
          //var addGraphics = map.on('click', addGraphicPoints);
 
-         ////create a separate graphics layer to display stops before the route has been solved
+         //////create a separate graphics layer to display stops before the route has been solved
          //var clickGraphicsLayer = new GraphicsLayer();
          //map.addLayer(clickGraphicsLayer);
 
@@ -110,15 +125,7 @@
          //    //directions.AddStops([currentLocation, companyLocation]);
          //});
 
-         var extent = new esri.geometry.Extent({
-             "xmin": -8576501,
-             "ymin": 4705377,
-             "xmax": -8574612,
-             "ymax": 4706867,
-             "spatialReference": {
-                 "wkid": 3857
-             }
-         });
+         
         
     });
 </script> 
