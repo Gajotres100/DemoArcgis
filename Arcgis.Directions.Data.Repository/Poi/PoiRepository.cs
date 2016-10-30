@@ -19,7 +19,7 @@ namespace Arcgis.Directions.Data.Repository.Poi
         {
             using (var context = new ProtalEntities())
             {
-                    return context.FM_CUST_POI.Where(p => p.POI_DESC.Contains(keyword)).Select(x => new CusPoi()
+                    return context.GetAvailablePoiByDescription(keyword).Select(x => new CusPoi()
                     {
                         PoiID = x.POI_ID,
                         Address = x.ADDRESS,
@@ -34,6 +34,27 @@ namespace Arcgis.Directions.Data.Repository.Poi
                         WmY = x.WM_Y
                     }).ToList();
             }            
+        }
+
+        public CusPoi GetPoiByID(int id)
+        {
+            using (var context = new ProtalEntities())
+            {
+                return context.GetPoiByID(id).Select(x => new CusPoi()
+                {
+                    PoiID = x.POI_ID,
+                    Address = x.ADDRESS,
+                    GeocodeStatus = x.GEOCODE_STATUS,
+                    HouseNr = x.HOUSE_NR,
+                    HtrsX = x.HTRS_X,
+                    HTRS_Y = x.HTRS_Y,
+                    PoiDesc = x.POI_DESC,
+                    PoiName = x.POI_NAME,
+                    SettleName = x.SETTL_NAME,
+                    WmX = x.WM_X,
+                    WmY = x.WM_Y
+                }).FirstOrDefault();
+            }
         }
     }
 }

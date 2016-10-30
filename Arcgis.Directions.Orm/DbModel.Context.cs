@@ -12,6 +12,9 @@ namespace Arcgis.Directions.Orm
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Objects;
+    using System.Data.Objects.DataClasses;
+    using System.Linq;
     
     public partial class ProtalEntities : DbContext
     {
@@ -41,5 +44,174 @@ namespace Arcgis.Directions.Orm
         public DbSet<FM_POI_Web_mer_Ags_sfer> FM_POI_Web_mer_Ags_sfer { get; set; }
         public DbSet<FM_CUST_SETTINGS> FM_CUST_SETTINGS { get; set; }
         public DbSet<FM_LOG> FM_LOG { get; set; }
+    
+        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual int CHANGE_CUST_GRP_NAME(Nullable<double> p_custid, string p_oldname, string p_newname)
+        {
+            var p_custidParameter = p_custid.HasValue ?
+                new ObjectParameter("p_custid", p_custid) :
+                new ObjectParameter("p_custid", typeof(double));
+    
+            var p_oldnameParameter = p_oldname != null ?
+                new ObjectParameter("p_oldname", p_oldname) :
+                new ObjectParameter("p_oldname", typeof(string));
+    
+            var p_newnameParameter = p_newname != null ?
+                new ObjectParameter("p_newname", p_newname) :
+                new ObjectParameter("p_newname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CHANGE_CUST_GRP_NAME", p_custidParameter, p_oldnameParameter, p_newnameParameter);
+        }
+    
+        public virtual int CHANGE_CUST_GRP_NAME_IMPL(Nullable<double> p_custid, string p_oldname, string p_newname)
+        {
+            var p_custidParameter = p_custid.HasValue ?
+                new ObjectParameter("p_custid", p_custid) :
+                new ObjectParameter("p_custid", typeof(double));
+    
+            var p_oldnameParameter = p_oldname != null ?
+                new ObjectParameter("p_oldname", p_oldname) :
+                new ObjectParameter("p_oldname", typeof(string));
+    
+            var p_newnameParameter = p_newname != null ?
+                new ObjectParameter("p_newname", p_newname) :
+                new ObjectParameter("p_newname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CHANGE_CUST_GRP_NAME_IMPL", p_custidParameter, p_oldnameParameter, p_newnameParameter);
+        }
+    
+        public virtual int DELETE_TEMP_ROUTES()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DELETE_TEMP_ROUTES");
+        }
+    
+        public virtual ObjectResult<GetAvailablePoiByDescription_Result> GetAvailablePoiByDescription(string keyword)
+        {
+            var keywordParameter = keyword != null ?
+                new ObjectParameter("keyword", keyword) :
+                new ObjectParameter("keyword", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAvailablePoiByDescription_Result>("GetAvailablePoiByDescription", keywordParameter);
+        }
+    
+        public virtual int ISNUMBER_IMPL(string s, ObjectParameter return_value_argument)
+        {
+            var sParameter = s != null ?
+                new ObjectParameter("s", s) :
+                new ObjectParameter("s", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ISNUMBER_IMPL", sParameter, return_value_argument);
+        }
+    
+        public virtual ObjectResult<GetPoiByID_Result> GetPoiByID(Nullable<int> poiID)
+        {
+            var poiIDParameter = poiID.HasValue ?
+                new ObjectParameter("poiID", poiID) :
+                new ObjectParameter("poiID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetPoiByID_Result>("GetPoiByID", poiIDParameter);
+        }
     }
 }

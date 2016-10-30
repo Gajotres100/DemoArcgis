@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ProtalEntitiesDB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ProtalEntitiesDB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
 warning 6002: The table/view 'RN1805.dbo.FM_CUST_USERS_bkp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="FM_CUST_USERS_bkp">
@@ -267,6 +267,80 @@ warning 6002: The table/view 'RN1805.fm.FM_LOG' does not have a primary key defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ASSET_ICON_0123" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="fm" ReturnType="float">
+          <Parameter Name="code" Type="float" Mode="In" />
+          <Parameter Name="tr_state" Type="float" Mode="In" />
+        </Function>
+        <Function Name="CHANGE_CUST_GRP_NAME" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="fm">
+          <Parameter Name="p_custid" Type="float" Mode="In" />
+          <Parameter Name="p_oldname" Type="varchar(max)" Mode="In" />
+          <Parameter Name="p_newname" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="CHANGE_CUST_GRP_NAME_IMPL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="fm" StoreFunctionName="CHANGE_CUST_GRP_NAME$IMPL">
+          <Parameter Name="p_custid" Type="float" Mode="In" />
+          <Parameter Name="p_oldname" Type="varchar(max)" Mode="In" />
+          <Parameter Name="p_newname" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="DELETE_TEMP_ROUTES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="fm" />
+        <Function Name="GetAvailablePoiByDescription" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="fm">
+          <Parameter Name="keyword" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="GetPoiByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="fm">
+          <Parameter Name="poiID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ISBIZDAY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="fm" ReturnType="int">
+          <Parameter Name="d" Type="datetime2" Mode="In" />
+        </Function>
+        <Function Name="ISBIZDAY_ORA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="fm" ReturnType="float">
+          <Parameter Name="d" Type="datetime2" Mode="In" />
+        </Function>
+        <Function Name="ISBIZDAY_TSQL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="fm" ReturnType="int">
+          <Parameter Name="d" Type="datetime2" Mode="In" />
+        </Function>
+        <Function Name="ISNUMBER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="fm" ReturnType="float">
+          <Parameter Name="s" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="ISNUMBER_IMPL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="fm" StoreFunctionName="ISNUMBER$IMPL">
+          <Parameter Name="s" Type="varchar(max)" Mode="In" />
+          <Parameter Name="return_value_argument" Type="float" Mode="InOut" />
+        </Function>
+        <Function Name="LRTIP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="fm" ReturnType="float">
+          <Parameter Name="code" Type="float" Mode="In" />
+        </Function>
+        <Function Name="RES_CODE_OK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="fm" ReturnType="float">
+          <Parameter Name="code" Type="float" Mode="In" />
+        </Function>
         <EntityContainer Name="ProtalEntitiesDBStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FM_CUST_GRP" EntityType="Self.FM_CUST_GRP" Schema="fm" store:Type="Tables" />
@@ -359,8 +433,7 @@ FROM [fm].[FM_LOG] AS [FM_LOG]</DefiningQuery>
             <End Role="FM_CUST_GRP_OBJ" EntitySet="FM_CUST_GRP_OBJ" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProtalEntitiesDB" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -653,7 +726,95 @@ FROM [fm].[FM_LOG] AS [FM_LOG]</DefiningQuery>
             <End Role="FM_CUST_POI" EntitySet="FM_CUST_POI" />
             <End Role="FM_CUST_GRP_OBJ" EntitySet="FM_CUST_GRP_OBJ" />
           </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ProtalEntitiesDB.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ProtalEntitiesDB.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="CHANGE_CUST_GRP_NAME">
+            <Parameter Name="p_custid" Mode="In" Type="Double" />
+            <Parameter Name="p_oldname" Mode="In" Type="String" />
+            <Parameter Name="p_newname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CHANGE_CUST_GRP_NAME_IMPL">
+            <Parameter Name="p_custid" Mode="In" Type="Double" />
+            <Parameter Name="p_oldname" Mode="In" Type="String" />
+            <Parameter Name="p_newname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DELETE_TEMP_ROUTES" />
+          <FunctionImport Name="GetAvailablePoiByDescription" ReturnType="Collection(ProtalEntitiesDB.GetAvailablePoiByDescription_Result)">
+          <Parameter Name="keyword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ISNUMBER_IMPL">
+            <Parameter Name="s" Mode="In" Type="String" />
+            <Parameter Name="return_value_argument" Mode="InOut" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="GetPoiByID" ReturnType="Collection(ProtalEntitiesDB.GetPoiByID_Result)">
+          <Parameter Name="poiID" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetAvailablePoiByDescription_Result">
+          <Property Type="Int32" Name="POI_ID" Nullable="false" />
+          <Property Type="String" Name="POI_NAME" Nullable="false" />
+          <Property Type="String" Name="POI_DESC" Nullable="true" />
+          <Property Type="String" Name="SETTL_NAME" Nullable="true" />
+          <Property Type="String" Name="ADDRESS" Nullable="true" />
+          <Property Type="String" Name="HOUSE_NR" Nullable="true" MaxLength="10" />
+          <Property Type="Double" Name="GEOCODE_STATUS" Nullable="false" />
+          <Property Type="Double" Name="WM_X" Nullable="true" />
+          <Property Type="Double" Name="WM_Y" Nullable="true" />
+          <Property Type="Double" Name="HTRS_X" Nullable="true" />
+          <Property Type="Double" Name="HTRS_Y" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetPoiByID_Result">
+          <Property Type="Int32" Name="POI_ID" Nullable="false" />
+          <Property Type="String" Name="POI_NAME" Nullable="false" />
+          <Property Type="String" Name="POI_DESC" Nullable="true" />
+          <Property Type="String" Name="SETTL_NAME" Nullable="true" />
+          <Property Type="String" Name="ADDRESS" Nullable="true" />
+          <Property Type="String" Name="HOUSE_NR" Nullable="true" MaxLength="10" />
+          <Property Type="Double" Name="GEOCODE_STATUS" Nullable="false" />
+          <Property Type="Double" Name="WM_X" Nullable="true" />
+          <Property Type="Double" Name="WM_Y" Nullable="true" />
+          <Property Type="Double" Name="HTRS_X" Nullable="true" />
+          <Property Type="Double" Name="HTRS_Y" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -873,6 +1034,68 @@ FROM [fm].[FM_LOG] AS [FM_LOG]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ProtalEntitiesDB.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ProtalEntitiesDB.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ProtalEntitiesDB.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ProtalEntitiesDB.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProtalEntitiesDB.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ProtalEntitiesDB.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProtalEntitiesDB.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ProtalEntitiesDB.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ProtalEntitiesDB.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="CHANGE_CUST_GRP_NAME" FunctionName="ProtalEntitiesDB.Store.CHANGE_CUST_GRP_NAME" />
+          <FunctionImportMapping FunctionImportName="CHANGE_CUST_GRP_NAME_IMPL" FunctionName="ProtalEntitiesDB.Store.CHANGE_CUST_GRP_NAME_IMPL" />
+          <FunctionImportMapping FunctionImportName="DELETE_TEMP_ROUTES" FunctionName="ProtalEntitiesDB.Store.DELETE_TEMP_ROUTES" />
+          <FunctionImportMapping FunctionImportName="GetAvailablePoiByDescription" FunctionName="ProtalEntitiesDB.Store.GetAvailablePoiByDescription">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProtalEntitiesDB.GetAvailablePoiByDescription_Result">
+                <ScalarProperty Name="POI_ID" ColumnName="POI_ID" />
+                <ScalarProperty Name="POI_NAME" ColumnName="POI_NAME" />
+                <ScalarProperty Name="POI_DESC" ColumnName="POI_DESC" />
+                <ScalarProperty Name="SETTL_NAME" ColumnName="SETTL_NAME" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="HOUSE_NR" ColumnName="HOUSE_NR" />
+                <ScalarProperty Name="GEOCODE_STATUS" ColumnName="GEOCODE_STATUS" />
+                <ScalarProperty Name="WM_X" ColumnName="WM_X" />
+                <ScalarProperty Name="WM_Y" ColumnName="WM_Y" />
+                <ScalarProperty Name="HTRS_X" ColumnName="HTRS_X" />
+                <ScalarProperty Name="HTRS_Y" ColumnName="HTRS_Y" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ISNUMBER_IMPL" FunctionName="ProtalEntitiesDB.Store.ISNUMBER_IMPL" />
+          <FunctionImportMapping FunctionImportName="GetPoiByID" FunctionName="ProtalEntitiesDB.Store.GetPoiByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProtalEntitiesDB.GetPoiByID_Result">
+                <ScalarProperty Name="POI_ID" ColumnName="POI_ID" />
+                <ScalarProperty Name="POI_NAME" ColumnName="POI_NAME" />
+                <ScalarProperty Name="POI_DESC" ColumnName="POI_DESC" />
+                <ScalarProperty Name="SETTL_NAME" ColumnName="SETTL_NAME" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="HOUSE_NR" ColumnName="HOUSE_NR" />
+                <ScalarProperty Name="GEOCODE_STATUS" ColumnName="GEOCODE_STATUS" />
+                <ScalarProperty Name="WM_X" ColumnName="WM_X" />
+                <ScalarProperty Name="WM_Y" ColumnName="WM_Y" />
+                <ScalarProperty Name="HTRS_X" ColumnName="HTRS_X" />
+                <ScalarProperty Name="HTRS_Y" ColumnName="HTRS_Y" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -4,31 +4,7 @@
 
 }
 
-<script>
-    $(document).ready(function () {
-        $("#keywords-manual").autocomplete({
-            source: function (request, response) {
-                $.ajax({
-                    url: "/Home/GetPoiList",
-                    data: "{ 'keywords': '" + request.term + "' }",
-                    dataType: 'json',
-                    type: "POST",
-                    contentType: "application/json; charset=utf-8",
-                    dataFilter: function (data) { return data; },
-                    success: function (data) {
-                        response($.map(data, function (item) {
-                            return {
-                                label: item.PoiDesc,
-                                value: item.PoiDesc,
-                                id: item.PoiID
-                            };
-                        }))
-                    }
-                });
-            },
-            minLength: 2
-        });
-    })
+<script>  
     require([
       "esri/urlUtils", "esri/map", "esri/dijit/Directions",
       "dojo/parser",
@@ -44,8 +20,7 @@
             center: [15.20, 45.10],
             sliderPosition: "top-right",
             zoom: 7
-        });
-      
+        });      
 
         var directions = new Directions({
             map: map,
@@ -59,79 +34,55 @@
          directions.startup();
 
          directions.on("load", function () {             
-             //var companyLocation = new esri.geometry.Point(45.10, 15.20);
-             //var a = new esri.geometry.Point(1778236.88355, 5750057.15218, new esri.SpatialReference({ wkid: 4326 }));
-             //directions.addStop(new esri.geometry.Point(16.133838 45.747699), 0);
-             directions.addStop("MINISTARSTVO OBRANE RH ORGAN UPRAVE", null);
-             directions.addStop(new esri.geometry.Point(16.133838, 45.747699), null);
-             directions.addStop(new esri.geometry.Point(15.993652, 45.677012), null);
-             directions.addStop(new esri.geometry.Point(15.993652, 45.777012), null);
-         });      
+          
+         });
 
-         directions.on("map-click-active", function(state){
-             if(state.mapClickActive === true)
-                 alert("Klik na mapi");
-                 if(state.mapClickActive === false)
-                     alert("Klik na mapi");
-         });        
+         var countStops = 0;
 
-         //directions.on("directions-finish", function () {
-         //    //clickGraphicsLayer.clear();
-         //});  
-
-         //var checkbox = document.getElementById("keywords-manual");
-
-         //create an event listener that hooks up click events and turns them off when people interact with the checkbox
-         //checkbox.onchange = function () {
-         //    if (checkbox.checked == false) {
-         //        addGraphics.remove()
-         //    }
-         //    else
-         //        addGraphics = map.on('click', addGraphicPoints);
-         //}
-
-         ////wire up the map click event listener by default
-         //var addGraphics = map.on('click', addGraphicPoints);
-
-         //////create a separate graphics layer to display stops before the route has been solved
-         //var clickGraphicsLayer = new GraphicsLayer();
-         //map.addLayer(clickGraphicsLayer);
-
-         //function addGraphicPoints(evt) {
-
-         //    var existingBlank = false;
-         //    var graphic = new Graphic(evt.mapPoint, directions.stopSymbol);
-
-         //    for (var i = 0; i <= directions.stops.length - 1; i++) {
-         //        if (directions.stops[i].name === "") {
-         //            //update an existing stop and break out of the loop if you encounter one without an address
-         //            directions.updateStop(graphic, i);
-         //            clickGraphicsLayer.add(graphic);
-         //            existingBlank = true;
-         //            break;
-         //        }
-         //    }
-         //    //if all existing stops have an address supplied, add a new one
-         //    if (existingBlank == false)
-         //        directions.addStop(graphic);
-         //    clickGraphicsLayer.add(graphic);
-         //}
-
-
-         //var companyLocation = new esri.geometry.Point(45.10, 15.20);
-         //navigator.geolocation.getCurrentPosition(function (position) {
-         //    var currentLocation = new esri.geometry.Point(position.coords);
-         //    alert(currentLocation);
-         //    //directions.AddStops([currentLocation, companyLocation]);
-         //});
-
-         
+         $("#keyword").autocomplete({
+             source: function (request, response) {
+                 $.ajax({
+                     url: "/Home/GetPoiList",
+                     data: "{ 'keywords': '" + request.term + "' }",
+                     dataType: 'json',
+                     type: "POST",
+                     contentType: "application/json; charset=utf-8",
+                     dataFilter: function (data) { return data; },
+                     success: function (data) {
+                         response($.map(data, function (item) {
+                             return {
+                                 label: item.PoiDesc,
+                                 value: item.PoiDesc,
+                                 id: item.PoiID
+                             };
+                         }))
+                     }
+                 });
+             },
+             minLength: 2,
+             select: function (event, ui) {
+                 $.ajax({
+                     url: "/Home/GetPoiByID",
+                     data: "{ 'id': '" + ui.item.id + "' }",
+                     dataType: 'json',
+                     type: "POST",
+                     contentType: "application/json; charset=utf-8",
+                     dataFilter: function (data) { return data; },
+                     success: function (data) {
+                         var stop = new esri.geometry.Point(data.WmX, data.WmY, new esri.SpatialReference({ @System.Configuration.ConfigurationManager.AppSettings["wkid"] : 5610 }));
+                         directions.addStop(stop, countStops);
+                         $('#keyword').val('');
+                         countStops++;
+                     }
+                 });
+             }
+         });         
         
     });
 </script> 
-@Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keywords-manual" })
 <div data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design:'headline', gutters:false"  style="width:100%;height:100%;">
     <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'left'" style="width:250px;">
+        @Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keyword" })
         <div id="dir"></div>
     </div>
     <div id="map" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'"></div>
