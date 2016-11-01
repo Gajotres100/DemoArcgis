@@ -28,13 +28,33 @@
             directionsLengthUnits: "esriKilometers",
             optimalRoute: true,
             showOptimalRouteOption : true,
-            showMilesKilometersOption : false
-        }, "dir");
+            showMilesKilometersOption : false,
+            showSaveButton : true,
+            showPrintPage : true,
+            dragging : false,
+            //portalUrl : "/Home/Save",
+            searchOptions: {
+                sources: [
+                     {                         
+                         maxResults: 0,
+                         maxSuggestions: 0,    
+                         enableSuggestions: false,
+                         minCharacters: 0
+                     }
+                ]
+            }
+        }, "dir");         
 
          directions.startup();
 
          directions.on("load", function () {             
           
+         });
+
+         directions.setDirectionsLanguage("hr-HR");
+
+         directions.on("feature-collection-created", function(){
+             alert("Kloc");
          });
 
          var countStops = 0;
@@ -71,7 +91,7 @@
                      success: function (data) {
                          var stop = new esri.geometry.Point(data.WmX, data.WmY, new esri.SpatialReference({ wkid : @System.Configuration.ConfigurationManager.AppSettings["wkid"] }));
                          directions.addStop(stop, countStops);
-                         //$('#keyword').val('');
+                         $('#keyword').val('');
                          countStops++;
                      }
                  });
