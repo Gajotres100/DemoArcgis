@@ -32,7 +32,6 @@ namespace Arcgis.Directions.BL.Services
         {
             try
             {
-                throw new Exception("Gurtnaš");
                 GetPOIVM item = new GetPOIVM();
                 item.CusPoiList = _poiRepository.GetAvailablePoiByDescription(keyword);
                 return item;
