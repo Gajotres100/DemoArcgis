@@ -1,8 +1,10 @@
 ﻿using Arcgis.Directions.Data.Repository.Poi;
 using Arcgis.Directions.VM;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,7 +14,8 @@ namespace Arcgis.Directions.BL.Services
     {
         #region Variables
 
-        PoiRepository _poiRepository; 
+        PoiRepository _poiRepository;
+        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);       
 
         #endregion
 
@@ -27,16 +30,34 @@ namespace Arcgis.Directions.BL.Services
 
         public GetPOIVM GetAvailablePoiByDescription(string keyword)
         {
-            GetPOIVM item = new GetPOIVM();
-            item.CusPoiList = _poiRepository.GetAvailablePoiByDescription(keyword);
-            return item;
+            try
+            {
+                throw new Exception("Gurtnaš");
+                GetPOIVM item = new GetPOIVM();
+                item.CusPoiList = _poiRepository.GetAvailablePoiByDescription(keyword);
+                return item;
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                return null;
+            }
+
         }
 
         public GetPOIVM GetPoiByID(int id)
         {
-            GetPOIVM item = new GetPOIVM();
-            item.CusPoi = _poiRepository.GetPoiByID(id);
-            return item;
+            try
+            {
+                GetPOIVM item = new GetPOIVM();
+                item.CusPoi = _poiRepository.GetPoiByID(id);
+                return item;
+            }
+            catch (Exception e)
+            {
+                logger.Error("error = " + e);
+                return null;
+            }
         }
 
         #endregion

@@ -1,5 +1,6 @@
 ﻿using Arcgis.Directions.BL.Services;
 using Arcgis.Directions.VM;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace Arcgis.Directions.UI.Controllers
             var vm = new GetPOIVM();
             _poiService = new PoiService();
             vm = _poiService.GetAvailablePoiByDescription(keywords);
-            return Json(vm.CusPoiList, JsonRequestBehavior.AllowGet);
+            return Json(vm.CusPoiList != null ? vm.CusPoiList : null, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -38,7 +39,7 @@ namespace Arcgis.Directions.UI.Controllers
             var vm = new GetPOIVM();
             _poiService = new PoiService();
             vm = _poiService.GetPoiByID(id);
-            return Json(vm.CusPoi, JsonRequestBehavior.AllowGet);
+            return Json(vm.CusPoi != null ? vm.CusPoi : null, JsonRequestBehavior.AllowGet);
         }
     }
 }
