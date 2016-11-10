@@ -44,12 +44,29 @@ namespace Arcgis.Directions.BL.Services
 
         }
 
+        
+
         public GetPOIVM GetPoiByID(int id)
         {
             try
             {
                 GetPOIVM item = new GetPOIVM();
                 item.CusPoi = _poiRepository.GetPoiByID(id);
+                return item;
+            }
+            catch (Exception e)
+            {
+                logger.Error("error = " + e);
+                return null;
+            }
+        }
+
+        public GetPOIVM GetLanguages()
+        {
+            try
+            {
+                GetPOIVM item = new GetPOIVM();
+                item.LanguageList = _poiRepository.GetLanguages();
                 return item;
             }
             catch (Exception e)

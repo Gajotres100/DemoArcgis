@@ -58,7 +58,7 @@
          $("#keyword").autocomplete({
              source: function (request, response) {
                  $.ajax({
-                     url: "/Home/GetPoiList",
+                     url: "/En/Home/GetPoiList",
                      data: "{ 'keywords': '" + request.term + "' }",
                      dataType: 'json',
                      type: "POST",
@@ -78,7 +78,7 @@
              minLength: 2,
              select: function (event, ui) {
                  $.ajax({
-                     url: "/Home/GetPoiByID",
+                     url: "En/Home/GetPoiByID",
                      data: "{ 'id': '" + ui.item.id + "' }",
                      dataType: 'json',
                      type: "POST",
@@ -96,6 +96,7 @@
         
     });
 </script> 
+@Html.DropDownListFor(m => m.Langugae, new SelectList(Model.LanguageList, "LangID", "Name"))
 <div data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design:'headline', gutters:false"  style="width:100%;height:100%;">
     <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'left'" style="width:250px;">
         @Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keyword" })

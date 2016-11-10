@@ -3,7 +3,9 @@ using Arcgis.Directions.VM;
 using log4net;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -21,9 +23,13 @@ namespace Arcgis.Directions.UI.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var vm = new GetPOIVM();
+            _poiService = new PoiService();
+            vm = _poiService.GetLanguages();
+            return View(vm);
         }
-        
+
+
         [HttpPost]
         public JsonResult GetPoiList(string keywords)
         {

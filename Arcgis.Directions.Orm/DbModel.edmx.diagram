@@ -24,6 +24,8 @@
         <AssociationConnector Association="ProtalEntitiesDB.FK_CUST_GRP_ID" ManuallyRouted="false" />
         <AssociationConnector Association="ProtalEntitiesDB.FK_CUST_GRP_IMAGE" ManuallyRouted="false" />
         <AssociationConnector Association="ProtalEntitiesDB.FK_CUST_POI_ID" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ProtalEntitiesDB.FM_LANGUAGES" Width="1.5" PointX="9.375" PointY="11.75" />
+        <AssociationConnector Association="ProtalEntitiesDB.FM_CUST_POI_USER" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

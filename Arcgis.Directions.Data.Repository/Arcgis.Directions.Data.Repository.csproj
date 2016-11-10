@@ -57,6 +57,10 @@
       <Project>{28a0f1d6-f61f-4b64-8078-8b57e773712a}</Project>
       <Name>Arcgis.Directions.Orm</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Arcgis.Directions.VM\Arcgis.Directions.VM.csproj">
+      <Project>{1E0BFA29-0873-4EC6-A18B-92748008A7A4}</Project>
+      <Name>Arcgis.Directions.VM</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

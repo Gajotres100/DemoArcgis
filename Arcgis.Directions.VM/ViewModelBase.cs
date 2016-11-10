@@ -11,5 +11,6 @@ namespace Arcgis.Directions.VM
     {
         public ViewModelBase() { }
         public string ReturnUrl { get; set; }
+        public string LocalisedString { get; set; }
     }
 }

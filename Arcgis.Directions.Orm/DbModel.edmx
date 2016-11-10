@@ -100,6 +100,16 @@ warning 6002: The table/view 'RN1805.dbo.FM_POI_Web_mer_Ags_sfer' does not have 
           <Property Name="HTRS_X" Type="float" />
           <Property Name="HTRS_Y" Type="float" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RN1805.fm.FM_CUST_POI_USER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FM_CUST_POI_USER">
+          <Key>
+            <PropertyRef Name="POI_ID" />
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="POI_ID" Type="int" Nullable="false" />
+          <Property Name="USER_ID" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+        </EntityType>
         <EntityType Name="FM_CUST_ROUTES">
           <Key>
             <PropertyRef Name="ROUTE_ID" />
@@ -158,6 +168,15 @@ warning 6002: The table/view 'RN1805.fm.FM_CUST_SETTINGS' does not have a primar
           <Property Name="IMAGE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GRP_IMAGE" Type="varbinary(max)" Nullable="false" />
           <Property Name="IMAGE_DESC" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FM_LANGUAGES">
+          <Key>
+            <PropertyRef Name="LANG_ID" />
+          </Key>
+          <Property Name="LANG_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODE" Type="nvarchar" MaxLength="5" />
+          <Property Name="NAME" Type="nchar" MaxLength="10" />
+          <Property Name="DESCRIPTION" Type="nvarchar(max)" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'RN1805.fm.FM_LOG' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -267,6 +286,30 @@ warning 6002: The table/view 'RN1805.fm.FM_LOG' does not have a primary key defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FM_CUST_POI_USER_FM_CUST_POI">
+          <End Role="FM_CUST_POI" Type="Self.FM_CUST_POI" Multiplicity="1" />
+          <End Role="FM_CUST_POI_USER" Type="Self.FM_CUST_POI_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FM_CUST_POI">
+              <PropertyRef Name="POI_ID" />
+            </Principal>
+            <Dependent Role="FM_CUST_POI_USER">
+              <PropertyRef Name="POI_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FM_CUST_POI_USER_FM_CUST_USERS">
+          <End Role="FM_CUST_USERS" Type="Self.FM_CUST_USERS" Multiplicity="1" />
+          <End Role="FM_CUST_POI_USER" Type="Self.FM_CUST_POI_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FM_CUST_USERS">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="FM_CUST_POI_USER">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -316,6 +359,7 @@ warning 6002: The table/view 'RN1805.fm.FM_LOG' does not have a primary key defi
         <Function Name="GetAvailablePoiByDescription" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="fm">
           <Parameter Name="keyword" Type="varchar(max)" Mode="In" />
         </Function>
+        <Function Name="GetLanguages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="fm" />
         <Function Name="GetPoiByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="fm">
           <Parameter Name="poiID" Type="int" Mode="In" />
         </Function>
@@ -349,6 +393,7 @@ warning 6002: The table/view 'RN1805.fm.FM_LOG' does not have a primary key defi
           <EntitySet Name="FM_CUST_ROUTES" EntityType="Self.FM_CUST_ROUTES" Schema="fm" store:Type="Tables" />
           <EntitySet Name="FM_CUST_USERS" EntityType="Self.FM_CUST_USERS" Schema="fm" store:Type="Tables" />
           <EntitySet Name="FM_IMAGES" EntityType="Self.FM_IMAGES" Schema="fm" store:Type="Tables" />
+          <EntitySet Name="FM_LANGUAGES" EntityType="Self.FM_LANGUAGES" Schema="fm" store:Type="Tables" />
           <EntitySet Name="FM_LOG_ACTIONS" EntityType="Self.FM_LOG_ACTIONS" Schema="fm" store:Type="Tables" />
           <EntitySet Name="FM_LOG_OBJECTS" EntityType="Self.FM_LOG_OBJECTS" Schema="fm" store:Type="Tables" />
           <EntitySet Name="FM_OBJ_TYPES" EntityType="Self.FM_OBJ_TYPES" Schema="fm" store:Type="Tables" />
@@ -387,6 +432,12 @@ FROM [dbo].[FM_CUST_USERS_bkp] AS [FM_CUST_USERS_bkp]</DefiningQuery>
 [FM_POI_Web_mer_Ags_sfer].[EOV_X] AS [EOV_X], 
 [FM_POI_Web_mer_Ags_sfer].[EOV_Y] AS [EOV_Y]
 FROM [dbo].[FM_POI_Web_mer_Ags_sfer] AS [FM_POI_Web_mer_Ags_sfer]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="FM_CUST_POI_USER" EntityType="Self.FM_CUST_POI_USER" store:Type="Tables" store:Schema="fm">
+            <DefiningQuery>SELECT 
+[FM_CUST_POI_USER].[POI_ID] AS [POI_ID], 
+[FM_CUST_POI_USER].[USER_ID] AS [USER_ID]
+FROM [fm].[FM_CUST_POI_USER] AS [FM_CUST_POI_USER]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="FM_CUST_SETTINGS" EntityType="Self.FM_CUST_SETTINGS" store:Type="Tables" store:Schema="fm">
             <DefiningQuery>SELECT 
@@ -431,6 +482,14 @@ FROM [fm].[FM_LOG] AS [FM_LOG]</DefiningQuery>
           <AssociationSet Name="FK_CUST_POI_ID" Association="Self.FK_CUST_POI_ID">
             <End Role="FM_CUST_POI" EntitySet="FM_CUST_POI" />
             <End Role="FM_CUST_GRP_OBJ" EntitySet="FM_CUST_GRP_OBJ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FM_CUST_POI_USER_FM_CUST_POI" Association="Self.FK_FM_CUST_POI_USER_FM_CUST_POI">
+            <End Role="FM_CUST_POI" EntitySet="FM_CUST_POI" />
+            <End Role="FM_CUST_POI_USER" EntitySet="FM_CUST_POI_USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FM_CUST_POI_USER_FM_CUST_USERS" Association="Self.FK_FM_CUST_POI_USER_FM_CUST_USERS">
+            <End Role="FM_CUST_USERS" EntitySet="FM_CUST_USERS" />
+            <End Role="FM_CUST_POI_USER" EntitySet="FM_CUST_POI_USER" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -486,6 +545,7 @@ FROM [fm].[FM_LOG] AS [FM_LOG]</DefiningQuery>
           <Property Name="HTRS_X" Type="Double" />
           <Property Name="HTRS_Y" Type="Double" />
           <NavigationProperty Name="FM_CUST_GRP_OBJ" Relationship="Self.FK_CUST_POI_ID" FromRole="FM_CUST_POI" ToRole="FM_CUST_GRP_OBJ" />
+          <NavigationProperty Name="FM_CUST_USERS" Relationship="ProtalEntitiesDB.FM_CUST_POI_USER" FromRole="FM_CUST_POI" ToRole="FM_CUST_USERS" />
         </EntityType>
         <EntityType Name="FM_CUST_ROUTES">
           <Key>
@@ -509,6 +569,7 @@ FROM [fm].[FM_LOG] AS [FM_LOG]</DefiningQuery>
           <Property Name="CUST_ADMIN" Type="Boolean" />
           <Property Name="POI_ADMIN" Type="Boolean" />
           <Property Name="PREF_LANG" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FM_CUST_POI" Relationship="ProtalEntitiesDB.FM_CUST_POI_USER" FromRole="FM_CUST_USERS" ToRole="FM_CUST_POI" />
         </EntityType>
         <EntityType Name="FM_IMAGES">
           <Key>
@@ -777,6 +838,12 @@ FROM [fm].[FM_LOG] AS [FM_LOG]</DefiningQuery>
           <FunctionImport Name="GetPoiByID" ReturnType="Collection(ProtalEntitiesDB.GetPoiByID_Result)">
           <Parameter Name="poiID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="FM_LANGUAGES" EntityType="ProtalEntitiesDB.FM_LANGUAGES" />
+          <AssociationSet Name="FM_CUST_POI_USER" Association="ProtalEntitiesDB.FM_CUST_POI_USER">
+            <End Role="FM_CUST_POI" EntitySet="FM_CUST_POI" />
+            <End Role="FM_CUST_USERS" EntitySet="FM_CUST_USERS" />
+          </AssociationSet>
+          <FunctionImport Name="GetLanguages" ReturnType="Collection(ProtalEntitiesDB.GetLanguages_Result)" />
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -814,6 +881,24 @@ FROM [fm].[FM_LOG] AS [FM_LOG]</DefiningQuery>
           <Property Type="Double" Name="WM_Y" Nullable="true" />
           <Property Type="Double" Name="HTRS_X" Nullable="true" />
           <Property Type="Double" Name="HTRS_Y" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="FM_LANGUAGES">
+          <Key>
+            <PropertyRef Name="LANG_ID" />
+          </Key>
+          <Property Name="LANG_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODE" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="NAME" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FM_CUST_POI_USER">
+          <End Type="ProtalEntitiesDB.FM_CUST_POI" Role="FM_CUST_POI" Multiplicity="*" />
+          <End Type="ProtalEntitiesDB.FM_CUST_USERS" Role="FM_CUST_USERS" Multiplicity="*" />
+        </Association>
+        <ComplexType Name="GetLanguages_Result">
+          <Property Type="Int32" Name="LANG_ID" Nullable="false" />
+          <Property Type="String" Name="CODE" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="NAME" Nullable="true" MaxLength="10" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1093,6 +1178,33 @@ FROM [fm].[FM_LOG] AS [FM_LOG]</DefiningQuery>
                 <ScalarProperty Name="WM_Y" ColumnName="WM_Y" />
                 <ScalarProperty Name="HTRS_X" ColumnName="HTRS_X" />
                 <ScalarProperty Name="HTRS_Y" ColumnName="HTRS_Y" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="FM_LANGUAGES">
+            <EntityTypeMapping TypeName="ProtalEntitiesDB.FM_LANGUAGES">
+              <MappingFragment StoreEntitySet="FM_LANGUAGES">
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="LANG_ID" ColumnName="LANG_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FM_CUST_POI_USER" TypeName="ProtalEntitiesDB.FM_CUST_POI_USER" StoreEntitySet="FM_CUST_POI_USER">
+            <EndProperty Name="FM_CUST_USERS">
+              <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+            </EndProperty>
+            <EndProperty Name="FM_CUST_POI">
+              <ScalarProperty Name="POI_ID" ColumnName="POI_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="GetLanguages" FunctionName="ProtalEntitiesDB.Store.GetLanguages">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProtalEntitiesDB.GetLanguages_Result">
+                <ScalarProperty Name="LANG_ID" ColumnName="LANG_ID" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

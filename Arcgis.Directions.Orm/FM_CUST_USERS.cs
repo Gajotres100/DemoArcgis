@@ -14,6 +14,11 @@ namespace Arcgis.Directions.Orm
     
     public partial class FM_CUST_USERS
     {
+        public FM_CUST_USERS()
+        {
+            this.FM_CUST_POI = new HashSet<FM_CUST_POI>();
+        }
+    
         public decimal USER_ID { get; set; }
         public Nullable<bool> USER_STATUS { get; set; }
         public string USER_NAME { get; set; }
@@ -23,5 +28,7 @@ namespace Arcgis.Directions.Orm
         public Nullable<bool> CUST_ADMIN { get; set; }
         public Nullable<bool> POI_ADMIN { get; set; }
         public string PREF_LANG { get; set; }
+    
+        public virtual ICollection<FM_CUST_POI> FM_CUST_POI { get; set; }
     }
 }

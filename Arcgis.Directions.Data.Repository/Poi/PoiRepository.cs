@@ -56,5 +56,19 @@ namespace Arcgis.Directions.Data.Repository.Poi
                 }).FirstOrDefault();
             }
         }
+
+        public List<Language> GetLanguages()
+        {
+            using (var context = new ProtalEntities())
+            {
+                return context.GetLanguages().Select(x => new Language()
+                {
+                    LangID = x.LANG_ID,
+                    Name = x.NAME,
+                    Code = x.CODE
+                }).ToList();
+            }
+        }
+        
     }
 }

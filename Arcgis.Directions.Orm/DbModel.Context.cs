@@ -44,6 +44,7 @@ namespace Arcgis.Directions.Orm
         public DbSet<FM_POI_Web_mer_Ags_sfer> FM_POI_Web_mer_Ags_sfer { get; set; }
         public DbSet<FM_CUST_SETTINGS> FM_CUST_SETTINGS { get; set; }
         public DbSet<FM_LOG> FM_LOG { get; set; }
+        public DbSet<FM_LANGUAGES> FM_LANGUAGES { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -212,6 +213,11 @@ namespace Arcgis.Directions.Orm
                 new ObjectParameter("poiID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetPoiByID_Result>("GetPoiByID", poiIDParameter);
+        }
+    
+        public virtual ObjectResult<GetLanguages_Result> GetLanguages()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetLanguages_Result>("GetLanguages");
         }
     }
 }
