@@ -13,22 +13,42 @@ namespace Arcgis.Directions.UI
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            #region HomeRoute
+
             routes.MapRoute(
-            name: "DefaultLocalized",
-            url: "{lang}/{controller}/{action}/{id}",
-            defaults: new
-            {
-                controller = "Home",
-                action = "Index",
-                id = UrlParameter.Optional,
-                lang = @System.Configuration.ConfigurationManager.AppSettings["LanguageCode"]
-            });
+                name: "HomeRoute",
+                url: "{lang}/{controller}/{action}",
+                defaults: new { lang = "En", controller = "Home", action = "Index" },
+                constraints: new { lang = "EN|HR" }
+            );
+
+            #endregion
+
+
+            #region DefaultRoute
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}",
+                defaults: new
+                {
+                    controller = "Home",
+                    action = "Index"
+                }
             );
+
+            #endregion
+
+            #region NoRoute
+
+            routes.MapRoute(
+                "NotFound",
+                "{*url}",
+                new { controller = "Error", action = "PageNotFound" }
+            );
+
+            #endregion
+
         }
     }
 }

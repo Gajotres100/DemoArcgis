@@ -29,6 +29,11 @@ namespace Arcgis.Directions.UI.Controllers
             return View(vm);
         }
 
+        public ActionResult Login()
+        {            
+            return View();
+        }
+
 
         [HttpPost]
         public JsonResult GetPoiList(string keywords)
