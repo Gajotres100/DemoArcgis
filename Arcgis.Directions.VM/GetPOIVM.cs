@@ -15,9 +15,6 @@ namespace Arcgis.Directions.VM
 
         public int PoiID { get; set; }
         public string PoiName { get; set; }
-        public string PoiDesc { get; set; }
-
-        public IEnumerable<Language> LanguageList = new List<Language>();
-        public Language Langugae { get; set; }
+        public string PoiDesc { get; set; }        
     }
 }

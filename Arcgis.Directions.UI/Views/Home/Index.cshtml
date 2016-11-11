@@ -4,7 +4,7 @@
 
 }
 
-<script>     
+<script>
     require([
       "esri/urlUtils", "esri/map", "esri/dijit/Directions",
       "dojo/parser",
@@ -20,11 +20,11 @@
             center: [15.20, 45.10],
             sliderPosition: "top-right",
             zoom: 7
-        });      
+        });
 
         var directions = new Directions({
             map: map,
-            routeTaskUrl: "@System.Configuration.ConfigurationManager.AppSettings["routeTaskUrl"]",  
+            routeTaskUrl: "@System.Configuration.ConfigurationManager.AppSettings["routeTaskUrl"]",
             directionsLengthUnits: "esriKilometers",
             optimalRoute: true,
             showOptimalRouteOption : true,
@@ -35,30 +35,30 @@
             //portalUrl : "/Home/Save",
             searchOptions: {
                 sources: [
-                     {                         
+                     {
                          maxResults: 0,
-                         maxSuggestions: 0,    
+                         maxSuggestions: 0,
                          enableSuggestions: false,
                          minCharacters: 0
                      }
                 ]
             }
-        }, "dir");         
+        }, "dir");
 
          directions.startup();
 
          directions.setDirectionsLanguage("hr-HR");
 
-         directions.on("load", function () {             
-          
-         });     
+         directions.on("load", function () {
+
+         });
 
          var countStops = 0;
 
          $("#keyword").autocomplete({
              source: function (request, response) {
                  $.ajax({
-                     url: "/En/Home/GetPoiList",
+                     url: "/@Model.Langugae.Name/Home/GetPoiList",
                      data: "{ 'keywords': '" + request.term + "' }",
                      dataType: 'json',
                      type: "POST",
@@ -78,7 +78,7 @@
              minLength: 2,
              select: function (event, ui) {
                  $.ajax({
-                     url: "En/Home/GetPoiByID",
+                     url: "/@Model.Langugae.Name/Home/GetPoiByID",
                      data: "{ 'id': '" + ui.item.id + "' }",
                      dataType: 'json',
                      type: "POST",
@@ -92,8 +92,8 @@
                      }
                  });
              }
-         });         
-        
+         });
+
     });
 </script> 
 @Html.DropDownListFor(m => m.Langugae, new SelectList(Model.LanguageList, "LangID", "Name"))

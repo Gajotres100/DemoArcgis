@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model Arcgis.Directions.VM.ViewModelBase
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -6,10 +8,10 @@
     <title></title>
 
     <script>
-      var dojoConfig = {
-        parseOnLoad: true,
-        locale:"@System.Configuration.ConfigurationManager.AppSettings["LanguageCode"]"
-      };
+        var dojoConfig = {
+            parseOnLoad: true,
+            locale: "@Model.Langugae.Code"
+        };
     </script>
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">

@@ -18,12 +18,11 @@ namespace Arcgis.Directions.UI
             routes.MapRoute(
                 name: "HomeRoute",
                 url: "{lang}/{controller}/{action}",
-                defaults: new { lang = "En", controller = "Home", action = "Index" },
+                defaults: new { lang = String.Empty, controller = "Home", action = "Index" },
                 constraints: new { lang = "EN|HR" }
             );
 
             #endregion
-
 
             #region DefaultRoute
 
