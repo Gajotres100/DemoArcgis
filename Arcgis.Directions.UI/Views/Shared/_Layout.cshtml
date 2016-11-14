@@ -12,6 +12,11 @@
             parseOnLoad: true,
             locale: "@Model.Langugae.Code"
         };
+ 
+        function CallChangefunc(val)
+        {
+            window.location.href="/"+ val + "/Home/Index/";
+        }
     </script>
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -25,6 +30,7 @@
 
 </head>
 <body class="claro">
+    @Html.DropDownListFor(m => m.Langugae.Name, new SelectList(Model.LanguageList, "Name", "Name"), new { @onchange = "CallChangefunc(this.value)" })
     @RenderBody()
 </body>
 </html>
