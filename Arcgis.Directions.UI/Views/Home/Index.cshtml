@@ -4,6 +4,9 @@
 
 }
 
+<li>@Html.ActionLink("English", "ChangeLanguage", "Account", new { lang = "en", id = HttpUtility.UrlEncode(Request.RawUrl) }, null)</li>
+<li>@Html.ActionLink("Spanish", "ChangeLanguage", "Account", new { lang = "hr", id = HttpUtility.UrlEncode(Request.RawUrl) }, null)</li>
+
 <script>
     require([
       "esri/urlUtils", "esri/map", "esri/dijit/Directions",
