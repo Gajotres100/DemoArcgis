@@ -37,20 +37,20 @@
             showSaveButton : true,
             showPrintPage : true,
             dragging : false,
-            searchOptions: {
-                sources: [
-                     {
-                         maxResults: 0,
-                         maxSuggestions: 0,
-                         enableSuggestions: false,
-                         minCharacters: 0
-                     }
-                ]
-            }
+            //searchOptions: {
+            //    sources: [
+            //         {
+            //             maxResults: 2,
+            //             maxSuggestions: 5,
+            //             enableSuggestions: true,
+            //             minCharacters: 2
+            //         }
+            //    ]
+            //}
         }, "dir");
 
          directions.startup();
-         
+
          directions.on("load", function () {
 
          });
@@ -87,8 +87,9 @@
                      contentType: "application/json; charset=utf-8",
                      dataFilter: function (data) { return data; },
                      success: function (data) {
-                         var stop = new esri.geometry.Point(data.WmX, data.WmY, new esri.SpatialReference({ wkid : @System.Configuration.ConfigurationManager.AppSettings["wkid"] }));
-                         directions.addStop(stop, countStops);
+                         //var stop = new esri.geometry.Point(data.WmX, data.WmY, new esri.SpatialReference({ wkid : @System.Configuration.ConfigurationManager.AppSettings["wkid"] }));
+                         alert(data.Address + " " + data.SettleName);
+                         directions.addStop(data.Address + " " + data.SettleName, countStops);
                          $('#keyword').val('');
                          countStops++;
                      }

@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="~/Content/css/style.css">
     <script src="https://js.arcgis.com/3.18/"></script>
 
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    @*<!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/assets/plugins/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
     <link href="~/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -50,14 +50,14 @@
     <!-- END:File Upload Plugin CSS files-->
     <link href="~/assets/css/pages/inbox.css" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL STYLES -->
-    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="shortcut icon" href="favicon.ico" />*@
 
 
 </head>
 <body class="claro" >
     @Html.DropDownListFor(m => m.Langugae.Name, new SelectList(Model.LanguageList, "Name", "Name"), new { @onchange = "CallChangefunc(this.value)" })
     @RenderBody()
-    <div class="header navbar navbar-inverse navbar-fixed-top">
+    @*<div class="header navbar navbar-inverse navbar-fixed-top">
         <!-- BEGIN TOP NAVIGATION BAR -->
         <div class="navbar-inner">
             <div class="container-fluid">
@@ -103,7 +103,7 @@
         <div class="span pull-right">
             <span class="go-top"><i class="icon-angle-up"></i></span>
         </div>
-    </div>
+    </div>*@
     <!-- END FOOTER -->
     <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
     <!-- BEGIN CORE PLUGINS -->
