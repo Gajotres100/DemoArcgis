@@ -19,8 +19,8 @@ namespace Arcgis.Directions.UI.Controllers
         public HomeController()
         {
             
-        }
-        
+        }     
+
 
         public ActionResult Index()
         {
@@ -35,9 +35,23 @@ namespace Arcgis.Directions.UI.Controllers
         }
 
         public ActionResult Login()
+        {
+            string lang = (string)this.ControllerContext.RouteData.Values["lang"];
+            var vm = new GetPOIVM();
+            _poiService = new PoiService();
+            vm = _poiService.GetLanguages();
+            var defaultLang = vm.LanguageList.Where(l => l.Name.Equals(lang)).FirstOrDefault();
+            if (defaultLang == null) defaultLang = vm.LanguageList.FirstOrDefault();
+            vm.Langugae = defaultLang;
+            return View(vm);
+        }
+
+
+        public ActionResult Error()
         {            
             return View();
         }
+        
 
 
         [HttpPost]

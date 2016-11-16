@@ -48,6 +48,12 @@ namespace Arcgis.Directions.UI
 
             #endregion
 
+            routes.MapRoute(
+                "Error",
+                "{*catchall}",
+                new { controller = "Home", action = "PageNotFound" }
+            );
+
         }
     }
 }

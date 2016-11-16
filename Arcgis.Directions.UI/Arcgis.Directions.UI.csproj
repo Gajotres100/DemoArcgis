@@ -1668,6 +1668,7 @@
     <Content Include="assets\plugins\select2\select2.jquery.json" />
     <Content Include="assets\plugins\select2\select2_locale_en.js.template" />
     <Content Include="assets\plugins\uniform\README.textile" />
+    <Content Include="Views\Home\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
