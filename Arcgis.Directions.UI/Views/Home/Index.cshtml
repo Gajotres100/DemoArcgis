@@ -44,6 +44,14 @@
 
         });
 
+        $('.esriDirectionsButton ').click(function(){
+            $('.esriRoutesContainer').slimScroll({
+                position: 'right',
+                height: '580px',
+                railVisible: true,
+                alwaysVisible: true
+            });
+        });
         var countStops = 0;
 
         $("#keyword").autocomplete({
@@ -87,60 +95,91 @@
     });
 </script>
 
-<div class="page-container row-fluid"> 
-    <div class="page-sidebar nav-collapse collapse">
-        <ul>
-            <li>
-                <div class="sidebar-toggler hidden-phone"></div>
-            </li>
-            <li>
-                <form class="sidebar-search">
-                    <div class="input-box">
-                       @Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keyword" })
-                    </div>
-                </form>
-            </li>
 
-            <li class="start ">
-                <a href="index.html">
-                    <i class="icon-home"></i>
-                    <span class="title">Dashboard</span>
-                </a>
-            </li>
-        </ul>
+
+<!-- BEGIN CONTAINER -->
+
+<div class="page-container row-fluid">
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar nav-collapse collapse">
+        <!-- BEGIN SIDEBAR MENU -->
+        @*<ul>
+                <li>
+                    <div class="sidebar-toggler hidden-phone"></div>
+                </li>
+                <li>
+                    <form class="sidebar-search">
+                        <div class="input-box">
+                            @Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keyword" })
+                        </div>
+                    </form>
+                </li>
+            </ul>*@
+        <div class="sidebar-toggler hidden-phone"></div>
+
+        <form class="sidebar-search">
+            <div class="input-box">
+                @Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keyword" })
+            </div>
+        </form>
+        <form class="sidebar-search">
+            <div class="input-box">
+                <div id="dir" dir="ltr"></div>
+            </div>
+        </form>
+
+
+
+        <!-- END SIDEBAR MENU -->
     </div>
+    <!-- END SIDEBAR -->
+    <!-- BEGIN PAGE -->
+    <!-- END SIDEBAR1 -->
+    <!-- BEGIN PAGE -->
     <div class="page-content">
+
+        <!-- BEGIN PAGE CONTAINER-->
         <div class="container-fluid">
             <div class="row-fluid">
-                <div class="span6">
+                <div class="span12">
                     <!-- BEGIN WORLD PORTLET-->
-                    <div class="portlet box green">
+                    <div class="portlet box grey" style="height:100%">
+
                         <div class="portlet-title">
                             <div class="caption"><i class="icon-reorder"></i>World</div>
-                            <div class="tools">
-                                <a href="javascript:;" class="collapse"></a>
-                                <a href="#portlet-config" data-toggle="modal" class="config"></a>
-                                <a href="javascript:;" class="reload"></a>
-                                <a href="javascript:;" class="remove"></a>
-                            </div>
+                            @*<div class="tools">
+                                    <a href="javascript:;" class="collapse"></a>
+                                    <a href="#portlet-config" data-toggle="modal" class="config"></a>
+                                    <a href="javascript:;" class="reload"></a>
+                                    <a href="javascript:;" class="remove"></a>
+                                </div>*@
                         </div>
-                        <div class="portlet-body">
-                            <div id="vmap_world" class="vmaps"></div>
+                        <div class="portlet-body form">
+                            <div class="tabbable portlet-tabs">
+                                <div id="vmap_world" class="vmaps" style="height:780px;">
+                                    <div id="map" dir="ltr"></div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                     <!-- END WORLD PORTLET-->
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<div data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design:'headline', gutters:false" style="width:100%;height:100%">
-    <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'left'" style="width:250px;">
-        <div id="dir" dir="ltr"></div>
+        <!-- HERE WILL BE LOADED AN AJAX CONTENT -->
     </div>
-    <div id="map" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'" dir="ltr"></div>
+    <!-- BEGIN PAGE -->
+
 </div>
+<!-- END CONTAINER -->
+@*<div data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design:'headline', gutters:false" style="width:100%;height:100%">
+        <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'left'" style="width:250px;">
+            <div id="dir" dir="ltr"></div>
+        </div>
+        <div id="map" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'" dir="ltr"></div>
+    </div>*@
 
 
 
