@@ -12,7 +12,7 @@ var App = function () {
     var responsiveHandlers = [];
 
     // theme layout color set
-    var layoutColorCodes = {'blue':'#4b8df8','red':'#e02222','green':'#35aa47','purple':'#852b99','grey':'#555555', 'yellow' :'#ffb848'};
+    var layoutColorCodes = { 'blue': '#4b8df8', 'red': '#e02222', 'green': '#35aa47', 'purple': '#852b99', 'grey': '#555555', 'yellow': '#ffb848' };
 
     //* BEGIN:CORE HANDLERS *//
     // this function handles responsive layout on screen size resize or mobile device rotate.
@@ -30,7 +30,7 @@ var App = function () {
             isIE9 = true; // detect IE9 version
         }
 
-        var isIE10 = !! navigator.userAgent.match(/MSIE 10/);
+        var isIE10 = !!navigator.userAgent.match(/MSIE 10/);
 
         if (isIE10) {
             jQuery('html').addClass('ie10'); // detect IE10 version
@@ -197,15 +197,15 @@ var App = function () {
             menuContainer.children('li.active').removeClass('active');
             menuContainer.children('arrow.open').removeClass('open');
 
-            $(this).parents('li').each(function(){
+            $(this).parents('li').each(function () {
                 $(this).addClass('active');
                 $(this).children('a > span.arrow').addClass('open');
             });
             $(this).parents('li').addClass('active');
 
             App.blockUI(pageContent, false);
-            
-            $.post(url, {}, function (res) {                
+
+            $.post(url, {}, function (res) {
                 App.unblockUI(pageContent);
                 pageContentBody.html(res);
                 App.fixContentHeight(); // fix content height
@@ -230,9 +230,11 @@ var App = function () {
             if (container.hasClass("sidebar-closed") === true) {
                 container.removeClass("sidebar-closed");
                 $.cookie('sidebar-closed', null);
+                $("#dir").show();
             } else {
                 container.addClass("sidebar-closed");
                 $.cookie('sidebar-closed', 1);
+                $("#dir").hide();
             }
             e.preventDefault();
         });
@@ -339,7 +341,7 @@ var App = function () {
         }
         var test = $("input[type=checkbox]:not(.toggle), input[type=radio]:not(.toggle, .star)");
         if (test.size() > 0) {
-            test.each(function(){
+            test.each(function () {
                 if ($(this).parents(".checker").size() == 0) {
                     $(this).show();
                     $(this).uniform();
@@ -513,7 +515,7 @@ var App = function () {
             handleStyler(); // handles style customer tool
         },
 
-        fixContentHeight : function() {
+        fixContentHeight: function () {
             handleSidenarAndContentHeight();
         },
 
@@ -542,7 +544,7 @@ var App = function () {
             }, 'slow');
         },
 
-        scrollTop : function() {
+        scrollTop: function () {
             App.scrollTo();
         },
 
@@ -641,12 +643,12 @@ var App = function () {
             return isRTL;
         },
 
-        getLayoutColorCode: function(name) {
-           if (layoutColorCodes[name]) {
+        getLayoutColorCode: function (name) {
+            if (layoutColorCodes[name]) {
                 return layoutColorCodes[name];
-           } else {
+            } else {
                 return '';
-           }
+            }
         }
 
     };
