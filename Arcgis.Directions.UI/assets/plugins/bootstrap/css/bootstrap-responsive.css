@@ -47,6 +47,7 @@
 .hidden {
   display: none;
   visibility: hidden;
+  
 }
 
 .visible-phone {
@@ -92,6 +93,7 @@
   }
   .hidden-phone {
     display: none !important;
+    
   }
 }
 
@@ -1105,5 +1107,6 @@
   .nav-collapse.collapse {
     height: auto !important;
     overflow: visible !important;
+    
   }
 }

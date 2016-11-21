@@ -11,6 +11,7 @@ var Index = function () {
                 jQuery('.vmaps').each(function () {
                     var map = jQuery(this);
                     map.width(map.parent().width());
+                    
                 });
             });
         },

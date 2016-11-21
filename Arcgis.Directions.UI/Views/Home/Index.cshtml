@@ -24,6 +24,7 @@
             center: [15.20, 45.10],
             sliderPosition: "top-right",
             zoom: 7
+
         });
 
         var directions = new Directions({
@@ -43,11 +44,16 @@
         directions.on("load", function () {
 
         });
+        $(window).load(function () {
+            $('.esriRoutesContainer').css('background-color', '#333');
+            $('#Langugae_Name').css('background-color', '#333');
+            $('#Langugae_Name').css('color', '#FFFFF');
+        });
+        $('.esriDirectionsButton ').click(function () {
 
-        $('.esriDirectionsButton ').click(function(){
             $('.esriRoutesContainer').slimScroll({
                 position: 'right',
-                height: '580px',
+                height: '575',
                 railVisible: true,
                 alwaysVisible: true
             });
@@ -143,7 +149,7 @@
             <div class="row-fluid">
                 <div class="span12">
                     <!-- BEGIN WORLD PORTLET-->
-                    <div class="portlet box grey" style="height:100%">
+                    <div class="portlet box grey" style="height:1100px">
 
                         <div class="portlet-title">
                             <div class="caption"><i class="icon-reorder"></i>World</div>
@@ -156,7 +162,7 @@
                         </div>
                         <div class="portlet-body form">
                             <div class="tabbable portlet-tabs">
-                                <div id="vmap_world" class="vmaps" style="height:780px;">
+                                <div id="vmap_world" class="vmaps" style="height:1100px;width:initial">
                                     <div id="map" dir="ltr"></div>
                                 </div>
 

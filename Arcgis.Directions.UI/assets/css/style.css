@@ -668,7 +668,7 @@ Sidebar toggler(show/hide)
   opacity: 0.5;
   filter: alpha(opacity=50);
   margin-top: 15px;
-  margin-left: 175px;
+  margin-left: 320px;
   width: 29px;
   height: 29px;
   background-repeat: no-repeat;
@@ -943,6 +943,8 @@ Footer
   padding: 8px 20px 5px 20px; 
   font-size: 12px;
   color: #999;
+  position: fixed;
+  bottom:0;
 }
 
 .footer .go-top { 
@@ -1445,7 +1447,7 @@ Box portlet
 /* portlet buttons */
 .portlet.box .portlet-body {
   background-color: #fff;
-  padding: 10px;
+  
   
 }
 
