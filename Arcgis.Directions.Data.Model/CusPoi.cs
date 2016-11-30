@@ -15,9 +15,13 @@ namespace Arcgis.Directions.Data.Model
         public string Address { get; set; }
         public string HouseNr { get; set; }
         public double GeocodeStatus { get; set; }
-        public double? WmX { get; set; }
-        public double? WmY { get; set; }
+        public decimal WmX { get; set; }
+        public decimal WmY { get; set; }
         public double? HtrsX { get; set; }
         public double? HTRS_Y { get; set; }
+        public string Zip { get; set; }
+        public string City { get; set; }
+        public string HouseNoumber { get; set; }
+        
     }
 }

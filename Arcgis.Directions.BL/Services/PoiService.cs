@@ -33,7 +33,7 @@ namespace Arcgis.Directions.BL.Services
             try
             {
                 GetPOIVM item = new GetPOIVM();
-                item.CusPoiList = _poiRepository.GetAvailablePoiByDescription(keyword);
+                item.CusPoiList = _poiRepository.GetAvailablePoiByDescriptionOracle(keyword);
                 return item;
             }
             catch (Exception e)
@@ -51,7 +51,7 @@ namespace Arcgis.Directions.BL.Services
             try
             {
                 GetPOIVM item = new GetPOIVM();
-                item.CusPoi = _poiRepository.GetPoiByID(id);
+                item.CusPoi = _poiRepository.GetPoiByIDOracle(id);
                 return item;
             }
             catch (Exception e)

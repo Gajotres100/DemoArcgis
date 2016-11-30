@@ -30,8 +30,8 @@ namespace Arcgis.Directions.Data.Repository.Poi
                         PoiDesc = x.POI_DESC,
                         PoiName = x.POI_NAME,
                         SettleName = x.SETTL_NAME,
-                        WmX = x.WM_X,
-                        WmY = x.WM_Y
+                        //WmX = x.WM_X,
+                        //WmY = x.WM_Y
                     }).ToList();
             }            
         }
@@ -51,9 +51,47 @@ namespace Arcgis.Directions.Data.Repository.Poi
                     PoiDesc = x.POI_DESC,
                     PoiName = x.POI_NAME,
                     SettleName = x.SETTL_NAME,
-                    WmX = x.WM_X,
-                    WmY = x.WM_Y
+                    //WmX = x.WM_X,
+                    //WmY = x.WM_Y
                 }).FirstOrDefault();
+            }
+        }
+
+        public CusPoi GetPoiByIDOracle(int id)
+        {
+            using (var context = new EntitiesPortalOracle())
+            {
+                return context.POI_PLACES.Where(p => p.POI_PLACE_ID == id).Select(x => new CusPoi()
+                {
+                    PoiID = x.POI_PLACE_ID,
+                    Address = x.ADDRESS,
+                    PoiDesc = x.DESCRIPTION,
+                    PoiName = x.POI_PLACE_NAME,
+                    WmX = x.WM_X,
+                    WmY = x.WM_Y,
+                    Zip = x.ZIP,
+                    City = x.CITY,
+                    HouseNoumber = x.HOUSE_NUMBER
+                }).FirstOrDefault();
+            }
+        }
+
+        public List<CusPoi> GetAvailablePoiByDescriptionOracle(string keyword)
+        {
+            using (var context = new EntitiesPortalOracle())
+            {
+                return context.POI_PLACES.Where(p => p.ADDRESS.Contains(keyword) || p.DESCRIPTION.Contains(keyword) || p.POI_PLACE_NAME.Contains(keyword)).Select(x => new CusPoi()
+                {
+                    PoiID = x.POI_PLACE_ID,
+                    Address = x.ADDRESS,
+                    PoiDesc = x.DESCRIPTION,
+                    PoiName = x.POI_PLACE_NAME,
+                    WmX = x.WM_X,
+                    WmY = x.WM_Y,
+                    Zip = x.ZIP,
+                    City = x.CITY,
+                    HouseNoumber = x.HOUSE_NUMBER
+                }).ToList();
             }
         }
 
