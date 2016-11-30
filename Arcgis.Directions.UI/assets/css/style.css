@@ -1402,7 +1402,11 @@ Box portlet
 
 
 .portlet.box {
-   padding:0px !important
+   padding:0px !important;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -60px;
 }
 
 .portlet.box .portlet-title {  
@@ -1507,7 +1511,7 @@ Box portlet
 .portlet.box.grey {  
    border: 1px solid #9d9c9c;
    border-top: 0;
-
+   height:100%;
 }
 
 .portlet.box.light-grey .portlet-title {
@@ -3762,7 +3766,7 @@ jqvmap changes
 .vmaps {
   position: relative; 
   overflow: hidden;
-  
+  height:100%;
   
 }
 

@@ -13,7 +13,7 @@
       var defaults = {
         wheelStep : 20,
         width : 'auto',
-        height : '250px',
+        height : '585px',
         size : '7px',
         color: '#000',
         position : 'right',
