@@ -135,6 +135,9 @@
     <Compile Include="GetPoiByID_Result.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="LANGUAGE.cs">
+      <DependentUpon>DbModelOracle.tt</DependentUpon>
+    </Compile>
     <Compile Include="POI_PLACES.cs">
       <DependentUpon>DbModelOracle.tt</DependentUpon>
     </Compile>

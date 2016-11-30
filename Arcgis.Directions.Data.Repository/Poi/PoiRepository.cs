@@ -30,8 +30,6 @@ namespace Arcgis.Directions.Data.Repository.Poi
                         PoiDesc = x.POI_DESC,
                         PoiName = x.POI_NAME,
                         SettleName = x.SETTL_NAME,
-                        //WmX = x.WM_X,
-                        //WmY = x.WM_Y
                     }).ToList();
             }            
         }
@@ -51,8 +49,6 @@ namespace Arcgis.Directions.Data.Repository.Poi
                     PoiDesc = x.POI_DESC,
                     PoiName = x.POI_NAME,
                     SettleName = x.SETTL_NAME,
-                    //WmX = x.WM_X,
-                    //WmY = x.WM_Y
                 }).FirstOrDefault();
             }
         }
@@ -107,6 +103,18 @@ namespace Arcgis.Directions.Data.Repository.Poi
                 }).ToList();
             }
         }
-        
+
+        public List<Language> GetLanguagesOracle()
+        {
+            using (var context = new EntitiesPortalOracle())
+            {
+                return context.LANGUAGES.Select(x => new Language()
+                {
+                    LangID = x.LANG_ID,
+                    Name = x.NAME,
+                    Code = x.CODE                    
+                }).ToList();
+            }
+        }
     }
 }

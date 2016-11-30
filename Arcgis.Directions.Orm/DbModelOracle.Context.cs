@@ -26,5 +26,6 @@ namespace Arcgis.Directions.Orm
         }
     
         public DbSet<POI_PLACES> POI_PLACES { get; set; }
+        public DbSet<LANGUAGE> LANGUAGES { get; set; }
     }
 }

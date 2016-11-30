@@ -66,7 +66,7 @@ namespace Arcgis.Directions.BL.Services
             try
             {
                 GetPOIVM item = new GetPOIVM();
-                item.LanguageList = _poiRepository.GetLanguages();
+                item.LanguageList = _poiRepository.GetLanguagesOracle();
                 return item;
             }
             catch (Exception e)

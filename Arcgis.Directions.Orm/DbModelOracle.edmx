@@ -4,7 +4,16 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ModelProtalOracleDb.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ModelProtalOracleDb.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="LANGUAGES">
+          <Key>
+            <PropertyRef Name="LANG_ID" />
+          </Key>
+          <Property Name="LANG_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="CODE" Type="nvarchar2" MaxLength="50" />
+          <Property Name="NAME" Type="nvarchar2" MaxLength="50" />
+          <Property Name="DESCRIPTION" Type="nvarchar2" MaxLength="100" />
+        </EntityType>
         <EntityType Name="POI_PLACES">
           <Key>
             <PropertyRef Name="POI_PLACE_ID" />
@@ -33,10 +42,10 @@
           <Property Name="MODIFIED_BY" Type="number" Precision="9" Scale="0" />
         </EntityType>
         <EntityContainer Name="ModelProtalOracleDbStoreContainer">
+          <EntitySet Name="LANGUAGES" EntityType="Self.LANGUAGES" Schema="DEV_FMS_7X" store:Type="Tables" />
           <EntitySet Name="POI_PLACES" EntityType="Self.POI_PLACES" Schema="DEV_FMS_7X" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ModelProtalOracleDb" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -69,7 +78,17 @@
         </EntityType>
         <EntityContainer Name="EntitiesPortalOracle" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="POI_PLACES" EntityType="Self.POI_PLACES" />
+          <EntitySet Name="LANGUAGES" EntityType="ModelProtalOracleDb.LANGUAGE" />
         </EntityContainer>
+        <EntityType Name="LANGUAGE">
+          <Key>
+            <PropertyRef Name="LANG_ID" />
+          </Key>
+          <Property Name="LANG_ID" Type="Int32" Nullable="false" />
+          <Property Name="CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -101,6 +120,16 @@
                 <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
                 <ScalarProperty Name="MODIFIED_DT" ColumnName="MODIFIED_DT" />
                 <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LANGUAGES">
+            <EntityTypeMapping TypeName="ModelProtalOracleDb.LANGUAGE">
+              <MappingFragment StoreEntitySet="LANGUAGES">
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="LANG_ID" ColumnName="LANG_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
