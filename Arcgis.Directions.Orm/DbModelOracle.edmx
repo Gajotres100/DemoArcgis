@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ModelProtalOracleDb.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="POI_PLACES">
+          <Key>
+            <PropertyRef Name="POI_PLACE_ID" />
+          </Key>
+          <Property Name="POI_PLACE_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="USER_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="CHILD_USER_ID" Type="number" Precision="9" Scale="0" />
+          <Property Name="SERVICE_ID" Type="number" Precision="2" Scale="0" />
+          <Property Name="POI_GROUP_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="POI_PLACE_NAME" Type="nvarchar2" MaxLength="50" Nullable="false" />
+          <Property Name="POI_PLACE_TYPE" Type="number" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="POI_PLACE_CODE" Type="nvarchar2" MaxLength="15" />
+          <Property Name="WM_X" Type="number" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="WM_Y" Type="number" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ADDRESS" Type="nvarchar2" MaxLength="200" />
+          <Property Name="HOUSE_NUMBER" Type="nvarchar2" MaxLength="10" />
+          <Property Name="ZIP" Type="nvarchar2" MaxLength="10" />
+          <Property Name="CITY" Type="nvarchar2" MaxLength="100" />
+          <Property Name="JURISDICTION_ZONE" Type="number" Precision="7" Scale="0" />
+          <Property Name="DESCRIPTION" Type="nvarchar2" MaxLength="200" />
+          <Property Name="REMARK" Type="nvarchar2" MaxLength="200" />
+          <Property Name="MAP_ICON_NAME" Type="nvarchar2" MaxLength="20" />
+          <Property Name="MAP_ICON_COLOR" Type="nvarchar2" MaxLength="20" />
+          <Property Name="CREATED_DT" Type="date" Nullable="false" />
+          <Property Name="MODIFIED_DT" Type="date" />
+          <Property Name="MODIFIED_BY" Type="number" Precision="9" Scale="0" />
+        </EntityType>
+        <EntityContainer Name="ModelProtalOracleDbStoreContainer">
+          <EntitySet Name="POI_PLACES" EntityType="Self.POI_PLACES" Schema="DEV_FMS_7X" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ModelProtalOracleDb" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="POI_PLACES">
+          <Key>
+            <PropertyRef Name="POI_PLACE_ID" />
+          </Key>
+          <Property Name="POI_PLACE_ID" Type="Int32" Nullable="false" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="CHILD_USER_ID" Type="Int32" />
+          <Property Name="SERVICE_ID" Type="Int16" />
+          <Property Name="POI_GROUP_ID" Type="Int32" Nullable="false" />
+          <Property Name="POI_PLACE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="POI_PLACE_TYPE" Type="Int16" Nullable="false" />
+          <Property Name="POI_PLACE_CODE" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="WM_X" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="WM_Y" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ADDRESS" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="HOUSE_NUMBER" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ZIP" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CITY" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="JURISDICTION_ZONE" Type="Int32" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="REMARK" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MAP_ICON_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MAP_ICON_COLOR" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" />
+          <Property Name="MODIFIED_DT" Type="DateTime" />
+          <Property Name="MODIFIED_BY" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="EntitiesPortalOracle" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="POI_PLACES" EntityType="Self.POI_PLACES" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelProtalOracleDbStoreContainer" CdmEntityContainer="EntitiesPortalOracle">
+          <EntitySetMapping Name="POI_PLACES">
+            <EntityTypeMapping TypeName="ModelProtalOracleDb.POI_PLACES">
+              <MappingFragment StoreEntitySet="POI_PLACES">
+                <ScalarProperty Name="POI_PLACE_ID" ColumnName="POI_PLACE_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="CHILD_USER_ID" ColumnName="CHILD_USER_ID" />
+                <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
+                <ScalarProperty Name="POI_GROUP_ID" ColumnName="POI_GROUP_ID" />
+                <ScalarProperty Name="POI_PLACE_NAME" ColumnName="POI_PLACE_NAME" />
+                <ScalarProperty Name="POI_PLACE_TYPE" ColumnName="POI_PLACE_TYPE" />
+                <ScalarProperty Name="POI_PLACE_CODE" ColumnName="POI_PLACE_CODE" />
+                <ScalarProperty Name="WM_X" ColumnName="WM_X" />
+                <ScalarProperty Name="WM_Y" ColumnName="WM_Y" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="HOUSE_NUMBER" ColumnName="HOUSE_NUMBER" />
+                <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="JURISDICTION_ZONE" ColumnName="JURISDICTION_ZONE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                <ScalarProperty Name="MAP_ICON_NAME" ColumnName="MAP_ICON_NAME" />
+                <ScalarProperty Name="MAP_ICON_COLOR" ColumnName="MAP_ICON_COLOR" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="MODIFIED_DT" ColumnName="MODIFIED_DT" />
+                <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
