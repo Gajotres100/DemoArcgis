@@ -1444,6 +1444,42 @@
     <Content Include="Content\css\claro.css" />
     <Content Include="Content\css\esri.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\dijit\images\ajax-loader.gif" />
+    <Content Include="Content\dijit\images\button-active.png" />
+    <Content Include="Content\dijit\images\button-hover.png" />
+    <Content Include="Content\dijit\images\Directions\blueCircle.png" />
+    <Content Include="Content\dijit\images\Directions\dndHandle.png" />
+    <Content Include="Content\dijit\images\Directions\grayCircle.png" />
+    <Content Include="Content\dijit\images\Directions\greenPoint.png" />
+    <Content Include="Content\dijit\images\Directions\GreyPin16.png" />
+    <Content Include="Content\dijit\images\Directions\loading-32.gif" />
+    <Content Include="Content\dijit\images\Directions\locate.png" />
+    <Content Include="Content\dijit\images\Directions\maneuvers\esriDMTBearLeft.png" />
+    <Content Include="Content\dijit\images\Directions\maneuvers\esriDMTBearRight.png" />
+    <Content Include="Content\dijit\images\Directions\maneuvers\esriDMTForkLeft.png" />
+    <Content Include="Content\dijit\images\Directions\maneuvers\esriDMTForkRight.png" />
+    <Content Include="Content\dijit\images\Directions\maneuvers\esriDMTRampLeft.png" />
+    <Content Include="Content\dijit\images\Directions\maneuvers\esriDMTRampRight.png" />
+    <Content Include="Content\dijit\images\Directions\maneuvers\esriDMTStopDestination.png" />
+    <Content Include="Content\dijit\images\Directions\maneuvers\esriDMTStopOrigin.png" />
+    <Content Include="Content\dijit\images\Directions\maneuvers\esriDMTStraight.png" />
+    <Content Include="Content\dijit\images\Directions\maneuvers\esriDMTTurnLeft.png" />
+    <Content Include="Content\dijit\images\Directions\maneuvers\esriDMTTurnRight.png" />
+    <Content Include="Content\dijit\images\Directions\maneuvers\esriDMTTurnRightLeft.png" />
+    <Content Include="Content\dijit\images\Directions\maneuvers\esriDMTUTurn.png" />
+    <Content Include="Content\dijit\images\Directions\print.png" />
+    <Content Include="Content\dijit\images\Directions\redPoint.png" />
+    <Content Include="Content\dijit\images\Directions\remove-destination.png" />
+    <Content Include="Content\dijit\images\Directions\reverse.png" />
+    <Content Include="Content\dijit\images\Directions\save.png" />
+    <Content Include="Content\dijit\images\locate-spinner.gif" />
+    <Content Include="Content\dijit\images\locate.png" />
+    <Content Include="Content\dijit\images\map\logo-med.png" />
+    <Content Include="Content\dijit\images\Measure_Area16.png" />
+    <Content Include="Content\dijit\images\Measure_Distance16.png" />
+    <Content Include="Content\dijit\images\Measure_Point16.png" />
+    <Content Include="Content\dijit\images\overview.png" />
+    <Content Include="Content\dijit\images\popup.png" />
     <Content Include="Global.asax" />
     <Content Include="Script\init.js" />
     <Content Include="Web.config" />
@@ -1684,7 +1720,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\dijit\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
