@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcgis.Directions.Orm", "Ar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcgis.Directions.Data.Repository", "Arcgis.Directions.Data.Repository\Arcgis.Directions.Data.Repository.csproj", "{87990572-B166-41A1-9FFA-10CEE6E45A2E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCM.Commons.BusinessLogic", "FCM.Commons.BusinessLogic\FCM.Commons.BusinessLogic.csproj", "{9BE369B8-9169-45FD-99DC-E6552A66A50B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{87990572-B166-41A1-9FFA-10CEE6E45A2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87990572-B166-41A1-9FFA-10CEE6E45A2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87990572-B166-41A1-9FFA-10CEE6E45A2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BE369B8-9169-45FD-99DC-E6552A66A50B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BE369B8-9169-45FD-99DC-E6552A66A50B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BE369B8-9169-45FD-99DC-E6552A66A50B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BE369B8-9169-45FD-99DC-E6552A66A50B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

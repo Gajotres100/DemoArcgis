@@ -1,0 +1,2090 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.gisdata.com/GDi_Ensemble/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.gisdata.com/GDi_Ensemble/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Web service for SSO authentication through GDi_Ensemble subsystem for main application</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.gisdata.com/GDi_Ensemble/">
+      <s:element name="GetVersion">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVersionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAuthenticationSettings">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAuthenticationSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAuthenticationSettingsResult" type="tns:AuthenticationSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AuthenticationSettings">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UsernameSettingsValues" type="tns:UsernameSettings" />
+          <s:element minOccurs="0" maxOccurs="1" name="PasswordSettingsValues" type="tns:PasswordSettings" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UsernameSettings">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MinLength" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxLength" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MixedCase" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PasswordSettings">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MinLength" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxLength" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MustHaveLowerCaseChar" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MustHaveUpperCaseChar" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ForbiddenChars" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllApplicationsData_withCulture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Culture" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="OnlyMainData" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllApplicationsData_withCultureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllApplicationsData_withCultureResult" type="tns:ArrayOfApplicationData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfApplicationData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ApplicationData" nillable="true" type="tns:ApplicationData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ApplicationData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ApplicationID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Culture" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Admin" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="URL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ApplicationExtData">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApplicationData">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="LogoType" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Logo16" type="s:base64Binary" />
+              <s:element minOccurs="0" maxOccurs="1" name="Logo32" type="s:base64Binary" />
+              <s:element minOccurs="0" maxOccurs="1" name="Logo64" type="s:base64Binary" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DescriptionURL" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetAllApplicationsData_defaultCulture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="OnlyMainData" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllApplicationsData_defaultCultureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllApplicationsData_defaultCultureResult" type="tns:ArrayOfApplicationData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllApplicationsExtendedData_withCulture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Culture" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllApplicationsExtendedData_withCultureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllApplicationsExtendedData_withCultureResult" type="tns:ArrayOfApplicationData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllApplicationsExtendedData_defaultCulture">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllApplicationsExtendedData_defaultCultureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllApplicationsExtendedData_defaultCultureResult" type="tns:ArrayOfApplicationData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllRoles_withCulture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Culture" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllRoles_withCultureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllRoles_withCultureResult" type="tns:ArrayOfRole" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfRole">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Role" nillable="true" type="tns:Role" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Role">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RoleID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Culture" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllRoles_defaultCulture">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllRoles_defaultCultureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllRoles_defaultCultureResult" type="tns:ArrayOfRole" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllAplicationsDataAndRoles_withCulture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Culture" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllAplicationsDataAndRoles_withCultureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationData" type="tns:ArrayOfApplicationData" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationRoles" type="tns:ArrayOfRole" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllAplicationsDataAndRoles_defaultCulture">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllAplicationsDataAndRoles_defaultCultureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationData" type="tns:ArrayOfApplicationData" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationRoles" type="tns:ArrayOfRole" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllApplicationsHeaderAndFooter_withCulture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Culture" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllApplicationsHeaderAndFooter_withCultureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Header" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Footer" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllApplicationsHeaderAndFooter_defaultCulture">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllApplicationsHeaderAndFooter_defaultCultureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Header" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Footer" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMailTexts_withCulture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Culture" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMailTexts_withCultureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMailTexts_withCultureResult" type="tns:MailTexts" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MailTexts">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ActivationUserAccount" type="tns:MailTextType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ForgottenPassword" type="tns:MailTextType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MailTextType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsHtml" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMailTexts_defaultCulture">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMailTexts_defaultCultureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMailTexts_defaultCultureResult" type="tns:MailTexts" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WebSessionData" type="tns:WebSessionData" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserData" type="tns:UserData" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyData" type="tns:CompanyData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="WebSessionData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="WebSessionID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IPAddress" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DefaultCulture" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Firstname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Lastname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="tns:Address" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telephone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MSISDN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OIB" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Address">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AddressName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HouseNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZIP" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserExtData">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:UserData">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="UserType" type="tns:UserTypeEnum" />
+              <s:element minOccurs="1" maxOccurs="1" name="Approved" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="Locked" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="ApplicationRoles" type="tns:ArrayOfApplicationRole" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="UserTypeEnum">
+        <s:restriction base="s:string">
+          <s:enumeration value="Undefined" />
+          <s:enumeration value="Private" />
+          <s:enumeration value="Business" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfApplicationRole">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ApplicationRole" nillable="true" type="tns:ApplicationRole" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ApplicationRole">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ApplicationID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RoleID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CompanyData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OIB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="tns:Address" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telephone" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateUserResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserData" type="tns:UserData" />
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActivateUserByMailToken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WebSessionData" type="tns:WebSessionData" />
+            <s:element minOccurs="0" maxOccurs="1" name="MailToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActivateUserByMailTokenResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RecreateUserActivationMailToken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WebSessionData" type="tns:WebSessionData" />
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserEmail" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecreateUserActivationMailTokenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RecreateUserActivationMailTokenResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserEmail" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateForgottenPasswordMailToken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WebSessionData" type="tns:WebSessionData" />
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserEmail" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateForgottenPasswordMailTokenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateForgottenPasswordMailTokenResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserEmail" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateChildUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOWebAppsLauncherAuthData" type="tns:SSOWebAppsLauncherAuthData" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserData" type="tns:UserData" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Unlock" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationRoles" type="tns:ArrayOfApplicationRole" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SSOWebAppsLauncherAuthData">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebSessionData">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="SessionToken" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="CreateChildUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateChildUserResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserData" type="tns:UserData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeUserPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOWebAppsLauncherAuthData" type="tns:SSOWebAppsLauncherAuthData" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NewPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeUserPasswordResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ChangeCurrentUserPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOWebAppsLauncherAuthData" type="tns:SSOWebAppsLauncherAuthData" />
+            <s:element minOccurs="0" maxOccurs="1" name="NewPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeCurrentUserPasswordResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ChangeUserPasswordByMailToken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WebSessionData" type="tns:WebSessionData" />
+            <s:element minOccurs="0" maxOccurs="1" name="MailToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NewPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeUserPasswordByMailTokenResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ChangeUserStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOWebAppsLauncherAuthData" type="tns:SSOWebAppsLauncherAuthData" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="NewLockedStatus" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeUserStatusResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ChangeUserData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOWebAppsLauncherAuthData" type="tns:SSOWebAppsLauncherAuthData" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NewUserData" type="tns:UserData" />
+            <s:element minOccurs="0" maxOccurs="1" name="NewCompanyData" type="tns:CompanyData" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationRoles" type="tns:ArrayOfApplicationRole" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeUserDataResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ChangeCurrentUserData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOWebAppsLauncherAuthData" type="tns:SSOWebAppsLauncherAuthData" />
+            <s:element minOccurs="0" maxOccurs="1" name="NewUserData" type="tns:UserData" />
+            <s:element minOccurs="0" maxOccurs="1" name="NewCompanyData" type="tns:CompanyData" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationRoles" type="tns:ArrayOfApplicationRole" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeCurrentUserDataResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteChildUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOWebAppsLauncherAuthData" type="tns:SSOWebAppsLauncherAuthData" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteChildUserResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="LogonUser_withCulture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOWebAppsLauncherAuthData" type="tns:SSOWebAppsLauncherAuthData" />
+            <s:element minOccurs="0" maxOccurs="1" name="Culture" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogonUser_withCultureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LogonUser_withCultureResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="SessionToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserData" type="tns:UserData" />
+            <s:element minOccurs="0" maxOccurs="1" name="MasterUserData" type="tns:UserData" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyData" type="tns:CompanyData" />
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationRoles" type="tns:ArrayOfApplicationRole" />
+            <s:element minOccurs="0" maxOccurs="1" name="Header" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Footer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MessageQueue" type="tns:ArrayOfMessage" />
+            <s:element minOccurs="1" maxOccurs="1" name="PasswordExpired" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Message" nillable="true" type="tns:Message" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Message">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="LogonUser_defaultCulture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOWebAppsLauncherAuthData" type="tns:SSOWebAppsLauncherAuthData" />
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogonUser_defaultCultureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LogonUser_defaultCultureResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="SessionToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserData" type="tns:UserData" />
+            <s:element minOccurs="0" maxOccurs="1" name="MasterUserData" type="tns:UserData" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyData" type="tns:CompanyData" />
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationRoles" type="tns:ArrayOfApplicationRole" />
+            <s:element minOccurs="0" maxOccurs="1" name="Header" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Footer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MessageQueue" type="tns:ArrayOfMessage" />
+            <s:element minOccurs="1" maxOccurs="1" name="PasswordExpired" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RefreshSession">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOWebAppsLauncherAuthData" type="tns:SSOWebAppsLauncherAuthData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RefreshSessionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RefreshSessionResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeSessionCulture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOWebAppsLauncherAuthData" type="tns:SSOWebAppsLauncherAuthData" />
+            <s:element minOccurs="0" maxOccurs="1" name="NewCulture" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeSessionCultureResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ConnectSession_withCulture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOAuthData" type="tns:SSOAuthData" />
+            <s:element minOccurs="0" maxOccurs="1" name="WebSessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NewCulture" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SSOAuthData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SSOToken" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ApplicationID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IPAddress" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ConnectSession_withCultureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ConnectSession_withCultureResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="NewCulture" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SessionToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserData" type="tns:UserData" />
+            <s:element minOccurs="0" maxOccurs="1" name="MasterUserData" type="tns:UserData" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyData" type="tns:CompanyData" />
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationRoles" type="tns:ArrayOfApplicationRole" />
+            <s:element minOccurs="0" maxOccurs="1" name="Header" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Footer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MessageQueue" type="tns:ArrayOfMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConnectSession_defaultCulture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOAuthData" type="tns:SSOAuthData" />
+            <s:element minOccurs="0" maxOccurs="1" name="WebSessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConnectSession_defaultCultureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ConnectSession_defaultCultureResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="SessionToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserData" type="tns:UserData" />
+            <s:element minOccurs="0" maxOccurs="1" name="MasterUserData" type="tns:UserData" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyData" type="tns:CompanyData" />
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationRoles" type="tns:ArrayOfApplicationRole" />
+            <s:element minOccurs="0" maxOccurs="1" name="Header" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Footer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MessageQueue" type="tns:ArrayOfMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOWebAppsLauncherAuthData" type="tns:SSOWebAppsLauncherAuthData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserDataResult" type="tns:UserData" />
+            <s:element minOccurs="1" maxOccurs="1" name="Superuser" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="MasterUserData" type="tns:UserData" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyData" type="tns:CompanyData" />
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApplicationRoles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOWebAppsLauncherAuthData" type="tns:SSOWebAppsLauncherAuthData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApplicationRolesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetApplicationRolesResult" type="tns:ArrayOfApplicationRole" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserApplicationRoles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOWebAppsLauncherAuthData" type="tns:SSOWebAppsLauncherAuthData" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserApplicationRolesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserApplicationRolesResult" type="tns:ArrayOfApplicationRole" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChildUsersData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOWebAppsLauncherAuthData" type="tns:SSOWebAppsLauncherAuthData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChildUsersDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetChildUsersDataResult" type="tns:ArrayOfUserData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUserData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserData" nillable="true" type="tns:UserData" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetHeaderAndFooter_withCulture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOWebAppsLauncherAuthData" type="tns:SSOWebAppsLauncherAuthData" />
+            <s:element minOccurs="0" maxOccurs="1" name="Culture" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHeaderAndFooter_withCultureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Header" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Footer" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHeaderAndFooter_defaultCulture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOWebAppsLauncherAuthData" type="tns:SSOWebAppsLauncherAuthData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHeaderAndFooter_defaultCultureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Header" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Footer" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageQueue_withCulture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOWebAppsLauncherAuthData" type="tns:SSOWebAppsLauncherAuthData" />
+            <s:element minOccurs="0" maxOccurs="1" name="Culture" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageQueue_withCultureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMessageQueue_withCultureResult" type="tns:ArrayOfMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageQueue_defaultCulture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOWebAppsLauncherAuthData" type="tns:SSOWebAppsLauncherAuthData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageQueue_defaultCultureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMessageQueue_defaultCultureResult" type="tns:ArrayOfMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogoffUserSession">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOWebAppsLauncherAuthData" type="tns:SSOWebAppsLauncherAuthData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogoffUserSessionResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSSOApplicationAuthToken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOWebAppsLauncherAuthData" type="tns:SSOWebAppsLauncherAuthData" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSSOApplicationAuthTokenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSSOApplicationAuthTokenResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogonUser_CSIntegration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SSOWebAppsLauncherAuthData" type="tns:SSOWebAppsLauncherAuthData" />
+            <s:element minOccurs="0" maxOccurs="1" name="Culture" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogonUser_CSIntegrationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LogonUser_CSIntegrationResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="SessionToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserData" type="tns:UserData" />
+            <s:element minOccurs="0" maxOccurs="1" name="MasterUserData" type="tns:UserData" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyData" type="tns:CompanyData" />
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationRoles" type="tns:ArrayOfApplicationRole" />
+            <s:element minOccurs="0" maxOccurs="1" name="Header" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Footer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MessageQueue" type="tns:ArrayOfMessage" />
+            <s:element minOccurs="1" maxOccurs="1" name="PasswordExpired" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVersion" />
+  </wsdl:message>
+  <wsdl:message name="GetVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAuthenticationSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAuthenticationSettings" />
+  </wsdl:message>
+  <wsdl:message name="GetAuthenticationSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAuthenticationSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllApplicationsData_withCultureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllApplicationsData_withCulture" />
+  </wsdl:message>
+  <wsdl:message name="GetAllApplicationsData_withCultureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllApplicationsData_withCultureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllApplicationsData_defaultCultureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllApplicationsData_defaultCulture" />
+  </wsdl:message>
+  <wsdl:message name="GetAllApplicationsData_defaultCultureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllApplicationsData_defaultCultureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllApplicationsExtendedData_withCultureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllApplicationsExtendedData_withCulture" />
+  </wsdl:message>
+  <wsdl:message name="GetAllApplicationsExtendedData_withCultureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllApplicationsExtendedData_withCultureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllApplicationsExtendedData_defaultCultureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllApplicationsExtendedData_defaultCulture" />
+  </wsdl:message>
+  <wsdl:message name="GetAllApplicationsExtendedData_defaultCultureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllApplicationsExtendedData_defaultCultureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllRoles_withCultureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllRoles_withCulture" />
+  </wsdl:message>
+  <wsdl:message name="GetAllRoles_withCultureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllRoles_withCultureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllRoles_defaultCultureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllRoles_defaultCulture" />
+  </wsdl:message>
+  <wsdl:message name="GetAllRoles_defaultCultureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllRoles_defaultCultureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllAplicationsDataAndRoles_withCultureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllAplicationsDataAndRoles_withCulture" />
+  </wsdl:message>
+  <wsdl:message name="GetAllAplicationsDataAndRoles_withCultureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllAplicationsDataAndRoles_withCultureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllAplicationsDataAndRoles_defaultCultureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllAplicationsDataAndRoles_defaultCulture" />
+  </wsdl:message>
+  <wsdl:message name="GetAllAplicationsDataAndRoles_defaultCultureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllAplicationsDataAndRoles_defaultCultureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllApplicationsHeaderAndFooter_withCultureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllApplicationsHeaderAndFooter_withCulture" />
+  </wsdl:message>
+  <wsdl:message name="GetAllApplicationsHeaderAndFooter_withCultureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllApplicationsHeaderAndFooter_withCultureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllApplicationsHeaderAndFooter_defaultCultureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllApplicationsHeaderAndFooter_defaultCulture" />
+  </wsdl:message>
+  <wsdl:message name="GetAllApplicationsHeaderAndFooter_defaultCultureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllApplicationsHeaderAndFooter_defaultCultureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMailTexts_withCultureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMailTexts_withCulture" />
+  </wsdl:message>
+  <wsdl:message name="GetMailTexts_withCultureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMailTexts_withCultureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMailTexts_defaultCultureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMailTexts_defaultCulture" />
+  </wsdl:message>
+  <wsdl:message name="GetMailTexts_defaultCultureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMailTexts_defaultCultureResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateUser" />
+  </wsdl:message>
+  <wsdl:message name="CreateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActivateUserByMailTokenSoapIn">
+    <wsdl:part name="parameters" element="tns:ActivateUserByMailToken" />
+  </wsdl:message>
+  <wsdl:message name="ActivateUserByMailTokenSoapOut">
+    <wsdl:part name="parameters" element="tns:ActivateUserByMailTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="RecreateUserActivationMailTokenSoapIn">
+    <wsdl:part name="parameters" element="tns:RecreateUserActivationMailToken" />
+  </wsdl:message>
+  <wsdl:message name="RecreateUserActivationMailTokenSoapOut">
+    <wsdl:part name="parameters" element="tns:RecreateUserActivationMailTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateForgottenPasswordMailTokenSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateForgottenPasswordMailToken" />
+  </wsdl:message>
+  <wsdl:message name="CreateForgottenPasswordMailTokenSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateForgottenPasswordMailTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateChildUserSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateChildUser" />
+  </wsdl:message>
+  <wsdl:message name="CreateChildUserSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateChildUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeUserPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeUserPassword" />
+  </wsdl:message>
+  <wsdl:message name="ChangeUserPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeUserPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeCurrentUserPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeCurrentUserPassword" />
+  </wsdl:message>
+  <wsdl:message name="ChangeCurrentUserPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeCurrentUserPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeUserPasswordByMailTokenSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeUserPasswordByMailToken" />
+  </wsdl:message>
+  <wsdl:message name="ChangeUserPasswordByMailTokenSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeUserPasswordByMailTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeUserStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeUserStatus" />
+  </wsdl:message>
+  <wsdl:message name="ChangeUserStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeUserStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeUserDataSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeUserData" />
+  </wsdl:message>
+  <wsdl:message name="ChangeUserDataSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeUserDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeCurrentUserDataSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeCurrentUserData" />
+  </wsdl:message>
+  <wsdl:message name="ChangeCurrentUserDataSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeCurrentUserDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteChildUserSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteChildUser" />
+  </wsdl:message>
+  <wsdl:message name="DeleteChildUserSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteChildUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogonUser_withCultureSoapIn">
+    <wsdl:part name="parameters" element="tns:LogonUser_withCulture" />
+  </wsdl:message>
+  <wsdl:message name="LogonUser_withCultureSoapOut">
+    <wsdl:part name="parameters" element="tns:LogonUser_withCultureResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogonUser_defaultCultureSoapIn">
+    <wsdl:part name="parameters" element="tns:LogonUser_defaultCulture" />
+  </wsdl:message>
+  <wsdl:message name="LogonUser_defaultCultureSoapOut">
+    <wsdl:part name="parameters" element="tns:LogonUser_defaultCultureResponse" />
+  </wsdl:message>
+  <wsdl:message name="RefreshSessionSoapIn">
+    <wsdl:part name="parameters" element="tns:RefreshSession" />
+  </wsdl:message>
+  <wsdl:message name="RefreshSessionSoapOut">
+    <wsdl:part name="parameters" element="tns:RefreshSessionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeSessionCultureSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeSessionCulture" />
+  </wsdl:message>
+  <wsdl:message name="ChangeSessionCultureSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeSessionCultureResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConnectSession_withCultureSoapIn">
+    <wsdl:part name="parameters" element="tns:ConnectSession_withCulture" />
+  </wsdl:message>
+  <wsdl:message name="ConnectSession_withCultureSoapOut">
+    <wsdl:part name="parameters" element="tns:ConnectSession_withCultureResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConnectSession_defaultCultureSoapIn">
+    <wsdl:part name="parameters" element="tns:ConnectSession_defaultCulture" />
+  </wsdl:message>
+  <wsdl:message name="ConnectSession_defaultCultureSoapOut">
+    <wsdl:part name="parameters" element="tns:ConnectSession_defaultCultureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserData" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetApplicationRolesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetApplicationRoles" />
+  </wsdl:message>
+  <wsdl:message name="GetApplicationRolesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetApplicationRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserApplicationRolesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserApplicationRoles" />
+  </wsdl:message>
+  <wsdl:message name="GetUserApplicationRolesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserApplicationRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetChildUsersDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetChildUsersData" />
+  </wsdl:message>
+  <wsdl:message name="GetChildUsersDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetChildUsersDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHeaderAndFooter_withCultureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHeaderAndFooter_withCulture" />
+  </wsdl:message>
+  <wsdl:message name="GetHeaderAndFooter_withCultureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHeaderAndFooter_withCultureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHeaderAndFooter_defaultCultureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHeaderAndFooter_defaultCulture" />
+  </wsdl:message>
+  <wsdl:message name="GetHeaderAndFooter_defaultCultureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHeaderAndFooter_defaultCultureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageQueue_withCultureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMessageQueue_withCulture" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageQueue_withCultureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMessageQueue_withCultureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageQueue_defaultCultureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMessageQueue_defaultCulture" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageQueue_defaultCultureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMessageQueue_defaultCultureResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogoffUserSessionSoapIn">
+    <wsdl:part name="parameters" element="tns:LogoffUserSession" />
+  </wsdl:message>
+  <wsdl:message name="LogoffUserSessionSoapOut">
+    <wsdl:part name="parameters" element="tns:LogoffUserSessionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSSOApplicationAuthTokenSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSSOApplicationAuthToken" />
+  </wsdl:message>
+  <wsdl:message name="GetSSOApplicationAuthTokenSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSSOApplicationAuthTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogonUser_CSIntegrationSoapIn">
+    <wsdl:part name="parameters" element="tns:LogonUser_CSIntegration" />
+  </wsdl:message>
+  <wsdl:message name="LogonUser_CSIntegrationSoapOut">
+    <wsdl:part name="parameters" element="tns:LogonUser_CSIntegrationResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebAppsLauncherSoap">
+    <wsdl:operation name="GetVersion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets web service version</wsdl:documentation>
+      <wsdl:input message="tns:GetVersionSoapIn" />
+      <wsdl:output message="tns:GetVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAuthenticationSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets authentication settings</wsdl:documentation>
+      <wsdl:input message="tns:GetAuthenticationSettingsSoapIn" />
+      <wsdl:output message="tns:GetAuthenticationSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllApplicationsData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns all applications data narrow or extended set depending on the parameter OnlyMainData</wsdl:documentation>
+      <wsdl:input name="GetAllApplicationsData_withCulture" message="tns:GetAllApplicationsData_withCultureSoapIn" />
+      <wsdl:output name="GetAllApplicationsData_withCulture" message="tns:GetAllApplicationsData_withCultureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllApplicationsData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns all applications data narrow or extended set depending on the parameter OnlyMainData (for default culture)</wsdl:documentation>
+      <wsdl:input name="GetAllApplicationsData_defaultCulture" message="tns:GetAllApplicationsData_defaultCultureSoapIn" />
+      <wsdl:output name="GetAllApplicationsData_defaultCulture" message="tns:GetAllApplicationsData_defaultCultureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllApplicationsExtendedData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns all applications data extended set</wsdl:documentation>
+      <wsdl:input name="GetAllApplicationsExtendedData_withCulture" message="tns:GetAllApplicationsExtendedData_withCultureSoapIn" />
+      <wsdl:output name="GetAllApplicationsExtendedData_withCulture" message="tns:GetAllApplicationsExtendedData_withCultureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllApplicationsExtendedData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns all applications data extended set (for default culture)</wsdl:documentation>
+      <wsdl:input name="GetAllApplicationsExtendedData_defaultCulture" message="tns:GetAllApplicationsExtendedData_defaultCultureSoapIn" />
+      <wsdl:output name="GetAllApplicationsExtendedData_defaultCulture" message="tns:GetAllApplicationsExtendedData_defaultCultureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRoles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns all application roles with description</wsdl:documentation>
+      <wsdl:input name="GetAllRoles_withCulture" message="tns:GetAllRoles_withCultureSoapIn" />
+      <wsdl:output name="GetAllRoles_withCulture" message="tns:GetAllRoles_withCultureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRoles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns all application roles with description (for default culture)</wsdl:documentation>
+      <wsdl:input name="GetAllRoles_defaultCulture" message="tns:GetAllRoles_defaultCultureSoapIn" />
+      <wsdl:output name="GetAllRoles_defaultCulture" message="tns:GetAllRoles_defaultCultureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAplicationsDataAndRoles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns all applications data and application roles</wsdl:documentation>
+      <wsdl:input name="GetAllAplicationsDataAndRoles_withCulture" message="tns:GetAllAplicationsDataAndRoles_withCultureSoapIn" />
+      <wsdl:output name="GetAllAplicationsDataAndRoles_withCulture" message="tns:GetAllAplicationsDataAndRoles_withCultureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAplicationsDataAndRoles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns all applications data and application roles (for default culture)</wsdl:documentation>
+      <wsdl:input name="GetAllAplicationsDataAndRoles_defaultCulture" message="tns:GetAllAplicationsDataAndRoles_defaultCultureSoapIn" />
+      <wsdl:output name="GetAllAplicationsDataAndRoles_defaultCulture" message="tns:GetAllAplicationsDataAndRoles_defaultCultureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllApplicationsHeaderAndFooter">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns header and footer for all applications</wsdl:documentation>
+      <wsdl:input name="GetAllApplicationsHeaderAndFooter_withCulture" message="tns:GetAllApplicationsHeaderAndFooter_withCultureSoapIn" />
+      <wsdl:output name="GetAllApplicationsHeaderAndFooter_withCulture" message="tns:GetAllApplicationsHeaderAndFooter_withCultureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllApplicationsHeaderAndFooter">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns header and footer for all applications (for default culture)</wsdl:documentation>
+      <wsdl:input name="GetAllApplicationsHeaderAndFooter_defaultCulture" message="tns:GetAllApplicationsHeaderAndFooter_defaultCultureSoapIn" />
+      <wsdl:output name="GetAllApplicationsHeaderAndFooter_defaultCulture" message="tns:GetAllApplicationsHeaderAndFooter_defaultCultureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailTexts">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns mail texts</wsdl:documentation>
+      <wsdl:input name="GetMailTexts_withCulture" message="tns:GetMailTexts_withCultureSoapIn" />
+      <wsdl:output name="GetMailTexts_withCulture" message="tns:GetMailTexts_withCultureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailTexts">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns mail texts (for default culture)</wsdl:documentation>
+      <wsdl:input name="GetMailTexts_defaultCulture" message="tns:GetMailTexts_defaultCultureSoapIn" />
+      <wsdl:output name="GetMailTexts_defaultCulture" message="tns:GetMailTexts_defaultCultureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates a new user with given data about her and hers company</wsdl:documentation>
+      <wsdl:input message="tns:CreateUserSoapIn" />
+      <wsdl:output message="tns:CreateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivateUserByMailToken">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Activates user by mail token</wsdl:documentation>
+      <wsdl:input message="tns:ActivateUserByMailTokenSoapIn" />
+      <wsdl:output message="tns:ActivateUserByMailTokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RecreateUserActivationMailToken">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Recreates mail token for user activation</wsdl:documentation>
+      <wsdl:input message="tns:RecreateUserActivationMailTokenSoapIn" />
+      <wsdl:output message="tns:RecreateUserActivationMailTokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateForgottenPasswordMailToken">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates mail token for the user who forgot password</wsdl:documentation>
+      <wsdl:input message="tns:CreateForgottenPasswordMailTokenSoapIn" />
+      <wsdl:output message="tns:CreateForgottenPasswordMailTokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateChildUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates a new group child user</wsdl:documentation>
+      <wsdl:input message="tns:CreateChildUserSoapIn" />
+      <wsdl:output message="tns:CreateChildUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserPassword">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Changes password of user belonging to the group of the current user</wsdl:documentation>
+      <wsdl:input message="tns:ChangeUserPasswordSoapIn" />
+      <wsdl:output message="tns:ChangeUserPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeCurrentUserPassword">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Changes password of the current user</wsdl:documentation>
+      <wsdl:input message="tns:ChangeCurrentUserPasswordSoapIn" />
+      <wsdl:output message="tns:ChangeCurrentUserPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserPasswordByMailToken">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Changes forgotten password of user by mail token</wsdl:documentation>
+      <wsdl:input message="tns:ChangeUserPasswordByMailTokenSoapIn" />
+      <wsdl:output message="tns:ChangeUserPasswordByMailTokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Changes locked status of user in the group of current user</wsdl:documentation>
+      <wsdl:input message="tns:ChangeUserStatusSoapIn" />
+      <wsdl:output message="tns:ChangeUserStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Changes user data of user in the group of current user</wsdl:documentation>
+      <wsdl:input message="tns:ChangeUserDataSoapIn" />
+      <wsdl:output message="tns:ChangeUserDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeCurrentUserData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Changes the current user data</wsdl:documentation>
+      <wsdl:input message="tns:ChangeCurrentUserDataSoapIn" />
+      <wsdl:output message="tns:ChangeCurrentUserDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteChildUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes a child user</wsdl:documentation>
+      <wsdl:input message="tns:DeleteChildUserSoapIn" />
+      <wsdl:output message="tns:DeleteChildUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogonUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Logs on user and returns Session Token for this session</wsdl:documentation>
+      <wsdl:input name="LogonUser_withCulture" message="tns:LogonUser_withCultureSoapIn" />
+      <wsdl:output name="LogonUser_withCulture" message="tns:LogonUser_withCultureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogonUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Logs on user and returns Session Token for this session (for default culture)</wsdl:documentation>
+      <wsdl:input name="LogonUser_defaultCulture" message="tns:LogonUser_defaultCultureSoapIn" />
+      <wsdl:output name="LogonUser_defaultCulture" message="tns:LogonUser_defaultCultureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RefreshSession">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Refreshes session (extends expiration datetime)</wsdl:documentation>
+      <wsdl:input message="tns:RefreshSessionSoapIn" />
+      <wsdl:output message="tns:RefreshSessionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeSessionCulture">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Changes current session culture</wsdl:documentation>
+      <wsdl:input message="tns:ChangeSessionCultureSoapIn" />
+      <wsdl:output message="tns:ChangeSessionCultureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConnectSession">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Connects the user on a session created from 3rd party application</wsdl:documentation>
+      <wsdl:input name="ConnectSession_withCulture" message="tns:ConnectSession_withCultureSoapIn" />
+      <wsdl:output name="ConnectSession_withCulture" message="tns:ConnectSession_withCultureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConnectSession">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Connects the user on a session created from 3rd party application (for default culture)</wsdl:documentation>
+      <wsdl:input name="ConnectSession_defaultCulture" message="tns:ConnectSession_defaultCultureSoapIn" />
+      <wsdl:output name="ConnectSession_defaultCulture" message="tns:ConnectSession_defaultCultureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets user data</wsdl:documentation>
+      <wsdl:input message="tns:GetUserDataSoapIn" />
+      <wsdl:output message="tns:GetUserDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationRoles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets application roles allowed for this user</wsdl:documentation>
+      <wsdl:input message="tns:GetApplicationRolesSoapIn" />
+      <wsdl:output message="tns:GetApplicationRolesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserApplicationRoles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets application roles allowed for given user</wsdl:documentation>
+      <wsdl:input message="tns:GetUserApplicationRolesSoapIn" />
+      <wsdl:output message="tns:GetUserApplicationRolesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChildUsersData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets child users data</wsdl:documentation>
+      <wsdl:input message="tns:GetChildUsersDataSoapIn" />
+      <wsdl:output message="tns:GetChildUsersDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHeaderAndFooter">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns header and footer for current user</wsdl:documentation>
+      <wsdl:input name="GetHeaderAndFooter_withCulture" message="tns:GetHeaderAndFooter_withCultureSoapIn" />
+      <wsdl:output name="GetHeaderAndFooter_withCulture" message="tns:GetHeaderAndFooter_withCultureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHeaderAndFooter">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns header and footer for current user (for default culture)</wsdl:documentation>
+      <wsdl:input name="GetHeaderAndFooter_defaultCulture" message="tns:GetHeaderAndFooter_defaultCultureSoapIn" />
+      <wsdl:output name="GetHeaderAndFooter_defaultCulture" message="tns:GetHeaderAndFooter_defaultCultureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageQueue">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets message queue for the current user</wsdl:documentation>
+      <wsdl:input name="GetMessageQueue_withCulture" message="tns:GetMessageQueue_withCultureSoapIn" />
+      <wsdl:output name="GetMessageQueue_withCulture" message="tns:GetMessageQueue_withCultureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageQueue">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets message queue for the current user (for default culture)</wsdl:documentation>
+      <wsdl:input name="GetMessageQueue_defaultCulture" message="tns:GetMessageQueue_defaultCultureSoapIn" />
+      <wsdl:output name="GetMessageQueue_defaultCulture" message="tns:GetMessageQueue_defaultCultureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogoffUserSession">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Logs off the current user session</wsdl:documentation>
+      <wsdl:input message="tns:LogoffUserSessionSoapIn" />
+      <wsdl:output message="tns:LogoffUserSessionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSSOApplicationAuthToken">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets SSO application authentication token for this user session</wsdl:documentation>
+      <wsdl:input message="tns:GetSSOApplicationAuthTokenSoapIn" />
+      <wsdl:output message="tns:GetSSOApplicationAuthTokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogonUserCSB">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Logs on CSB or 'normal' user and returns Session Token for this session</wsdl:documentation>
+      <wsdl:input name="LogonUser_CSIntegration" message="tns:LogonUser_CSIntegrationSoapIn" />
+      <wsdl:output name="LogonUser_CSIntegration" message="tns:LogonUser_CSIntegrationSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebAppsLauncherSoap" type="tns:WebAppsLauncherSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetVersion">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAuthenticationSettings">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetAuthenticationSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllApplicationsData">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetAllApplicationsData_withCulture" style="document" />
+      <wsdl:input name="GetAllApplicationsData_withCulture">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAllApplicationsData_withCulture">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllApplicationsData">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetAllApplicationsData_defaultCulture" style="document" />
+      <wsdl:input name="GetAllApplicationsData_defaultCulture">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAllApplicationsData_defaultCulture">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllApplicationsExtendedData">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetAllApplicationsExtendedData_withCulture" style="document" />
+      <wsdl:input name="GetAllApplicationsExtendedData_withCulture">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAllApplicationsExtendedData_withCulture">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllApplicationsExtendedData">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetAllApplicationsExtendedData_defaultCulture" style="document" />
+      <wsdl:input name="GetAllApplicationsExtendedData_defaultCulture">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAllApplicationsExtendedData_defaultCulture">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRoles">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetAllRoles_withCulture" style="document" />
+      <wsdl:input name="GetAllRoles_withCulture">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAllRoles_withCulture">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRoles">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetAllRoles_defaultCulture" style="document" />
+      <wsdl:input name="GetAllRoles_defaultCulture">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAllRoles_defaultCulture">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAplicationsDataAndRoles">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetAllAplicationsDataAndRoles_withCulture" style="document" />
+      <wsdl:input name="GetAllAplicationsDataAndRoles_withCulture">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAllAplicationsDataAndRoles_withCulture">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAplicationsDataAndRoles">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetAllAplicationsDataAndRoles_defaultCulture" style="document" />
+      <wsdl:input name="GetAllAplicationsDataAndRoles_defaultCulture">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAllAplicationsDataAndRoles_defaultCulture">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllApplicationsHeaderAndFooter">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetAllApplicationsHeaderAndFooter_withCulture" style="document" />
+      <wsdl:input name="GetAllApplicationsHeaderAndFooter_withCulture">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAllApplicationsHeaderAndFooter_withCulture">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllApplicationsHeaderAndFooter">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetAllApplicationsHeaderAndFooter_defaultCulture" style="document" />
+      <wsdl:input name="GetAllApplicationsHeaderAndFooter_defaultCulture">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAllApplicationsHeaderAndFooter_defaultCulture">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailTexts">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetMailTexts_withCulture" style="document" />
+      <wsdl:input name="GetMailTexts_withCulture">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMailTexts_withCulture">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailTexts">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetMailTexts_defaultCulture" style="document" />
+      <wsdl:input name="GetMailTexts_defaultCulture">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMailTexts_defaultCulture">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/CreateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateUserByMailToken">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/ActivateUserByMailToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecreateUserActivationMailToken">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/RecreateUserActivationMailToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateForgottenPasswordMailToken">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/CreateForgottenPasswordMailToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateChildUser">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/CreateChildUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserPassword">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/ChangeUserPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeCurrentUserPassword">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/ChangeCurrentUserPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserPasswordByMailToken">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/ChangeUserPasswordByMailToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserStatus">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/ChangeUserStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserData">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/ChangeUserData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeCurrentUserData">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/ChangeCurrentUserData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteChildUser">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/DeleteChildUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogonUser">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/LogonUser_withCulture" style="document" />
+      <wsdl:input name="LogonUser_withCulture">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="LogonUser_withCulture">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogonUser">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/LogonUser_defaultCulture" style="document" />
+      <wsdl:input name="LogonUser_defaultCulture">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="LogonUser_defaultCulture">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefreshSession">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/RefreshSession" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeSessionCulture">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/ChangeSessionCulture" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConnectSession">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/ConnectSession_withCulture" style="document" />
+      <wsdl:input name="ConnectSession_withCulture">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ConnectSession_withCulture">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConnectSession">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/ConnectSession_defaultCulture" style="document" />
+      <wsdl:input name="ConnectSession_defaultCulture">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ConnectSession_defaultCulture">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserData">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetUserData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationRoles">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetApplicationRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserApplicationRoles">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetUserApplicationRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChildUsersData">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetChildUsersData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHeaderAndFooter">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetHeaderAndFooter_withCulture" style="document" />
+      <wsdl:input name="GetHeaderAndFooter_withCulture">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetHeaderAndFooter_withCulture">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHeaderAndFooter">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetHeaderAndFooter_defaultCulture" style="document" />
+      <wsdl:input name="GetHeaderAndFooter_defaultCulture">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetHeaderAndFooter_defaultCulture">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageQueue">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetMessageQueue_withCulture" style="document" />
+      <wsdl:input name="GetMessageQueue_withCulture">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageQueue_withCulture">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageQueue">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetMessageQueue_defaultCulture" style="document" />
+      <wsdl:input name="GetMessageQueue_defaultCulture">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageQueue_defaultCulture">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogoffUserSession">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/LogoffUserSession" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSSOApplicationAuthToken">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetSSOApplicationAuthToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogonUserCSB">
+      <soap:operation soapAction="http://www.gisdata.com/GDi_Ensemble/LogonUser_CSIntegration" style="document" />
+      <wsdl:input name="LogonUser_CSIntegration">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="LogonUser_CSIntegration">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebAppsLauncherSoap12" type="tns:WebAppsLauncherSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetVersion">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAuthenticationSettings">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetAuthenticationSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllApplicationsData">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetAllApplicationsData_withCulture" style="document" />
+      <wsdl:input name="GetAllApplicationsData_withCulture">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAllApplicationsData_withCulture">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllApplicationsData">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetAllApplicationsData_defaultCulture" style="document" />
+      <wsdl:input name="GetAllApplicationsData_defaultCulture">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAllApplicationsData_defaultCulture">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllApplicationsExtendedData">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetAllApplicationsExtendedData_withCulture" style="document" />
+      <wsdl:input name="GetAllApplicationsExtendedData_withCulture">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAllApplicationsExtendedData_withCulture">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllApplicationsExtendedData">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetAllApplicationsExtendedData_defaultCulture" style="document" />
+      <wsdl:input name="GetAllApplicationsExtendedData_defaultCulture">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAllApplicationsExtendedData_defaultCulture">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRoles">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetAllRoles_withCulture" style="document" />
+      <wsdl:input name="GetAllRoles_withCulture">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAllRoles_withCulture">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRoles">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetAllRoles_defaultCulture" style="document" />
+      <wsdl:input name="GetAllRoles_defaultCulture">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAllRoles_defaultCulture">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAplicationsDataAndRoles">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetAllAplicationsDataAndRoles_withCulture" style="document" />
+      <wsdl:input name="GetAllAplicationsDataAndRoles_withCulture">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAllAplicationsDataAndRoles_withCulture">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAplicationsDataAndRoles">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetAllAplicationsDataAndRoles_defaultCulture" style="document" />
+      <wsdl:input name="GetAllAplicationsDataAndRoles_defaultCulture">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAllAplicationsDataAndRoles_defaultCulture">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllApplicationsHeaderAndFooter">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetAllApplicationsHeaderAndFooter_withCulture" style="document" />
+      <wsdl:input name="GetAllApplicationsHeaderAndFooter_withCulture">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAllApplicationsHeaderAndFooter_withCulture">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllApplicationsHeaderAndFooter">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetAllApplicationsHeaderAndFooter_defaultCulture" style="document" />
+      <wsdl:input name="GetAllApplicationsHeaderAndFooter_defaultCulture">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAllApplicationsHeaderAndFooter_defaultCulture">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailTexts">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetMailTexts_withCulture" style="document" />
+      <wsdl:input name="GetMailTexts_withCulture">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMailTexts_withCulture">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailTexts">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetMailTexts_defaultCulture" style="document" />
+      <wsdl:input name="GetMailTexts_defaultCulture">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMailTexts_defaultCulture">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/CreateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateUserByMailToken">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/ActivateUserByMailToken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecreateUserActivationMailToken">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/RecreateUserActivationMailToken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateForgottenPasswordMailToken">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/CreateForgottenPasswordMailToken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateChildUser">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/CreateChildUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserPassword">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/ChangeUserPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeCurrentUserPassword">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/ChangeCurrentUserPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserPasswordByMailToken">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/ChangeUserPasswordByMailToken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserStatus">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/ChangeUserStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserData">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/ChangeUserData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeCurrentUserData">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/ChangeCurrentUserData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteChildUser">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/DeleteChildUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogonUser">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/LogonUser_withCulture" style="document" />
+      <wsdl:input name="LogonUser_withCulture">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="LogonUser_withCulture">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogonUser">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/LogonUser_defaultCulture" style="document" />
+      <wsdl:input name="LogonUser_defaultCulture">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="LogonUser_defaultCulture">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefreshSession">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/RefreshSession" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeSessionCulture">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/ChangeSessionCulture" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConnectSession">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/ConnectSession_withCulture" style="document" />
+      <wsdl:input name="ConnectSession_withCulture">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ConnectSession_withCulture">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConnectSession">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/ConnectSession_defaultCulture" style="document" />
+      <wsdl:input name="ConnectSession_defaultCulture">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ConnectSession_defaultCulture">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserData">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetUserData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationRoles">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetApplicationRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserApplicationRoles">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetUserApplicationRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChildUsersData">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetChildUsersData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHeaderAndFooter">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetHeaderAndFooter_withCulture" style="document" />
+      <wsdl:input name="GetHeaderAndFooter_withCulture">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetHeaderAndFooter_withCulture">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHeaderAndFooter">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetHeaderAndFooter_defaultCulture" style="document" />
+      <wsdl:input name="GetHeaderAndFooter_defaultCulture">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetHeaderAndFooter_defaultCulture">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageQueue">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetMessageQueue_withCulture" style="document" />
+      <wsdl:input name="GetMessageQueue_withCulture">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageQueue_withCulture">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageQueue">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetMessageQueue_defaultCulture" style="document" />
+      <wsdl:input name="GetMessageQueue_defaultCulture">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageQueue_defaultCulture">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogoffUserSession">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/LogoffUserSession" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSSOApplicationAuthToken">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/GetSSOApplicationAuthToken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogonUserCSB">
+      <soap12:operation soapAction="http://www.gisdata.com/GDi_Ensemble/LogonUser_CSIntegration" style="document" />
+      <wsdl:input name="LogonUser_CSIntegration">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="LogonUser_CSIntegration">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebAppsLauncher">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Web service for SSO authentication through GDi_Ensemble subsystem for main application</wsdl:documentation>
+    <wsdl:port name="WebAppsLauncherSoap" binding="tns:WebAppsLauncherSoap">
+      <soap:address location="http://localhost:40999/WebAppsLauncher.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebAppsLauncherSoap12" binding="tns:WebAppsLauncherSoap12">
+      <soap12:address location="http://localhost:40999/WebAppsLauncher.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

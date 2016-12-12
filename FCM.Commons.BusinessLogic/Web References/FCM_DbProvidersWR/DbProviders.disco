@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://localhost:40015/DbProviders.asmx?wsdl" docRef="http://localhost:40015/DbProviders.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://localhost:40015/DbProviders.asmx" xmlns:q1="http://www.gisdata.com/FCM.Applications.MWS/" binding="q1:DbProvidersSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://localhost:40015/DbProviders.asmx" xmlns:q2="http://www.gisdata.com/FCM.Applications.MWS/" binding="q2:DbProvidersSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://localhost:40999/SSOAuth.asmx?wsdl" docRef="http://localhost:40999/SSOAuth.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://localhost:40999/SSOAuth.asmx" xmlns:q1="http://www.gisdata.com/GDi_Ensemble/" binding="q1:SSOAuthSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://localhost:40999/SSOAuth.asmx" xmlns:q2="http://www.gisdata.com/GDi_Ensemble/" binding="q2:SSOAuthSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

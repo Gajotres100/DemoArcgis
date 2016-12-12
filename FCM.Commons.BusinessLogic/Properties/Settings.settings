@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FCM.Commons.BusinessLogic.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="FCM_Commons_BusinessLogic_FCM_DbProvidersWR_DbProviders" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:40015/DbProviders.asmx</Value>
+    </Setting>
+    <Setting Name="FCM_Commons_BusinessLogic_SSO_SSOAuthWR_SSOAuth" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:40999/SSOAuth.asmx</Value>
+    </Setting>
+    <Setting Name="FCM_Commons_BusinessLogic_SSO_WebAppsLauncherWR_WebAppsLauncher" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:40999/WebAppsLauncher.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
