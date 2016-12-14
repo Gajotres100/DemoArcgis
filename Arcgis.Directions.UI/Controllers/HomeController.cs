@@ -3,6 +3,7 @@ using Arcgis.Directions.VM;
 using log4net;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -24,6 +25,11 @@ namespace Arcgis.Directions.UI.Controllers
 
         public ActionResult Index()
         {
+            if (Session["UserData"] == null)
+                return Redirect(ConfigurationManager.AppSettings["LoginRedirect"]); 
+            User user = new User();
+            user = Session["UserData"] as User;
+
             string lang = (string)this.ControllerContext.RouteData.Values["lang"];           
             var vm = new GetPOIVM();
             _poiService = new PoiService();
@@ -36,6 +42,19 @@ namespace Arcgis.Directions.UI.Controllers
 
         public ActionResult Login()
         {
+            if (Request.QueryString["user_id"] != null && Request.QueryString["username"] != null)
+            {
+                int userID = 0;
+                int.TryParse(Request.QueryString["user_id"], out userID);
+                User user = new User
+                {
+                    UserID = userID,
+                    Username = Request.QueryString["username"]
+                };
+                Session["UserData"] = user;
+                return RedirectToAction("Index", "Home");
+            }
+
             string lang = (string)this.ControllerContext.RouteData.Values["lang"];
             var vm = new GetPOIVM();
             _poiService = new PoiService();
@@ -59,7 +78,9 @@ namespace Arcgis.Directions.UI.Controllers
         {
             var vm = new GetPOIVM();
             _poiService = new PoiService();
-            vm = _poiService.GetAvailablePoiByDescription(keywords);
+            User user = new User();
+            user = Session["UserData"] as User;
+            vm = _poiService.GetAvailablePoiByDescription(keywords, user.UserID);
             return Json(vm.CusPoiList != null ? vm.CusPoiList : null, JsonRequestBehavior.AllowGet);
         }
 

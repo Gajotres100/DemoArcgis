@@ -28,12 +28,12 @@ namespace Arcgis.Directions.BL.Services
 
         #region Metods
 
-        public GetPOIVM GetAvailablePoiByDescription(string keyword)
+        public GetPOIVM GetAvailablePoiByDescription(string keyword, int userID)
         {
             try
             {
                 GetPOIVM item = new GetPOIVM();
-                item.CusPoiList = _poiRepository.GetAvailablePoiByDescriptionOracle(keyword);
+                item.CusPoiList = _poiRepository.GetAvailablePoiByDescriptionOracle(keyword, userID);
                 return item;
             }
             catch (Exception e)

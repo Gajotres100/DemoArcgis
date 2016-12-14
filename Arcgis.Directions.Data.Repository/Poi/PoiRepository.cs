@@ -72,11 +72,11 @@ namespace Arcgis.Directions.Data.Repository.Poi
             }
         }
 
-        public List<CusPoi> GetAvailablePoiByDescriptionOracle(string keyword)
+        public List<CusPoi> GetAvailablePoiByDescriptionOracle(string keyword, int userID)
         {
             using (var context = new EntitiesPortalOracle())
             {
-                return context.POI_PLACES.Where(p => p.ADDRESS.Contains(keyword) || p.DESCRIPTION.Contains(keyword) || p.POI_PLACE_NAME.Contains(keyword)).Select(x => new CusPoi()
+                return context.POI_PLACES.Where(p => (p.ADDRESS.Contains(keyword) || p.DESCRIPTION.Contains(keyword) || p.POI_PLACE_NAME.Contains(keyword)) && p.USER_ID == userID).Select(x => new CusPoi()
                 {
                     PoiID = x.POI_PLACE_ID,
                     Address = x.ADDRESS,
@@ -86,7 +86,8 @@ namespace Arcgis.Directions.Data.Repository.Poi
                     WmY = x.WM_Y,
                     Zip = x.ZIP,
                     City = x.CITY,
-                    HouseNoumber = x.HOUSE_NUMBER
+                    HouseNoumber = x.HOUSE_NUMBER,
+                    UserID = x.USER_ID
                 }).ToList();
             }
         }

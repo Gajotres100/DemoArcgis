@@ -11,6 +11,6 @@ namespace Arcgis.Directions.VM
         public string Lang { get; set; }
 
         public IEnumerable<Language> LanguageList = new List<Language>();
-        public Language Langugae { get; set; }
+        public Language Langugae { get; set; }      
     }
 }

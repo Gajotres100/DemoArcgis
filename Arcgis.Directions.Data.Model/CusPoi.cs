@@ -22,6 +22,6 @@ namespace Arcgis.Directions.Data.Model
         public string Zip { get; set; }
         public string City { get; set; }
         public string HouseNoumber { get; set; }
-        
+        public int UserID { get; set; }
     }
 }
