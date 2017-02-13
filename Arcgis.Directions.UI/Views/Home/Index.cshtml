@@ -130,24 +130,8 @@
 
 
 
-<!-- BEGIN CONTAINER -->
-
 <div class="page-container row-fluid">
-    <!-- BEGIN SIDEBAR -->
     <div class="page-sidebar nav-collapse collapse">
-        <!-- BEGIN SIDEBAR MENU -->
-        @*<ul>
-                <li>
-                    <div class="sidebar-toggler hidden-phone"></div>
-                </li>
-                <li>
-                    <form class="sidebar-search">
-                        <div class="input-box">
-                            @Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keyword" })
-                        </div>
-                    </form>
-                </li>
-            </ul>*@
         <div class="sidebar-toggler hidden-phone"></div>
 
         <form class="sidebar-search">
@@ -160,32 +144,16 @@
                 <div id="dir" dir="ltr"></div>
             </div>
         </form>
-
-
-
-        <!-- END SIDEBAR MENU -->
     </div>
-    <!-- END SIDEBAR -->
-    <!-- BEGIN PAGE -->
-    <!-- END SIDEBAR1 -->
-    <!-- BEGIN PAGE -->
     <div class="page-content">
 
-        <!-- BEGIN PAGE CONTAINER-->
         <div class="container-fluid">
             <div class="row-fluid">
                 <div class="span12">
-                    <!-- BEGIN WORLD PORTLET-->
                     <div class="portlet box grey">
 
                         <div class="portlet-title">
-                            <div class="caption"><i class="icon-reorder"></i>World</div>
-                            @*<div class="tools">
-                                    <a href="javascript:;" class="collapse"></a>
-                                    <a href="#portlet-config" data-toggle="modal" class="config"></a>
-                                    <a href="javascript:;" class="reload"></a>
-                                    <a href="javascript:;" class="remove"></a>
-                                </div>*@
+                            <div class="caption"><i class="icon-reorder"></i>World</div>                 
                         </div>
                         <div class="portlet-body form">
                             <div class="tabbable portlet-tabs">
@@ -196,23 +164,13 @@
                             </div>
                         </div>
                     </div>
-                    <!-- END WORLD PORTLET-->
                 </div>
             </div>
         </div>
 
-        <!-- HERE WILL BE LOADED AN AJAX CONTENT -->
     </div>
-    <!-- BEGIN PAGE -->
 
 </div>
-<!-- END CONTAINER -->
-@*<div data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design:'headline', gutters:false" style="width:100%;height:100%">
-        <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'left'" style="width:250px;">
-            <div id="dir" dir="ltr"></div>
-        </div>
-        <div id="map" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'" dir="ltr"></div>
-    </div>*@
 
 
 
