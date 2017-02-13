@@ -10,8 +10,7 @@
 namespace Arcgis.Directions.Orm
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class FM_POI_Web_mer_Ags_sfer
     {
         public int OBJECTID { get; set; }

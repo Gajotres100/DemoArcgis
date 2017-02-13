@@ -9,9 +9,7 @@
 
 namespace Arcgis.Directions.Orm
 {
-    using System;
-    using System.Collections.Generic;
-    
+
     public partial class FM_LOG_OBJECTS
     {
         public decimal OBJ_ID { get; set; }

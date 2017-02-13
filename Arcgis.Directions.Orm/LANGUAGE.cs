@@ -9,9 +9,7 @@
 
 namespace Arcgis.Directions.Orm
 {
-    using System;
-    using System.Collections.Generic;
-    
+
     public partial class LANGUAGE
     {
         public int LANG_ID { get; set; }

@@ -10,8 +10,7 @@
 namespace Arcgis.Directions.Orm
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class FM_TASK_LOG
     {
         public decimal TASK_ID { get; set; }

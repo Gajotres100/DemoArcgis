@@ -9,9 +9,8 @@
 
 namespace Arcgis.Directions.Orm
 {
-    using System;
     using System.Collections.Generic;
-    
+
     public partial class FM_IMAGES
     {
         public FM_IMAGES()

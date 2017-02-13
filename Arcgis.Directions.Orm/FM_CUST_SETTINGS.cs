@@ -9,9 +9,7 @@
 
 namespace Arcgis.Directions.Orm
 {
-    using System;
-    using System.Collections.Generic;
-    
+
     public partial class FM_CUST_SETTINGS
     {
         public decimal CUST_ID { get; set; }

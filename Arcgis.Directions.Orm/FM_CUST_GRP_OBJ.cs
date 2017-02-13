@@ -10,8 +10,7 @@
 namespace Arcgis.Directions.Orm
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class FM_CUST_GRP_OBJ
     {
         public int GRP_OBJ_ID { get; set; }

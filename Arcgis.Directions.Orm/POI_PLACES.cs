@@ -10,8 +10,7 @@
 namespace Arcgis.Directions.Orm
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class POI_PLACES
     {
         public int POI_PLACE_ID { get; set; }

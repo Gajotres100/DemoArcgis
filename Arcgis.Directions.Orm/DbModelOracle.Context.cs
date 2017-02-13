@@ -9,10 +9,9 @@
 
 namespace Arcgis.Directions.Orm
 {
-    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class EntitiesPortalOracle : DbContext
     {
         public EntitiesPortalOracle()

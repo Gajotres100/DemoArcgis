@@ -10,8 +10,7 @@
 namespace Arcgis.Directions.Orm
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class FM_CUST_USERS_bkp
     {
         public decimal USER_ID { get; set; }
