@@ -27,8 +27,6 @@ namespace Arcgis.Directions.UI.Controllers
         {
             if (Session["UserData"] == null)
                 return Redirect(ConfigurationManager.AppSettings["LoginRedirect"]); 
-            User user = new User();
-            user = Session["UserData"] as User;
 
             string lang = (string)this.ControllerContext.RouteData.Values["lang"];           
             var vm = new GetPOIVM();
