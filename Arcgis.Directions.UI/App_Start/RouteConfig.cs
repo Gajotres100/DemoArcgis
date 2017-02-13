@@ -11,15 +11,15 @@ namespace Arcgis.Directions.UI
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute(@"{resource}.axd/{*pathInfo}");
 
             #region HomeRoute
 
             routes.MapRoute(
-                name: "HomeRoute",
-                url: "{lang}/{controller}/{action}",
-                defaults: new { lang = String.Empty, controller = "Home", action = "Index" },
-                constraints: new { lang = "EN|HR" }
+                name: @"HomeRoute",
+                url: @"{lang}/{controller}/{action}",
+                defaults: new { lang = String.Empty, controller = @"Home", action = @"Index" },
+                constraints: new { lang = @"EN|HR" }
             );
 
             #endregion
@@ -27,12 +27,12 @@ namespace Arcgis.Directions.UI
             #region DefaultRoute
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}",
+                name: @"Default",
+                url: @"{controller}/{action}",
                 defaults: new
                 {
-                    controller = "Home",
-                    action = "Index"
+                    controller = @"Home",
+                    action = @"Index"
                 }
             );
 
@@ -41,17 +41,17 @@ namespace Arcgis.Directions.UI
             #region NoRoute
 
             routes.MapRoute(
-                "NotFound",
-                "{*url}",
-                new { controller = "Error", action = "PageNotFound" }
+                @"NotFound",
+                @"{*url}",
+                new { controller = @"Error", action = @"PageNotFound" }
             );
 
             #endregion
 
             routes.MapRoute(
-                "Error",
-                "{*catchall}",
-                new { controller = "Home", action = "PageNotFound" }
+                @"Error",
+                @"{*catchall}",
+                new { controller = @"Home", action = @"PageNotFound" }
             );
 
         }

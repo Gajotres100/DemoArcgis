@@ -29,10 +29,10 @@ namespace Arcgis.Directions.UI
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            Exception exception = Server.GetLastError();
+            var exception = Server.GetLastError();
             logger.Error(exception);
             Server.ClearError();
-            Response.Redirect("/Home/Error");
+            Response.Redirect(@"/Home/Error");
         }
     }
 }

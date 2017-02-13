@@ -25,14 +25,14 @@ namespace Arcgis.Directions.UI.Controllers
 
         public ActionResult Index()
         {
-            if (Session["UserData"] == null)
-                return Redirect(ConfigurationManager.AppSettings["LoginRedirect"]); 
+            if (Session[@"UserData"] == null)
+                return Redirect(ConfigurationManager.AppSettings[@"LoginRedirect"]); 
 
-            string lang = (string)this.ControllerContext.RouteData.Values["lang"];           
+            var lang = (string)this.ControllerContext.RouteData.Values[@"lang"];
             var vm = new GetPOIVM();
             _poiService = new PoiService();
             vm = _poiService.GetLanguages();
-            var defaultLang = vm.LanguageList.Where(l => l.Name.Equals(lang)).FirstOrDefault();
+            var defaultLang = vm.LanguageList.FirstOrDefault(l => l.Name.Equals(lang));
             if(defaultLang == null) defaultLang = vm.LanguageList.FirstOrDefault();
             vm.Langugae = defaultLang;
             return View(vm);
@@ -40,24 +40,24 @@ namespace Arcgis.Directions.UI.Controllers
 
         public ActionResult Login()
         {
-            if (Request.QueryString["user_id"] != null && Request.QueryString["username"] != null)
+            if (Request.QueryString[@"user_id"] != null && Request.QueryString[@"username"] != null)
             {
                 int userID = 0;
-                int.TryParse(Request.QueryString["user_id"], out userID);
-                User user = new User
+                int.TryParse(Request.QueryString[@"user_id"], out userID);
+                var user = new User
                 {
                     UserID = userID,
-                    Username = Request.QueryString["username"]
+                    Username = Request.QueryString[@"username"]
                 };
-                Session["UserData"] = user;
-                return RedirectToAction("Index", "Home");
+                Session[@"UserData"] = user;
+                return RedirectToAction(@"Index", @"Home");
             }
 
-            string lang = (string)this.ControllerContext.RouteData.Values["lang"];
+            var lang = (string)this.ControllerContext.RouteData.Values[@"lang"];
             var vm = new GetPOIVM();
             _poiService = new PoiService();
             vm = _poiService.GetLanguages();
-            var defaultLang = vm.LanguageList.Where(l => l.Name.Equals(lang)).FirstOrDefault();
+            var defaultLang = vm.LanguageList.FirstOrDefault(l => l.Name.Equals(lang));
             if (defaultLang == null) defaultLang = vm.LanguageList.FirstOrDefault();
             vm.Langugae = defaultLang;
             return View(vm);
@@ -76,8 +76,8 @@ namespace Arcgis.Directions.UI.Controllers
         {
             var vm = new GetPOIVM();
             _poiService = new PoiService();
-            User user = new User();
-            user = Session["UserData"] as User;
+            var user = new User();
+            user = Session[@"UserData"] as User;
             vm = _poiService.GetAvailablePoiByDescription(keywords, user.UserID);
             return Json(vm.CusPoiList != null ? vm.CusPoiList : null, JsonRequestBehavior.AllowGet);
         }
