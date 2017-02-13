@@ -15,7 +15,7 @@ namespace Arcgis.Directions.Orm
     {
         public FM_IMAGES()
         {
-            this.FM_CUST_GRP = new HashSet<FM_CUST_GRP>();
+            FM_CUST_GRP = new HashSet<FM_CUST_GRP>();
         }
     
         public int IMAGE_ID { get; set; }

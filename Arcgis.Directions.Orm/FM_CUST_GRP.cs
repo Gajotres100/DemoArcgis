@@ -16,7 +16,7 @@ namespace Arcgis.Directions.Orm
     {
         public FM_CUST_GRP()
         {
-            this.FM_CUST_GRP_OBJ = new HashSet<FM_CUST_GRP_OBJ>();
+            FM_CUST_GRP_OBJ = new HashSet<FM_CUST_GRP_OBJ>();
         }
     
         public int GRP_ID { get; set; }

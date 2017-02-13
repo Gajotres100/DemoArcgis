@@ -16,8 +16,8 @@ namespace Arcgis.Directions.Orm
     {
         public FM_CUST_POI()
         {
-            this.FM_CUST_GRP_OBJ = new HashSet<FM_CUST_GRP_OBJ>();
-            this.FM_CUST_USERS = new HashSet<FM_CUST_USERS>();
+            FM_CUST_GRP_OBJ = new HashSet<FM_CUST_GRP_OBJ>();
+            FM_CUST_USERS = new HashSet<FM_CUST_USERS>();
         }
     
         public int POI_ID { get; set; }

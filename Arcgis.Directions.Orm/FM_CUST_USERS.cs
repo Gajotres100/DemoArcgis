@@ -16,7 +16,7 @@ namespace Arcgis.Directions.Orm
     {
         public FM_CUST_USERS()
         {
-            this.FM_CUST_POI = new HashSet<FM_CUST_POI>();
+            FM_CUST_POI = new HashSet<FM_CUST_POI>();
         }
     
         public decimal USER_ID { get; set; }

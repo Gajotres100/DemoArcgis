@@ -21,13 +21,7 @@ namespace Arcgis.Directions.UI.Controllers
             if (Session[@"UserData"] == null)
                 return Redirect(ConfigurationManager.AppSettings[@"LoginRedirect"]);
 
-            var lang = (string)this.ControllerContext.RouteData.Values[@"lang"];
-            var vm = new GetPOIVM();
-            _poiService = new PoiService();
-            vm = _poiService.GetLanguages();
-            var defaultLang = vm.LanguageList.FirstOrDefault(l => l.Name.Equals(lang));
-            if(defaultLang == null) defaultLang = vm.LanguageList.FirstOrDefault();
-            vm.Langugae = defaultLang;
+            var vm = GetPois();
             return View(vm);
         }
 
@@ -46,16 +40,21 @@ namespace Arcgis.Directions.UI.Controllers
                 return RedirectToAction(@"Index", @"Home");
             }
 
-            var lang = (string)this.ControllerContext.RouteData.Values[@"lang"];
+            var vm = GetPois();
+            return View(vm);
+        }
+
+        private GetPOIVM GetPois()
+        {
+            var lang = (string)ControllerContext.RouteData.Values[@"lang"];
             var vm = new GetPOIVM();
             _poiService = new PoiService();
             vm = _poiService.GetLanguages();
             var defaultLang = vm.LanguageList.FirstOrDefault(l => l.Name.Equals(lang));
             if (defaultLang == null) defaultLang = vm.LanguageList.FirstOrDefault();
             vm.Langugae = defaultLang;
-            return View(vm);
+            return vm;
         }
-
 
         public ActionResult Error()
         {
