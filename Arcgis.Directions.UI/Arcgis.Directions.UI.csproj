@@ -1735,6 +1735,10 @@
       <Project>{1e0bfa29-0873-4ec6-a18b-92748008a7a4}</Project>
       <Name>Arcgis.Directions.VM</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Arcgis.Utils\Arcgis.Utils.csproj">
+      <Project>{5986a1fc-a8ce-4852-a8bb-538f713a344c}</Project>
+      <Name>Arcgis.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\codecracker.CSharp.1.0.1\analyzers\dotnet\cs\CodeCracker.Common.dll" />
