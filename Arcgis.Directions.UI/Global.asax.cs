@@ -11,7 +11,7 @@ namespace Arcgis.Directions.UI
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public static Container InjectorContainer { get; set; }
 

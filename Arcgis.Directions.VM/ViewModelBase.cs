@@ -6,7 +6,6 @@ namespace Arcgis.Directions.VM
 {
     public class ViewModelBase
     {
-        public ViewModelBase() { }
         public string ReturnUrl { get; set; }
         public string Lang { get; set; }
 

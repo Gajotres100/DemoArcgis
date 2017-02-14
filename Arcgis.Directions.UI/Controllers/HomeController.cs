@@ -10,10 +10,6 @@ namespace Arcgis.Directions.UI.Controllers
     {
 
         PoiService _poiService;
-        public HomeController()
-        {
-
-        }
 
 
         public ActionResult Index()
@@ -44,7 +40,7 @@ namespace Arcgis.Directions.UI.Controllers
             return View(vm);
         }
 
-        private GetPOIVM GetPois()
+        GetPOIVM GetPois()
         {
             var lang = (string)ControllerContext.RouteData.Values[@"lang"];
             var vm = new GetPOIVM();

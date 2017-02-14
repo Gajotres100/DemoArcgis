@@ -11,7 +11,7 @@ namespace Arcgis.Directions.BL.Services
         #region Variables
 
         PoiRepository _poiRepository;
-        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);       
+        static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         #endregion
 
@@ -22,7 +22,7 @@ namespace Arcgis.Directions.BL.Services
         }
         #endregion
 
-        #region Metods
+        #region Methods
 
         public GetPOIVM GetAvailablePoiByDescription(string keyword, int userID)
         {

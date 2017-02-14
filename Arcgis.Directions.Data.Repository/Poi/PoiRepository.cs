@@ -7,10 +7,6 @@ namespace Arcgis.Directions.Data.Repository.Poi
 {
     public class PoiRepository
     {
-        public PoiRepository()
-        {
-
-        }
         public List<CusPoi> GetAvailablePoiByDescription(string keyword)
         {
             using (var context = new ProtalEntities())
