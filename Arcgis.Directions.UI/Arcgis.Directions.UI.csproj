@@ -1441,9 +1441,10 @@
     <Content Include="assets\scripts\ui-nestable.js" />
     <Content Include="assets\scripts\ui-sliders.js" />
     <Content Include="assets\scripts\ui-tree.js" />
-    <Content Include="Content\css\claro.css" />
-    <Content Include="Content\css\esri.css" />
-    <Content Include="Content\css\style.css" />
+    <Content Include="Content\1\css\esri.css" />
+    <Content Include="Content\1\css\style.css" />
+    <Content Include="Content\2\css\esri.css" />
+    <Content Include="Content\2\css\style.css" />
     <Content Include="Content\dijit\images\ajax-loader.gif" />
     <Content Include="Content\dijit\images\button-active.png" />
     <Content Include="Content\dijit\images\button-hover.png" />
