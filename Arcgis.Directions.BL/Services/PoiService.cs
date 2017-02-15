@@ -43,12 +43,12 @@ namespace Arcgis.Directions.BL.Services
 
         
 
-        public GetPOIVM GetPoiByID(int id)
+        public GetPOIVM GetPoiByID(int Id)
         {
             try
             {
                 var item = new GetPOIVM();
-                item.CusPoi = _poiRepository.GetPoiByIDOracle(id);
+                item.CusPoi = _poiRepository.GetPoiByIDOracle(Id);
                 return item;
             }
             catch (Exception e)

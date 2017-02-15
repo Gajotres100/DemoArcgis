@@ -26,11 +26,8 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://js.arcgis.com/3.18/dijit/themes/claro/claro.css">
 
-    @*Prvi template*@
-    @*@Styles.Render("~/Content/1/css/")*@
+    @Styles.Render("~/Content/" + System.Configuration.ConfigurationManager.AppSettings["Template"] + "/css/")
  
-    @*Drugi template*@
-    @Styles.Render("~/Content/2/css/")
 </head>
 <body class="claro fixed-top">
     <div class="header navbar navbar-inverse navbar-fixed-top">
@@ -63,16 +60,9 @@
     <script src="assets/plugins/excanvas.js"></script>
     <script src="assets/plugins/respond.js"></script>
     <![endif]-->
-    <script src="~/assets/plugins/breakpoints/breakpoints.js" type="text/javascript"></script>
-    <script src="~/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-    <script src="~/assets/plugins/jquery.blockui.js" type="text/javascript"></script>
-    <script src="~/assets/plugins/jquery.cookie.js" type="text/javascript"></script>
-    <script src="~/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-    <script src="~/assets/plugins/bootstrap-tag/js/bootstrap-tag.js" type="text/javascript"></script>
-    <script src="~/assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script>
-    <script src="~/assets/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" type="text/javascript"></script>
-    <script src="~/assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js" type="text/javascript"></script>
-    <script src="~/assets/scripts/app.js"></script>
+
+    @Scripts.Render("~/assets/scripts/")
+
     <script>
       jQuery(document).ready(function() {
          App.init();
