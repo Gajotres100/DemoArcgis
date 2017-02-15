@@ -1712,6 +1712,7 @@
     <Content Include="assets\plugins\select2\select2_locale_en.js.template" />
     <Content Include="assets\plugins\uniform\README.textile" />
     <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Shared\_LayoutGdi.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
