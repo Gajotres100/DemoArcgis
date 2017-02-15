@@ -67,7 +67,7 @@ namespace Arcgis.Directions.UI.Controllers
             var user = new User();
             user = Session[@"UserData"] as User;
             vm = _poiService.GetAvailablePoiByDescription(keywords, user.UserID);
-            return Json(vm.CusPoiList != null ? vm.CusPoiList : null, JsonRequestBehavior.AllowGet);
+            return Json(vm?.CusPoiList ?? null, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -76,7 +76,7 @@ namespace Arcgis.Directions.UI.Controllers
             var vm = new GetPOIVM();
             _poiService = new PoiService();
             vm = _poiService.GetPoiByID(id);
-            return Json(vm.CusPoi != null ? vm.CusPoi : null, JsonRequestBehavior.AllowGet);
+            return Json(vm?.CusPoi ?? null, JsonRequestBehavior.AllowGet);
         }
     }
 }

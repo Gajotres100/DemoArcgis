@@ -8,6 +8,7 @@ namespace Arcgis.Directions.BL.Services
 {
     public class PoiService
     {
+        readonly
         #region Variables
 
         PoiRepository _poiRepository;
@@ -28,7 +29,7 @@ namespace Arcgis.Directions.BL.Services
         {
             try
             {
-                GetPOIVM item = new GetPOIVM();
+                var item = new GetPOIVM();
                 item.CusPoiList = _poiRepository.GetAvailablePoiByDescriptionOracle(keyword, userID);
                 return item;
             }
@@ -46,7 +47,7 @@ namespace Arcgis.Directions.BL.Services
         {
             try
             {
-                GetPOIVM item = new GetPOIVM();
+                var item = new GetPOIVM();
                 item.CusPoi = _poiRepository.GetPoiByIDOracle(id);
                 return item;
             }
@@ -61,7 +62,7 @@ namespace Arcgis.Directions.BL.Services
         {
             try
             {
-                GetPOIVM item = new GetPOIVM();
+                var item = new GetPOIVM();
                 item.LanguageList = _poiRepository.GetLanguagesOracle();
                 return item;
             }

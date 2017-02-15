@@ -11,7 +11,7 @@ namespace Arcgis.Directions.Data.Repository.Poi
         {
             using (var context = new ProtalEntities())
             {
-                    return context.GetAvailablePoiByDescription(keyword).Select(x => new CusPoi()
+                    return context.GetAvailablePoiByDescription(keyword).Select(x => new CusPoi
                     {
                         PoiID = x.POI_ID,
                         Address = x.ADDRESS,
@@ -21,7 +21,7 @@ namespace Arcgis.Directions.Data.Repository.Poi
                         HTRS_Y = x.HTRS_Y,
                         PoiDesc = x.POI_DESC,
                         PoiName = x.POI_NAME,
-                        SettleName = x.SETTL_NAME,
+                        SettleName = x.SETTL_NAME
                     }).ToList();
             }            
         }
@@ -30,7 +30,7 @@ namespace Arcgis.Directions.Data.Repository.Poi
         {
             using (var context = new ProtalEntities())
             {
-                return context.GetPoiByID(id).Select(x => new CusPoi()
+                return context.GetPoiByID(id).Select(x => new CusPoi
                 {
                     PoiID = x.POI_ID,
                     Address = x.ADDRESS,
@@ -40,7 +40,7 @@ namespace Arcgis.Directions.Data.Repository.Poi
                     HTRS_Y = x.HTRS_Y,
                     PoiDesc = x.POI_DESC,
                     PoiName = x.POI_NAME,
-                    SettleName = x.SETTL_NAME,
+                    SettleName = x.SETTL_NAME
                 }).FirstOrDefault();
             }
         }
@@ -49,7 +49,7 @@ namespace Arcgis.Directions.Data.Repository.Poi
         {
             using (var context = new EntitiesPortalOracle())
             {
-                return context.POI_PLACES.Where(p => p.POI_PLACE_ID == id).Select(x => new CusPoi()
+                return context.POI_PLACES.Where(p => p.POI_PLACE_ID == id).Select(x => new CusPoi
                 {
                     PoiID = x.POI_PLACE_ID,
                     Address = x.ADDRESS,
@@ -68,7 +68,7 @@ namespace Arcgis.Directions.Data.Repository.Poi
         {
             using (var context = new EntitiesPortalOracle())
             {
-                return context.POI_PLACES.Where(p => (p.ADDRESS.Contains(keyword) || p.DESCRIPTION.Contains(keyword) || p.POI_PLACE_NAME.Contains(keyword)) && p.USER_ID == userID).Select(x => new CusPoi()
+                return context.POI_PLACES.Where(p => (p.ADDRESS.Contains(keyword) || p.DESCRIPTION.Contains(keyword) || p.POI_PLACE_NAME.Contains(keyword)) && p.USER_ID == userID).Select(x => new CusPoi
                 {
                     PoiID = x.POI_PLACE_ID,
                     Address = x.ADDRESS,
@@ -88,7 +88,7 @@ namespace Arcgis.Directions.Data.Repository.Poi
         {
             using (var context = new ProtalEntities())
             {
-                return context.GetLanguages().Select(x => new Language()
+                return context.GetLanguages().Select(x => new Language
                 {
                     LangID = x.LANG_ID,
                     Name = x.NAME,
@@ -101,7 +101,7 @@ namespace Arcgis.Directions.Data.Repository.Poi
         {
             using (var context = new EntitiesPortalOracle())
             {
-                return context.LANGUAGES.Select(x => new Language()
+                return context.LANGUAGES.Select(x => new Language
                 {
                     LangID = x.LANG_ID,
                     Name = x.NAME,

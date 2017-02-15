@@ -2,12 +2,8 @@
 
 namespace Arcgis.Utils.Web
 {
-    public class BundleConfig
+    public static class BundleConfig
     {
-        /// <summary>
-        /// Registers bundles with the application.
-        /// </summary>
-        /// <param name="bundles">The bundles to register.</param>
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new StyleBundle("~/Content/1/css/").Include(                                        
