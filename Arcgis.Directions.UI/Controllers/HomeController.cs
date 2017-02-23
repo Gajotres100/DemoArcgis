@@ -1,4 +1,5 @@
 ﻿using Arcgis.Directions.BL.Services;
+using Arcgis.Directions.BL.SSOAuth;
 using Arcgis.Directions.VM;
 using System.Configuration;
 using System.Linq;
@@ -14,7 +15,19 @@ namespace Arcgis.Directions.UI.Controllers
 
         public ActionResult Index()
         {
-            if (Session[@"UserData"] == null)
+            var ssoOvreiden = false;
+            bool.TryParse(ConfigurationManager.AppSettings[@"SSOveriden"], out ssoOvreiden);
+            if (ssoOvreiden && Session[@"UserData"] == null)
+            {
+                var user = new UserData
+                {
+                    UserID = ConfigurationManager.AppSettings[@"User_id"],
+                    Username = ConfigurationManager.AppSettings[@"Username"]
+                };
+                Session[@"UserData"] = user;
+                return RedirectToAction(@"Index", @"Home");
+            }
+            else if (Session[@"UserData"] == null)
                 return Redirect(ConfigurationManager.AppSettings[@"LoginRedirect"]);
 
             var vm = GetPois();
@@ -24,23 +37,28 @@ namespace Arcgis.Directions.UI.Controllers
         public ActionResult Login()
         {
             var authToken = Request.QueryString["SSO_AUTH_TOKEN"];
-            if (!string.IsNullOrEmpty(authToken))
+            var ssoOvreiden = false;
+            bool.TryParse(ConfigurationManager.AppSettings[@"SSOveriden"], out ssoOvreiden);            
+            if (ssoOvreiden)
+            {                
+                var user = new UserData
+                {
+                    UserID = ConfigurationManager.AppSettings[@"User_id"],
+                    Username = ConfigurationManager.AppSettings[@"Username"]
+                };
+                Session[@"UserData"] = user;
+                return RedirectToAction(@"Index", @"Home");
+            }
+            else if (!string.IsNullOrEmpty(authToken))
             {
                 _poiService = new PoiService();
                 var user = _poiService.ValidateUser(authToken);
                 Session[@"UserData"] = user;
             }
-            else if (Request.QueryString[@"user_id"] != null && Request.QueryString[@"username"] != null)
+            else
             {
-                var userID = 0;
-                int.TryParse(Request.QueryString[@"user_id"], out userID);
-                var user = new User
-                {
-                    UserID = userID,
-                    Username = Request.QueryString[@"username"]
-                };
-                Session[@"UserData"] = user;
-                return RedirectToAction(@"Index", @"Home");
+                //Kada prodati SSO ovo odkomentirati potto će biti beskonačna petlja
+                //return Redirect(ConfigurationManager.AppSettings[@"LoginRedirect"]);
             }
 
             var vm = GetPois();
@@ -64,16 +82,16 @@ namespace Arcgis.Directions.UI.Controllers
             return View();
         }
 
-
-
         [HttpPost]
         public JsonResult GetPoiList(string keywords)
         {
             var vm = new GetPOIVM();
             _poiService = new PoiService();
-            var user = new User();
-            user = Session[@"UserData"] as User;
-            vm = _poiService.GetAvailablePoiByDescription(keywords, user.UserID);
+            var user = new UserData();
+            user = Session[@"UserData"] as UserData;
+            var userID = 0;
+            int.TryParse(user.UserID, out userID);
+            vm = _poiService.GetAvailablePoiByDescription(keywords, userID);
             return Json(vm?.CusPoiList ?? null, JsonRequestBehavior.AllowGet);
         }
 
