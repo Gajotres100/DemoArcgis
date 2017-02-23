@@ -1,4 +1,4 @@
-﻿@model Arcgis.Directions.VM.ViewModelBase
+﻿@model Arcgis.Directions.VM.GetPOIVM
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +16,8 @@
         function CallChangefunc(val) {
             window.location.href = "/" + val + "/Home/Index/";
         }
+       
+       
     </script>
     
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -36,17 +38,75 @@
                 <a class="brand" href="index.html">
                     <img src="~/assets/img/GDi_logo.png" alt="logo" />
                 </a>
-                <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+                @*<a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
                     <img src="~/assets/img/menu-toggler.png" alt="" />
                 </a>
                 <ul class="nav pull-right">
                     @Html.DropDownListFor(m => m.Langugae.Name, new SelectList(Model.LanguageList, "Name", "Name"), new { @onchange = "CallChangefunc(this.value)" })
-                </ul>
+                </ul>*@
             </div>
         </div>
     </div>
+    <div class="page-sidebar nav-collapse collapse">
+        <!-- BEGIN SIDEBAR MENU -->
+       
+        <div class="sidebar-toggler hidden-phone"></div>
 
-    @RenderBody()
+        <form class="sidebar-search">
+            <div class="input-box">
+                @Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keyword" })
+            </div>
+        </form>
+        <form class="sidebar-search">
+            <div class="input-box">
+                <div id="dir" dir="ltr"></div>
+            </div>
+        </form>
+
+
+
+        <!-- END SIDEBAR MENU -->
+    </div>
+    <!-- BEGIN CONTAINER -->
+
+    <div class="page-container row-fluid">
+        
+        <div class="page-content" >
+
+            <!-- BEGIN PAGE CONTAINER-->
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <!-- BEGIN WORLD PORTLET-->
+                        <div class="portlet box grey">
+
+                            <div class="portlet-title">
+                                <div class="caption"><i class="icon-reorder"></i>World</div>
+                                @*<div class="tools">
+                                    <a href="javascript:;" class="collapse"></a>
+                                    <a href="#portlet-config" data-toggle="modal" class="config"></a>
+                                    <a href="javascript:;" class="reload"></a>
+                                    <a href="javascript:;" class="remove"></a>
+                                </div>*@
+                            </div>
+                            <div class="portlet-body form">
+                                <div class="tabbable portlet-tabs">
+                                    @RenderBody()
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END WORLD PORTLET-->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- HERE WILL BE LOADED AN AJAX CONTENT -->
+        </div>
+
+    </div>
+    
+    
 
     <div class="footer">
 
@@ -55,14 +115,14 @@
         </div>
     </div>
 
-    <script src="~/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    
     <!--[if lt IE 9]>
     <script src="assets/plugins/excanvas.js"></script>
     <script src="assets/plugins/respond.js"></script>
     <![endif]-->
 
-    @Scripts.Render("~/assets/scripts/")
-
+    @Scripts.Render("~/Content/1/scripts/")
+    @Scripts.Render("~/Content/1/plugins/")
     <script>
       jQuery(document).ready(function() {
          App.init();

@@ -1,4 +1,4 @@
-﻿@model Arcgis.Directions.VM.ViewModelBase
+﻿@model Arcgis.Directions.VM.GetPOIVM
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,49 +17,117 @@
             window.location.href = "/" + val + "/Home/Index/";
         }
     </script>
-
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="https://js.arcgis.com/3.18/"></script>
-
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://js.arcgis.com/3.18/dijit/themes/claro/claro.css">
+   
 
+    @Scripts.Render("~/Content/2/scripts/")
+    @Scripts.Render("~/Content/2/plugins/")
     @Styles.Render("~/Content/2/css/")
-
 </head>
-<body class="claro fixed-top">
-    <div class="header navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container-fluid">
-                <a class="brand" href="index.html">
-                    <img src="~/assets/img/GDi_logo.png" alt="logo" />
-                </a>
-                <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
-                    <img src="~/assets/img/menu-toggler.png" alt="" />
-                </a>
-                <ul class="nav pull-right">
-                    @Html.DropDownListFor(m => m.Langugae.Name, new SelectList(Model.LanguageList, "Name", "Name"), new { @onchange = "CallChangefunc(this.value)" })
-                </ul>
+<body id="siteBody" style="position:relative">
+
+        <div id="wrapper">
+
+            <div id="header" class="navbar navbar-fixed-top">
+                <div class="navbar-header">
+
+                    <div class="logo">
+                        <a class="logo-image" href="@Url.Action("Index","Home")">
+                            <img id="imgHeaderLogo" src="~/Content/2/img/sharedui-header-logo.png" alt="logo" />
+                        </a>
+                        <a class="logo-text hidden-xs">
+                            GDi auto nadzor
+                        </a>
+                    </div>
+
+
+                </div>
             </div>
+            <div id="sidebar">
+
+
+                <ul class="main-menu">
+
+                    <a class="menu-toggle" href="javascript:">
+
+                        <i class="mdi mdi-menu"><img src="~/Content/2/img/menu.png" alt="" /></i>
+
+                    </a>
+
+                    <li id="liMapMenu" class="selected">
+
+                        <a href="#">
+                            <i class="mdi mdi-earth"><img src="~/Content/2/img/earth.png" alt="" /></i>
+
+                        </a>
+
+
+                        <div class="sidebar-menu">
+
+                            <h3 class='menu-title'>Pretraži rutu</h3>
+                            <div class="slimScrollDiv">
+                                <div class="container-fluid">
+                                    <div class="page-container row-fluid">
+                                        <!-- BEGIN SIDEBAR -->
+                                        <div class="page-sidebar nav-collapse collapse">
+                                            <!-- BEGIN SIDEBAR MENU -->
+                                            <form class="sidebar-search">
+                                                <div class="input-box">
+                                                    @Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keyword" })
+                                                </div>
+                                            </form>
+                                            <form class="sidebar-search">
+                                                <div class="input-box">
+                                                    <div id="dir" dir="ltr"></div>
+                                                </div>
+                                            </form>
+
+
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                    
+
+                </ul>
+
+            </div>
+            <div id="content">
+               
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            @RenderBody()
+                        </div>
+
+                    </div>
+
+                </div>
+
+                
+            </div>
+            <div id="footer" class="text-left">
+                <img id="imgFooterLogo" src="~/Content/2/img/sharedui-footer-logo.png" />
+                <h6>GDi auto nadzor 7.9.1 | &copy; 2009 - 2017 GDi Convivo | Sva prava pridržana.</h6>
+            </div>
+
         </div>
-    </div>
-
-    @RenderBody()
-
-    <div class="footer">
-
-        <div class="span pull-right">
-            <span class="go-top"><i class="icon-angle-up"></i></span>
-        </div>
-    </div>
-
 
     <script>
-      jQuery(document).ready(function() {
-         App.init();
-      });
+
+        jQuery(document).ready(function () {
+            App.init();
+        });
     </script>
+  
+
 </body>
 </html>

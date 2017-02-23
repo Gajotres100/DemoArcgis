@@ -1,23 +1,22 @@
 ﻿@model Arcgis.Directions.VM.GetPOIVM
-
 @{
     Layout = "~/Views/Shared/_LayoutGdi.cshtml";
 }
 
-
 <script>
+    
     function CallChangefunc(val) {
         window.location.href = "/" + val + "/Home/Index/";
     }
 
     require([
-      "esri/urlUtils", "esri/map", "esri/dijit/Directions",
-      "dojo/parser",
-      "dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dojo/domReady!"
+     "esri/urlUtils", "esri/map", "esri/dijit/Directions",
+     "dojo/parser",
+     "dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dojo/domReady!"
     ], function (
-      urlUtils, Map, Directions,
-      parser
-    ) {
+     urlUtils, Map, Directions,
+     parser
+   ) {
         parser.parse();
 
         var map = new Map("map", {
@@ -58,126 +57,83 @@
             routeTaskUrl: "@System.Configuration.ConfigurationManager.AppSettings["routeTaskUrl"]",
             directionsLengthUnits: "esriKilometers",
             optimalRoute: true,
-            showOptimalRouteOption: true,
-            showMilesKilometersOption: false,
-            showSaveButton: true,
-            showPrintPage: true,
-            dragging: false,
+        showOptimalRouteOption: true,
+        showMilesKilometersOption: false,
+        showSaveButton: true,
+        showPrintPage: true,
+        dragging: false,
         }, "dir");
 
-        directions.startup();
+    directions.startup();
 
-        directions.on("load", function () {
-
-        });
-        $(window).load(function () {
-            //$('.esriRoutesContainer').css('background-color', '#333');
-            $('#Langugae_Name').css('background-color', '#333');
-            $('#Langugae_Name').css('color', '#FFFFF');
-            $('#map').css('height', '830px');
-
-        });
-        $('.esriDirectionsButton ').click(function () {
-
-            $('.esriRoutesContainer').slimScroll({
-                height:'583px',
-                position: 'right',
-                railVisible: true,
-                alwaysVisible: true
-            });
-        });
-        var countStops = 0;
-
-        $("#keyword").autocomplete({
-            source: function (request, response) {
-                $.ajax({
-                    url: "@Request.Url.AbsoluteUri/@Model.Langugae.Name/Home/GetPoiList",
-                    data: "{ 'keywords': '" + request.term + "' }",
-                    dataType: 'json',
-                    type: "POST",
-                    contentType: "application/json; charset=utf-8",
-                    dataFilter: function (data) { return data; },
-                    success: function (data) {
-                        response($.map(data, function (item) {
-                            return {
-                                label: item.PoiName,
-                                value: item.PoiName,
-                                id: item.PoiID
-                            };
-                        }))
-                    }
-                });
-            },
-            minLength: 2,
-            select: function (event, ui) {
-                $.ajax({
-                    url: "@Request.Url.AbsoluteUri/@Model.Langugae.Name/Home/GetPoiByID",
-                    data: "{ 'id': '" + ui.item.id + "' }",
-                    dataType: 'json',
-                    type: "POST",
-                    contentType: "application/json; charset=utf-8",
-                    dataFilter: function (data) { return data; },
-                    success: function (data) {
-                        directions.addStop(data.Zip + " " + data.City + " " + data.Address + " " + data.HouseNoumber, countStops);
-                        $('#keyword').val('');
-                        countStops++;
-                    }
-                });
-            }
-        });
+    directions.on("load", function () {
 
     });
+    $(window).load(function () {
+        
+        $('#Langugae_Name').css('background-color', '#333');
+        $('#Langugae_Name').css('color', '#FFFFF');
+        
+        $('.esriRoutesContainer').css('height', '300px');
+
+    });
+    $('.esriDirectionsButton ').click(function () {
+
+        $('.esriRoutesContainer').slimScroll({
+            height:'583px',
+            position: 'right',
+            railVisible: true,
+            alwaysVisible: true
+        });
+    });
+    var countStops = 0;
+
+    $("#keyword").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "@Request.Url.AbsoluteUri/@Model.Langugae.Name/Home/GetPoiList",
+                data: "{ 'keywords': '" + request.term + "' }",
+                dataType: 'json',
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                dataFilter: function (data) { return data; },
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        return {
+                            label: item.PoiName,
+                            value: item.PoiName,
+                            id: item.PoiID
+                        };
+                    }))
+                }
+            });
+        },
+        minLength: 2,
+        select: function (event, ui) {
+            $.ajax({
+                url: "@Request.Url.AbsoluteUri/@Model.Langugae.Name/Home/GetPoiByID",
+                data: "{ 'id': '" + ui.item.id + "' }",
+                dataType: 'json',
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                dataFilter: function (data) { return data; },
+                success: function (data) {
+                    directions.addStop(data.Zip + " " + data.City + " " + data.Address + " " + data.HouseNoumber, countStops);
+                    $('#keyword').val('');
+                    countStops++;
+                }
+            });
+        }
+    });
+
+    });
+   
 </script>
 
-
-
-<div class="page-container row-fluid">
-    <div class="page-sidebar nav-collapse collapse">
-        <div class="sidebar-toggler hidden-phone"></div>
-
-        <form class="sidebar-search">
-            <div class="input-box">
-                @Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keyword" })
-            </div>
-        </form>
-        <form class="sidebar-search">
-            <div class="input-box">
-                <div id="dir" dir="ltr"></div>
-            </div>
-        </form>
-    </div>
-    <div class="page-content">
-
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span12">
-                    <div class="portlet box grey">
-
-                        <div class="portlet-title">
-                            <div class="caption"><i class="icon-reorder"></i>World</div>                 
-                        </div>
-                        <div class="portlet-body form">
-                            <div class="tabbable portlet-tabs">
-                                <div id="vmap_world" class="vmaps">
-                                    <div id="map" dir="ltr"></div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
+@Html.HiddenFor(m => m.CusPoiInput)
+<div id="vmap_world" class="vmaps" style="height:100vh">
+    <div id="map" dir="ltr"></div>
 </div>
 
 
-
-
-
-
-
-
-
+   

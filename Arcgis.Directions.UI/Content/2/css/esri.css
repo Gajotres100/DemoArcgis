@@ -10,7 +10,8 @@
     top: 0px;
     overflow: hidden;
     width: 100%;
-    height: 100%;
+    height: 100% !important;
+    min-height:568px;
     text-align: left;
 }
 .map .esriMapContainer .esriMapLayers {
@@ -1154,7 +1155,7 @@
     padding: 20px 5px 0px 0px;
     vertical-align: top;
     border-bottom: 1px solid #b5bcc7;
-    color:#fff;
+    
 }
 .simpleDirections .esriRoutesTooltip .esriRouteIconColumn {
     border: none;
@@ -1330,14 +1331,14 @@
     background: #5cace1;
 }
 .simpleDirections .esriRouteInfo {
-    color: #fff;
+    
 }
 .simpleDirections .esriRouteZoom:focus .esriRouteInfo,
 .simpleDirections .esriRouteZoom:focus .esriRouteInfo strong {
     color: #ffffff;
 }
 .simpleDirections .esriRouteInfo strong {
-    color: #fff;
+    
 }
 .simpleDirections .esriDMTStopDestination .esriRouteInfo {
     border: 0;
@@ -1358,7 +1359,7 @@
     padding: 0 5px 0 5px;
     border-radius: 3px;
     /*background-color: #f0f0f0;*/
-    font-weight:bold;
+    font-weight:900;
 }
 .simpleDirections .esriRoutesTooltip .esriRouteLength,
 .simpleDirections .esriPrintDirections .esriRouteLength {
@@ -1366,7 +1367,7 @@
     background: transparent;
 }
 .simpleDirections .esriResultsContainer {
-    background: #333;
+    background: #fff;
     height:585px;
     zoom: 1;
 }
@@ -1396,7 +1397,7 @@
     line-height: 18px;
     padding: 10px;
     display: block;
-    color: #FFFFFF;
+    
 }
 .simpleDirections .esriResultsButtonsContainer {
     margin: 10px;
