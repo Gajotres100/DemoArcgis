@@ -50,6 +50,11 @@ body {
   
 }
 
+#wrapper {
+width:100%;
+height:100%;
+}
+
 /***
 General typography 
 ***/
@@ -1277,7 +1282,6 @@ Portlets
 .portlet-body {
   clear: both;  
   padding: 0;  
-  height: 100vh;
 
 }
 
