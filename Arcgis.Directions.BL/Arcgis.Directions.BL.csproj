@@ -41,7 +41,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,10 +54,95 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\SSOAuth\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Services\PoiService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.ApplicationData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.ArrayOfString.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.CompanyData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.GetAllAplicationsDataAndRoles_defaultCulture1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.GetAllAplicationsDataAndRoles_withCulture1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.GetAllApplicationsData_defaultCulture1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.GetAllApplicationsData_withCulture1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.GetAllRoles_defaultCulture1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.GetAllRoles_withCulture1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.GetGroupUsersResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.GetHeaderAndFooter_defaultCulture1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.GetHeaderAndFooter_withCulture1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.GetMessageQueue_defaultCulture1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.GetMessageQueue_withCulture1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.GetSSOApplicationAuthTokenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.GetSSOMasterApplicationAuthTokenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.GetVersionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.Message.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.RefreshSessionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.Role.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.UserBasicData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.UserData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.VerifyTokenAndGetNewResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.VerifyTokenAndGetNew_withGroupID1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.VerifyTokenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\Arcgis.Directions.BL.SSOAuth.VerifyToken_withGroupID1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SSOAuth\SSOAuth.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Arcgis.Directions.Data.Model\Arcgis.Directions.Data.Model.csproj">
@@ -69,6 +157,24 @@
       <Project>{1E0BFA29-0873-4EC6-A18B-92748008A7A4}</Project>
       <Name>Arcgis.Directions.VM</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SSOAuth\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SSOAuth\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SSOAuth\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SSOAuth\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

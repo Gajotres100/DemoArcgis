@@ -1,7 +1,9 @@
-﻿using Arcgis.Directions.Data.Repository.Poi;
+﻿using Arcgis.Directions.BL.SSOAuth;
+using Arcgis.Directions.Data.Repository.Poi;
 using Arcgis.Directions.VM;
 using log4net;
 using System;
+using System.Configuration;
 using System.Reflection;
 
 namespace Arcgis.Directions.BL.Services
@@ -39,9 +41,7 @@ namespace Arcgis.Directions.BL.Services
                 return null;
             }
 
-        }
-
-        
+        }        
 
         public GetPOIVM GetPoiByID(int Id)
         {
@@ -65,6 +65,59 @@ namespace Arcgis.Directions.BL.Services
                 var item = new GetPOIVM();
                 item.LanguageList = _poiRepository.GetLanguagesOracle();
                 return item;
+            }
+            catch (Exception e)
+            {
+                logger.Error("error = " + e);
+                return null;
+            }
+        }
+
+        public UserData ValidateUser(string authToken)
+        {
+            string headerHTML = "";
+            string footerHTML = "";
+            string sessionCulture;
+            string newSSOAuthToken;
+            SSOAuth.ArrayOfString allowedApplicationIDs;
+            Message[] messageDataList;
+            string roleID;
+            UserData userData;
+            UserData masterUserData;
+            CompanyData companyData;
+          
+            if (!string.IsNullOrEmpty(authToken))
+            {
+                using (SSOAuthSoapClient proxy = new SSOAuthSoapClient())
+                {
+                    var loginOk = proxy.VerifyTokenAndGetNew(GetSSOAuthData(ConfigurationManager.AppSettings["ApplicationID"], authToken), out sessionCulture, out newSSOAuthToken, out allowedApplicationIDs, out headerHTML, out footerHTML, out messageDataList, out roleID, out userData, out masterUserData, out companyData);
+                    if (loginOk) return userData;
+                    else
+                    {
+                        logger.Error("error = login failed");
+                        return null;
+                    }
+                }
+            }
+            else
+            {
+                logger.Error("error = token is not provided" );
+                return null;
+            }
+        }
+
+        SSOAuthData GetSSOAuthData(string applicationID, string ssoAuthToken)
+        {
+            try
+            {
+                var ssoAuthData = new SSOAuthData
+                {
+                    ApplicationID = applicationID,
+                    IPAddress = ConfigurationManager.AppSettings["IPAddress"],
+                    SSOToken = ssoAuthToken
+                };
+
+                return ssoAuthData;
             }
             catch (Exception e)
             {

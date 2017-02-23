@@ -23,7 +23,14 @@ namespace Arcgis.Directions.UI.Controllers
 
         public ActionResult Login()
         {
-            if (Request.QueryString[@"user_id"] != null && Request.QueryString[@"username"] != null)
+            var authToken = Request.QueryString["SSO_AUTH_TOKEN"];
+            if (!string.IsNullOrEmpty(authToken))
+            {
+                _poiService = new PoiService();
+                var user = _poiService.ValidateUser(authToken);
+                Session[@"UserData"] = user;
+            }
+            else if (Request.QueryString[@"user_id"] != null && Request.QueryString[@"username"] != null)
             {
                 var userID = 0;
                 int.TryParse(Request.QueryString[@"user_id"], out userID);
