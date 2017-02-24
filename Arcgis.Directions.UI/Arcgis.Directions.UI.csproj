@@ -1442,6 +1442,7 @@
     <Content Include="assets\scripts\ui-sliders.js" />
     <Content Include="assets\scripts\ui-tree.js" />
     <Content Include="Content\1\css\animate.css" />
+    <Content Include="Content\1\css\autocomplete-ui-input.css" />
     <Content Include="Content\1\css\esri.css" />
     <Content Include="Content\1\css\pages\about-us.css" />
     <Content Include="Content\1\css\pages\blog.css" />
@@ -1607,6 +1608,7 @@
     <Content Include="Content\1\scripts\ui-sliders.js" />
     <Content Include="Content\1\scripts\ui-tree.js" />
     <Content Include="Content\2\css\animate.css" />
+    <Content Include="Content\2\css\autocomplete-ui-input.css" />
     <Content Include="Content\2\css\esri.css" />
     <Content Include="Content\2\css\pages\about-us.css" />
     <Content Include="Content\2\css\pages\blog.css" />

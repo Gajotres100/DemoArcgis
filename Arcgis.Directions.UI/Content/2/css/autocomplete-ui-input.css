@@ -1,0 +1,24 @@
+﻿
+.ui-autocomplete{
+           max-height: 300px;
+           overflow-y: auto;
+           /* prevent horizontal scrollbar */
+           overflow-x: hidden;
+           /* add padding to account for vertical scrollbar */
+           padding-right: 20px;
+           
+       }
+html .ui-autocomplete {
+           height: 300px;
+       }
+ul.ui-front {
+    z-index: 1100;
+}
+
+#keyword {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid #a0a0a0;
+    width: 100%;
+}

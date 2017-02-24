@@ -1353,7 +1353,7 @@
 .simpleDirections .esriRouteLength {
     font-size: 11px;
     min-width: 65px;
-    position: relative;
+   
     top: 8px;
     display: inline;
     padding: 0 5px 0 5px;
