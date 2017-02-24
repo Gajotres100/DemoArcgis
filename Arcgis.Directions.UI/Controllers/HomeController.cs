@@ -17,17 +17,17 @@ namespace Arcgis.Directions.UI.Controllers
         {
             var ssoOvreiden = false;
             bool.TryParse(ConfigurationManager.AppSettings[@"SSOveriden"], out ssoOvreiden);
-            if (ssoOvreiden && Session[@"UserData"] == null)
+            if (ssoOvreiden && Session[nameof(UserData)] == null)
             {
                 var user = new UserData
                 {
                     UserID = ConfigurationManager.AppSettings[@"User_id"],
                     Username = ConfigurationManager.AppSettings[@"Username"]
                 };
-                Session[@"UserData"] = user;
+                Session[nameof(UserData)] = user;
                 return RedirectToAction(@"Index", @"Home");
             }
-            else if (Session[@"UserData"] == null)
+            else if (Session[nameof(UserData)] == null)
                 return Redirect(ConfigurationManager.AppSettings[@"LoginRedirect"]);
 
             var vm = GetPois();
@@ -46,14 +46,14 @@ namespace Arcgis.Directions.UI.Controllers
                     UserID = ConfigurationManager.AppSettings[@"User_id"],
                     Username = ConfigurationManager.AppSettings[@"Username"]
                 };
-                Session[@"UserData"] = user;
+                Session[nameof(UserData)] = user;
                 return RedirectToAction(@"Index", @"Home");
             }
             else if (!string.IsNullOrEmpty(authToken))
             {
                 _poiService = new PoiService();
                 var user = _poiService.ValidateUser(authToken);
-                Session[@"UserData"] = user;
+                Session[nameof(UserData)] = user;
             }
             else
             {
@@ -88,7 +88,7 @@ namespace Arcgis.Directions.UI.Controllers
             var vm = new GetPOIVM();
             _poiService = new PoiService();
             var user = new UserData();
-            user = Session[@"UserData"] as UserData;
+            user = Session[nameof(UserData)] as UserData;
             var userID = 0;
             int.TryParse(user.UserID, out userID);
             vm = _poiService.GetAvailablePoiByDescription(keywords, userID);
