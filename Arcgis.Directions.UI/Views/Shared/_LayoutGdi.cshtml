@@ -7,6 +7,8 @@
     <meta content="" name="description" />
     <meta content="" name="author" />
     <title></title>
+
+ 
     <script>
         var dojoConfig = {
             parseOnLoad: true,
@@ -48,78 +50,79 @@
 
                 </div>
             </div>
-            <div id="sidebar">
+            
+                <div id="sidebar">
 
 
-                <ul class="main-menu">
+                    <ul class="main-menu">
 
-                    <a class="menu-toggle" href="javascript:">
+                        <a class="menu-toggle" href="javascript:">
 
-                        <i class="mdi mdi-menu"><img src="~/Content/2/img/menu.png" alt="" /></i>
-
-                    </a>
-
-                    <li id="liMapMenu" class="selected">
-
-                        <a href="#">
-                            <i class="mdi mdi-earth"><img src="~/Content/2/img/earth.png" alt="" /></i>
+                            <i class="mdi mdi-menu"><img src="~/Content/2/img/menu.png" alt="" /></i>
 
                         </a>
 
+                        <li id="liMapMenu" class="selected">
 
-                        <div class="sidebar-menu">
+                            <a href="#">
+                                <i class="mdi mdi-earth"><img src="~/Content/2/img/earth.png" alt="" /></i>
 
-                            <h3 class='menu-title'>Pretraži rutu</h3>
-                            <div class="slimScrollDiv">
-                                <div class="container-fluid">
-                                    <div class="page-container row-fluid">
-                                        <!-- BEGIN SIDEBAR -->
-                                        <div class="page-sidebar nav-collapse collapse">
-                                            <!-- BEGIN SIDEBAR MENU -->
-                                            <form class="sidebar-search">
-                                                <div class="input-box">
-                                                    @Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keyword" })
-                                                </div>
-                                            </form>
-                                            <form class="sidebar-search">
-                                                <div class="input-box">
-                                                    <div id="dir" dir="ltr"></div>
-                                                </div>
-                                            </form>
+                            </a>
 
 
-                                           
-                                        </div>
+                            <div class="sidebar-menu">
+
+                                <h3 class='menu-title'>Pretraži rutu</h3>
+                                <div class="slimScrollDiv">
+                                    <div class="container-fluid">
+                                        
+                                            <!-- BEGIN SIDEBAR -->
+                                            <div class="page-sidebar nav-collapse collapse">
+                                                <!-- BEGIN SIDEBAR MENU -->
+                                                <form class="sidebar-search">
+                                                    <div class="input-box">
+                                                        @Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keyword" })
+                                                    </div>
+                                                </form>
+                                                <form class="sidebar-search">
+                                                    <div class="input-box">
+                                                        <div id="dir" dir="ltr"></div>
+                                                    </div>
+                                                </form>
+
+
+
+                                            </div>
+                                        
                                     </div>
                                 </div>
-                                </div>
                             </div>
-                    
 
-                </ul>
 
-            </div>
-            <div id="content">
-               
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
+                    </ul>
 
-                            @RenderBody()
+                </div>
+                <div id="content">
+
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                @RenderBody()
+                            </div>
+
                         </div>
 
                     </div>
 
+
+                </div>
+                </div>
+                <div id="footer" class="text-left">
+                    <img id="imgFooterLogo" src="~/Content/2/img/sharedui-footer-logo.png" />
+                    <h6>GDi auto nadzor 7.9.1 | &copy; 2009 - 2017 GDi Convivo | Sva prava pridržana.</h6>
                 </div>
 
-                
-            </div>
-            <div id="footer" class="text-left">
-                <img id="imgFooterLogo" src="~/Content/2/img/sharedui-footer-logo.png" />
-                <h6>GDi auto nadzor 7.9.1 | &copy; 2009 - 2017 GDi Convivo | Sva prava pridržana.</h6>
-            </div>
-
-        </div>
 
     <script>
 
