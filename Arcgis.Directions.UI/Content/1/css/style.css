@@ -659,6 +659,7 @@ Page sidebar
   padding-bottom: 0px;
   font-size: 14px ;
   box-shadow: none;
+  outline:none;
 }
 
 .page-sidebar .sidebar-search .input-box {
