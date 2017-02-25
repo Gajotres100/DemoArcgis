@@ -25,9 +25,9 @@ namespace Arcgis.Directions.UI.Controllers
                     Username = ConfigurationManager.AppSettings[@"Username"]
                 };
                 Session[nameof(UserData)] = user;
-                return RedirectToAction(@"Index", @"Home");
+                return RedirectToAction(nameof(Index), @"Home");
             }
-            else if (Session[nameof(UserData)] == null)
+            if (Session[nameof(UserData)] == null)
                 return Redirect(ConfigurationManager.AppSettings[@"LoginRedirect"]);
 
             var vm = GetPois();
@@ -38,49 +38,47 @@ namespace Arcgis.Directions.UI.Controllers
         {
             var authToken = Request.QueryString["SSO_AUTH_TOKEN"];
             var ssoOvreiden = false;
-            bool.TryParse(ConfigurationManager.AppSettings[@"SSOveriden"], out ssoOvreiden);            
+            bool.TryParse(ConfigurationManager.AppSettings[@"SSOveriden"], out ssoOvreiden);
             if (ssoOvreiden)
-            {                
+            {
                 var user = new UserData
                 {
                     UserID = ConfigurationManager.AppSettings[@"User_id"],
                     Username = ConfigurationManager.AppSettings[@"Username"]
                 };
                 Session[nameof(UserData)] = user;
-                return RedirectToAction(@"Index", @"Home");
+                return RedirectToAction(nameof(Index), @"Home");
             }
-            else if (!string.IsNullOrEmpty(authToken))
+            if (!string.IsNullOrEmpty(authToken))
             {
                 _poiService = new PoiService();
                 var user = _poiService.ValidateUser(authToken);
                 Session[nameof(UserData)] = user;
-            }
-            else
-            {
-                //Kada prodati SSO ovo odkomentirati potto će biti beskonačna petlja
-                //return Redirect(ConfigurationManager.AppSettings[@"LoginRedirect"]);
             }
 
             var vm = GetPois();
             return View(vm);
         }
 
+        public ActionResult Logout()
+        {
+            if (Session[nameof(UserData)] != null) Session.Remove(nameof(UserData));
+            return Redirect(ConfigurationManager.AppSettings[@"LoginRedirect"]);
+        }
+
         GetPOIVM GetPois()
         {
             var lang = (string)ControllerContext.RouteData.Values[@"lang"];
             var vm = new GetPOIVM();
-            _poiService = new PoiService();
-            vm = _poiService.GetLanguages();
+            _poiService = new PoiService();            
+            vm = _poiService.GetStartupData();
             var defaultLang = vm.LanguageList.FirstOrDefault(l => l.Name.Equals(lang));
             if (defaultLang == null) defaultLang = vm.LanguageList.FirstOrDefault();
             vm.Langugae = defaultLang;
             return vm;
         }
 
-        public ActionResult Error()
-        {
-            return View();
-        }
+        public ActionResult Error() => View();
 
         [HttpPost]
         public JsonResult GetPoiList(string keywords)
