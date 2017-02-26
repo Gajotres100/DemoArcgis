@@ -80,7 +80,8 @@ box-shadow:5px 5px rgba(102,102,102,.1);
 -webkit-box-shadow:5px 5px rgba(102,102,102,.1);
 background-clip:padding-box;
 -webkit-background-clip:padding-box;
-margin:2px 0 0;
+/*margin:2px 0 0;*/
+margin: -15px;
 padding:0;
 }
 
@@ -175,7 +176,8 @@ color:#FFF;
 height:52px;
 line-height:100%;
 color:#FFF;
-padding:17px 14px;
+text-decoration:none; 
+/*padding:17px 14px;*/
 }
 
 #header .top-menu > li > a:hover,#header .top-menu > li > a:focus {
@@ -1162,6 +1164,7 @@ z-index:999;
 #header .dropdown-menu.pull-right,#header .pull-right > .dropdown-menu {
 right:0;
 left:auto;
+float:left;
 }
 
 #header .open > .dropdown-menu,#header .top-menu .dropdown-menu li,#sidebar ul.main-menu > li.selected .sidebar-menu,.widget-box.complex li {

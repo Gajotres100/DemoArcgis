@@ -39,6 +39,9 @@
                     <a class="brand" href="index.html">
                         <img src="~/assets/img/GDi_logo.png" alt="logo" />
                     </a>
+<ul class="nav pull-right">
+    @Html.DropDownListFor(m => m.Langugae.Name, new SelectList(Model.LanguageList, "Name", "Name"), new { @onchange = "CallChangefunc(this.value)" })
+</ul>
                     @*<a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
                             <img src="~/assets/img/menu-toggler.png" alt="" />
                         </a>

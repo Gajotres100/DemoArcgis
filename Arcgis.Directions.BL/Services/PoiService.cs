@@ -1,9 +1,12 @@
 ﻿using Arcgis.Directions.BL.SSOAuth;
 using Arcgis.Directions.Data.Repository.Poi;
 using Arcgis.Directions.VM;
+using Arcgis.Directions.Data.Model;
 using log4net;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using System.Reflection;
 
 namespace Arcgis.Directions.BL.Services
@@ -41,7 +44,7 @@ namespace Arcgis.Directions.BL.Services
                 return null;
             }
 
-        }        
+        }
 
         public GetPOIVM GetPoiByID(int Id)
         {
@@ -49,6 +52,7 @@ namespace Arcgis.Directions.BL.Services
             {
                 var item = new GetPOIVM();
                 item.CusPoi = _poiRepository.GetPoiByIDOracle(Id);
+
                 return item;
             }
             catch (Exception e)
@@ -58,12 +62,26 @@ namespace Arcgis.Directions.BL.Services
             }
         }
 
-        public GetPOIVM GetLanguages()
+        public GetPOIVM GetStartupData()
         {
             try
             {
+                var ssoOvreiden = false;
+                bool.TryParse(ConfigurationManager.AppSettings[@"SSOveriden"], out ssoOvreiden);
+
                 var item = new GetPOIVM();
                 item.LanguageList = _poiRepository.GetLanguagesOracle();
+                if (!ssoOvreiden)
+                {
+                    var applications = GetApplicationList();
+                    var app = new List<Application>();
+                    app = applications.Select(x => new Application
+                    {
+                        Name = x.Name,
+                        Url = x.URL
+                    }).ToList();
+                    item.Applications = app;
+                }
                 return item;
             }
             catch (Exception e)
@@ -75,35 +93,37 @@ namespace Arcgis.Directions.BL.Services
 
         public UserData ValidateUser(string authToken)
         {
-            string headerHTML = "";
-            string footerHTML = "";
-            string sessionCulture;
-            string newSSOAuthToken;
-            SSOAuth.ArrayOfString allowedApplicationIDs;
-            Message[] messageDataList;
-            string roleID;
-            UserData userData;
-            UserData masterUserData;
-            CompanyData companyData;
-          
-            if (!string.IsNullOrEmpty(authToken))
+            try
             {
-                using (SSOAuthSoapClient proxy = new SSOAuthSoapClient())
+                string headerHTML = "";
+                string footerHTML = "";
+                string sessionCulture;
+                string newSSOAuthToken;
+                ArrayOfString allowedApplicationIDs;
+                Message[] messageDataList;
+                string roleID;
+                UserData userData;
+                UserData masterUserData;
+                CompanyData companyData;
+
+                if (!string.IsNullOrEmpty(authToken))
                 {
-                    var loginOk = proxy.VerifyTokenAndGetNew(GetSSOAuthData(ConfigurationManager.AppSettings["ApplicationID"], authToken), out sessionCulture, out newSSOAuthToken, out allowedApplicationIDs, out headerHTML, out footerHTML, out messageDataList, out roleID, out userData, out masterUserData, out companyData);
-                    if (loginOk) return userData;
-                    else
+                    using (SSOAuthSoapClient proxy = new SSOAuthSoapClient())
                     {
-                        logger.Error("error = login failed");
-                        return null;
+                        var loginOk = proxy.VerifyTokenAndGetNew(GetSSOAuthData(ConfigurationManager.AppSettings["ApplicationID"], authToken), out sessionCulture, out newSSOAuthToken, out allowedApplicationIDs, out headerHTML, out footerHTML, out messageDataList, out roleID, out userData, out masterUserData, out companyData);
+                        if (loginOk) return userData;
+
+                        throw new Exception("Invalid AuthToken");
                     }
                 }
+                throw new Exception("AuthToken is null");
             }
-            else
+            catch (Exception ex)
             {
-                logger.Error("error = token is not provided" );
+                logger.Error("error = " + ex);
                 return null;
             }
+
         }
 
         SSOAuthData GetSSOAuthData(string applicationID, string ssoAuthToken)
@@ -122,6 +142,22 @@ namespace Arcgis.Directions.BL.Services
             catch (Exception e)
             {
                 logger.Error("error = " + e);
+                return null;
+            }
+        }
+
+        public List<ApplicationData> GetApplicationList()
+        {
+            try
+            {
+                using (SSOAuthSoapClient proxy = new SSOAuthSoapClient())
+                {
+                    return proxy.GetAllApplicationsData(ConfigurationManager.AppSettings["LanguageCode"]).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error("error = " + ex);
                 return null;
             }
         }

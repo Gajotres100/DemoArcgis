@@ -7,6 +7,7 @@ div, input, select, textarea, span, img, table, td, th, p, a, button, ul, li {
   -webkit-border-radius: 0 !important;
      -moz-border-radius: 0 !important;
           border-radius: 0 !important;
+          
 }
 
 a:focus {
@@ -693,4 +694,22 @@ Bootstrap modal
 ***/
 .modal-header h3{
   font-weight: 300;
+}
+
+#ulSsoApplications {
+    float:left;
+    padding-left: 1100px;
+    max-height: 52px;
+    list-style-type: none;
+}
+#ulLanguages{
+    float:left;
+    max-height: 52px;
+    list-style-type: none;
+    
+}
+#account {
+    float: left;
+    max-height: 52px;
+    list-style-type: none;
 }

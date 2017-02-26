@@ -56,7 +56,9 @@ namespace Arcgis.Utils.Web
                             "~/Content/2/css/style-metro.css",
                             "~/Content/2/css/style-responsive.css",
                             "~/Content/2/css/pages/inbox.css",
-                            "~/Content/2/css/autocomplete-ui-input.css"
+                            "~/Content/2/css/autocomplete-ui-input.css",
+                            "~/Content/2/css/flags.css",
+                            "~/Content/2/css/flags.min.css"
 
                             ));
 

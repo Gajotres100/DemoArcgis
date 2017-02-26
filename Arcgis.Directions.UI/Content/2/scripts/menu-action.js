@@ -12,5 +12,8 @@ $(document).ready(function () {
         $('.menu-toggle').show();
     });
     
-    
+    $('li.dropdown').click(function () {
+        $('li.dropdown').not(this).find('ul').hide();
+        $(this).find('ul').toggle();
+    });
 });
