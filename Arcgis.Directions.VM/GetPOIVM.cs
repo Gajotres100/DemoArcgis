@@ -12,6 +12,6 @@ namespace Arcgis.Directions.VM
 
         public int PoiID { get; set; }
         public string PoiName { get; set; }
-        public string PoiDesc { get; set; }        
+        public string PoiDesc { get; set; }
     }
 }

@@ -1611,6 +1611,8 @@
     <Content Include="Content\2\css\animate.css" />
     <Content Include="Content\2\css\autocomplete-ui-input.css" />
     <Content Include="Content\2\css\esri.css" />
+    <Content Include="Content\2\css\flags.css" />
+    <Content Include="Content\2\css\flags.min.css" />
     <Content Include="Content\2\css\pages\about-us.css" />
     <Content Include="Content\2\css\pages\blog.css" />
     <Content Include="Content\2\css\pages\email.css" />
@@ -1670,9 +1672,11 @@
     <Content Include="Content\2\dijit\images\overview.png" />
     <Content Include="Content\2\dijit\images\popup.png" />
     <Content Include="Content\2\fonts\font.css" />
+    <Content Include="Content\2\img\account_outline_white.png" />
     <Content Include="Content\2\img\ajax-loading.gif" />
     <Content Include="Content\2\img\alarm.png" />
     <Content Include="Content\2\img\arrow-down.png" />
+    <Content Include="Content\2\img\arrow_down_white.png" />
     <Content Include="Content\2\img\avatar.png" />
     <Content Include="Content\2\img\avatar1.jpg" />
     <Content Include="Content\2\img\avatar1_small.jpg" />
@@ -1682,7 +1686,9 @@
     <Content Include="Content\2\img\bg-opacity.png" />
     <Content Include="Content\2\img\car.png" />
     <Content Include="Content\2\img\chart-bar.png" />
+    <Content Include="Content\2\img\cloud.png" />
     <Content Include="Content\2\img\earth.png" />
+    <Content Include="Content\2\img\flags.png" />
     <Content Include="Content\2\img\GDi_logo.png" />
     <Content Include="Content\2\img\GDi_logo2.png" />
     <Content Include="Content\2\img\hor-menu-red-arrow.png" />
@@ -1739,6 +1745,7 @@
     <Content Include="Content\2\img\sidebar-toggler.png" />
     <Content Include="Content\2\img\syncfusion-icons-white.png" />
     <Content Include="Content\2\img\syncfusion-icons.png" />
+    <Content Include="Content\2\img\translate.png" />
     <Content Include="Content\2\plugins\excanvas.js" />
     <Content Include="Content\2\plugins\gmaps.js" />
     <Content Include="Content\2\plugins\jquery-1.8.3.min.js" />

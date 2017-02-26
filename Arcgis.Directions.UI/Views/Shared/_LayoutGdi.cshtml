@@ -7,7 +7,7 @@
     <meta content="" name="description" />
     <meta content="" name="author" />
     <title></title>
-
+  
  
     <script>
         var dojoConfig = {
@@ -18,6 +18,7 @@
         function CallChangefunc(val) {
             window.location.href = "/" + val + "/Home/Index/";
         }
+      
     </script>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
@@ -45,9 +46,97 @@
                         <a class="logo-text hidden-xs">
                             GDi auto nadzor
                         </a>
+                        <ul id="ulSsoApplications" class="top-menu nav navbar-right pull-right">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <img src="~/Content/2/img/cloud.png" />
+                                    <i class="logo-text hidden-xs">SSO overridden</i>
+
+                                    <img src="~/Content/2/img/arrow_down_white.png" />
+                                </a>
+
+                            </li>
+                        </ul>
+
+                        <ul id="ulLanguages" class="top-menu nav navbar-right pull-right" >
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <img src="~/Content/2/img/translate.png" />
+                                    <i class="logo-text hidden-xs">Language</i>
+                                    
+                                    <img src="~/Content/2/img/arrow_down_white.png" />
+                                </a>
+                                <ul class="dropdown-menu">
+
+@{ int counter = 1;}
+    @foreach (var item in Model.LanguageList)
+    {
+        if (counter == 1)
+        {
+            <li>
+                <a id="@item.LangID" onchange="CallChangefunc(this.value)" href="#"><img id="flagslanguage" class="flag flag-hr" alt="Croatia" />&nbsp;&nbsp @item.Name</a>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a id="@item.LangID" onchange="CallChangefunc(this.value)" href="#"><img id="flagslanguage" class="flag flag-gb" alt="United Kingdom" />&nbsp;&nbsp @item.Name</a>
+            </li>
+        }
+
+
+        counter++;
+    }
+        </ul>
+                                @*<ul class="dropdown-menu">
+
+                                    <li>
+                                        <a id="1" href="#"><span class="flag-icon flag-icon-gb"></span>&nbsp;&nbsp;English</a>
+                                    </li>
+
+                                    <li>
+                                        <a id="2" href="#"><span class="flag-icon flag-icon-hr"></span>&nbsp;&nbsp;Croatian</a>
+                                    </li>
+
+                                    <li>
+                                        <a id="3" href="#"><span class="flag-icon flag-icon-ru"></span>&nbsp;&nbsp;Русский</a>
+                                    </li>
+
+                                    <li>
+                                        <a id="4" href="#"><span class="flag-icon flag-icon-ua"></span>&nbsp;&nbsp;Українська</a>
+                                    </li>
+
+                                    <li>
+                                        <a id="5" href="#"><span class="flag-icon flag-icon-si"></span>&nbsp;&nbsp;Slovenian</a>
+                                    </li>
+
+                                    <li>
+                                        <a id="6" href="#"><span class="flag-icon flag-icon-ba"></span>&nbsp;&nbsp;Bosnian</a>
+                                    </li>
+
+                                </ul>*@
+
+                            </li>
+                        </ul>
+                        <ul id="account" class="top-menu nav navbar-right pull-right">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <img src="~/Content/2/img/account_outline_white.png" />
+                                    <i class="logo-text hidden-xs">Pero</i>
+
+                                        <img src="~/Content/2/img/arrow_down_white.png" />
+                                    </a>
+                                <ul class="dropdown-menu">
+                                    @*<li class="divider"></li>*@
+                                    <li>
+                                        <a id="lsLoggedInUser" href="#"><i class="fa fa-sign-out">Logout</i> </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        
                     </div>
-
-
                 </div>
             </div>
             

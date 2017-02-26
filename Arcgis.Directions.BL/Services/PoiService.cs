@@ -44,7 +44,7 @@ namespace Arcgis.Directions.BL.Services
                 return null;
             }
 
-        }        
+        }
 
         public GetPOIVM GetPoiByID(int Id)
         {
@@ -120,10 +120,11 @@ namespace Arcgis.Directions.BL.Services
             }
             catch (Exception ex)
             {
-                logger.Error("error = " + ex); 
+
+                logger.Error("error = " + ex);
                 return null;
             }
-           
+
         }
 
         SSOAuthData GetSSOAuthData(string applicationID, string ssoAuthToken)
@@ -150,10 +151,12 @@ namespace Arcgis.Directions.BL.Services
         {
             try
             {
-                 using (SSOAuthSoapClient proxy = new SSOAuthSoapClient())
-                 {
-                     return proxy.GetAllApplicationsData(ConfigurationManager.AppSettings["LanguageCode"]).ToList();                        
-                 }
+
+                using (SSOAuthSoapClient proxy = new SSOAuthSoapClient())
+                {
+                    return proxy.GetAllApplicationsData(ConfigurationManager.AppSettings["LanguageCode"]).ToList();
+                }
+
             }
             catch (Exception ex)
             {

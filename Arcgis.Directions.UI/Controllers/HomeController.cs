@@ -70,7 +70,9 @@ namespace Arcgis.Directions.UI.Controllers
         {
             var lang = (string)ControllerContext.RouteData.Values[@"lang"];
             var vm = new GetPOIVM();
-            _poiService = new PoiService();            
+
+            _poiService = new PoiService();
+
             vm = _poiService.GetStartupData();
             var defaultLang = vm.LanguageList.FirstOrDefault(l => l.Name.Equals(lang));
             if (defaultLang == null) defaultLang = vm.LanguageList.FirstOrDefault();
