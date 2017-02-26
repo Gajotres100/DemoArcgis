@@ -12,7 +12,6 @@ namespace Arcgis.Directions.UI.Controllers
 
         PoiService _poiService;
 
-
         public ActionResult Index()
         {
             var ssoOvreiden = false;

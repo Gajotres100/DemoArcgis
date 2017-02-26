@@ -185,8 +185,6 @@ namespace Arcgis.Directions.BL.Services
                     URL = x.URL
                 }).ToList();
                
-
-                
                 return app;
                 //logger.Error("error = " + ex);
                 //return null;
