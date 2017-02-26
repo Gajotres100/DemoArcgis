@@ -121,6 +121,7 @@ namespace Arcgis.Directions.BL.Services
             }
             catch (Exception ex)
             {
+
                 logger.Error("error = " + ex);
                 return null;
             }
@@ -151,10 +152,12 @@ namespace Arcgis.Directions.BL.Services
         {
             try
             {
+
                 using (SSOAuthSoapClient proxy = new SSOAuthSoapClient())
                 {
                     return proxy.GetAllApplicationsData(ConfigurationManager.AppSettings["LanguageCode"]).ToList();
                 }
+
             }
             catch (Exception ex)
             {
