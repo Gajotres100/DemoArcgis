@@ -77,7 +77,7 @@ namespace Arcgis.Directions.UI.Controllers
             var defaultLang = vm.LanguageList.FirstOrDefault(l => l.Name.Equals(lang));
             if (defaultLang == null) defaultLang = vm.LanguageList.FirstOrDefault();
             vm.Langugae = defaultLang;
-            
+
             return vm;
         }
 
