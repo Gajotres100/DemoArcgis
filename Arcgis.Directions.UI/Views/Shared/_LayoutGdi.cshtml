@@ -1,4 +1,5 @@
 ﻿@model Arcgis.Directions.VM.GetPOIVM
+@using Arcgis.Directions.BL.SSOAuth;
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +8,8 @@
     <meta content="" name="description" />
     <meta content="" name="author" />
     <title></title>
-  
- 
+
+
     <script>
         var dojoConfig = {
             parseOnLoad: true,
@@ -16,9 +17,10 @@
         };
 
         function CallChangefunc(val) {
+
             window.location.href = "/" + val + "/Home/Index/";
         }
-      
+
     </script>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
@@ -26,7 +28,7 @@
     <script src="https://js.arcgis.com/3.18/"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://js.arcgis.com/3.18/dijit/themes/claro/claro.css">
-   
+
 
     @Scripts.Render("~/Content/2/scripts/")
     @Scripts.Render("~/Content/2/plugins/")
@@ -34,192 +36,194 @@
 </head>
 <body id="siteBody" style="position:relative">
 
-        <div id="wrapper">
+    <div id="wrapper">
 
-            <div id="header" class="navbar navbar-fixed-top">
-                <div class="navbar-header">
+        <div id="header" class="navbar navbar-fixed-top">
+            <div class="navbar-header">
 
-                    <div class="logo">
-                        <a class="logo-image" href="@Url.Action("Index","Home")">
-                            <img id="imgHeaderLogo" src="~/Content/2/img/sharedui-header-logo.png" alt="logo" />
-                        </a>
-                        <a class="logo-text hidden-xs">
-                            GDi auto nadzor
-                        </a>
-                        <ul id="ulSsoApplications" class="top-menu nav navbar-right pull-right">
-                            <li class="dropdown">
+                <div class="logo">
+                    <a class="logo-image" href="@Url.Action("Index","Home")">
+                        <img id="imgHeaderLogo" src="~/Content/2/img/sharedui-header-logo.png" alt="logo" />
+                    </a>
+                    <a class="logo-text hidden-xs">
+                        GDi auto nadzor
+                    </a>
+                    <ul id="ulSsoApplications" class="top-menu nav navbar-right pull-right">
+
+                        <li class="dropdown">
+                            @if (Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings[@"SSOveriden"]) == true)
+                            {
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                     <img src="~/Content/2/img/cloud.png" />
                                     <i class="logo-text hidden-xs">SSO overridden</i>
 
                                     <img src="~/Content/2/img/arrow_down_white.png" />
                                 </a>
-
-                            </li>
-                        </ul>
-
-                        <ul id="ulLanguages" class="top-menu nav navbar-right pull-right" >
-                            <li class="dropdown">
+                            }
+                            else
+                            {
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <img src="~/Content/2/img/translate.png" />
-                                    <i class="logo-text hidden-xs">Language</i>
-                                    
+                                    <img src="~/Content/2/img/cloud.png" />
+                                    <i class="logo-text hidden-xs">SSO overridden</i>
+
                                     <img src="~/Content/2/img/arrow_down_white.png" />
                                 </a>
                                 <ul class="dropdown-menu">
 
-@{ int counter = 1;}
-    @foreach (var item in Model.LanguageList)
-    {
-        if (counter == 1)
-        {
-            <li>
-                <a id="@item.LangID" onchange="CallChangefunc(this.value)" href="#"><img id="flagslanguage" class="flag flag-hr" alt="Croatia" />&nbsp;&nbsp @item.Name</a>
-            </li>
-        }
-        else
-        {
-            <li>
-                <a id="@item.LangID" onchange="CallChangefunc(this.value)" href="#"><img id="flagslanguage" class="flag flag-gb" alt="United Kingdom" />&nbsp;&nbsp @item.Name</a>
-            </li>
-        }
+                                    @foreach (var item in Model.Applications)
+                                    {
+                                        <li>
+                                            <a id="@item.Name" href="@item.Url">@item.Name</a>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                            </li>
+                        </ul>
+
+                        <ul id="ulLanguages" class="top-menu nav navbar-right pull-right">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+
+                                    <img src="~/Content/2/img/translate.png" />
+                                    <i class="logo-text hidden-xs">Language</i>
+
+                                    <img src="~/Content/2/img/arrow_down_white.png" />
+                                </a>
+                                <ul class="dropdown-menu">
+
+                                    @{ int counter = 1;}
+                                    @foreach (var item in Model.LanguageList)
+                                    {
+                                        if (counter == 1)
+                                        {
+                                            <li>
+                                                <a id="@item.LangID" onclick="return CallChangefunc('HR');" href="#"><img id="flagslanguage" class="flag flag-hr" alt="Croatia" />&nbsp;&nbsp @item.Name</a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <a id="@item.LangID" onclick="return CallChangefunc('EN');" href="#"><img id="flagslanguage" class="flag flag-gb" alt="United Kingdom" />&nbsp;&nbsp @item.Name</a>
+                                            </li>
+                                        }
 
 
-        counter++;
-    }
-        </ul>
-                                @*<ul class="dropdown-menu">
+                                        counter++;
+                                    }
+                                </ul>
 
-                                    <li>
-                                        <a id="1" href="#"><span class="flag-icon flag-icon-gb"></span>&nbsp;&nbsp;English</a>
-                                    </li>
-
-                                    <li>
-                                        <a id="2" href="#"><span class="flag-icon flag-icon-hr"></span>&nbsp;&nbsp;Croatian</a>
-                                    </li>
-
-                                    <li>
-                                        <a id="3" href="#"><span class="flag-icon flag-icon-ru"></span>&nbsp;&nbsp;Русский</a>
-                                    </li>
-
-                                    <li>
-                                        <a id="4" href="#"><span class="flag-icon flag-icon-ua"></span>&nbsp;&nbsp;Українська</a>
-                                    </li>
-
-                                    <li>
-                                        <a id="5" href="#"><span class="flag-icon flag-icon-si"></span>&nbsp;&nbsp;Slovenian</a>
-                                    </li>
-
-                                    <li>
-                                        <a id="6" href="#"><span class="flag-icon flag-icon-ba"></span>&nbsp;&nbsp;Bosnian</a>
-                                    </li>
-
-                                </ul>*@
 
                             </li>
                         </ul>
                         <ul id="account" class="top-menu nav navbar-right pull-right">
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <img src="~/Content/2/img/account_outline_white.png" />
-                                    <i class="logo-text hidden-xs">Pero</i>
-
+                                    
+                                        <img src="~/Content/2/img/account_outline_white.png" />
+                                   
+                                        @if (!String.IsNullOrEmpty((string)HttpContext.Current.Session[nameof(UserData)].ToString()))
+                                        {
+                                            <i class="logo-text hidden-xs">@HttpContext.Current.Session["Username"]</i>
+                                        }
+                                    
                                         <img src="~/Content/2/img/arrow_down_white.png" />
-                                    </a>
+                                    
+                                </a>
                                 <ul class="dropdown-menu">
                                     @*<li class="divider"></li>*@
                                     <li>
-                                        <a id="lsLoggedInUser" href="#"><i class="fa fa-sign-out">Logout</i> </a>
+                                        <a id="lsLoggedInUser" href="@Url.Action("Logout","Home")"><i class="fa fa-sign-out">Logout</i> </a>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
-                        
-                        
+
+
                     </div>
                 </div>
             </div>
-            
-                <div id="sidebar">
+
+            <div id="sidebar">
 
 
-                    <ul class="main-menu">
+                <ul class="main-menu">
 
-                        <a class="menu-toggle" href="javascript:">
+                    <a class="menu-toggle" href="javascript:">
 
-                            <i class="mdi mdi-menu"><img src="~/Content/2/img/menu.png" alt="" /></i>
+                        <i class="mdi mdi-menu"><img src="~/Content/2/img/menu.png" alt="" /></i>
+
+                    </a>
+
+                    <li id="liMapMenu" class="selected">
+
+                        <a href="#">
+                            <i class="mdi mdi-earth"><img src="~/Content/2/img/earth.png" alt="" /></i>
 
                         </a>
 
-                        <li id="liMapMenu" class="selected">
 
-                            <a href="#">
-                                <i class="mdi mdi-earth"><img src="~/Content/2/img/earth.png" alt="" /></i>
+                        <div class="sidebar-menu">
 
-                            </a>
+                            <h3 class='menu-title'></h3>
+                            <div class="slimScrollDiv">
+                                <div class="container-fluid">
 
-
-                            <div class="sidebar-menu">
-
-                                <h3 class='menu-title'>Pretraži rutu</h3>
-                                <div class="slimScrollDiv">
-                                    <div class="container-fluid">
-                                        
-                                            <!-- BEGIN SIDEBAR -->
-                                            <div class="page-sidebar nav-collapse collapse">
-                                                <!-- BEGIN SIDEBAR MENU -->
-                                                <form class="sidebar-search">
-                                                    <div class="input-box">
-                                                        @Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keyword" })
-                                                    </div>
-                                                </form>
-                                                <form class="sidebar-search">
-                                                    <div class="input-box">
-                                                        <div id="dir" dir="ltr"></div>
-                                                    </div>
-                                                </form>
-
-
-
+                                    <!-- BEGIN SIDEBAR -->
+                                    <div class="page-sidebar nav-collapse collapse">
+                                        <!-- BEGIN SIDEBAR MENU -->
+                                        <form class="sidebar-search">
+                                            <div class="input-box">
+                                                @Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keyword" })
                                             </div>
-                                        
+                                        </form>
+                                        <form class="sidebar-search">
+                                            <div class="input-box">
+                                                <div id="dir" dir="ltr"></div>
+                                            </div>
+                                        </form>
+
+
+
                                     </div>
+
                                 </div>
                             </div>
+                        </div>
 
 
-                    </ul>
+                </ul>
 
-                </div>
-                <div id="content">
+            </div>
+            <div id="content">
 
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
 
-                                @RenderBody()
-                            </div>
-
+                            @RenderBody()
                         </div>
 
                     </div>
 
-
-                </div>
-                </div>
-                <div id="footer" class="text-left">
-                    <img id="imgFooterLogo" src="~/Content/2/img/sharedui-footer-logo.png" />
-                    <h6>GDi auto nadzor 7.9.1 | &copy; 2009 - 2017 GDi Convivo | Sva prava pridržana.</h6>
                 </div>
 
 
-    <script>
+            </div>
+        </div>
+        <div id="footer" class="text-left">
+            <img id="imgFooterLogo" src="~/Content/2/img/sharedui-footer-logo.png" />
+            <h6>GDi auto nadzor 7.9.1 | &copy; 2009 - 2017 GDi Convivo | Sva prava pridržana.</h6>
+        </div>
 
-        jQuery(document).ready(function () {
-            App.init();
-        });
-    </script>
-  
 
-</body>
+        <script>
+
+            jQuery(document).ready(function () {
+                App.init();
+            });
+        </script>
+
+
+    </body>
 </html>

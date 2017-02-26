@@ -12,7 +12,6 @@ namespace Arcgis.Directions.UI.Controllers
 
         PoiService _poiService;
 
-
         public ActionResult Index()
         {
             var ssoOvreiden = false;
@@ -25,6 +24,7 @@ namespace Arcgis.Directions.UI.Controllers
                     Username = ConfigurationManager.AppSettings[@"Username"]
                 };
                 Session[nameof(UserData)] = user;
+                Session["Username"] = user.Username;
                 return RedirectToAction(nameof(Index), @"Home");
             }
             if (Session[nameof(UserData)] == null)
@@ -77,6 +77,7 @@ namespace Arcgis.Directions.UI.Controllers
             var defaultLang = vm.LanguageList.FirstOrDefault(l => l.Name.Equals(lang));
             if (defaultLang == null) defaultLang = vm.LanguageList.FirstOrDefault();
             vm.Langugae = defaultLang;
+            
             return vm;
         }
 

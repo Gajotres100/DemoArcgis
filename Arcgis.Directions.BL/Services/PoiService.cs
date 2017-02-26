@@ -86,6 +86,7 @@ namespace Arcgis.Directions.BL.Services
             }
             catch (Exception e)
             {
+                
                 logger.Error("error = " + e);
                 return null;
             }
@@ -160,8 +161,33 @@ namespace Arcgis.Directions.BL.Services
             }
             catch (Exception ex)
             {
-                logger.Error("error = " + ex);
-                return null;
+                ApplicationData app1 = new ApplicationData();
+                app1.Name = "App1";
+                app1.URL = "http://www.google.com";
+
+                ApplicationData app2 = new ApplicationData();
+                app2.Name = "App2";
+                app2.URL = "http://www.google.com";
+
+                ApplicationData app3 = new ApplicationData();
+                app3.Name = "App3";
+                app3.URL = "http://www.google.com";
+
+                var a = new List<ApplicationData>();
+                a.Add(app1);
+                a.Add(app2);
+                a.Add(app3);
+
+                var app = new List<ApplicationData>();
+                app = a.Select(x => new ApplicationData
+                {
+                    Name = x.Name,
+                    URL = x.URL
+                }).ToList();
+               
+                return app;
+                //logger.Error("error = " + ex);
+                //return null;
             }
         }
 
