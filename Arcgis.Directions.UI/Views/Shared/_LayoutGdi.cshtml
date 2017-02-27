@@ -54,19 +54,19 @@
                             @if (Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings[@"SSOveriden"]) == true)
                             {
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <img src="~/Content/2/img/cloud.png" />
+                                    <img  src="~/Content/2/img/cloud.png" style="margin-bottom: -5px;" />
                                     <i class="logo-text hidden-xs">SSO overridden</i>
 
-                                    <img src="~/Content/2/img/arrow_down_white.png" />
+                                    <img src="~/Content/2/img/arrow_down_white.png"  style="margin-bottom: -5px;" />
                                 </a>
                             }
                             else
                             {
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <img src="~/Content/2/img/cloud.png" />
+                                    <img src="~/Content/2/img/cloud.png"  style="margin-bottom: -5px;" />
                                     <i class="logo-text hidden-xs">SSO overridden</i>
 
-                                    <img src="~/Content/2/img/arrow_down_white.png" />
+                                    <img src="~/Content/2/img/arrow_down_white.png"  style="margin-bottom: -7px;" />
                                 </a>
                                 <ul class="dropdown-menu">
 
@@ -85,12 +85,12 @@
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 
-                                    <img src="~/Content/2/img/translate.png" />
+                                    <img src="~/Content/2/img/translate.png"  style="margin-bottom: -5px;"/>
                                     <i class="logo-text hidden-xs">Language</i>
 
-                                    <img src="~/Content/2/img/arrow_down_white.png" />
+                                    <img src="~/Content/2/img/arrow_down_white.png"  style="margin-bottom: -7px;" />
                                 </a>
-                                <ul class="dropdown-menu">
+                                <ul id="languageDropDown" class="dropdown-menu">
 
                                     @{ int counter = 1;}
                                     @foreach (var item in Model.LanguageList)
@@ -120,17 +120,17 @@
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                     
-                                        <img src="~/Content/2/img/account_outline_white.png" />
+                                        <img src="~/Content/2/img/account_outline_white.png"  style="margin-bottom: -5px;"/>
                                    
                                         @if (!String.IsNullOrEmpty((string)HttpContext.Current.Session[nameof(UserData)].ToString()))
                                         {
                                             <i class="logo-text hidden-xs">@HttpContext.Current.Session["Username"]</i>
                                         }
                                     
-                                        <img src="~/Content/2/img/arrow_down_white.png" />
+                                        <img src="~/Content/2/img/arrow_down_white.png"  style="margin-bottom: -7px;" />
                                     
                                 </a>
-                                <ul class="dropdown-menu">
+                                <ul id="accountDropDown" class="dropdown-menu">
                                     @*<li class="divider"></li>*@
                                     <li>
                                         <a id="lsLoggedInUser" href="@Url.Action("Logout","Home")"><i class="fa fa-sign-out">Logout</i> </a>

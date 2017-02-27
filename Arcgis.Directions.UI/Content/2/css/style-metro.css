@@ -701,15 +701,24 @@ Bootstrap modal
     padding-left: 1100px;
     max-height: 52px;
     list-style-type: none;
+    margin-top: -1px;
 }
 #ulLanguages{
     float:left;
     max-height: 52px;
     list-style-type: none;
-    
+    margin-top: -1px;
 }
 #account {
     float: left;
     max-height: 52px;
     list-style-type: none;
+    margin-top: -1px;
+}
+
+#languageDropDown{
+    left:-50px;
+}
+#accountDropDown{
+     left:-78px;
 }

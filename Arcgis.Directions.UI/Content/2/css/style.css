@@ -66,7 +66,7 @@ position:absolute;
 min-width:195px;
 float:left;
 top:100%;
-left:0;
+/*left:0;*/
 font-size:14px;
 text-align:left;
 list-style:none;
@@ -81,7 +81,7 @@ box-shadow:5px 5px rgba(102,102,102,.1);
 background-clip:padding-box;
 -webkit-background-clip:padding-box;
 /*margin:2px 0 0;*/
-margin: -15px;
+/*margin: -15px;*/
 padding:0;
 }
 
