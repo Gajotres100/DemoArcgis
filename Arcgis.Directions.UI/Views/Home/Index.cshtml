@@ -5,11 +5,14 @@
 
 <script>
    
-    
+   
     function CallChangefunc(val) {
+       
         window.location.href = "/" + val + "/Home/Index/";
+        
+        
     }
-
+   
     require([
      "esri/urlUtils", "esri/map", "esri/dijit/Directions",
      "dojo/parser",
@@ -76,7 +79,19 @@
         $('#Langugae_Name').css('color', '#FFFFF');
         
         $('.esriRoutesContainer').css('height', '300px');
-
+        
+        if (window.location.href.indexOf("EN") > -1) {
+            $('#languageText').text('Language');
+            $('#lsLoggedInUser').text('Logout');
+            $('#choosApp').text('Select app');
+            $('#logoName').text('Gdi car control');
+        }
+        else {
+            $('#languageText').text('Jezik');
+            $('#lsLoggedInUser').text('Odjava');
+            $('#choosApp').text('Odaberi aplikaciju');
+            $('#logoName').text('Gdi auto nadzor');
+        }
     });
     $('.esriDirectionsButton ').click(function () {
 
