@@ -1180,7 +1180,7 @@ text-decoration:none;
 }
 
 #header .top-menu,#header .top-menu .dropdown-menu li:last-child {
-margin-right:0;
+float: right;
 }
 
 #header .top-menu .dropdown-menu li a,.widget-box a {
