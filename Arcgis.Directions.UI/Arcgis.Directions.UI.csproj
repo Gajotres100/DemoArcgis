@@ -1729,6 +1729,8 @@
     <Content Include="Content\2\img\seat-recline-extra.png" />
     <Content Include="Content\2\img\select-caret.png" />
     <Content Include="Content\2\img\settings.png" />
+    <Content Include="Content\2\img\sharedui-footer-logo.png" />
+    <Content Include="Content\2\img\sharedui-header-logo.png" />
     <Content Include="Content\2\img\sidebar-menu-arrow-green.png" />
     <Content Include="Content\2\img\sidebar-menu-arrow-rtl.png" />
     <Content Include="Content\2\img\sidebar-menu-arrow.png" />

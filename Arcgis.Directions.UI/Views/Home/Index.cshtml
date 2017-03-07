@@ -93,15 +93,26 @@
             $('#logoName').text('Gdi auto nadzor');
         }
     });
-    $('.esriDirectionsButton ').click(function () {
+    //$('.esriDirectionsButton ').click(function () {
 
-        $('.esriRoutesContainer').slimScroll({
-            height:'583px',
-            position: 'right',
-            railVisible: true,
-            alwaysVisible: true
+    //    $('.esriRoutesContainer').slimScroll({
+    //        height:'583px',
+    //        position: 'right',
+    //        railVisible: true,
+    //        alwaysVisible: true
+    //    });
+    //});
+    (function ($) {
+        $('.esriDirectionsButton ').click(function () {
+
+            $('.esriRoutesContainer').slimScroll({
+                height: '583px',
+                position: 'right',
+                railVisible: true,
+                alwaysVisible: true
+            });
         });
-    });
+    })(jQuery);
     var countStops = 0;
 
     $("#keyword").autocomplete({
