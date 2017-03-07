@@ -1845,8 +1845,6 @@
     <Content Include="assets\plugins\bootstrap-datepicker\.gitignore" />
     <Content Include="assets\plugins\bootstrap-datepicker\.hgignore" />
     <Content Include="assets\plugins\bootstrap-datepicker\.travis.yml" />
-    <Content Include="assets\plugins\bootstrap-datepicker\build\build.less" />
-    <Content Include="assets\plugins\bootstrap-datepicker\build\build_standalone.less" />
     <Content Include="assets\plugins\bootstrap-datepicker\CHANGELOG.md" />
     <Content Include="assets\plugins\bootstrap-datepicker\component.json" />
     <Content Include="assets\plugins\bootstrap-datepicker\CONTRIBUTING.md" />
@@ -2060,6 +2058,7 @@
     <Content Include="Content\1\fonts\DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff" />
     <Content Include="Content\1\fonts\k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff" />
     <Content Include="Content\1\fonts\MTP_ySUJH_bn48VBG8sNSnhCUOGz7vYGh680lGh-uXM.woff" />
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2069,6 +2068,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\plugins\bootstrap-datepicker\build\" />
     <Folder Include="Content\1\img\blog\" />
     <Folder Include="Content\1\img\flags\" />
     <Folder Include="Content\1\img\gallery\" />
