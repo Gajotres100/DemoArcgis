@@ -31,6 +31,7 @@ namespace Arcgis.Utils.Web
                                         ));
             bundles.Add(new ScriptBundle("~/Content/1/scripts/").Include(
                              "~/Content/1/scripts/app.js"
+                             
                             ));
             bundles.Add(new ScriptBundle("~/Content/1/plugins/").Include(
                             "~/Content/1/plugins/breakpoints/breakpoints.js",
@@ -91,7 +92,9 @@ namespace Arcgis.Utils.Web
 
             bundles.Add(new ScriptBundle("~/Content/2/scripts/").Include(
                            "~/Content/2/scripts/app.js",
-                           "~/Content/2/scripts/menu-action.js"
+                           "~/Content/2/scripts/menu-action.js",
+                            "~/Content/2/scripts/jquery.slimscroll.js",
+                            "~/Content/2/scripts/jquery.slimscroll.min.js"
                            ));
 
 

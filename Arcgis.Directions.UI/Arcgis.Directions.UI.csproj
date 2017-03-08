@@ -1770,6 +1770,8 @@
     <Content Include="Content\2\scripts\gallery.js" />
     <Content Include="Content\2\scripts\inbox.js" />
     <Content Include="Content\2\scripts\index.js" />
+    <Content Include="Content\2\scripts\jquery.slimscroll.js" />
+    <Content Include="Content\2\scripts\jquery.slimscroll.min.js" />
     <Content Include="Content\2\scripts\login.js" />
     <Content Include="Content\2\scripts\maps-google.js" />
     <Content Include="Content\2\scripts\maps-vector.js" />
@@ -2058,7 +2060,9 @@
     <Content Include="Content\1\fonts\DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff" />
     <Content Include="Content\1\fonts\k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff" />
     <Content Include="Content\1\fonts\MTP_ySUJH_bn48VBG8sNSnhCUOGz7vYGh680lGh-uXM.woff" />
+
     <None Include="Properties\PublishProfiles\Local.pubxml" />
+
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
