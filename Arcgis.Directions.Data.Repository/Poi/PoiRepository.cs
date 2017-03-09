@@ -68,7 +68,7 @@ namespace Arcgis.Directions.Data.Repository.Poi
         {
             using (var context = new EntitiesPortalOracle())
             {
-                return context.POI_PLACES.Where(p => (p.ADDRESS.Contains(keyword) || p.DESCRIPTION.Contains(keyword) || p.POI_PLACE_NAME.Contains(keyword)) && p.USER_ID == userID).Select(x => new CusPoi
+                return context.POI_PLACES.Where(p => (p.ADDRESS.ToLower().Contains(keyword.ToLower()) || p.DESCRIPTION.ToLower().Contains(keyword.ToLower()) || p.POI_PLACE_NAME.ToLower().Contains(keyword.ToLower())) && p.USER_ID == userID).Select(x => new CusPoi
                 {
                     PoiID = x.POI_PLACE_ID,
                     Address = x.ADDRESS,
