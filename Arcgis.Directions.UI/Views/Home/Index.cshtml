@@ -4,15 +4,15 @@
 }
 
 <script>
-   
-   
+
+
     function CallChangefunc(val) {
-       
-        window.location.href = "/" + val + "/Home/Index/";
-        
-        
+
+        window.location.href = "/"+ val;
+
+
     }
-   
+
     require([
      "esri/urlUtils", "esri/map", "esri/dijit/Directions",
      "dojo/parser",
@@ -74,23 +74,27 @@
 
     });
     $(window).load(function () {
-        
+
         $('#Langugae_Name').css('background-color', '#333');
         $('#Langugae_Name').css('color', '#FFFFF');
-        
+
         $('.esriRoutesContainer').css('height', '300px');
-        
+
         if (window.location.href.indexOf("EN") > -1) {
-            $('#languageText').text('Language');
-            $('#lsLoggedInUser').text('Logout');
-            $('#choosApp').text('Select app');
-            $('#logoName').text('Gdi car control');
+            $('#languagetext').text('EN');
+            $('#lsLoggedInUser').text('Logout').css('font-size', '16px');
+            $('#choosApp1').text('SSO overridden');
+            $('#choosApp2').text('Select app');
+            $('#logoName').text('GDI car control').css('font-size', '18px');
+            $('#flagChange').toggleClass('flag-hr');
         }
         else {
-            $('#languageText').text('Jezik');
-            $('#lsLoggedInUser').text('Odjava');
-            $('#choosApp').text('Odaberi aplikaciju');
-            $('#logoName').text('Gdi auto nadzor');
+            $('#languagetext').text('HR');
+            $('#lsLoggedInUser').text('Odjava').css('font-size', '16px');
+            $('#choosApp1').text('SSO overridden');
+            $('#choosApp2').text('Odaberi aplikaciju');
+            $('#logoName').text('GDI auto nadzor').css('font-size', '18px');
+            $('#flagChange').toggleClass('flag-gb');
         }
     });
     //$('.esriDirectionsButton ').click(function () {
@@ -154,7 +158,7 @@
     });
 
     });
-   
+
 </script>
 
 @Html.HiddenFor(m => m.CusPoiInput)
