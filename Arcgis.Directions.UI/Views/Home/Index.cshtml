@@ -122,7 +122,7 @@
     $("#keyword").autocomplete({
         source: function (request, response) {
             $.ajax({
-                url: "@Request.Url.AbsoluteUri/@Model.Langugae.Name/Home/GetPoiList",
+                url: '@Url.Action("GetPoiList", "Home")',
                 data: "{ 'keywords': '" + request.term + "' }",
                 dataType: 'json',
                 type: "POST",
@@ -142,7 +142,7 @@
         minLength: 2,
         select: function (event, ui) {
             $.ajax({
-                url: "@Request.Url.AbsoluteUri/@Model.Langugae.Name/Home/GetPoiByID",
+                url: '@Url.Action("GetPoiByID", "Home")',
                 data: "{ 'id': '" + ui.item.id + "' }",
                 dataType: 'json',
                 type: "POST",
