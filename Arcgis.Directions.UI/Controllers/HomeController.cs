@@ -68,6 +68,7 @@ namespace Arcgis.Directions.UI.Controllers
 
         public ActionResult ChangeLanguage(string lang) => Redirect($"~/{lang}");
 
+
         GetPOIVM GetPois()
         {
             var lang = (string)ControllerContext.RouteData.Values[@"lang"];
