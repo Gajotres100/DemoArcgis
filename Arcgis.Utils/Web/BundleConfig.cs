@@ -59,7 +59,9 @@ namespace Arcgis.Utils.Web
                             "~/Content/2/css/pages/inbox.css",
                             "~/Content/2/css/autocomplete-ui-input.css",
                             "~/Content/2/css/flags.css",
-                            "~/Content/2/css/flags.min.css"
+                            "~/Content/2/css/flags.min.css",
+                            "~/Content/2/css/style-body.css",
+                            "~/Content/2/css/Common.css"
 
                             ));
             bundles.Add(new StyleBundle("~/Content/2/fonts/").Include(

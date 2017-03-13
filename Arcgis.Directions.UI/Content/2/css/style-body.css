@@ -1,0 +1,1463 @@
+﻿html {
+    position: relative;
+    min-height: 100%
+}
+body {
+    font-family: "OpenSansRegular", Arial, Helvetica, Verdana, sans-serif !important;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #333;
+    background: #FFF;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+.container-fluid {
+    padding: 0 !important
+}
+#preloader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    font-size: 1.2em;
+    background: #FFF url(themes/GDiDemo/img/app-loader.gif) no-repeat 50% 50%;
+    z-index: 10000
+}
+#wrapper {
+    width: 100%;
+    height: 100%
+}
+#header {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 52px;
+    min-height: 52px;
+    background: #4F5467;
+    border: 0;
+    filter: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+}
+#header.navbar-fixed-top,
+#header.navbar-static-top {
+    z-index: 9999
+}
+#header .navbar-header {
+    width: 100%;
+    background: #4F5467;
+    border: 0
+}
+#header .dropdown {
+    position: relative
+}
+#header .dropdown-menu {
+    display: none;
+    position: absolute;
+    margin: 2px 0 0;
+    padding: 0;
+    min-width: 195px;
+    float: left;
+    top: 100%;
+    left: 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #FFF;
+    border: 1px solid #EAEBEC;
+    z-index: 1000;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    box-shadow: 5px 5px rgba(102, 102, 102, .1);
+    -webkit-box-shadow: 5px 5px rgba(102, 102, 102, .1);
+    background-clip: padding-box;
+    -webkit-background-clip: padding-box
+}
+#header .dropdown-menu.pull-right {
+    right: 0;
+    left: auto
+}
+#header .dropdown-menu .divider {
+    margin: 7px 0;
+    height: 1px;
+    background-color: #EAEBEC;
+    overflow: hidden
+}
+#header .dropdown-menu > li > a {
+    display: block;
+    padding: 8px 16px;
+    clear: both;
+    font-weight: 300;
+    line-height: 18px;
+    text-decoration: none;
+    color: #6F6F6F;
+    white-space: nowrap
+}
+#header .dropdown-menu > li > a:hover,
+#header .dropdown-menu > li > a:focus {
+    text-decoration: none;
+    background-color: #f5f5f5;
+    color: #262626
+}
+#header .dropdown-menu > li:first-child:hover > a {
+    border-radius: 3px 3px 0 0;
+    -moz-border-radius: 3px 3px 0 0;
+    -webkit-border-radius: 3px 3px 0 0
+}
+#header .dropdown-menu > li:last-child:hover > a {
+    border-radius: 0 0 3px 3px;
+    -moz-border-radius: 0 0 3px 3px;
+    -webkit-border-radius: 0 0 3px 3px
+}
+#header .open > .dropdown-menu {
+    display: block
+}
+#header .open > a {
+    outline: 0
+}
+#header .dropdown-menu-right {
+    left: auto;
+    right: 0
+}
+#header .dropdown-menu-left {
+    left: 0;
+    right: auto
+}
+#header .dropdown-header {
+    display: block;
+    padding: 3px 20px;
+    font-size: 12px;
+    line-height: 1.42857143;
+    color: #777777;
+    white-space: nowrap
+}
+#header .pull-right > .dropdown-menu {
+    right: 0;
+    left: auto
+}
+@media (min-width: 768px) {
+    #header .navbar-right .dropdown-menu {
+        left: auto;
+        right: 0
+    }
+    #header .navbar-right .dropdown-menu-left {
+        left: 0;
+        right: auto
+    }
+}
+#header .logo {
+    float: left
+}
+#header .logo a {
+    display: inline-block;
+    float: left
+}
+#header .logo a:hover {
+    text-decoration: none
+}
+#header .logo-image {
+    position: relative;
+    width: 60px;
+    height: 52px;
+    background-color: #3F4352
+}
+#header .logo-image img {
+    position: absolute;
+    top: 6px;
+    left: 10px;
+    width: 40px;
+    height: 40px
+}
+#header .logo-text {
+    padding-left: 10px;
+    font-size: 18px;
+    line-height: 52px;
+    text-align: center;
+    color: #FFF
+}
+#header .top-menu {
+    margin-right: 0
+}
+#header .top-menu > li {
+    float: left
+}
+#header .top-menu > li > a {
+    padding: 17px 14px;
+    height: 52px;
+    line-height: 100%;
+    color: #FFF
+}
+#header .top-menu > li > a:hover,
+#header .top-menu > li > a:focus {
+    color: #FFF;
+    background-color: rgba(255, 255, 255, 0.2)
+}
+#header .top-menu > li > a > i.mdi {
+    margin-right: 4px;
+    font-size: 16px
+}
+#header .top-menu > li.dropdown .dropdown-menu:before {
+    display: inline-block !important;
+    position: absolute;
+    top: -7px;
+    right: 9px;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #eee;
+    border-left: 7px solid transparent;
+    border-bottom-color: rgba(0, 0, 0, .2);
+    content: ''
+}
+#header .top-menu > li.dropdown .dropdown-menu:after {
+    display: inline-block !important;
+    position: absolute;
+    top: -6px;
+    right: 10px;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #fff;
+    border-left: 6px solid transparent;
+    content: ''
+}
+#header .top-menu .dropdown-menu li {
+    display: block
+}
+#header .top-menu .dropdown-menu li:last-child {
+    margin-right: 0
+}
+#header .top-menu .dropdown-menu li a {
+    color: #555
+}
+#header .top-menu .dropdown-menu li a:hover,
+#header .top-menu .dropdown-menu li a:focus {
+    color: #23527C;
+    background: #F6F6F6
+}
+#header .top-menu .dropdown-menu li a i {
+    display: inline-block;
+    margin-right: 7px;
+    width: 16px;
+    font-size: 16px
+}
+#sidebar {
+    position: fixed;
+    padding-top: 52px;
+    width: 60px;
+    height: 100%;
+    left: 0;
+    background: #f6f9fb;
+    border-right: 1px solid rgba(120, 130, 140, 0.18);
+    z-index: 1002;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1)
+}
+#sidebar ul.main-menu {
+    display: inline-block;
+    margin: 0;
+    padding: 0 0 140px 0
+}
+#sidebar ul.main-menu > li {
+    display: block;
+    list-style: none
+}
+#sidebar ul.main-menu > li > a {
+    display: block;
+    padding: 15px 0 14px;
+    width: 60px;
+    font-size: 22px;
+    text-align: center;
+    color: #555;
+    border-bottom: 1px solid rgba(120, 130, 140, 0.18);
+    border-left: 3px solid transparent
+}
+#sidebar ul.main-menu > li:hover > a,
+#sidebar ul.main-menu > li.selected > a {
+    background: rgba(0, 0, 0, 0.02);
+    border-left: 3px solid #3D7CC0
+}
+#sidebar ul.main-menu > li.selected > a {
+    background: #FFF
+}
+#sidebar ul.main-menu > li .sidebar-menu {
+    display: none;
+    position: absolute;
+    /*padding: 52px 0 87px 0;*/
+    height: 100%;
+    /*width: 310px;*/
+    top: 0;
+    left: 60px;
+    background: #FFF;
+    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.05)
+}
+#sidebar ul.main-menu > li.selected .sidebar-menu {
+    display: block
+}
+#sidebar ul.main-menu > li.selected.cnt-none a {
+    border-right: 1px solid rgba(120, 130, 140, 0.18)
+}
+#sidebar ul.main-menu > li.selected.cnt-none .sidebar-menu {
+    display: none
+}
+#sidebar .menu-toggle {
+    position: absolute;
+    /*top: 65px;*/
+    /*left: 330px;*/
+    z-index: 1003
+}
+#sidebar .menu-toggle i {
+    font-size: 24px;
+    color: #666
+}
+#sidebar .menu-toggle i:hover,
+#sidebar .menu-toggle i:focus {
+    color: #23527C
+}
+#sidebar .menu-title {
+    display: block;
+    margin: 0;
+    padding: 17px 15px 17px 15px;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase
+}
+#sidebar .menu-links {
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+#sidebar .menu-links > li {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0
+}
+#sidebar .menu-links > li.active > a {
+    font-weight: 500
+}
+#sidebar .menu-links a {
+    text-decoration: none;
+    color: #54667A
+}
+#sidebar .menu-links a.active {
+    font-weight: 500
+}
+#sidebar .menu-links > li > a {
+    padding: 12px 20px 12px 20px;
+    display: block
+}
+#sidebar .menu-links > li > a:hover {
+    color: #23527C
+}
+#sidebar .menu-tabs {
+    position: relative;
+    table-layout: fixed;
+    margin: 0 auto;
+    padding: 41px 0 0 0;
+    width: 100%
+}
+#sidebar .menu-tabs > ul {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: flex;
+    position: fixed;
+    top: 104px;
+    left: 60px;
+    margin: 0 auto;
+    padding: 0;
+    height: 41px;
+    background: #FFF;
+    z-index: 1000;
+    -ms-box-orient: horizontal;
+    -ms-box-pack: center;
+    flex-flow: row wrap;
+    -webkit-flex-flow: row wrap;
+    -moz-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    justify-content: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    -ms-justify-content: center
+}
+#sidebar .menu-tabs .dxtc-spacer {
+    border: none
+}
+#sidebar .menu-tabs .tab {
+    padding: 11px 4px 7px 4px;
+    text-align: center;
+    background: none;
+    border: none;
+    border-bottom: 3px solid #CCC
+}
+#sidebar .menu-tabs .tab:hover,
+#sidebar .menu-tabs .tab:hover a {
+    color: #3D7CC0;
+    border-color: #3D7CC0
+}
+#sidebar .menu-tabs .tab a {
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #444
+}
+#sidebar .menu-tabs .tab.active,
+#sidebar .menu-tabs .tab.active a {
+    color: #FFF;
+    background-color: #3D7CC0;
+    border-color: #3D7CC0
+}
+#sidebar .menu-tabs .tab.active:hover a {
+    color: #FFF
+}
+#sidebar .menu-tabs .dxtc-leftIndent,
+#sidebar .menu-tabs .dxtc-rightIndent {
+    width: 0 !important;
+    border: none
+}
+#sidebar .menu-tabs .content {
+    margin: 0;
+    padding: 0;
+    border: none
+}
+#divDeviceInfo {
+    padding: 5px 8px;
+    color: #555
+}
+#divDeviceInfo > div {
+    padding: 1px 0;
+    line-height: 24px
+}
+#divDeviceInfo span {
+    display: block;
+    float: right;
+    text-align: right !important
+}
+#divDeviceInfo i {
+    margin-right: 3px;
+    font-size: 20px
+}
+#content {
+    padding: 52px 0 0 0;
+    min-height: 568px;
+    background: #FFF;
+    padding-bottom: 35px
+}
+.content-wrapper #content {
+    /*margin-left: 60px;*/
+}
+@media (min-width: 768px) {
+    #content {
+        /*margin-left: 370px;*/
+    }
+}
+#footer {
+    position: absolute;
+    padding: 1px 30px 1px 40px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 35px;
+    background-color: #4F5467;
+    overflow: hidden;
+    z-index: 1020
+}
+#footer h6 {
+    color: #FFF
+}
+#footer img {
+    position: absolute;
+    top: 3px;
+    left: 6px;
+    width: 30px;
+    height: 30px
+}
+.update-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    background: Transparent url(themes/GDiDemo/Img/modal-overlay-bg.png) repeat 0 0
+}
+.update-progress div {
+    position: relative;
+    margin: auto;
+    top: 50%;
+    width: 208px;
+    height: 13px;
+    text-align: center
+}
+.update-progress img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -16px;
+    padding: 0
+}
+#map {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden
+}
+#map .layersDiv text {
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.15)
+}
+#map-controller {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    z-index: 1001
+}
+#map-zoom {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: #FFF;
+    border: 1px solid #D2D2D2;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px
+}
+#map-zoom a {
+    display: block;
+    margin: 3px;
+    color: #555;
+    cursor: pointer;
+    cursor: hand;
+    outline: none
+}
+#map-zoom a:hover {
+    color: #21568C
+}
+#map-zoom a:first-of-type {
+    border-bottom: 1px solid #D2D2D2
+}
+#map-zoom i {
+    font-size: 22px
+}
+#map-view {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: #666;
+    background-color: #FFF;
+    border: 1px solid #D2D2D2;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px
+}
+#map-view a {
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;
+    color: #666
+}
+#map-view a.active {
+    color: #21568C
+}
+#map-view a:hover {
+    color: #21568C
+}
+#map-view .section {
+    position: relative;
+    margin: 0 6px 0 0;
+    float: left
+}
+#map-view .section.last {
+    margin: 0
+}
+#map-view .mwLink {
+    position: relative;
+    display: block;
+    float: left;
+    text-transform: uppercase
+}
+#map-view .mwLink i {
+    margin-right: 3px;
+    float: left;
+    font-size: 22px
+}
+#map-view .ddMenu {
+    display: none;
+    position: absolute;
+    top: 32px;
+    left: -1px;
+    width: 170px;
+    color: #666;
+    background-color: #FFF;
+    overflow: hidden;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px
+}
+#map-view .ddMenu .caption {
+    display: block;
+    margin: 0;
+    padding: 7px 5px 6px 5px;
+    width: 100%;
+    font-weight: bold
+}
+#map-view .ddMenu .list-view {
+    padding: 0 5px 3px 5px;
+    width: 170px;
+    background-color: #FFF
+}
+#map-view .ddMenu .list-item {
+    padding: 6px 0 8px 0;
+    border-top: 1px solid #D2D2D2
+}
+#map-view .ddMenu .list-item:hover,
+#map-view .ddMenu .list-item.active {
+    color: #21568C
+}
+#baseMapsMenu {
+    left: 0
+}
+#dynMapsMenu {
+    left: 8px
+}
+#lnkSetBaseMap {
+    padding-right: 0
+}
+#lnkSetBaseMap span {
+    background-position: -80px 0 !important
+}
+#lnkSetBaseMap:hover span {
+    background-position: -80px -16px !important
+}
+#lnkSetDynMap {
+    padding-left: 6px;
+    padding-right: 0;
+    border-left: 1px solid #D2D2D2
+}
+#lnkSetDynMap span {
+    background-position: -64px 0 !important
+}
+#lnkSetDynMap:hover span {
+    background-position: -64px -16px !important
+}
+#lnkShowAlarmHistory {
+    padding-left: 5px;
+    border-left: 1px solid #D2D2D2
+}
+#lnkShowAlarmHistory span {
+    background-position: -416px 0 !important
+}
+#lnkShowAlarmHistory:hover span {
+    background-position: -416px -16px !important
+}
+#imgMapLoading {
+    position: absolute;
+    top: 1px;
+    left: -26px;
+    width: 24px;
+    height: 24px;
+    display: none
+}
+#mapCopyright {
+    position: absolute;
+    right: 25px;
+    width: auto;
+    font-weight: bold;
+    color: #555
+}
+#map .tmplForm {
+    padding-bottom: 5px;
+    color: #666
+}
+#map .tmplForm input,
+#map .tmplForm select {
+    margin: 0;
+    font-size: inherit;
+    color: #555
+}
+#map .tmplForm label {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 150px;
+    float: left;
+    line-height: 170%;
+    text-align: left
+}
+#map .tmplForm p {
+    margin: 0
+}
+#map .tmplForm a {
+    margin: 0;
+    padding: 0;
+    color: #223D51;
+    text-decoration: underline;
+    border: 0;
+    cursor: pointer;
+    outline: 0
+}
+#map .tmplForm .section {
+    margin: 0;
+    padding: 2px 0;
+    clear: left
+}
+#map .tmplForm .plainVal {
+    width: auto
+}
+#map .tmplForm .plainVal .empty {
+    color: #777
+}
+#map-sidebar {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    margin: 0;
+    padding: 0;
+    width: 1px
+}
+#tlogSearchInfo {
+    margin: 0 0 5px 0 !important;
+    padding: 3px 0 !important;
+    font-size: 16px !important;
+    text-align: center;
+    color: #555;
+    background-color: #FFF
+}
+#tlogSearchInfo i {
+    font-size: 20px
+}
+.widgetContainer {
+    margin: 0;
+    padding: 0;
+    z-index: 1000
+}
+.widgetContainer a {
+    text-decoration: none;
+    overflow: hidden
+}
+.widget-box {
+    padding: 0;
+    overflow: hidden
+}
+.widget-box input,
+.widget-box select {
+    margin: 0;
+    font-size: inherit;
+    color: #333
+}
+.widget-box label {
+    display: block;
+    margin: 5px 0 0 0;
+    padding: 0;
+    text-align: left;
+    color: #666
+}
+.widget-box a {
+    color: #555
+}
+.widget-box a:hover {
+    color: #23527C !important
+}
+.widget-box .caption {
+    padding: 0 5px 5px 0;
+    text-transform: uppercase
+}
+.widget-box .hide-widget {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: block
+}
+.widget-box.simple {
+    overflow: visible
+}
+.widget-box.simple ul {
+    margin: 0;
+    padding: 0
+}
+.widget-box.simple li {
+    margin: 0;
+    padding: 0;
+    float: left
+}
+.widget-box.complex {
+    position: relative;
+    width: 250px;
+    float: right
+}
+.widget-box.complex.wide {
+    width: 310px
+}
+.widget-box.complex ul {
+    margin: 0;
+    padding: 0
+}
+.widget-box.complex li {
+    display: block
+}
+.widget-box.complex .box {
+    padding: 5px 10px;
+    width: auto;
+    background-color: #FFF;
+    border: 1px solid #D2D2D2;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px
+}
+.widget-box.complex .caption {
+    color: #666
+}
+.widget-box.complex .list-view {
+    padding: 0 4px;
+    max-height: 140px;
+    color: #FFF
+}
+.widget-box.complex .list-item {
+    padding: 4px;
+    border-bottom: 1px solid #D2D2D2
+}
+.widget-box.complex .list-item:last-child {
+    border: none
+}
+.widget-box.complex .list-item:hover {
+    color: #21568C;
+    background-color: #EFEFEF
+}
+.widget-box.complex .list-item .title {
+    color: #555;
+    float: left
+}
+.widget-box.complex .list-item .content {
+    display: block;
+    float: left;
+    color: #666
+}
+.widget-box.complex .list-item .action {
+    margin-right: 5px
+}
+.alarmHistoryWidget {
+    position: absolute;
+    top: 0;
+    right: 0
+}
+.alarmHistoryWidget .scroller {
+    margin: 5px auto;
+    padding: 0;
+    height: 200px;
+    border: 1px solid #D2D2D2
+}
+.alarmHistoryWidget .list-view {
+    margin: 0;
+    padding: 0;
+    height: inherit;
+    max-height: 200px !important;
+    background-color: #FFF;
+    overflow: hidden
+}
+.alarmHistoryWidget .list-view .content {
+    width: 100% !important
+}
+.alarmHistoryWidget .list-view .action {
+    display: block;
+    width: 16px;
+    height: 16px;
+    float: right;
+    background: Transparent url(themes/GDiDemo/Img/app-misc-icons.png) no-repeat -112px 0
+}
+.alarmHistoryWidget .list-view .action:hover {
+    background-position: -112px -16px
+}
+.alarmHistoryWidget .list-view .action.disabled {
+    background-position: -112px -32px
+}
+.alarmHistoryWidget .list-view .newAlarm {
+    color: #ED1C24;
+    text-decoration: blink
+}
+#lnkClearAlarmsFromMap {
+    display: block;
+    margin: 4px auto 0 auto;
+    color: #666
+}
+.list-view {
+    margin: 0;
+    padding: 0
+}
+.list-view li {
+    display: block;
+    margin: 0;
+    padding: 3px;
+    width: auto
+}
+.list-view .caption {
+    display: block;
+    margin: 0
+}
+.list-view a {
+    text-decoration: none
+}
+#mapCtxMenuContainer {
+    height: 0
+}
+#mapCtxMenu {
+    position: relative;
+    width: 210px
+}
+#mapCtxMenu i {
+    float: left;
+    font-size: 22px
+}
+#mapCtxMenu .ctxMenuItem {
+    color: #666;
+    overflow: hidden
+}
+#mapCtxMenu .ctxMenuItem:hover {
+    color: #21568C;
+    background: none
+}
+#map .mapInfoTip {
+    position: absolute;
+    padding: 8px;
+    width: auto;
+    background-color: #FFF;
+    border: 1px solid #D2D2D2;
+    z-index: 1001;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px
+}
+#map .mapInfoTip .pointer {
+    position: absolute;
+    display: block;
+    width: 20px;
+    height: 10px;
+    background: Transparent url(themes/GDiDemo/Img/control-mapinfotip-pointer.png) no-repeat 0 0;
+    z-index: 1002
+}
+#map .mapInfoTip .pointer.bottom {
+    height: 10px;
+    background-position: 0 -10px
+}
+.mapInfoMenu {
+    display: table;
+    position: absolute;
+    bottom: 3px;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid #D2D2D2
+}
+.mapInfoMenu ul {
+    display: table-row;
+    margin: 0;
+    padding: 0
+}
+.mapInfoMenu li {
+    display: table-cell;
+    text-align: center;
+    list-style: none
+}
+.mapInfoMenu a {
+    display: block;
+    padding: 6px 0 0 0;
+    color: #666;
+    text-decoration: none
+}
+.mapInfoMenu a:hover {
+    color: #21568C
+}
+.mapInfoMenu i {
+    font-size: 22px
+}
+#errorBox {
+    margin: 100px auto 0 auto;
+    width: 500px;
+    font-size: 1.2em;
+    background: #FBE3E4 url(themes/GDiDemo/Icons/error.png) no-repeat 8px 12px;
+    border: 1px solid #FAA9AB
+}
+#errorBox div {
+    display: block;
+    padding: 3px
+}
+#errorBox .title {
+    padding: 10px 0 10px 35px;
+    font-size: 1.4em;
+    color: #8a1f11
+}
+#errorBox .message {
+    margin: 0 5px;
+    padding: 10px;
+    background-color: #FFF;
+    border: 1px solid #FAA9AB;
+    overflow: auto
+}
+#errorBox .message #pnlStackTrace {
+    margin-top: 5px;
+    padding: 0
+}
+#errorBox .links {
+    padding: 5px 0;
+    text-align: center
+}
+#errorBox .links table {
+    margin: 0 auto
+}
+#errorBox .links a {
+    display: block;
+    margin: 0 5px;
+    padding: 1px 6px;
+    height: 20px;
+    font-size: 1.1em;
+    text-align: center;
+    text-decoration: none;
+    background-color: #DA002A;
+    color: #FFF;
+    border: 1px solid #B7B7B7;
+    cursor: pointer
+}
+#errorBox .links a:hover {
+    text-decoration: underline
+}
+.form.report .gridview.poi-summary {
+    margin-top: 15px;
+    width: 50%;
+    background-color: #FFF
+}
+.statusBar {
+    position: fixed;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    margin: auto 5px;
+    padding: 5px 8px;
+    text-align: left;
+    color: #FFF;
+    background: #344254;
+    border: 1px solid #A4B6C4;
+    opacity: .85;
+    filter: alpha(opacity "85");
+    z-index: 1002
+}
+.statusBar p {
+    padding: 2px 0;
+    margin: 0;
+    font-size: 1.2em
+}
+.statusBar p.error {
+    color: #FF0000
+}
+.statusBarClose {
+    position: absolute;
+    right: 7px;
+    top: 0;
+    font-size: 1.3em;
+    font-weight: bold;
+    text-decoration: none;
+    color: #A4B6C4;
+    cursor: pointer;
+    z-index: 1003
+}
+.statusBarClose:hover {
+    color: #90ADD3
+}
+#TB_window {
+    font-size: 1.2em;
+    color: #333
+}
+#TB_secondLine {
+    font: 10px Arial, Helvetica, sans-serif;
+    color: #666
+}
+#TB_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1010
+}
+.TB_overlayMacFFBGHack {
+    background: url(themes/GDiDemo/Img/modal-overlay-hack.png) repeat
+}
+.TB_overlayBG {
+    background-color: #000;
+    filter: alpha(opacity=20);
+    -moz-opacity: 0.20;
+    opacity: 0.20
+}
+#TB_window {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    padding: 0;
+    text-align: left;
+    color: #000;
+    background: Transparent;
+    z-index: 1011
+}
+#TB_iframeContent {
+    margin-bottom: -1px;
+    _margin-bottom: 1px;
+    padding: 0;
+    clear: both;
+    background: Transparent;
+    border: none;
+    overflow-x: hidden
+}
+#TB_load {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: -6px 0 0 -104px;
+    width: 208px;
+    height: 32px;
+    background: Transparent url(themes/GDiDemo/Img/modal-loader.gif) no-repeat 50% 50%;
+    z-index: 1012
+}
+#TB_HideSelect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FFF;
+    border: none;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    opacity: 0;
+    z-index: 999
+}
+.nihilo .dijitError {
+    border-color: #FF6666 !important;
+    background-color: #FFF
+}
+.nihilo .dijitErrorFocused {
+    border-color: #FF1A1A !important;
+    background-color: #FFF
+}
+.nihilo .dijitValidationIcon {
+    width: 16px;
+    background: none
+}
+.nihilo .dijitArrowButtonInner {
+    /*background: url(themes/GDiDemo/Img/app-misc-small-arrows.png) no-repeat scroll 0 center;*/
+    width: 7px;
+    height: 7px;
+    margin: 0 4px 0 4px
+}
+.nihilo .dijitSpinnerButtonContainer {
+    width: 12px
+}
+.dj_ie7 .nihilo .dijitSpinnerButtonContainer {
+    width: 11px
+}
+.dj_ie7 .nihilo .dijitSpinner .dijitUpArrowButton .dijitArrowButtonInner,
+.dj_ie7 .nihilo .dijitSpinner .dijitDownArrowButton .dijitArrowButtonInner {
+    margin-left: -1px
+}
+.nihilo .dijitLeftArrowButton .dijitArrowButtonInner {
+    background-position: -7px center
+}
+.nihilo .dijitRightArrowButton .dijitArrowButtonInner {
+    background-position: -14px center
+}
+.nihilo .dijitUpArrowButton .dijitArrowButtonInner {
+    background-position: -21px center
+}
+.dj_webkit .nihilo .dijitSpinner .dijitUpArrowButton .dijitArrowButtonInner {
+    margin-top: -1px
+}
+.dj_ie .nihilo .dijitSpinner .dijitDownArrowButton .dijitArrowButtonInner {
+    margin-top: -2px
+}
+.dj_ie8 .nihilo .dijitSpinner .dijitDownArrowButton .dijitArrowButtonInner {
+    margin-top: -1px
+}
+.nihilo .dijitDialog {
+    border: 5px solid #999;
+    background: #FFF
+}
+.nihilo .dijitDialogTitleBar {
+    padding: 5px 6px 4px 6px;
+    text-align: left;
+    background: none;
+    background-color: #F0F0F0;
+    outline: 0
+}
+.nihilo .dijitDialogCloseIcon {
+    right: 6px;
+    top: 6px;
+    width: 16px;
+    height: 16px;
+    background: Transparent url(themes/GDiDemo/Img/app-misc-icons.png) no-repeat -256px 0%
+}
+.nihilo .dijitDialogCloseIcon:hover {
+    background-position: -256px -16px
+}
+.nihilo .dijitDialog .dijitDialogTitle {
+    font-size: 1.3em;
+    font-weight: normal !important;
+    color: #DA002A
+}
+.nihilo .dijitDialog .dijitDialogPaneContent {
+    color: #555;
+    border-top: 1px solid #CCC;
+    background: #FFF
+}
+.nihilo .dijitDialogUnderlay {
+    background: Transparent
+}
+.form-control.dijitTextBox {
+    box-sizing: border-box;
+    padding: 0 4px;
+    width: 100%;
+    height: auto;
+    line-height: none;
+    background: #FFF
+}
+.form-control.dijitTextBox.short {
+    width: 195px
+}
+.form-control.dijitTextBox.narrow {
+    width: 98px
+}
+.form-control.dijitTextBox.tiny {
+    width: 42px
+}
+.form-control.dijitTextBox.date {
+    width: 92px
+}
+.form-control.dijitTextBox .dijitInputInner {
+    margin: 0;
+    width: 100%;
+    height: 24px;
+    font-family: Arial !important;
+    font-size: 12px !important;
+    line-height: 1.66666
+}
+.form-control.dijitTextBoxFocused {
+    border-color: #406B9B
+}
+.form-control.dijitTextBoxReadOnlyFocused {
+    border-color: #B7B7B7 !important;
+    outline: none
+}
+.inputButton.dijitButton {
+    margin: 0
+}
+.inputButton.dijitButton .dijitButtonNode {
+    margin: 0 0 0 -2px !important;
+    padding: 0 6px;
+    font-size: 14px;
+    line-height: 23px;
+    text-align: center;
+    color: #444;
+    border: none;
+    background-image: none;
+    background-color: Transparent
+}
+.dj_ie .inputButton.dijitButton .dijitButtonNode,
+.dj_webkit .inputButton.dijitButton .dijitButtonNode {
+    padding: 0 7px
+}
+.inputButton.dijitButton.hasIcon .dijitButtonNode {
+    padding: 0 6px 0 0
+}
+.inputButton.dijitButtonHover .dijitButtonNode,
+.inputButton.dijitButtonActive .dijitButtonNode {
+    border-color: Transparent
+}
+.inputButton.dijitButtonHover .dijitButtonText,
+.inputButton.dijitButtonActive .dijitButtonText {
+    color: #DA002A
+}
+.checkbox.dijitCheckBox,
+.checkbox.dijitCheckBoxIcon {
+    background-image: url(themes/GDiDemo/Img/app-form-checkbox-bg.png)
+}
+.checkbox.dijitCheckBox {
+    margin-top: 3px
+}
+.inputRadio.dijitRadio,
+.inputRadio.dijitRadioIcon {
+    background-image: url(themes/GDiDemo/Img/app-form-radio-bg.png)
+}
+.nihilo .dijitTooltipContainer {
+    width: 200px;
+    padding: 0.45em;
+    text-align: left;
+    color: #666;
+    border: 1px solid #CCC;
+    background-color: #FFF
+}
+.nihilo .dijitVisible {
+    position: inherit
+}
+.nihilo .dijitProgressBarEmpty {
+    background: #FFF url(themes/GDiDemo/Img/progressbar-empty-bg.png) no-repeat left !important;
+    border-color: #769DC0
+}
+.nihilo .dijitProgressBarTile {
+    background: #ABD6FF url(themes/GDiDemo/Img/progressbar-full-bg.png) repeat-x top !important
+}
+.nihilo .dijitProgressBarFull {
+    border-right: 1px solid #769DC0
+}
+.nihilo .dijitProgressBarLabel {
+    color: #000
+}
+.nihilo #map .infowindow .window {
+    font: inherit;
+    color: #FFF !important
+}
+.nihilo #map .infowindow .window .top .left {
+    width: 10px !important
+}
+.nihilo #map .infowindow .window .top .left .sprite {
+    margin-left: -990px !important
+}
+.nihilo #map .infowindow .window .top .right {
+    padding-right: 0 !important
+}
+.nihilo #map .infowindow .window .top .right .user {
+    margin: 0 0 0 10px;
+    padding: 6px 0 0 0 !important
+}
+.nihilo #map .infowindow .window .top .right .user .titlebar .title {
+    color: #555
+}
+.nihilo #map .infowindow .window .top .right .user .titlebar .hide {
+    display: block !important;
+    padding-left: 1px;
+    width: 10px !important;
+    height: 10px !important
+}
+.nihilo #map .infowindow .window .top .right .user .titlebar .hide .sprite {
+    margin-left: -755px !important
+}
+.nihilo #map .infowindow .window .top .right .user .titlebar .hide .sprite:hover {
+    margin-top: -911px !important
+}
+.nihilo #map .infowindow .window .top .right .user .border {
+    border-top: 1px solid #D2D2D2 !important;
+    border-bottom: 1px solid #FFF;
+    opacity: 1
+}
+.nihilo #map .infowindow .window .top .right .user .layout {
+    overflow: hidden;
+    padding-right: 3px
+}
+.nihilo #map .infowindow .window .bottom .right {
+    padding-right: 0 !important
+}
+.nihilo #map .infowindow .sprite,
+.nihilo .infowindow .sprite {
+    background-image: url(themes/GDiDemo/Img/map-infowindow-bg.png) !important
+}
+.nihilo #map .esriOverviewMap .ovwContainer {
+    background-color: #FFF !important;
+    border-top: 1px solid #666 !important;
+    border-left: 1px solid #666 !important
+}
+.nihilo #map .esriOverviewMap .ovwHighlight {
+    border: 2px solid #444 !important
+}
+.nihilo #map .esriOverviewMap .ovwButton {
+    margin: 0 3px 4px 0 !important;
+    width: 16px !important;
+    height: 16px !important
+}
+.nihilo #map .esriOverviewMap .ovwHide {
+    background: Transparent url(themes/GDiDemo/Img/map-overview-icons.png) no-repeat 0 0 !important
+}
+.nihilo #map .esriOverviewMap .ovwHide:hover {
+    background-position: 0 -16px !important
+}
+.nihilo #map .esriOverviewMap .ovwShow {
+    background: Transparent url(themes/GDiDemo/Img/map-overview-icons.png) no-repeat 0 -32px !important
+}
+.nihilo #map .esriOverviewMap .ovwShow:hover {
+    background-position: 0 -48px !important
+}
+.nihilo #map .esriScalebar {
+    left: 12px !important
+}
+.nihilo #map .esriScalebar .esriScalebarRuler {
+    background-color: Transparent !important;
+    border: 2px solid #555 !important;
+    border-width: 0 2px 2px 2px !important
+}
+.nihilo #map .esriScalebar .esriScalebarRulerBlock {
+    background-color: #555 !important
+}
+.nihilo #map .esriScalebar .upper_firstpiece,
+.nihilo #map .esriScalebar .upper_secondpiece,
+.nihilo #map .esriScalebar .lower_firstpiece,
+.nihilo #map .esriScalebar .lower_secondpiece {
+    background-color: Transparent !important
+}
+.nihilo #map .esriScalebar .lower_firstpiece {
+    border-right: 2px solid #555 !important
+}
+.nihilo #map .esriScalebar .esriScalebarLabel {
+    font-weight: bold !important;
+    color: #222
+}
+.nihilo #mapCtxMenu.dijitMenu {
+    padding: 5px 0 3px 0;
+    font: inherit;
+    background-color: #FFF;
+    border: 1px solid #D2D2D2;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px
+}
+.nihilo #mapCtxMenu .dijitMenuItem {
+    margin: 0;
+    padding: 0;
+    width: 210px;
+    float: left;
+    font: inherit
+}
+.nihilo #mapCtxMenu .dijitMenuItemIconCell,
+.nihilo #mapCtxMenu .dijitMenuArrowCell,
+.nihilo #mapCtxMenu .dijitMenuSeparatorIconCell {
+    display: none;
+    width: 0;
+    height: 0
+}
+.nihilo #mapCtxMenu .dijitMenuItemLabel {
+    margin: 0;
+    padding: 5px 10px 6px 6px;
+    float: left
+}
+.nihilo #mapCtxMenu .dijitMenuPassive .dijitMenuItemHover,
+.nihilo #mapCtxMenu .dijitMenuItemSelected {
+    background: none
+}
+.nihilo #mapCtxMenu .dijitMenuSeparator {
+    height: 1px;
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #D2D2D2
+}
+.nihilo #mapCtxMenu .dijitMenuSeparatorTop,
+.nihilo #mapCtxMenu .dijitMenuSeparatorBottom {
+    border: none
+}
+.nihilo #map .dijitTooltipContainer {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    background-color: Transparent;
+    border: none
+}
+.nihilo #map .dijitTooltipFocusNode {
+    padding: 0;
+    color: #666
+}
+.nihilo #map .dijitTooltipConnector {
+    display: none
+}
