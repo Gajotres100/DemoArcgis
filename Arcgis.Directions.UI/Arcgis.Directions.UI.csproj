@@ -1594,6 +1594,7 @@
     <Content Include="Content\1\scripts\ui-tree.js" />
     <Content Include="Content\2\css\animate.css" />
     <Content Include="Content\2\css\autocomplete-ui-input.css" />
+    <Content Include="Content\2\css\Common.css" />
     <Content Include="Content\2\css\esri.css" />
     <Content Include="Content\2\css\flags.css" />
     <Content Include="Content\2\css\flags.min.css" />
@@ -1610,15 +1611,23 @@
     <Content Include="Content\2\css\pages\promo.css" />
     <Content Include="Content\2\css\pages\search.css" />
     <Content Include="Content\2\css\print.css" />
+    <Content Include="Content\2\css\style-body.css" />
     <Content Include="Content\2\css\style-metro.css" />
     <Content Include="Content\2\css\style-responsive.css" />
     <Content Include="Content\2\css\style.css" />
     <Content Include="Content\2\css\style2.css" />
+    <Content Include="Content\2\css\themes\GDiDemo\img\app-loader.gif" />
+    <Content Include="Content\2\css\themes\GDiDemo\img\app-misc-icons.png" />
     <Content Include="Content\2\css\themes\blue.css" />
     <Content Include="Content\2\css\themes\brown.css" />
     <Content Include="Content\2\css\themes\default.css" />
     <Content Include="Content\2\css\themes\light.css" />
+    <Content Include="Content\2\css\themes\GDiDemo\img\map-loader.gif" />
+    <Content Include="Content\2\css\themes\GDiDemo\img\map-overview-icons.png" />
+    <Content Include="Content\2\css\themes\GDiDemo\img\modal-loader.gif" />
     <Content Include="Content\2\css\themes\purple.css" />
+    <Content Include="Content\2\css\themes\GDiDemo\img\sharedui-footer-logo.png" />
+    <Content Include="Content\2\css\themes\GDiDemo\img\sharedui-header-logo.png" />
     <Content Include="Content\2\dijit\images\ajax-loader.gif" />
     <Content Include="Content\2\dijit\images\button-active.png" />
     <Content Include="Content\2\dijit\images\button-hover.png" />
@@ -1655,6 +1664,8 @@
     <Content Include="Content\2\dijit\images\Measure_Point16.png" />
     <Content Include="Content\2\dijit\images\overview.png" />
     <Content Include="Content\2\dijit\images\popup.png" />
+    <Content Include="Content\2\flags\gb.svg" />
+    <Content Include="Content\2\flags\hr.svg" />
     <Content Include="Content\2\fonts\font.css" />
     <Content Include="Content\2\img\account_outline_white.png" />
     <Content Include="Content\2\img\ajax-loading.gif" />
@@ -3094,6 +3105,12 @@
     <Content Include="Content\2\plugins\select2\select2_locale_en.js.template" />
     <Content Include="Content\2\plugins\uniform\README.textile" />
     <Content Include="assets\plugins\jquery-inputmask\README.md" />
+    <Content Include="Content\1\fonts\FontAwesome.woff2" />
+    <Content Include="Content\1\fonts\MaterialDesignIcons.woff2" />
+    <Content Include="Content\1\fonts\OpenSans-Regular.woff" />
+    <Content Include="Content\2\fonts\FontAwesome.woff2" />
+    <Content Include="Content\2\fonts\MaterialDesignIcons.woff2" />
+    <Content Include="Content\2\fonts\OpenSans-Regular.woff" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

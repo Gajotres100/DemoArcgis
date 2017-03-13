@@ -81,20 +81,26 @@
         $('.esriRoutesContainer').css('height', '300px');
 
         if (window.location.href.indexOf("EN") > -1) {
-            $('#languagetext').text('EN');
+            $('#languagetext').text('English');
             $('#lsLoggedInUser').text('Logout').css('font-size', '16px');
             $('#choosApp1').text('SSO overridden');
             $('#choosApp2').text('Select app');
-            $('#logoName').text('GDI car control').css('font-size', '18px');
-            $('#flagChange').toggleClass('flag-hr');
+            $('#logoName').text('GDi car control').css('font-size', '18px');
+            $('#flagChange').removeClass();
+            $('#flagChange').toggleClass('flag-icon flag-icon-gb');
+	    $('#logoText').text('GDi auto nadzor 7.9.1 | © 2009 - 2017 GDi Convivo | All rights reserved.');
+            
         }
         else {
-            $('#languagetext').text('HR');
+            $('#languagetext').text('Hrvatski');
             $('#lsLoggedInUser').text('Odjava').css('font-size', '16px');
             $('#choosApp1').text('SSO overridden');
             $('#choosApp2').text('Odaberi aplikaciju');
-            $('#logoName').text('GDI auto nadzor').css('font-size', '18px');
-            $('#flagChange').toggleClass('flag-gb');
+            $('#logoName').text('GDi auto nadzor').css('font-size', '18px');
+            $('#flagChange').removeClass();
+            $('#flagChange').toggleClass('flag-icon flag-icon-hr');
+            $('#logoText').text('GDi auto nadzor 7.9.1 | © 2009 - 2017 GDi Convivo | Sva prava pridržana.');
+
         }
     });
     //$('.esriDirectionsButton ').click(function () {
