@@ -31,6 +31,7 @@
     @Scripts.Render("~/Content/2/scripts/")
     @Scripts.Render("~/Content/2/plugins/")
     @Styles.Render("~/Content/2/css/")
+    @Styles.Render("~/Content/2/fonts/")
 </head>
 <body id="siteBody" style="position:relative">
 
@@ -64,7 +65,7 @@
                         </a>
                         <ul id="accountDropDown" class="dropdown-menu">
                             @*<li class="divider"></li>*@
-                            <li style="float: left;">
+                            <li>
                                 <a id="lsLoggedInUser" href="@Url.Action("Logout","Home")"> </a>
                             </li>
                         </ul>
@@ -135,7 +136,8 @@
                                 }
                                 else
                                 {
-                                    <li style="float: left;">
+
+                                    <li>
                                         <a id="@item.LangID" onclick="return CallChangefunc('EN');" href="#"><span id="flagslanguage" class="flag flag-gb" alt="UnitedKingdom"></span>&nbsp;&nbsp @item.Name</a>
                                     </li>
                                 }
@@ -226,12 +228,12 @@
     </div>
 
 
-    <script>
+    @*<script>
 
         jQuery(document).ready(function () {
             App.init();
         });
-    </script>
+    </script>*@
 
 
 </body>

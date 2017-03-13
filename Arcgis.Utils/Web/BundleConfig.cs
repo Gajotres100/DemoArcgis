@@ -31,7 +31,7 @@ namespace Arcgis.Utils.Web
                                         ));
             bundles.Add(new ScriptBundle("~/Content/1/scripts/").Include(
                              "~/Content/1/scripts/app.js"
-                             
+
                             ));
             bundles.Add(new ScriptBundle("~/Content/1/plugins/").Include(
                             "~/Content/1/plugins/breakpoints/breakpoints.js",
@@ -62,7 +62,10 @@ namespace Arcgis.Utils.Web
                             "~/Content/2/css/flags.min.css"
 
                             ));
+            bundles.Add(new StyleBundle("~/Content/2/fonts/").Include(
+                           "~/Content/2/fonts/font.css"
 
+                           ));
             bundles.Add(new StyleBundle("~/Content/2/plugins/").Include(
                                     "~/Content/2/plugins/bootstrap/css/bootstrap.min.css",
                                     "~/Content/2/plugins/bootstrap/css/bootstrap-responsive.min.css",

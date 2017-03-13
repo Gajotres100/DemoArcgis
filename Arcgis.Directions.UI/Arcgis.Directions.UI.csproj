@@ -2878,7 +2878,6 @@
     <Content Include="assets\plugins\jquery-file-upload\server\php\files\.htaccess" />
     <Content Include="assets\plugins\jquery-file-upload\server\php\index.php" />
     <Content Include="assets\plugins\jquery-file-upload\server\php\UploadHandler.php" />
-    <Content Include="assets\plugins\jquery-inputmask\README.md" />
     <Content Include="assets\plugins\jquery-knob\README.md" />
     <Content Include="assets\plugins\jquery-nestable\README.md" />
     <Content Include="assets\plugins\jquery-slimscroll\README.md" />
@@ -3094,6 +3093,7 @@
     <Content Include="Content\2\plugins\select2\select2.jquery.json" />
     <Content Include="Content\2\plugins\select2\select2_locale_en.js.template" />
     <Content Include="Content\2\plugins\uniform\README.textile" />
+    <Content Include="assets\plugins\jquery-inputmask\README.md" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
