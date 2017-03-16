@@ -26,8 +26,8 @@ namespace Arcgis.Directions.UI
         {
             var exception = Server.GetLastError();
             logger.Error(exception);
-            Server.ClearError();
-            Response.Redirect(@"/Home/Error");
+            //Server.ClearError();
+            //Response.Redirect(@"/Home/Error");
         }
     }
 }

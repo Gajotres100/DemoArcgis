@@ -115,6 +115,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="1000-photos.json" />
     <Content Include="assets\css\animate.css" />
     <Content Include="assets\css\pages\about-us.css" />
     <Content Include="assets\css\pages\blog.css" />
@@ -1426,6 +1427,7 @@
     <Content Include="assets\scripts\ui-nestable.js" />
     <Content Include="assets\scripts\ui-sliders.js" />
     <Content Include="assets\scripts\ui-tree.js" />
+    <Content Include="ClusterLayer.js" />
     <Content Include="Content\1\css\animate.css" />
     <Content Include="Content\1\css\autocomplete-ui-input.css" />
     <Content Include="Content\1\css\esri.css" />
@@ -2703,6 +2705,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -3112,6 +3115,7 @@
     <Content Include="Content\2\fonts\MaterialDesignIcons.woff2" />
     <Content Include="Content\2\fonts\OpenSans-Regular.woff" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
+    <Content Include="Views\Map\GroupPoi.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

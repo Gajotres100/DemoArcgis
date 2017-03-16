@@ -191,6 +191,21 @@ namespace Arcgis.Directions.BL.Services
             }
         }
 
+        public GetGroupPOIVM GetAllPois()
+        {
+            try
+            {
+                var item = new GetGroupPOIVM();
+                item.GroupPoiList = _poiRepository.GetAllPois();
+                return item;
+            }
+            catch (Exception e)
+            {
+                logger.Error("error = " + e);
+                return null;
+            }
+        }
+
         #endregion
 
     }

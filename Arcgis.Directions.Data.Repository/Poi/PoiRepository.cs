@@ -109,5 +109,21 @@ namespace Arcgis.Directions.Data.Repository.Poi
                 }).ToList();
             }
         }
+
+        public List<GroupPoi> GetAllPois()
+        {
+            using (var context = new EntitiesPortalOracle())
+            {
+                return context.POI_PLACES.AsEnumerable().Select(x => new GroupPoi
+                {
+                    lat = $"{x.WM_X}",
+                    lng = $"{x.WM_Y}",
+                    full_name = x.DESCRIPTION,
+                    caption = x.ADDRESS,
+                    image = "https://cdn.geek.hr/wp-content/uploads/sites/10/store/mali-zec-slika.jpg",
+                    link = "https://cdn.geek.hr/wp-content/uploads/sites/10/store/mali-zec-slika.jpg"
+                }).Take(100).ToList();
+            }
+        }
     }
 }
