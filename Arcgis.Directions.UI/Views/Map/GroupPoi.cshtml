@@ -123,10 +123,10 @@
           function addClusters(resp) {
             var photoInfo = {};
             var wgs = new SpatialReference({
-                "wkid": 27500
+                "wkid": 4671
             });
             photoInfo.data = arrayUtils.map(resp, function(p) {
-              var latlng = new Point(parseFloat(p.lng), parseFloat(p.lat), wgs);
+                var latlng = new Point(parseFloat(p.lat), parseFloat(p.lng), wgs);
               var webMercator = webMercatorUtils.geographicToWebMercator(latlng);
               var attributes = {
                 "Caption": latlng.x,

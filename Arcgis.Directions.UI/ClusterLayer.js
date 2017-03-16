@@ -61,7 +61,7 @@ define([
 
       this._webmap = options.hasOwnProperty("webmap") ? options.webmap : false;
 
-      this._sr = options.spatialReference || new SpatialReference({ "wkid": 102100 });
+      this._sr = options.spatialReference || new SpatialReference({ "wkid": 4671 });
 
       this._zoomEnd = null;
     },
