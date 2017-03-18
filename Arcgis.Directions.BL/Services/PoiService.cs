@@ -191,12 +191,12 @@ namespace Arcgis.Directions.BL.Services
             }
         }
 
-        public GetGroupPOIVM GetAllPois()
+        public GetGroupPOIVM GetAllPois(List<string> GroupID)
         {
             try
             {
                 var item = new GetGroupPOIVM();
-                item.GroupPoiList = _poiRepository.GetAllPois();
+                item.ClusterPoiList = _poiRepository.GetAllPoisByGroupID(GroupID.Select(int.Parse).ToList());
                 return item;
             }
             catch (Exception e)
@@ -205,6 +205,23 @@ namespace Arcgis.Directions.BL.Services
                 return null;
             }
         }
+
+        public GetGroupPOIVM GetPoiGroups(int userID)
+        {
+            try
+            {
+                var item = new GetGroupPOIVM();
+                item.GroupPoiList = _poiRepository.GetPoiGroups(userID);
+                return item;
+            }
+            catch (Exception e)
+            {
+                logger.Error("error = " + e);
+                return null;
+            }
+        }
+
+        
 
         #endregion
 

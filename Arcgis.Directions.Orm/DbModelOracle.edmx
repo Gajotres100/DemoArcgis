@@ -14,6 +14,31 @@
           <Property Name="NAME" Type="nvarchar2" MaxLength="50" />
           <Property Name="DESCRIPTION" Type="nvarchar2" MaxLength="100" />
         </EntityType>
+        <EntityType Name="POI_GROUP_ACCESS_RIGHTS">
+          <Key>
+            <PropertyRef Name="ACCESS_RIGHT_ID" />
+          </Key>
+          <Property Name="ACCESS_RIGHT_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="USER_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="SERVICE_ID" Type="number" Precision="2" Scale="0" />
+          <Property Name="POI_GROUP_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="MASTER_USER_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="CREATED_DT" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="POI_GROUPS">
+          <Key>
+            <PropertyRef Name="POI_GROUP_ID" />
+          </Key>
+          <Property Name="POI_GROUP_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="USER_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="CHILD_USER_ID" Type="number" Precision="9" Scale="0" />
+          <Property Name="SERVICE_ID" Type="number" Precision="2" Scale="0" />
+          <Property Name="POI_GROUP_NAME" Type="nvarchar2" MaxLength="50" Nullable="false" />
+          <Property Name="POI_GROUP_TYPE" Type="number" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="CREATED_DT" Type="date" Nullable="false" />
+          <Property Name="MODIFIED_DT" Type="date" />
+          <Property Name="MODIFIED_BY" Type="number" Precision="9" Scale="0" />
+        </EntityType>
         <EntityType Name="POI_PLACES">
           <Key>
             <PropertyRef Name="POI_PLACE_ID" />
@@ -41,9 +66,27 @@
           <Property Name="MODIFIED_DT" Type="date" />
           <Property Name="MODIFIED_BY" Type="number" Precision="9" Scale="0" />
         </EntityType>
+        <Association Name="POI_PLACES_POI_GROUPS_FK">
+          <End Role="POI_GROUPS" Type="Self.POI_GROUPS" Multiplicity="1" />
+          <End Role="POI_PLACES" Type="Self.POI_PLACES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="POI_GROUPS">
+              <PropertyRef Name="POI_GROUP_ID" />
+            </Principal>
+            <Dependent Role="POI_PLACES">
+              <PropertyRef Name="POI_GROUP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ModelProtalOracleDbStoreContainer">
           <EntitySet Name="LANGUAGES" EntityType="Self.LANGUAGES" Schema="DEV_FMS_7X" store:Type="Tables" />
+          <EntitySet Name="POI_GROUP_ACCESS_RIGHTS" EntityType="Self.POI_GROUP_ACCESS_RIGHTS" Schema="DEV_FMS_7X" store:Type="Tables" />
+          <EntitySet Name="POI_GROUPS" EntityType="Self.POI_GROUPS" Schema="DEV_FMS_7X" store:Type="Tables" />
           <EntitySet Name="POI_PLACES" EntityType="Self.POI_PLACES" Schema="DEV_FMS_7X" store:Type="Tables" />
+          <AssociationSet Name="POI_PLACES_POI_GROUPS_FK" Association="Self.POI_PLACES_POI_GROUPS_FK">
+            <End Role="POI_GROUPS" EntitySet="POI_GROUPS" />
+            <End Role="POI_PLACES" EntitySet="POI_PLACES" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -75,10 +118,17 @@
           <Property Name="CREATED_DT" Type="DateTime" Nullable="false" />
           <Property Name="MODIFIED_DT" Type="DateTime" />
           <Property Name="MODIFIED_BY" Type="Int32" />
+          <NavigationProperty Name="POI_GROUPS" Relationship="ModelProtalOracleDb.POI_PLACES_POI_GROUPS_FK" FromRole="POI_PLACES" ToRole="POI_GROUPS" />
         </EntityType>
         <EntityContainer Name="EntitiesPortalOracle" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="POI_PLACES" EntityType="Self.POI_PLACES" />
           <EntitySet Name="LANGUAGES" EntityType="ModelProtalOracleDb.LANGUAGE" />
+          <EntitySet Name="POI_GROUP_ACCESS_RIGHTS" EntityType="ModelProtalOracleDb.POI_GROUP_ACCESS_RIGHTS" />
+          <EntitySet Name="POI_GROUPS" EntityType="ModelProtalOracleDb.POI_GROUPS" />
+          <AssociationSet Name="POI_PLACES_POI_GROUPS_FK" Association="ModelProtalOracleDb.POI_PLACES_POI_GROUPS_FK">
+            <End Role="POI_GROUPS" EntitySet="POI_GROUPS" />
+            <End Role="POI_PLACES" EntitySet="POI_PLACES" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="LANGUAGE">
           <Key>
@@ -89,6 +139,44 @@
           <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DESCRIPTION" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="POI_GROUP_ACCESS_RIGHTS">
+          <Key>
+            <PropertyRef Name="ACCESS_RIGHT_ID" />
+          </Key>
+          <Property Name="ACCESS_RIGHT_ID" Type="Int32" Nullable="false" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="SERVICE_ID" Type="Int16" />
+          <Property Name="POI_GROUP_ID" Type="Int32" Nullable="false" />
+          <Property Name="MASTER_USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="POI_GROUPS">
+          <Key>
+            <PropertyRef Name="POI_GROUP_ID" />
+          </Key>
+          <Property Name="POI_GROUP_ID" Type="Int32" Nullable="false" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="CHILD_USER_ID" Type="Int32" />
+          <Property Name="SERVICE_ID" Type="Int16" />
+          <Property Name="POI_GROUP_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="POI_GROUP_TYPE" Type="Int16" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" />
+          <Property Name="MODIFIED_DT" Type="DateTime" />
+          <Property Name="MODIFIED_BY" Type="Int32" />
+          <NavigationProperty Name="POI_PLACES" Relationship="ModelProtalOracleDb.POI_PLACES_POI_GROUPS_FK" FromRole="POI_GROUPS" ToRole="POI_PLACES" />
+        </EntityType>
+        <Association Name="POI_PLACES_POI_GROUPS_FK">
+          <End Type="ModelProtalOracleDb.POI_GROUPS" Role="POI_GROUPS" Multiplicity="1" />
+          <End Type="ModelProtalOracleDb.POI_PLACES" Role="POI_PLACES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="POI_GROUPS">
+              <PropertyRef Name="POI_GROUP_ID" />
+            </Principal>
+            <Dependent Role="POI_PLACES">
+              <PropertyRef Name="POI_GROUP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -130,6 +218,33 @@
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
                 <ScalarProperty Name="CODE" ColumnName="CODE" />
                 <ScalarProperty Name="LANG_ID" ColumnName="LANG_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POI_GROUP_ACCESS_RIGHTS">
+            <EntityTypeMapping TypeName="ModelProtalOracleDb.POI_GROUP_ACCESS_RIGHTS">
+              <MappingFragment StoreEntitySet="POI_GROUP_ACCESS_RIGHTS">
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="MASTER_USER_ID" ColumnName="MASTER_USER_ID" />
+                <ScalarProperty Name="POI_GROUP_ID" ColumnName="POI_GROUP_ID" />
+                <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="ACCESS_RIGHT_ID" ColumnName="ACCESS_RIGHT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POI_GROUPS">
+            <EntityTypeMapping TypeName="ModelProtalOracleDb.POI_GROUPS">
+              <MappingFragment StoreEntitySet="POI_GROUPS">
+                <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                <ScalarProperty Name="MODIFIED_DT" ColumnName="MODIFIED_DT" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="POI_GROUP_TYPE" ColumnName="POI_GROUP_TYPE" />
+                <ScalarProperty Name="POI_GROUP_NAME" ColumnName="POI_GROUP_NAME" />
+                <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
+                <ScalarProperty Name="CHILD_USER_ID" ColumnName="CHILD_USER_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="POI_GROUP_ID" ColumnName="POI_GROUP_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

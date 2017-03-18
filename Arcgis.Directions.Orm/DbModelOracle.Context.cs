@@ -9,9 +9,10 @@
 
 namespace Arcgis.Directions.Orm
 {
+    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class EntitiesPortalOracle : DbContext
     {
         public EntitiesPortalOracle()
@@ -26,5 +27,7 @@ namespace Arcgis.Directions.Orm
     
         public DbSet<POI_PLACES> POI_PLACES { get; set; }
         public DbSet<LANGUAGE> LANGUAGES { get; set; }
+        public DbSet<POI_GROUP_ACCESS_RIGHTS> POI_GROUP_ACCESS_RIGHTS { get; set; }
+        public DbSet<POI_GROUPS> POI_GROUPS { get; set; }
     }
 }

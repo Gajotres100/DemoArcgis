@@ -10,7 +10,8 @@
 namespace Arcgis.Directions.Orm
 {
     using System;
-
+    using System.Collections.Generic;
+    
     public partial class POI_PLACES
     {
         public int POI_PLACE_ID { get; set; }
@@ -35,5 +36,12 @@ namespace Arcgis.Directions.Orm
         public System.DateTime CREATED_DT { get; set; }
         public Nullable<System.DateTime> MODIFIED_DT { get; set; }
         public Nullable<int> MODIFIED_BY { get; set; }
+    
+        public virtual POI_GROUPS POI_GROUPS { get; set; }
+
+        public bool In(List<int> poiGroup)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

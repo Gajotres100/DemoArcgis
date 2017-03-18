@@ -12,11 +12,13 @@ namespace Arcgis.Directions.Orm
     using System;
     using System.Collections.Generic;
     
-    public partial class LANGUAGE
+    public partial class POI_GROUP_ACCESS_RIGHTS
     {
-        public int LANG_ID { get; set; }
-        public string CODE { get; set; }
-        public string NAME { get; set; }
-        public string DESCRIPTION { get; set; }
+        public int ACCESS_RIGHT_ID { get; set; }
+        public int USER_ID { get; set; }
+        public Nullable<short> SERVICE_ID { get; set; }
+        public int POI_GROUP_ID { get; set; }
+        public int MASTER_USER_ID { get; set; }
+        public System.DateTime CREATED_DT { get; set; }
     }
 }

@@ -1,17 +1,16 @@
 ﻿using Arcgis.Directions.BL.Services;
 using Arcgis.Directions.BL.SSOAuth;
 using Arcgis.Directions.VM;
+using DemoArcgis.Controllers;
 using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
 
 namespace Arcgis.Directions.UI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-
         PoiService _poiService;
-
         public ActionResult Index()
         {
             var ssoOvreiden = false;
@@ -27,8 +26,6 @@ namespace Arcgis.Directions.UI.Controllers
                 Session["Username"] = user.Username;
                 return RedirectToAction(nameof(Index), @"Home");
             }
-            if (Session[nameof(UserData)] == null)
-                return Redirect(ConfigurationManager.AppSettings[@"LoginRedirect"]);
 
             var vm = GetPois();
             return View(vm);

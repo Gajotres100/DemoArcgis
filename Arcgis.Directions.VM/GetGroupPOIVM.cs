@@ -9,6 +9,7 @@ namespace Arcgis.Directions.VM
 {
     public class GetGroupPOIVM : ViewModelBase
     {
+        public List<ClusterPoi> ClusterPoiList { get; set; }
         public List<GroupPoi> GroupPoiList { get; set; }
     }
 }

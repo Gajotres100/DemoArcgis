@@ -110,11 +110,11 @@ namespace Arcgis.Directions.Data.Repository.Poi
             }
         }
 
-        public List<GroupPoi> GetAllPois()
+        public List<ClusterPoi> GetAllPoisByGroupID(List<int> poiGroup)
         {
             using (var context = new EntitiesPortalOracle())
             {
-                return context.POI_PLACES.AsEnumerable().Select(x => new GroupPoi
+                return context.POI_PLACES.Where(p => poiGroup.Contains(p.POI_GROUP_ID)).AsEnumerable().Select(x => new ClusterPoi
                 {
                     lat = $"{x.WM_X}",
                     lng = $"{x.WM_Y}",
@@ -122,7 +122,23 @@ namespace Arcgis.Directions.Data.Repository.Poi
                     caption = x.ADDRESS,
                     image = "https://cdn.geek.hr/wp-content/uploads/sites/10/store/mali-zec-slika.jpg",
                     link = "https://cdn.geek.hr/wp-content/uploads/sites/10/store/mali-zec-slika.jpg"
-                }).Take(100).ToList();
+                }).ToList();
+            }
+        }
+
+        public List<GroupPoi> GetPoiGroups(int userID)
+        {
+            using (var context = new EntitiesPortalOracle())
+            {
+                return context.POI_GROUPS.Where(g => g.USER_ID == userID).AsEnumerable().Select(x => new GroupPoi
+                {
+                    ChildUserID = x.CHILD_USER_ID.GetValueOrDefault(),
+                    PoiGroupID = x.POI_GROUP_ID,
+                    PoiGroupName = x.POI_GROUP_NAME,
+                    PoiGroupType = x.POI_GROUP_TYPE,
+                    ServiceID = x.SERVICE_ID.GetValueOrDefault(),
+                    UserID = x.USER_ID
+                }).ToList();
             }
         }
     }

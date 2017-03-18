@@ -8,11 +8,12 @@ namespace Arcgis.Directions.Data.Model
 {
     public class GroupPoi
     {
-        public string image { get; set; }
-        public string caption { get; set; }
-        public string link { get; set; }
-        public string full_name { get; set; }
-        public string lat { get; set; }
-        public string lng { get; set; }
+        public int PoiGroupID { get; set; }
+        public int UserID { get; set; }
+        public int ChildUserID { get; set; }
+        public short ServiceID { get; set; }
+        public string PoiGroupName { get; set; }
+        public int PoiGroupType { get; set; }
+        public bool Selected { get; set; }
     }
 }

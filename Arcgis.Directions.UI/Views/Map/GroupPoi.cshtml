@@ -55,7 +55,7 @@
     <script src="https://js.arcgis.com/3.20/"></script>
     <script>
 
-
+        
       var map;
       require([
         "dojo/parser",
@@ -110,20 +110,38 @@
               zoom: 4
           });
 
-          map.on("load", function() {
-            domStyle.set(query("a.action.zoomTo")[0], "display", "none");
-            var photos = esriRequest({
-                url: '@Url.Action("GetPoiGroupList", "Map")',
-                //url: '/1000-photos.json',
-              handleAs: "json"
-            });
-            photos.then(addClusters, error);
+          $(window).load(function () {
+              $('.chkclass').click(function () {
+
+                  var getchkid = $(this).attr('id');
+                  var isChecked = $('#' + getchkid).is(':checked');
+
+                  if ($('#' + getchkid).is(':checked') == true) {
+                      $('#td' + $(this).val()).css("color", "white");
+                      $('#td' + $(this).val()).css("background-color", "blue");
+                  }
+                  else {
+                      $('#td' + $(this).val()).css("color", "black");
+                      $('#td' + $(this).val()).css("background-color", "white");
+                  }
+
+                  var studentListVal = null;
+                  studentListVal = [];
+
+                  $('input:checkbox:checked').each(function () {
+                      studentListVal.push($(this).attr('value'));
+                  });               
+
+                  var photos = null;
+                  photos = esriRequest({ url: '@Url.Action("GetPoiGroupList", "Map", new { lang = "ID" })'.replace("ID", studentListVal), handleAs: "json" });
+                  photos.then(addClusters, error);
+              });
           });
 
           function addClusters(resp) {
             var photoInfo = {};
             var wgs = new SpatialReference({
-                "wkid": 4671
+                "wkid": "@System.Configuration.ConfigurationManager.AppSettings["routeTaskUrl"]" 
             });
             photoInfo.data = arrayUtils.map(resp, function(p) {
                 var latlng = new Point(parseFloat(p.lat), parseFloat(p.lng), wgs);
@@ -158,7 +176,8 @@
               }]
             });
 
-            // cluster layer that uses OpenLayers style clustering
+              // cluster layer that uses OpenLayers style clustering
+            if (clusterLayer != null) map.removeLayer(clusterLayer);
             clusterLayer = new ClusterLayer({
               "data": photoInfo.data,
               "distance": 100,
@@ -180,7 +199,8 @@
             renderer.addBreak(2, 200, green);
             renderer.addBreak(200, 1001, red);
 
-            clusterLayer.setRenderer(renderer);
+            clusterLayer.setRenderer(renderer);           
+            
             map.addLayer(clusterLayer);
 
             // close the info window when the map is clicked
@@ -192,8 +212,6 @@
               }
             });
           }
-
-
 
           function cleanUp() {
             map.infoWindow.hide();
@@ -230,5 +248,21 @@
     <div id="vmap_world" class="vmaps" style="height:100vh">
         <div id="map" dir="ltr"></div>
     </div>
+
+    @foreach (var names in @Model.GroupPoiList)
+    {
+        var checkBoxId = "chk" + names.PoiGroupID;
+        var tdId = "td" + names.PoiGroupID;
+        <table width="100%">
+            <tr>
+                <td width="20px">
+                    <input type="checkbox" id="@checkBoxId" class="chkclass" value="@names.PoiGroupID" />
+                </td>
+                <td id="@tdId" width="100px">
+                    @names.PoiGroupName
+                </td>
+            </tr>
+        </table>
+    }
 </body>
 </html>

@@ -1,4 +1,5 @@
 ﻿using Arcgis.Directions.BL.Services;
+using Arcgis.Directions.BL.SSOAuth;
 using Arcgis.Directions.VM;
 using System;
 using System.Collections.Generic;
@@ -8,46 +9,29 @@ using System.Web.Mvc;
 
 namespace DemoArcgis.Controllers
 {
-    public class MapController : Controller
+    public class MapController : BaseController
     {
         PoiService _poiService;
         // GET: Map
         public ActionResult GroupPoi()
         {
-            return View();
+            var user = new UserData();
+            user = Session[nameof(UserData)] as UserData;
+            var userID = 0;
+            int.TryParse(user.UserID, out userID);
+
+            var vm = new GetGroupPOIVM();
+            _poiService = new PoiService();
+            vm = _poiService.GetPoiGroups(userID);            
+            return View(vm);
         }
         [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
-        public JsonResult GetPoiGroupList()
+        public JsonResult GetPoiGroupList(string lang)
         {
             var vm = new GetGroupPOIVM();
             _poiService = new PoiService();
-            vm = _poiService.GetAllPois();
-            return Json(vm.GroupPoiList, JsonRequestBehavior.AllowGet);
+            vm = _poiService.GetAllPois(lang.Split(',').ToList());
+            return Json(vm.ClusterPoiList, JsonRequestBehavior.AllowGet);
         }
     }
-
-
-
-    //var testlist = new List<Test>();
-    //var a = new Test
-    //{
-    //    caption = "another crappy day at work...",
-    //    full_name = "gino beltran",
-    //    image = "https://distilleryimage11.instagram.com/231895caaf2211e19dc71231380fe523_6.jpg",
-    //    lat = "33.552143096",
-    //    lng = "-117.776512145",
-    //    link = "https://instagr.am/p/Lfz0O-Io5_/"
-    //};
-    //testlist.Add(a);
-    //a = new Test
-    //{
-    //    caption = "another crappy day at work...",
-    //    full_name = "gino beltran",
-    //    image = "https://distilleryimage4.instagram.com/3c82fe5caf2111e19dc71231380fe523_6.jpg",
-    //    lat = "33.552143096",
-    //    lng = "-117.776512145",
-    //    link = "https://instagr.am/p/Lfz0O-Io5_/"
-    //};
-    //testlist.Add(a);
-
 }
