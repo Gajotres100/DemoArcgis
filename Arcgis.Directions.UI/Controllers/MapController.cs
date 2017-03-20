@@ -28,6 +28,7 @@ namespace DemoArcgis.Controllers
         [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
         public JsonResult GetPoiGroupList(string lang)
         {
+            if (string.IsNullOrEmpty(lang)) return null;
             var vm = new GetGroupPOIVM();
             _poiService = new PoiService();
             vm = _poiService.GetAllPois(lang.Split(',').ToList());

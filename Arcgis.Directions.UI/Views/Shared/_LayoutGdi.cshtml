@@ -10,14 +10,10 @@
     <title></title>
 
     <script type="text/javascript">
-
         var dojoConfig = {
             parseOnLoad: true,
             locale: "@Model.Langugae.Code"
         };
-
-
-
     </script>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
@@ -191,6 +187,11 @@
                                             @Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keyword" })
                                         </div>
                                     </form>
+                                    <form class="sidebar-search">
+                                        <div class="input-box">
+                                            <div id="dir" dir="ltr"></div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -209,7 +210,7 @@
                                 <div class="page-sidebar nav-collapse collapse">
                                     <!-- BEGIN SIDEBAR MENU -->
                                     <form class="sidebar-search">
-                                        <div class="input-box">
+                                        <div class="input-box group-check">
                                             @foreach (var names in @Model.GroupPoiList)
                                             {
                                                 var checkBoxId = "chk" + names.PoiGroupID;
