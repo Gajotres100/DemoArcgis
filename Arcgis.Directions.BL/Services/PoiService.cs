@@ -62,7 +62,7 @@ namespace Arcgis.Directions.BL.Services
             }
         }
 
-        public GetPOIVM GetStartupData()
+        public GetPOIVM GetStartupData(int userID)
         {
             try
             {
@@ -82,6 +82,7 @@ namespace Arcgis.Directions.BL.Services
                     }).ToList();
                     item.Applications = app;
                 }
+                item.GroupPoiList = _poiRepository.GetPoiGroups(userID);
                 return item;
             }
             catch (Exception e)

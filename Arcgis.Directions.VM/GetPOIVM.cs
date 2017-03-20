@@ -13,5 +13,7 @@ namespace Arcgis.Directions.VM
         public int PoiID { get; set; }
         public string PoiName { get; set; }
         public string PoiDesc { get; set; }
+        public List<ClusterPoi> ClusterPoiList { get; set; }
+        public List<GroupPoi> GroupPoiList { get; set; }
     }
 }

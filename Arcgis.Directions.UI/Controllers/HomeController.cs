@@ -73,7 +73,12 @@ namespace Arcgis.Directions.UI.Controllers
 
             _poiService = new PoiService();
 
-            vm = _poiService.GetStartupData();
+            var user = new UserData();
+            user = Session[nameof(UserData)] as UserData;
+            var userID = 0;
+            int.TryParse(user.UserID, out userID);
+
+            vm = _poiService.GetStartupData(userID);
             var defaultLang = vm.LanguageList.FirstOrDefault(l => l.Name.Equals(lang));
             if (defaultLang == null) defaultLang = vm.LanguageList.FirstOrDefault();
             vm.Langugae = defaultLang;
