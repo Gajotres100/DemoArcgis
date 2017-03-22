@@ -236,9 +236,7 @@
                     var webMercator = webMercatorUtils.geographicToWebMercator(latlng);
                     var attributes = {
                         "Caption": latlng.x,
-                        "Name": latlng.y,
-                        "Image": p.image,
-                        "Link": p.link
+                        "Name": p.full_name,
                     };
                     return {
                         "x": latlng.x,
@@ -250,17 +248,14 @@
                 // popupTemplate to work with attributes specific to this dataset
                 var popupTemplate = new PopupTemplate({
                     "title": "",
-                    "fieldInfos": [{
-                        "fieldName": "Caption",
-                        visible: true
-                    }, {
+                    "fieldInfos": [ {
                         "fieldName": "Name",
                         "label": "By",
                         visible: true
                     }, {
                         "fieldName": "Link",
                         "label": "On Instagram",
-                        visible: true
+                        visible: false
                     }]
                 });
 
@@ -299,6 +294,8 @@
                         cleanUp();
                     }
                 });
+
+                map.infoWindow.hide();
             }
 
             function cleanUp() {

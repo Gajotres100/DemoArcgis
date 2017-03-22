@@ -12,7 +12,10 @@
     <script type="text/javascript">
         var dojoConfig = {
             parseOnLoad: true,
-            locale: "@Model.Langugae.Code"
+            locale: "@Model.Langugae.Code",
+            paths: {
+                extras: location.pathname.replace(/\/[^/]+$/, "") + "/extras"
+            }
         };
     </script>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -23,9 +26,13 @@
     <link rel="stylesheet" href="https://js.arcgis.com/3.18/dijit/themes/claro/claro.css">
 
 
+
     @Scripts.Render("~/Content/2/scripts/")
     @Scripts.Render("~/Content/2/plugins/")
     @Styles.Render("~/Content/2/css/")
+
+    <link rel="stylesheet" href="https://js.arcgis.com/3.20/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.20/esri/css/esri.css">
 
 </head>
 <body id="siteBody" style="position:relative;" class="nihilo gecko56 hr-hr gdidemo vehicle content-wrapper">
