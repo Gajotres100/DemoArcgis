@@ -199,7 +199,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="mdi mdi-earth"></i>
+                        <i class="mdi mdi-map-marker-multiple mdi-fw"></i>
                     </a>
                     <div class="sidebar-menu">
                         <h3 class='menu-title'></h3>
@@ -215,16 +215,14 @@
                                             {
                                                 var checkBoxId = "chk" + names.PoiGroupID;
                                                 var tdId = "td" + names.PoiGroupID;
-                                                <table width="100%">
-                                                    <tr>
-                                                        <td width="20px">
-                                                            <input type="checkbox" id="@checkBoxId" class="chkclass" value="@names.PoiGroupID" />
-                                                        </td>
-                                                        <td id="@tdId" width="100px">
-                                                            @names.PoiGroupName
-                                                        </td>
-                                                    </tr>
-                                                </table>
+                                                <div width="400px">
+                                                    <div style="display:inline-block; width: 40px; height: 25px;">
+                                                        <input type="checkbox" id="@checkBoxId" style="margin-left: 15px;" class="chkclass" value="@names.PoiGroupID" />
+                                                    </div>
+                                                    <div id="@tdId" style="display:inline-block; width: 350px; height: 25px;">
+                                                        @names.PoiGroupName
+                                                    </div>
+                                                </div>
                                             }
                                         </div>
                                     </form>
