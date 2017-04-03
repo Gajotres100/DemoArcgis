@@ -109,5 +109,12 @@ namespace Arcgis.Directions.UI.Controllers
             vm = _poiService.GetPoiByID(id);
             return Json(vm?.CusPoi ?? null, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult SaveRoute(string routeData)
+        {
+            return Json(routeData, JsonRequestBehavior.AllowGet);
+        }
     }
 }

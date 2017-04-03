@@ -2699,6 +2699,8 @@
     <Content Include="Content\dijit\images\overview.png" />
     <Content Include="Content\dijit\images\popup.png" />
     <Content Include="Global.asax" />
+    <Content Include="Script\circular-json.js" />
+    <Content Include="Script\cycle.js" />
     <Content Include="Script\init.js" />
     <Content Include="Web.config" />
   </ItemGroup>

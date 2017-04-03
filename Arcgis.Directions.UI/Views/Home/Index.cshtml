@@ -19,12 +19,14 @@
       "dojo/dom-style",
       "dojo/query",
 
-      "esri/map",      
+
+      "esri/map",
       "esri/dijit/Directions",
       "esri/tasks/locator",
       "esri/request",
       "esri/graphic",
       "esri/geometry/Extent",
+
 
       "esri/symbols/SimpleMarkerSymbol",
       "esri/symbols/SimpleFillSymbol",
@@ -92,7 +94,7 @@
 
             var directions = new Directions({
                 map: map,
-                routeTaskUrl: "@System.Configuration.ConfigurationManager.AppSettings["RouteTaskUrl"]",
+                routeTaskUrl: "@System.Configuration.ConfigurationManager.AppSettings["RouteTaskUrl"]",                
                 directionsLengthUnits: "esriKilometers",
                 optimalRoute: true,
                 showOptimalRouteOption: true,
@@ -102,7 +104,7 @@
                 dragging: false,
                 @*searchOptions: {
                     sources: [
-                      {                          
+                      {
                           locator: new Locator("@System.Configuration.ConfigurationManager.AppSettings["GeoCoder"]"),
                           searchFields: [],
                           exactMatch: false,
@@ -127,6 +129,25 @@
             }, "dir");
 
             directions.startup();
+
+            directions.on("directions-start", function (e) {
+                
+            });
+           
+
+            directions.on("directions-finish", function (e) {
+                if ("undefined" != typeof e.result.routeResults) {
+                    var s = JSON.stringify(JSON.decycle(e.result.routeResults[0].directions));
+                    directions = JSON.retrocycle(JSON.parse(s));
+                    $('#routeData').attr('value', s.toString());
+
+                    //let objJsonB64 = new Buffer(s).toString("base64");
+                    //var encoded = btoa(JSON.stringify(JSON.decycle(e.result.routeResults[0].directions)));  
+                    //directions = e.result.routeResults[0].directions;
+                }                
+            });
+
+
 
             $(window).load(function () {
                 $('#Langugae_Name').css('background-color', '#333');
@@ -306,7 +327,7 @@
             function error(err) {
                 console.log("something failed: ", err);
             }
-       
+
             window.showExtents = function () {
                 var extents = map.getLayer("clusterExtents");
                 if (extents) {
@@ -325,7 +346,7 @@
     });
 
 </script>
-
+<input type="text" name="routeData2" id="routeData2" value="" style="margin-top:0px !important;" />
 @Html.HiddenFor(m => m.CusPoiInput)
 <div id="vmap_world" class="vmaps" style="height:100vh">
     <div id="map" dir="ltr"></div>

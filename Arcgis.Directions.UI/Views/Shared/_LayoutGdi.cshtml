@@ -22,6 +22,8 @@
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="https://js.arcgis.com/3.18/"></script>
+    <script src="https://js.arcgis.com/3.18/"></script>
+    <script src="~/Script/circular-json.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://js.arcgis.com/3.18/dijit/themes/claro/claro.css">
 
@@ -188,7 +190,7 @@
                         <h3 class='menu-title'></h3>
                         <div class="slimScrollDiv">
                             <div class="container-fluid">
-                                <div class="page-sidebar nav-collapse collapse">
+                                <div class="page-sidebar nav-collapse collapse">                                 
                                     <form class="sidebar-search">
                                         <div class="input-box">
                                             @Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keyword" })
@@ -232,6 +234,27 @@
                                                 </div>
                                             }
                                         </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="mdi mdi-map-marker-multiple mdi-fw"></i>
+                    </a>
+                    <div class="sidebar-menu">
+                        <h3 class='menu-title'></h3>
+                        <div class="slimScrollDiv">
+                            <div class="container-fluid">
+
+                                <!-- BEGIN SIDEBAR -->
+                                <div class="page-sidebar nav-collapse collapse">
+                                    <!-- BEGIN SIDEBAR MENU -->
+                                    <form action="@Url.Action("SaveRoute", "Home")" method="post" enctype="multipart/form-data" class="form-horizontal" style="margin-top:5px;" name="multiform" id="multiform">                                                                            
+                                        <input type="text" name="routeData" id="routeData" value="" style="margin-top:0px !important;" />
+                                        <input type="submit" value="View Report">                                                                                
                                     </form>
                                 </div>
                             </div>

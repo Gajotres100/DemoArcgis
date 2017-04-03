@@ -99,7 +99,8 @@ namespace Arcgis.Utils.Web
                            "~/Content/2/scripts/app.js",
                            "~/Content/2/scripts/menu-action.js",
                             "~/Content/2/scripts/jquery.slimscroll.js",
-                            "~/Content/2/scripts/jquery.slimscroll.min.js"
+                            "~/Content/2/scripts/jquery.slimscroll.min.js",
+                            "~/Script/cycle.js"
                            ));
 
 
