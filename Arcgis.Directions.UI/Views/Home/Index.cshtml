@@ -26,6 +26,7 @@
       "esri/request",
       "esri/graphic",
       "esri/geometry/Extent",
+      "esri/symbols/SimpleLineSymbol",
 
 
       "esri/symbols/SimpleMarkerSymbol",
@@ -48,13 +49,13 @@
       parser, ready, arrayUtils, Color, domStyle, query,
       Map, Directions, Locator, esriRequest, Graphic, Extent,
       SimpleMarkerSymbol, SimpleFillSymbol, PictureMarkerSymbol, ClassBreaksRenderer,
-      GraphicsLayer, SpatialReference, PopupTemplate, Point, webMercatorUtils,
+      GraphicsLayer, SpatialReference, PopupTemplate, Point, webMercatorUtils, SimpleLineSymbol,
       ClusterLayer
     ) {
         ready(function () {
             parser.parse();
-
             var clusterLayer;
+            var directions;
             var popupOptions = {
                 "markerSymbol": new SimpleMarkerSymbol("circle", 20, null, new Color([0, 0, 0, 0.25])),
                 "marginLeft": "20",
@@ -92,9 +93,9 @@
                 ]
             });
 
-            var directions = new Directions({
+            @*directions = new Directions({
                 map: map,
-                routeTaskUrl: "@System.Configuration.ConfigurationManager.AppSettings["RouteTaskUrl"]",                
+                routeTaskUrl: "@System.Configuration.ConfigurationManager.AppSettings["RouteTaskUrl"]",
                 directionsLengthUnits: "esriKilometers",
                 optimalRoute: true,
                 showOptimalRouteOption: true,
@@ -102,52 +103,67 @@
                 showSaveButton: true,
                 showPrintPage: true,
                 dragging: false,
-                @*searchOptions: {
-                    sources: [
-                      {
-                          locator: new Locator("@System.Configuration.ConfigurationManager.AppSettings["GeoCoder"]"),
-                          searchFields: [],
-                          exactMatch: false,
-                          searchExtent: null,
-                          localSearchOptions: {
-                              minScale: 300000,
-                              distance: 50000
-                          },
-                          outFields: ["Addr_type"],
-                          name: "Custom Geocoding Service",
-                          placeholder: "Search Geocoder",
-                          maxResults: 10,
-                          maxSuggestions: 10,
-                          enableSuggestions: true,
-                          enableSearchingAll: true,
-                          autoComplete: true,
-                          minCharacters: 1
-                      }
-                    ]
-                },*@
                 autoSolve: true
             }, "dir");
+
+            directions.on("load", function (e) {
+
+            });
 
             directions.startup();
 
             directions.on("directions-start", function (e) {
-                
+
             });
-           
+
 
             directions.on("directions-finish", function (e) {
                 if ("undefined" != typeof e.result.routeResults) {
                     var s = JSON.stringify(JSON.decycle(e.result.routeResults[0].directions));
-                    directions = JSON.retrocycle(JSON.parse(s));
+                    directions = JSON.retrocycle(JSON.parse(s.toString()));
                     $('#routeData').attr('value', s.toString());
+                }
+            });*@
 
-                    //let objJsonB64 = new Buffer(s).toString("base64");
-                    //var encoded = btoa(JSON.stringify(JSON.decycle(e.result.routeResults[0].directions)));  
-                    //directions = e.result.routeResults[0].directions;
-                }                
+
+            $('#loadDirection').click(function () {
+
+                var directionRoute =  esriRequest({ url: '@Url.Action("GetRoute", "Home")', handleAs: "json" });                
+                directionRoute.then(Gurtn, error);
             });
 
+            function Gurtn(resp) {
+                //directions.destroy();
 
+                directions = new Directions({
+                    map: map,
+                    routeTaskUrl: "@System.Configuration.ConfigurationManager.AppSettings["RouteTaskUrl"]",   
+                    directionsLengthUnits: "esriKilometers",
+                    optimalRoute: true,
+                    showOptimalRouteOption: true,
+                    showMilesKilometersOption: false,
+                    showSaveButton: true,
+                    showPrintPage: true,
+                    dragging: false,
+                    autoSolve: true
+                }, "dir");
+
+
+                directions.startup();
+
+                directions.on("directions-finish", function (e) {
+                    if ("undefined" != typeof e.result.routeResults) {
+                        var s = JSON.stringify(JSON.decycle(e.result.routeResults[0].directions));
+                        directions = resp;
+                    }
+                });
+
+
+                //directions.on("load", function (e) {
+                //    directions = resp;
+                //})
+                
+            };
 
             $(window).load(function () {
                 $('#Langugae_Name').css('background-color', '#333');
