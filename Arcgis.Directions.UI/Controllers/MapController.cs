@@ -22,7 +22,7 @@ namespace DemoArcgis.Controllers
 
             var vm = new GetGroupPOIVM();
             _poiService = new PoiService();
-            vm = _poiService.GetPoiGroups(userID);            
+            vm = _poiService.GetPoiGroups(userID);
             return View(vm);
         }
         [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]

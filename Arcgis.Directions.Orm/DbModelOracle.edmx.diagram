@@ -10,6 +10,7 @@
         <EntityTypeShape EntityType="ModelProtalOracleDb.POI_GROUP_ACCESS_RIGHTS" Width="1.5" PointX="3.5" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ModelProtalOracleDb.POI_GROUPS" Width="1.5" PointX="0.75" PointY="7" />
         <AssociationConnector Association="ModelProtalOracleDb.POI_PLACES_POI_GROUPS_FK" />
+        <EntityTypeShape EntityType="ModelProtalOracleDb.USER_ROUTE" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

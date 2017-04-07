@@ -2,6 +2,9 @@
 using System.Linq;
 using Arcgis.Directions.Orm;
 using Arcgis.Directions.Data.Model;
+using System.Text;
+using System;
+using Newtonsoft.Json.Linq;
 
 namespace Arcgis.Directions.Data.Repository.Poi
 {
@@ -141,5 +144,48 @@ namespace Arcgis.Directions.Data.Repository.Poi
                 }).ToList();
             }
         }
+
+        public void SaveRoute(int userID, string routeData, string routeName)
+        {
+            using (var context = new EntitiesPortalOracle())
+            {
+                USER_ROUTE userRouter = new USER_ROUTE
+                {
+                    NAME = routeName,
+                    ROUTE = Encoding.ASCII.GetBytes(routeData),
+                    USER_ID = userID
+                };
+                context.USER_ROUTE.Add(userRouter);
+                context.SaveChanges();
+            }
+        }
+
+        public List<RouteData> GetRoutesForUser(int userID)
+        {
+            using (var context = new EntitiesPortalOracle())
+            {
+                return context.USER_ROUTE.Where(r => r.USER_ID == userID).AsEnumerable().Select(x => new RouteData
+                {
+                    ID = x.ID,
+                    Name = x.NAME,
+                    UserID = x.USER_ID,
+                    //Route = JObject.Parse(Encoding.ASCII.GetString(x.ROUTE))
+                }).ToList();
+            }            
+        }
+
+        public RouteData GetRoutesByRouteId(int ID)
+        {
+            using (var context = new EntitiesPortalOracle())
+            {
+                var a = context.USER_ROUTE.FirstOrDefault(r => r.ID == ID);
+                RouteData routeData = new RouteData();
+                routeData.Route = JObject.Parse(Encoding.ASCII.GetString(a.ROUTE));
+
+                return null; 
+            }
+        }
+
+        
     }
 }

@@ -16,5 +16,8 @@ namespace Arcgis.Directions.VM
         public List<ClusterPoi> ClusterPoiList { get; set; }
         public List<GroupPoi> GroupPoiList { get; set; }
         public object DirectionsRoute { get; set; }
+        public List<RouteData> RouteDataList { get; set; }
+        public RouteData RouteData { get; set; }
+
     }
 }

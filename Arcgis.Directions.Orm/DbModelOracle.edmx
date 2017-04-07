@@ -66,6 +66,15 @@
           <Property Name="MODIFIED_DT" Type="date" />
           <Property Name="MODIFIED_BY" Type="number" Precision="9" Scale="0" />
         </EntityType>
+        <EntityType Name="USER_ROUTE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="USER_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ROUTE" Type="blob" />
+        </EntityType>
         <Association Name="POI_PLACES_POI_GROUPS_FK">
           <End Role="POI_GROUPS" Type="Self.POI_GROUPS" Multiplicity="1" />
           <End Role="POI_PLACES" Type="Self.POI_PLACES" Multiplicity="*" />
@@ -83,6 +92,7 @@
           <EntitySet Name="POI_GROUP_ACCESS_RIGHTS" EntityType="Self.POI_GROUP_ACCESS_RIGHTS" Schema="DEV_FMS_7X" store:Type="Tables" />
           <EntitySet Name="POI_GROUPS" EntityType="Self.POI_GROUPS" Schema="DEV_FMS_7X" store:Type="Tables" />
           <EntitySet Name="POI_PLACES" EntityType="Self.POI_PLACES" Schema="DEV_FMS_7X" store:Type="Tables" />
+          <EntitySet Name="USER_ROUTE" EntityType="Self.USER_ROUTE" Schema="DEV_FMS_7X" store:Type="Tables" />
           <AssociationSet Name="POI_PLACES_POI_GROUPS_FK" Association="Self.POI_PLACES_POI_GROUPS_FK">
             <End Role="POI_GROUPS" EntitySet="POI_GROUPS" />
             <End Role="POI_PLACES" EntitySet="POI_PLACES" />
@@ -129,6 +139,7 @@
             <End Role="POI_GROUPS" EntitySet="POI_GROUPS" />
             <End Role="POI_PLACES" EntitySet="POI_PLACES" />
           </AssociationSet>
+          <EntitySet Name="USER_ROUTE" EntityType="ModelProtalOracleDb.USER_ROUTE" />
         </EntityContainer>
         <EntityType Name="LANGUAGE">
           <Key>
@@ -177,6 +188,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="USER_ROUTE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="ROUTE" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -245,6 +265,16 @@
                 <ScalarProperty Name="CHILD_USER_ID" ColumnName="CHILD_USER_ID" />
                 <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
                 <ScalarProperty Name="POI_GROUP_ID" ColumnName="POI_GROUP_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_ROUTE">
+            <EntityTypeMapping TypeName="ModelProtalOracleDb.USER_ROUTE">
+              <MappingFragment StoreEntitySet="USER_ROUTE">
+                <ScalarProperty Name="ROUTE" ColumnName="ROUTE" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

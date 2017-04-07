@@ -33,6 +33,6 @@ namespace Arcgis.Directions.UI
             logger.Error(exception);
             //Server.ClearError();
             //Response.Redirect(@"/Home/Error");
-        }        
+        }
     }
 }

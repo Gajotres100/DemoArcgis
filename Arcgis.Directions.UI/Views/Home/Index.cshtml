@@ -5,10 +5,10 @@
 
 <script>
 
-
     function CallChangefunc(val) {
         window.location.href = '@Url.Action("ChangeLanguage", "Home", new { lang = "ID" })'.replace("ID", val);
     }
+
 
     var map;
     require([
@@ -56,6 +56,7 @@
             parser.parse();
             var clusterLayer;
             var directions;
+            var route;
             var popupOptions = {
                 "markerSymbol": new SimpleMarkerSymbol("circle", 20, null, new Color([0, 0, 0, 0.25])),
                 "marginLeft": "20",
@@ -93,7 +94,7 @@
                 ]
             });
 
-            @*directions = new Directions({
+            directions = new Directions({
                 map: map,
                 routeTaskUrl: "@System.Configuration.ConfigurationManager.AppSettings["RouteTaskUrl"]",
                 directionsLengthUnits: "esriKilometers",
@@ -119,51 +120,9 @@
 
             directions.on("directions-finish", function (e) {
                 if ("undefined" != typeof e.result.routeResults) {
-                    var s = JSON.stringify(JSON.decycle(e.result.routeResults[0].directions));
-                    directions = JSON.retrocycle(JSON.parse(s.toString()));
-                    $('#routeData').attr('value', s.toString());
+                    route = JSON.stringify(directions.stops);
                 }
-            });*@
-
-
-            $('#loadDirection').click(function () {
-
-                var directionRoute =  esriRequest({ url: '@Url.Action("GetRoute", "Home")', handleAs: "json" });                
-                directionRoute.then(Gurtn, error);
             });
-
-            function Gurtn(resp) {
-                //directions.destroy();
-
-                directions = new Directions({
-                    map: map,
-                    routeTaskUrl: "@System.Configuration.ConfigurationManager.AppSettings["RouteTaskUrl"]",   
-                    directionsLengthUnits: "esriKilometers",
-                    optimalRoute: true,
-                    showOptimalRouteOption: true,
-                    showMilesKilometersOption: false,
-                    showSaveButton: true,
-                    showPrintPage: true,
-                    dragging: false,
-                    autoSolve: true
-                }, "dir");
-
-
-                directions.startup();
-
-                directions.on("directions-finish", function (e) {
-                    if ("undefined" != typeof e.result.routeResults) {
-                        var s = JSON.stringify(JSON.decycle(e.result.routeResults[0].directions));
-                        directions = resp;
-                    }
-                });
-
-
-                //directions.on("load", function (e) {
-                //    directions = resp;
-                //})
-                
-            };
 
             $(window).load(function () {
                 $('#Langugae_Name').css('background-color', '#333');
@@ -210,6 +169,13 @@
                     photos = esriRequest({ url: '@Url.Action("GetPoiGroupList", "Map", new { lang = "ID" })'.replace("ID", studentListVal), handleAs: "json" });
                     photos.then(addClusters, error);
                 });
+
+                $('.routeLoad').click(function () {
+                    var routeID = $(this).attr('id');
+                    alert(routeID);
+                    photos = esriRequest({ url: '@Url.Action("GetRouteData", "Home", new { lang = "ID" })'.replace("ID", routeID), handleAs: "json" });
+                });
+
             });
 
             (function ($) {
@@ -224,6 +190,23 @@
                 });
             })(jQuery);
             var countStops = 0;
+
+            $('#saveDirection').click(function () {
+                var name = $("#routeName").val();
+                $.ajax({
+                    url: '@Url.Action("SaveRoute", "Home")',
+                    data: "{ 'routeData': '" + route + "', name: '" + name + "' }",
+                    dataType: 'json',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    dataFilter: function (data) { return data; },
+                    success: function (data) {
+                        alert("OK");
+                    }
+                });
+            });
+
+
 
             $("#keyword").autocomplete({
                 source: function (request, response) {
@@ -285,7 +268,7 @@
                 // popupTemplate to work with attributes specific to this dataset
                 var popupTemplate = new PopupTemplate({
                     "title": "",
-                    "fieldInfos": [ {
+                    "fieldInfos": [{
                         "fieldName": "Name",
                         "label": "By",
                         visible: true
@@ -343,6 +326,10 @@
             function error(err) {
                 console.log("something failed: ", err);
             }
+
+            function LoadRoute(ID) {
+                alert(ID);
+            };
 
             window.showExtents = function () {
                 var extents = map.getLayer("clusterExtents");

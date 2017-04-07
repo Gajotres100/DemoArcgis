@@ -38,10 +38,5 @@ namespace Arcgis.Directions.Orm
         public Nullable<int> MODIFIED_BY { get; set; }
     
         public virtual POI_GROUPS POI_GROUPS { get; set; }
-
-        public bool In(List<int> poiGroup)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

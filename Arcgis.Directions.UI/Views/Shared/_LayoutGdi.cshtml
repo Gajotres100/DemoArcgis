@@ -253,11 +253,16 @@
                                 <div class="page-sidebar nav-collapse collapse">
                                     <!-- BEGIN SIDEBAR MENU -->
                                     <form action="@Url.Action("SaveRoute", "Home")" method="post" enctype="multipart/form-data" class="form-horizontal" style="margin-top:5px;" name="multiform" id="multiform">                                                                            
-                                        <input type="text" name="routeData" id="routeData" value="" style="margin-top:0px !important;" />
-                                        <input type="submit" value="View Report">                                                                                
+                                        <input type="text" name="routeName" id="routeName" value="" style="margin-top:0px !important;" /><br />                                                                                                                                                               
                                     </form>
+                                    <input type="submit" value="Save" id="saveDirection">  
+                                    <div class="input-box group-check">
+                                        @foreach (var names in @Model.RouteDataList)
+                                        {                                            
+                                           <span>@names.Name</span><a id="@names.ID" title="Click to do load" href="#" class="routeLoad">Učitaj</a><br />
+                                        }
+                                    </div>
 
-                                    <input type="submit" value="Učitaj" id="loadDirection">  
                                 </div>
                             </div>
                         </div>

@@ -65,7 +65,8 @@ namespace Arcgis.Directions.BL.Services
         public GetPOIVM GetStartupData(int userID)
         {
             try
-            {
+            {                
+                
                 var ssoOvreiden = false;
                 bool.TryParse(ConfigurationManager.AppSettings[@"SSOveriden"], out ssoOvreiden);
 
@@ -83,6 +84,7 @@ namespace Arcgis.Directions.BL.Services
                     item.Applications = app;
                 }
                 item.GroupPoiList = _poiRepository.GetPoiGroups(userID);
+                item.RouteDataList =  _poiRepository.GetRoutesForUser(userID);
                 return item;
             }
             catch (Exception e)
@@ -222,7 +224,45 @@ namespace Arcgis.Directions.BL.Services
             }
         }
 
-        
+        public void SaveRoute(int userID, string routeData, string routeName)
+        {
+            try
+            {
+                _poiRepository.SaveRoute(userID, routeData, routeName);
+            }
+            catch (Exception e)
+            {
+                logger.Error("error = " + e);
+            }
+        }
+
+        public List<RouteData> GetRoutesForUser(int userID)
+        {
+            try
+            {                
+                return _poiRepository.GetRoutesForUser(userID);
+            }
+            catch (Exception e)
+            {
+                logger.Error("error = " + e);
+                return null;
+            }
+        }
+
+        public GetPOIVM GetRoutesByRouteId(int ID)
+        {
+            try
+            {
+                var item = new GetPOIVM();
+                item.RouteData = _poiRepository.GetRoutesByRouteId(ID);
+                return item;
+            }
+            catch (Exception e)
+            {
+                logger.Error("error = " + e);
+                return null;
+            }
+        }
 
         #endregion
 
