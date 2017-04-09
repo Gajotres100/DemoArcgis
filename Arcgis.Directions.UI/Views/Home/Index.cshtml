@@ -4,11 +4,11 @@
 }
 
 <script>
+    
 
     function CallChangefunc(val) {
         window.location.href = '@Url.Action("ChangeLanguage", "Home", new { lang = "ID" })'.replace("ID", val);
     }
-
 
     var map;
     require([
@@ -96,8 +96,7 @@
 
             directions = new Directions({
                 map: map,
-                routeTaskUrl: "@System.Configuration.ConfigurationManager.AppSettings["RouteTaskUrl"]",
-                portalUrl: "@System.Configuration.ConfigurationManager.AppSettings["RouteTaskUrl"]",
+                routeTaskUrl: "@System.Configuration.ConfigurationManager.AppSettings["RouteTaskUrl"]",                
                 directionsLengthUnits: "esriKilometers",
                 optimalRoute: true,
                 showOptimalRouteOption: true,
@@ -122,7 +121,8 @@
             directions.on("directions-finish", function (e) {
                 if ("undefined" != typeof e.result.routeResults) {
                     routeData = directions.stops;
-                }
+                    $(".savePrintBtnContainer").append("<div tabindex='0' role='button' class='esriResultsSave esriDirectionsButton esriDirectionsTabButton' data-blur-on-click='true' title='Spremi i podijeli rutu' style='display: inline-block;'></div>");
+                }                
             });
 
             $(window).load(function () {            
@@ -177,8 +177,8 @@
                     stops.then(addStopsFromDB, error);
                 });
 
-                $('.esriResultsSave').click(function (e) {
-                    return false;
+                $('.savePrintBtnContainer').on('click', '.esriResultsSave', function () {                    
+                    $("#liRouteList").addClass("selected");
                 });
 
                 $('#routeListDiv').on('click', '.routeDelete', function () {                    
@@ -230,8 +230,25 @@
                 });
             })(jQuery);
 
+
+            function validateForm() {
+                if (routeData == null) {
+                    alert("Potrebno je odabrati rutu");
+                    return false;
+                }
+            }
+
             $('#saveDirection').click(function () {
                 var name = $("#routeName").val();
+                if (name == null || name == "") {
+                    alert("Potrebno je upisati ime rute");
+                    return false;
+                }
+
+                if (routeData == null) {
+                    alert("Potrebno je odabrati rutu");
+                    return false;
+                }
                 $.ajax({
                     url: '@Url.Action("SaveRoute", "Home")',
                     data: "{ 'routeData': '" + JSON.stringify(routeData) + "', name: '" + name + "' }",
