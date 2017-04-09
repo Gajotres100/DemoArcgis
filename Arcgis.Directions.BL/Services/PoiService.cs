@@ -194,6 +194,19 @@ namespace Arcgis.Directions.BL.Services
             }
         }
 
+        public void DeleteRoute(int routeID)
+        {
+            try
+            {
+                _poiRepository.DeleteRoute(routeID);
+                
+            }
+            catch (Exception e)
+            {
+                logger.Error("error = " + e);                
+            }
+        }
+
         public GetGroupPOIVM GetAllPois(List<string> GroupID)
         {
             try

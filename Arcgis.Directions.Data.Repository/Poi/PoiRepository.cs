@@ -5,6 +5,7 @@ using Arcgis.Directions.Data.Model;
 using System.Text;
 using System;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace Arcgis.Directions.Data.Repository.Poi
 {
@@ -152,9 +153,10 @@ namespace Arcgis.Directions.Data.Repository.Poi
                 USER_ROUTE userRouter = new USER_ROUTE
                 {
                     NAME = routeName,
-                    ROUTE = Encoding.ASCII.GetBytes(routeData),
+                    ROUTE = Encoding.UTF8.GetBytes(routeData),
                     USER_ID = userID
-                };
+                };                
+
                 context.USER_ROUTE.Add(userRouter);
                 context.SaveChanges();
             }
@@ -174,15 +176,31 @@ namespace Arcgis.Directions.Data.Repository.Poi
             }            
         }
 
+        public void DeleteRoute(int routeID)
+        {
+            using (var context = new EntitiesPortalOracle())
+            {
+                var userRoute = context.USER_ROUTE.FirstOrDefault(r => r.ID == routeID);
+
+                context.USER_ROUTE.Remove(userRoute);
+                context.SaveChanges();
+            }
+        }
+
         public RouteData GetRoutesByRouteId(int ID)
         {
             using (var context = new EntitiesPortalOracle())
             {
                 var a = context.USER_ROUTE.FirstOrDefault(r => r.ID == ID);
                 RouteData routeData = new RouteData();
-                routeData.Route = JObject.Parse(Encoding.ASCII.GetString(a.ROUTE));
+                string stringroute = Encoding.UTF8.GetString(a.ROUTE);
+                routeData.Route = JsonConvert.DeserializeObject(stringroute);
 
-                return null; 
+
+                routeData.ID = a.ID;
+                routeData.Name = a.NAME;
+                routeData.UserID = a.USER_ID;
+                return routeData; 
             }
         }
 

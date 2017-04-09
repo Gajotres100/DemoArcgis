@@ -11,6 +11,9 @@ using System.Text;
 using System.Web.Mvc;
 using System.Diagnostics.Contracts;
 using System.Web.Script.Serialization;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json;
+using System.Dynamic;
 
 namespace Arcgis.Directions.UI.Controllers
 {
@@ -119,7 +122,7 @@ namespace Arcgis.Directions.UI.Controllers
         {
             _poiService = new PoiService();
             var vm = _poiService.GetRoutesByRouteId(lang);
-            return Json(vm?.CusPoi ?? null, JsonRequestBehavior.AllowGet);
+            return Json(vm?.RouteData ?? null, JsonRequestBehavior.AllowGet);
         }        
 
         [HttpPost]
@@ -131,6 +134,14 @@ namespace Arcgis.Directions.UI.Controllers
             var userID = GetUserIDFromSession();
             _poiService.SaveRoute(userID, jsonRouteData, name);            
             return Json(routeData, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteRoute(int routeID)
+        {            
+            _poiService = new PoiService();         
+            _poiService.DeleteRoute(routeID);
+            return Json(routeID, JsonRequestBehavior.AllowGet);
         }
 
         private int GetUserIDFromSession()

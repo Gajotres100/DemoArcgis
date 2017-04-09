@@ -258,8 +258,8 @@
                                     <input type="submit" value="Save" id="saveDirection">  
                                     <div class="input-box group-check">
                                         @foreach (var names in @Model.RouteDataList)
-                                        {                                            
-                                           <span>@names.Name</span><a id="@names.ID" title="Click to do load" href="#" class="routeLoad">Učitaj</a><br />
+                                        {
+                                            <div class="routeDetails@names.ID"><span>@names.Name</span><a id="@names.ID" href="#" class="routeLoad">Učitaj</a><a id="@names.ID" href="#" class="routeDelete">Obriši</a></div><br />
                                         }
                                     </div>
 

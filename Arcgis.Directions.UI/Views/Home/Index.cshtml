@@ -56,7 +56,7 @@
             parser.parse();
             var clusterLayer;
             var directions;
-            var route;
+            var routeData;
             var popupOptions = {
                 "markerSymbol": new SimpleMarkerSymbol("circle", 20, null, new Color([0, 0, 0, 0.25])),
                 "marginLeft": "20",
@@ -97,6 +97,7 @@
             directions = new Directions({
                 map: map,
                 routeTaskUrl: "@System.Configuration.ConfigurationManager.AppSettings["RouteTaskUrl"]",
+                portalUrl: "@System.Configuration.ConfigurationManager.AppSettings["RouteTaskUrl"]",
                 directionsLengthUnits: "esriKilometers",
                 optimalRoute: true,
                 showOptimalRouteOption: true,
@@ -120,7 +121,7 @@
 
             directions.on("directions-finish", function (e) {
                 if ("undefined" != typeof e.result.routeResults) {
-                    route = JSON.stringify(directions.stops);
+                    routeData = directions.stops;
                 }
             });
 
@@ -172,11 +173,48 @@
 
                 $('.routeLoad').click(function () {
                     var routeID = $(this).attr('id');
-                    alert(routeID);
-                    photos = esriRequest({ url: '@Url.Action("GetRouteData", "Home", new { lang = "ID" })'.replace("ID", routeID), handleAs: "json" });
+                    var stops = esriRequest({ url: '@Url.Action("GetRouteData", "Home", new { lang = "ID" })'.replace("ID", routeID), handleAs: "json" });
+                    stops.then(addStopsFromDB, error);
                 });
 
+                $('.esriResultsSave').click(function (e) {
+                    alert("Op Trt");
+                    e.preventDefault();
+                });
+                
+
+                $('.routeDelete').click(function () {
+                    var routeID = $(this).attr('id');
+                    $.ajax({
+                        url: '@Url.Action("DeleteRoute", "Home")',
+                        data: "{ 'routeID': '" + routeID + "' }",
+                        dataType: 'json',
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        dataFilter: function (data) { return data; },
+                        success: function (data) {
+
+                        }
+                     })
+                });
+
+
             });
+
+            var countStops = 0;
+
+            function addStopsFromDB(resp) {
+                directions.reset();
+                var obj = JSON.parse(resp.Route);
+
+                for (index = 0; index < obj.length; ++index) {
+                    alert(obj[index].name + " " + countStops);
+                    directions.addStop(obj[index].name, countStops);
+                    countStops++;
+                }
+
+                directions.getDirections();
+            }
 
             (function ($) {
                 $('.esriDirectionsButton ').click(function () {
@@ -189,13 +227,13 @@
                     });
                 });
             })(jQuery);
-            var countStops = 0;
+
 
             $('#saveDirection').click(function () {
                 var name = $("#routeName").val();
                 $.ajax({
                     url: '@Url.Action("SaveRoute", "Home")',
-                    data: "{ 'routeData': '" + route + "', name: '" + name + "' }",
+                    data: "{ 'routeData': '" + JSON.stringify(routeData) + "', name: '" + name + "' }",
                     dataType: 'json',
                     type: "POST",
                     contentType: "application/json; charset=utf-8",
