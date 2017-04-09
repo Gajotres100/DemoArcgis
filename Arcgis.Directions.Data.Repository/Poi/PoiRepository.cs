@@ -146,7 +146,7 @@ namespace Arcgis.Directions.Data.Repository.Poi
             }
         }
 
-        public void SaveRoute(int userID, string routeData, string routeName)
+        public int SaveRoute(int userID, string routeData, string routeName)
         {
             using (var context = new EntitiesPortalOracle())
             {
@@ -159,6 +159,7 @@ namespace Arcgis.Directions.Data.Repository.Poi
 
                 context.USER_ROUTE.Add(userRouter);
                 context.SaveChanges();
+                return userRouter.ID;
             }
         }
 
@@ -166,7 +167,7 @@ namespace Arcgis.Directions.Data.Repository.Poi
         {
             using (var context = new EntitiesPortalOracle())
             {
-                return context.USER_ROUTE.Where(r => r.USER_ID == userID).AsEnumerable().Select(x => new RouteData
+                return context.USER_ROUTE.Where(r => r.USER_ID == userID).OrderBy(r => r.ID).AsEnumerable().Select(x => new RouteData
                 {
                     ID = x.ID,
                     Name = x.NAME,

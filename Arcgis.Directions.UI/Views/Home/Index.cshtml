@@ -126,6 +126,7 @@
             });
 
             $(window).load(function () {
+                $('.esriResultsSave').removeAttr("data-dojo-attach-point");
                 $('#Langugae_Name').css('background-color', '#333');
                 $('#Langugae_Name').css('color', '#FFFFF');
 
@@ -178,13 +179,13 @@
                 });
 
                 $('.esriResultsSave').click(function (e) {
-                    alert("Op Trt");
-                    e.preventDefault();
+                    return false;
                 });
-                
 
-                $('.routeDelete').click(function () {
+                $('#routeListDiv').on('click', '.routeDelete', function () {
+                    alert("aaa");
                     var routeID = $(this).attr('id');
+                    alert(routeID);
                     $.ajax({
                         url: '@Url.Action("DeleteRoute", "Home")',
                         data: "{ 'routeID': '" + routeID + "' }",
@@ -193,12 +194,10 @@
                         contentType: "application/json; charset=utf-8",
                         dataFilter: function (data) { return data; },
                         success: function (data) {
-
+                            $(".route" + routeID).remove();
                         }
-                     })
+                    })
                 });
-
-
             });
 
             var countStops = 0;
@@ -208,7 +207,6 @@
                 var obj = JSON.parse(resp.Route);
 
                 for (index = 0; index < obj.length; ++index) {
-                    alert(obj[index].name + " " + countStops);
                     directions.addStop(obj[index].name, countStops);
                     countStops++;
                 }
@@ -238,13 +236,11 @@
                     type: "POST",
                     contentType: "application/json; charset=utf-8",
                     dataFilter: function (data) { return data; },
-                    success: function (data) {
-                        alert("OK");
+                    success: function (data) {                        
+                        $("#routeListDiv").append("<div class='route" + data + "' style='margin-left: 10px;'><span>" + name + "</span><a id='" + data + "' href='#' class='routeDelete' style='float: right; margin-right: 5px;'>Obriši</a><a id='" + data + "' href='#' class='routeLoad' style='float: right; margin-right: 5px;'>Učitaj</a></div>");
                     }
                 });
             });
-
-
 
             $("#keyword").autocomplete({
                 source: function (request, response) {
@@ -366,7 +362,7 @@
             }
 
             function LoadRoute(ID) {
-                alert(ID);
+                
             };
 
             window.showExtents = function () {

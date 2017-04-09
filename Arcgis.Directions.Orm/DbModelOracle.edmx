@@ -70,7 +70,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ID" Type="number" Precision="9" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="NAME" Type="varchar2" MaxLength="255" Nullable="false" />
           <Property Name="USER_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
           <Property Name="ROUTE" Type="blob" />
@@ -192,7 +192,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NAME" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="USER_ID" Type="Int32" Nullable="false" />
           <Property Name="ROUTE" Type="Binary" MaxLength="Max" FixedLength="false" />

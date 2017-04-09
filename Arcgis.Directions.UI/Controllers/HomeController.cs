@@ -132,8 +132,8 @@ namespace Arcgis.Directions.UI.Controllers
             string jsonRouteData = Newtonsoft.Json.JsonConvert.SerializeObject(routeData);
             _poiService = new PoiService();
             var userID = GetUserIDFromSession();
-            _poiService.SaveRoute(userID, jsonRouteData, name);            
-            return Json(routeData, JsonRequestBehavior.AllowGet);
+            int routeID = _poiService.SaveRoute(userID, jsonRouteData, name);            
+            return Json(routeID, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

@@ -190,7 +190,7 @@
                         <h3 class='menu-title'></h3>
                         <div class="slimScrollDiv">
                             <div class="container-fluid">
-                                <div class="page-sidebar nav-collapse collapse">                                 
+                                <div class="page-sidebar nav-collapse collapse">
                                     <form class="sidebar-search">
                                         <div class="input-box">
                                             @Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keyword" })
@@ -242,7 +242,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="mdi mdi-map-marker-multiple mdi-fw"></i>
+                        <i class="mdi mdi-content-save mdi-fw"></i>
                     </a>
                     <div class="sidebar-menu">
                         <h3 class='menu-title'></h3>
@@ -250,16 +250,13 @@
                             <div class="container-fluid">
 
                                 <!-- BEGIN SIDEBAR -->
-                                <div class="page-sidebar nav-collapse collapse">
-                                    <!-- BEGIN SIDEBAR MENU -->
-                                    <form action="@Url.Action("SaveRoute", "Home")" method="post" enctype="multipart/form-data" class="form-horizontal" style="margin-top:5px;" name="multiform" id="multiform">                                                                            
-                                        <input type="text" name="routeName" id="routeName" value="" style="margin-top:0px !important;" /><br />                                                                                                                                                               
-                                    </form>
-                                    <input type="submit" value="Save" id="saveDirection">  
-                                    <div class="input-box group-check">
+                                <div class="page-sidebar nav-collapse collapse"> 
+                                    <input type="text" name="routeName" id="routeName" value="" style="margin:0 0 0 10px !important;" />  
+                                    <input type="submit" value="Save" id="saveDirection"><br />
+                                    <div class="input-box group-check" id="routeListDiv"> 
                                         @foreach (var names in @Model.RouteDataList)
                                         {
-                                            <div class="routeDetails@names.ID"><span>@names.Name</span><a id="@names.ID" href="#" class="routeLoad">Učitaj</a><a id="@names.ID" href="#" class="routeDelete">Obriši</a></div><br />
+                                            <div class="@("route"+ names.ID)" style="margin-left: 10px;"><span>@names.Name</span><a id="@names.ID" href="#" class="routeDelete" style="float: right; margin-right: 5px;">Obriši</a><a id="@names.ID" href="#" class="routeLoad" style="float: right; margin-right: 5px;">Učitaj</a></div>
                                         }
                                     </div>
 

@@ -237,14 +237,15 @@ namespace Arcgis.Directions.BL.Services
             }
         }
 
-        public void SaveRoute(int userID, string routeData, string routeName)
+        public int SaveRoute(int userID, string routeData, string routeName)
         {
             try
             {
-                _poiRepository.SaveRoute(userID, routeData, routeName);
+                return _poiRepository.SaveRoute(userID, routeData, routeName);
             }
             catch (Exception e)
             {
+                return 0;
                 logger.Error("error = " + e);
             }
         }
