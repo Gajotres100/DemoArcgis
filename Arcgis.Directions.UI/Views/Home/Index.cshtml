@@ -125,8 +125,7 @@
                 }
             });
 
-            $(window).load(function () {
-                $('.esriResultsSave').removeAttr("data-dojo-attach-point");
+            $(window).load(function () {            
                 $('#Langugae_Name').css('background-color', '#333');
                 $('#Langugae_Name').css('color', '#FFFFF');
 
@@ -182,10 +181,8 @@
                     return false;
                 });
 
-                $('#routeListDiv').on('click', '.routeDelete', function () {
-                    alert("aaa");
-                    var routeID = $(this).attr('id');
-                    alert(routeID);
+                $('#routeListDiv').on('click', '.routeDelete', function () {                    
+                    var routeID = $(this).attr('id');                    
                     $.ajax({
                         url: '@Url.Action("DeleteRoute", "Home")',
                         data: "{ 'routeID': '" + routeID + "' }",
@@ -212,11 +209,18 @@
                 }
 
                 directions.getDirections();
+                $("#liRouteList").removeClass("selected");
+                $("#liMapMenu").addClass("selected");
+                $('.esriRoutesContainer').slimScroll({
+                    height: '583px',
+                    position: 'right',
+                    railVisible: true,
+                    alwaysVisible: true
+                });
             }
 
             (function ($) {
                 $('.esriDirectionsButton ').click(function () {
-
                     $('.esriRoutesContainer').slimScroll({
                         height: '583px',
                         position: 'right',
@@ -225,7 +229,6 @@
                     });
                 });
             })(jQuery);
-
 
             $('#saveDirection').click(function () {
                 var name = $("#routeName").val();
@@ -236,7 +239,8 @@
                     type: "POST",
                     contentType: "application/json; charset=utf-8",
                     dataFilter: function (data) { return data; },
-                    success: function (data) {                        
+                    success: function (data) {
+                        $("#routeName").val('');
                         $("#routeListDiv").append("<div class='route" + data + "' style='margin-left: 10px;'><span>" + name + "</span><a id='" + data + "' href='#' class='routeDelete' style='float: right; margin-right: 5px;'>Obriši</a><a id='" + data + "' href='#' class='routeLoad' style='float: right; margin-right: 5px;'>Učitaj</a></div>");
                     }
                 });

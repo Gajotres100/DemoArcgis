@@ -240,7 +240,7 @@
                         </div>
                     </div>
                 </li>
-                <li>
+                <li id="liRouteList">
                     <a href="#">
                         <i class="mdi mdi-content-save mdi-fw"></i>
                     </a>
@@ -251,8 +251,8 @@
 
                                 <!-- BEGIN SIDEBAR -->
                                 <div class="page-sidebar nav-collapse collapse"> 
-                                    <input type="text" name="routeName" id="routeName" value="" style="margin:0 0 0 10px !important;" />  
-                                    <input type="submit" value="Save" id="saveDirection"><br />
+                                    <input type="text" name="routeName" id="routeName" value="" style="margin:0 0 0 10px !important;" maxlength="40"/>  
+                                    <input type="submit" value="Spremi" id="saveDirection"><br />
                                     <div class="input-box group-check" id="routeListDiv"> 
                                         @foreach (var names in @Model.RouteDataList)
                                         {
