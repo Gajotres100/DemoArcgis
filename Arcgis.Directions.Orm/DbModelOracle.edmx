@@ -74,6 +74,8 @@
           <Property Name="NAME" Type="varchar2" MaxLength="255" Nullable="false" />
           <Property Name="USER_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
           <Property Name="ROUTE" Type="blob" />
+          <Property Name="OPTIMALROUTE" Type="varchar2" MaxLength="2" />
+          <Property Name="RETURNTOSTART" Type="varchar2" MaxLength="2" />
         </EntityType>
         <Association Name="POI_PLACES_POI_GROUPS_FK">
           <End Role="POI_GROUPS" Type="Self.POI_GROUPS" Multiplicity="1" />
@@ -196,6 +198,8 @@
           <Property Name="NAME" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="USER_ID" Type="Int32" Nullable="false" />
           <Property Name="ROUTE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="OPTIMALROUTE" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="RETURNTOSTART" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -271,6 +275,8 @@
           <EntitySetMapping Name="USER_ROUTE">
             <EntityTypeMapping TypeName="ModelProtalOracleDb.USER_ROUTE">
               <MappingFragment StoreEntitySet="USER_ROUTE">
+                <ScalarProperty Name="RETURNTOSTART" ColumnName="RETURNTOSTART" />
+                <ScalarProperty Name="OPTIMALROUTE" ColumnName="OPTIMALROUTE" />
                 <ScalarProperty Name="ROUTE" ColumnName="ROUTE" />
                 <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />

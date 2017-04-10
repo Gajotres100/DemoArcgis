@@ -127,12 +127,12 @@ namespace Arcgis.Directions.UI.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult SaveRoute(dynamic routeData, string name)
+        public ActionResult SaveRoute(dynamic routeData, string name, bool optimalRoute, bool returnToStart)
         {
             string jsonRouteData = Newtonsoft.Json.JsonConvert.SerializeObject(routeData);
             _poiService = new PoiService();
             var userID = GetUserIDFromSession();
-            int routeID = _poiService.SaveRoute(userID, jsonRouteData, name);            
+            int routeID = _poiService.SaveRoute(userID, jsonRouteData, name, optimalRoute, returnToStart);            
             return Json(routeID, JsonRequestBehavior.AllowGet);
         }
 

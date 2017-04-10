@@ -117,7 +117,6 @@
 
             });
 
-
             directions.on("directions-finish", function (e) {
                 if ("undefined" != typeof e.result.routeResults) {
                     routeData = directions.stops;
@@ -209,9 +208,12 @@
                 var obj = JSON.parse(resp.Route);
 
                 for (index = 0; index < obj.length; ++index) {
-                    directions.addStop(obj[index].name, countStops);
+                    directions.addStop(obj[index].name, countStops);                    
                     countStops++;
                 }
+
+                directions.optimalRoute = true;
+                directions.returnToStart = true;
 
                 directions.getDirections();
                 $("#liRouteList").removeClass("selected");
@@ -243,7 +245,11 @@
                 }
             }
 
-            $('#saveDirection').click(function () {
+            $('#saveDirection').click(function () {              
+
+                var optimalRoute = $("#dir_find_optimal_order").is(":checked");
+                var returnToStart = $("#dir_stopsReturnToStart").is(":checked");
+
                 var name = $("#routeName").val();
                 if (name == null || name == "") {
                     alert("Potrebno je upisati ime rute");
@@ -256,7 +262,7 @@
                 }
                 $.ajax({
                     url: '@Url.Action("SaveRoute", "Home")',
-                    data: "{ 'routeData': '" + JSON.stringify(routeData) + "', name: '" + name + "' }",
+                    data: "{ 'routeData': '" + JSON.stringify(routeData) + "', name: '" + name + "', 'optimalRoute':" + optimalRoute + ", 'returnToStart':" + returnToStart + " }",
                     dataType: 'json',
                     type: "POST",
                     contentType: "application/json; charset=utf-8",

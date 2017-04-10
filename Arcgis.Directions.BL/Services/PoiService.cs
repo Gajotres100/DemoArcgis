@@ -237,7 +237,7 @@ namespace Arcgis.Directions.BL.Services
             }
         }
 
-        public int SaveRoute(int userID, string routeData, string routeName)
+        public int SaveRoute(int userID, string routeData, string routeName, bool optimalRoute, bool returnToStart)
         {
             try
             {

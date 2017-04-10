@@ -18,5 +18,7 @@ namespace Arcgis.Directions.Orm
         public string NAME { get; set; }
         public int USER_ID { get; set; }
         public byte[] ROUTE { get; set; }
+        public string OPTIMALROUTE { get; set; }
+        public string RETURNTOSTART { get; set; }
     }
 }
