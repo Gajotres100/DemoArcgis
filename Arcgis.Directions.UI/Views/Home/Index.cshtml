@@ -40,7 +40,7 @@
       "esri/geometry/Point",
       "esri/geometry/webMercatorUtils",
 
-      "/ClusterLayer.js",
+      "@(HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + @HttpContext.Current.Request.ApplicationPath )/ClusterLayer.js",
 
       "dijit/layout/BorderContainer",
       "dijit/layout/ContentPane",
@@ -121,7 +121,9 @@
             directions.on("directions-finish", function (e) {
                 if ("undefined" != typeof e.result.routeResults) {
                     routeData = directions.stops;
-                    $(".savePrintBtnContainer").append("<div tabindex='0' role='button' class='esriResultsSave esriDirectionsButton esriDirectionsTabButton' data-blur-on-click='true' title='Spremi i podijeli rutu' style='display: inline-block;'></div>");
+                    if ($('.savebuttonDoublePrevention').length == 0) {
+                        $(".savePrintBtnContainer").append("<div tabindex='0' role='button' class='savebuttonDoublePrevention esriResultsSave esriDirectionsButton esriDirectionsTabButton' data-blur-on-click='true' title='Spremi i podijeli rutu' style='display: inline-block;'></div>");
+                    }                    
                 }                
             });
 
@@ -154,6 +156,12 @@
 
                 }
 
+                $('.savePrintBtnContainer').on('click', '.esriResultsSave', function (event) {
+                    $("#liMapMenu").removeClass("selected");
+                    $("#liRouteList").addClass("selected");
+                    return false;
+                });
+
                 $('.chkclass').click(function () {
 
                     var getchkid = $(this).attr('id');
@@ -177,10 +185,7 @@
                     stops.then(addStopsFromDB, error);
                 });
 
-                $('.savePrintBtnContainer').on('click', '.esriResultsSave', function () {                    
-                    $("#liRouteList").addClass("selected");
-                });
-
+                
                 $('#routeListDiv').on('click', '.routeDelete', function () {                    
                     var routeID = $(this).attr('id');                    
                     $.ajax({
@@ -410,4 +415,6 @@
     <div id="map" dir="ltr"></div>
 </div>
 
+<script>
 
+</script>
