@@ -185,7 +185,13 @@
                 });
 
                 
-                $('#routeListDiv').on('click', '.routeDelete', function () {                    
+                $('#routeListDiv').on('click', '.routeDelete', function () {
+
+                    var r = confirm("Da li ste sigurni da želite obrisati rutu");
+                    if (r == false) {
+                        return false;
+                    }
+
                     var routeID = $(this).attr('id');                    
                     $.ajax({
                         url: '@Url.Action("DeleteRoute", "Home")',
