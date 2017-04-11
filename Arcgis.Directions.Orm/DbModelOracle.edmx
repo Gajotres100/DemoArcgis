@@ -74,8 +74,8 @@
           <Property Name="NAME" Type="varchar2" MaxLength="255" Nullable="false" />
           <Property Name="USER_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
           <Property Name="ROUTE" Type="blob" />
-          <Property Name="OPTIMALROUTE" Type="varchar2" MaxLength="2" />
-          <Property Name="RETURNTOSTART" Type="varchar2" MaxLength="2" />
+          <Property Name="OPTIMALROUTE" Type="number" Precision="9" Scale="0" />
+          <Property Name="RETURNTOSTART" Type="number" Precision="9" Scale="0" />
         </EntityType>
         <Association Name="POI_PLACES_POI_GROUPS_FK">
           <End Role="POI_GROUPS" Type="Self.POI_GROUPS" Multiplicity="1" />
@@ -198,8 +198,8 @@
           <Property Name="NAME" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="USER_ID" Type="Int32" Nullable="false" />
           <Property Name="ROUTE" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="OPTIMALROUTE" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="RETURNTOSTART" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="OPTIMALROUTE" Type="Int32" />
+          <Property Name="RETURNTOSTART" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>

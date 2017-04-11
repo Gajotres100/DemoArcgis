@@ -241,7 +241,7 @@ namespace Arcgis.Directions.BL.Services
         {
             try
             {
-                return _poiRepository.SaveRoute(userID, routeData, routeName);
+                return _poiRepository.SaveRoute(userID, routeData, routeName, optimalRoute, returnToStart);
             }
             catch (Exception e)
             {

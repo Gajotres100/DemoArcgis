@@ -12,5 +12,8 @@ namespace Arcgis.Directions.Data.Model
         public string Name { get; set; }
         public int UserID { get; set; }
         public dynamic Route { get; set; }
+        public bool OptimalRoute { get; set; }
+        public bool ReturnToStart { get; set; }
+
     }
 }

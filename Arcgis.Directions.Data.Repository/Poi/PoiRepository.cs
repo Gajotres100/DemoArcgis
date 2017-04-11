@@ -146,7 +146,7 @@ namespace Arcgis.Directions.Data.Repository.Poi
             }
         }
 
-        public int SaveRoute(int userID, string routeData, string routeName)
+        public int SaveRoute(int userID, string routeData, string routeName, bool optimalRoute, bool returnToStar)
         {
             using (var context = new EntitiesPortalOracle())
             {
@@ -154,7 +154,9 @@ namespace Arcgis.Directions.Data.Repository.Poi
                 {
                     NAME = routeName,
                     ROUTE = Encoding.UTF8.GetBytes(routeData),
-                    USER_ID = userID
+                    USER_ID = userID,
+                    OPTIMALROUTE = optimalRoute ? 1 : 0,
+                    RETURNTOSTART = returnToStar ? 1 : 0
                 };                
 
                 context.USER_ROUTE.Add(userRouter);
@@ -201,6 +203,8 @@ namespace Arcgis.Directions.Data.Repository.Poi
                 routeData.ID = a.ID;
                 routeData.Name = a.NAME;
                 routeData.UserID = a.USER_ID;
+                routeData.OptimalRoute = a.OPTIMALROUTE == 1;
+                routeData.ReturnToStart = a.RETURNTOSTART == 1;
                 return routeData; 
             }
         }

@@ -178,7 +178,7 @@
                     photos.then(addClusters, error);
                 });
 
-                $('.routeLoad').click(function () {
+                $('#routeListDiv').on('click', '.routeLoad', function () {                
                     var routeID = $(this).attr('id');
                     var stops = esriRequest({ url: '@Url.Action("GetRouteData", "Home", new { lang = "ID" })'.replace("ID", routeID), handleAs: "json" });
                     stops.then(addStopsFromDB, error);
@@ -186,7 +186,6 @@
 
                 
                 $('#routeListDiv').on('click', '.routeDelete', function () {
-
                     var r = confirm("Da li ste sigurni da želite obrisati rutu");
                     if (r == false) {
                         return false;
@@ -218,8 +217,8 @@
                     countStops++;
                 }
 
-                //directions.optimalRoute = true;
-                //directions.returnToStart = true;
+                directions.optimalRoute = resp.OptimalRoute;
+                directions.returnToStart = resp.ReturnToStart;
 
                 directions.getDirections();
                 $("#liRouteList").removeClass("selected");
