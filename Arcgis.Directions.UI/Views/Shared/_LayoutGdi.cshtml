@@ -21,7 +21,7 @@
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script src="https://js.arcgis.com/3.18/"></script>
+    
     <script src="https://js.arcgis.com/3.18/"></script>
     <script src="~/Script/circular-json.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -225,7 +225,7 @@
                                                 var checkBoxId = "chk" + names.PoiGroupID;
                                                 var tdId = "td" + names.PoiGroupID;
                                                 <div width="400px">
-                                                    <div style="display:inline-block; width: 40px; height: 25px;">
+                                                    <div style="display:inline-block; width: 40px; height: 25px;" id="listOfClusters">
                                                         <input type="checkbox" id="@checkBoxId" style="margin-left: 15px;" class="chkclass" value="@names.PoiGroupID" />
                                                     </div>
                                                     <div id="@tdId" style="display:inline-block; width: 350px; height: 25px;">

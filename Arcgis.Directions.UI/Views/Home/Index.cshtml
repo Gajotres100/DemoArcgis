@@ -4,7 +4,7 @@
 }
 
 <script>
-    
+
 
     function CallChangefunc(val) {
         window.location.href = '@Url.Action("ChangeLanguage", "Home", new { lang = "ID" })'.replace("ID", val);
@@ -19,15 +19,11 @@
       "dojo/dom-style",
       "dojo/query",
 
-
       "esri/map",
       "esri/dijit/Directions",
-      "esri/tasks/locator",
       "esri/request",
       "esri/graphic",
       "esri/geometry/Extent",
-      "esri/symbols/SimpleLineSymbol",
-
 
       "esri/symbols/SimpleMarkerSymbol",
       "esri/symbols/SimpleFillSymbol",
@@ -40,29 +36,31 @@
       "esri/geometry/Point",
       "esri/geometry/webMercatorUtils",
 
-      "@(HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + @HttpContext.Current.Request.ApplicationPath )/ClusterLayer.js",
+       "@(HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + @HttpContext.Current.Request.ApplicationPath )/ClusterLayer.js",
 
       "dijit/layout/BorderContainer",
       "dijit/layout/ContentPane",
       "dojo/domReady!"
     ], function (
       parser, ready, arrayUtils, Color, domStyle, query,
-      Map, Directions, Locator, esriRequest, Graphic, Extent,
+      Map, Directions, esriRequest, Graphic, Extent,
       SimpleMarkerSymbol, SimpleFillSymbol, PictureMarkerSymbol, ClassBreaksRenderer,
-      GraphicsLayer, SpatialReference, PopupTemplate, Point, webMercatorUtils, SimpleLineSymbol,
+      GraphicsLayer, SpatialReference, PopupTemplate, Point, webMercatorUtils,
       ClusterLayer
     ) {
         ready(function () {
             parser.parse();
+
             var clusterLayer;
-            var directions;
-            var routeData;
             var popupOptions = {
                 "markerSymbol": new SimpleMarkerSymbol("circle", 20, null, new Color([0, 0, 0, 0.25])),
                 "marginLeft": "20",
                 "marginTop": "20"
             };
-            var map = new Map("map", {
+            var directions;
+            var routeData;
+
+             map = new Map("map", {
                 basemap: "streets",
                 center: [15.20, 45.10],
                 autoResize: true,
@@ -96,7 +94,7 @@
 
             directions = new Directions({
                 map: map,
-                routeTaskUrl: "@System.Configuration.ConfigurationManager.AppSettings["RouteTaskUrl"]",                
+                routeTaskUrl: "@System.Configuration.ConfigurationManager.AppSettings["RouteTaskUrl"]",
                 directionsLengthUnits: "esriKilometers",
                 optimalRoute: true,
                 showOptimalRouteOption: true,
@@ -122,11 +120,11 @@
                     routeData = directions.stops;
                     if ($('.savebuttonDoublePrevention').length == 0) {
                         $(".savePrintBtnContainer").append("<div tabindex='0' role='button' class='savebuttonDoublePrevention esriResultsSave esriDirectionsButton esriDirectionsTabButton' data-blur-on-click='true' title='Spremi i podijeli rutu' style='display: inline-block;'></div>");
-                    }                    
-                }                
+                    }
+                }
             });
 
-            $(window).load(function () {            
+            $(window).load(function () {
                 $('#Langugae_Name').css('background-color', '#333');
                 $('#Langugae_Name').css('color', '#FFFFF');
 
@@ -178,20 +176,20 @@
                     photos.then(addClusters, error);
                 });
 
-                $('#routeListDiv').on('click', '.routeLoad', function () {                
+                $('#routeListDiv').on('click', '.routeLoad', function () {
                     var routeID = $(this).attr('id');
                     var stops = esriRequest({ url: '@Url.Action("GetRouteData", "Home", new { lang = "ID" })'.replace("ID", routeID), handleAs: "json" });
                     stops.then(addStopsFromDB, error);
                 });
 
-                
+
                 $('#routeListDiv').on('click', '.routeDelete', function () {
                     var r = confirm("Da li ste sigurni da želite obrisati rutu");
                     if (r == false) {
                         return false;
                     }
 
-                    var routeID = $(this).attr('id');                    
+                    var routeID = $(this).attr('id');
                     $.ajax({
                         url: '@Url.Action("DeleteRoute", "Home")',
                         data: "{ 'routeID': '" + routeID + "' }",
@@ -213,7 +211,7 @@
                 var obj = JSON.parse(resp.Route);
 
                 for (index = 0; index < obj.length; ++index) {
-                    directions.addStop(obj[index].name, countStops);                    
+                    directions.addStop(obj[index].name, countStops);
                     countStops++;
                 }
 
@@ -250,7 +248,7 @@
                 }
             }
 
-            $('#saveDirection').click(function () {              
+            $('#saveDirection').click(function () {
 
                 var optimalRoute = $("#dir_find_optimal_order").is(":checked");
                 var returnToStart = $("#dir_stopsReturnToStart").is(":checked");
@@ -320,14 +318,16 @@
             function addClusters(resp) {
                 var photoInfo = {};
                 var wgs = new SpatialReference({
-                    "wkid": "@System.Configuration.ConfigurationManager.AppSettings["routeTaskUrl"]"
+                    "wkid": "@System.Configuration.ConfigurationManager.AppSettings["wkid"]"
                 });
                 photoInfo.data = arrayUtils.map(resp, function (p) {
                     var latlng = new Point(parseFloat(p.lat), parseFloat(p.lng), wgs);
                     var webMercator = webMercatorUtils.geographicToWebMercator(latlng);
                     var attributes = {
                         "Caption": latlng.x,
-                        "Name": p.full_name,
+                        "Name": latlng.y,
+                        "Image": p.image,
+                        "Link": p.link
                     };
                     return {
                         "x": latlng.x,
@@ -340,13 +340,16 @@
                 var popupTemplate = new PopupTemplate({
                     "title": "",
                     "fieldInfos": [{
+                        "fieldName": "Caption",
+                        visible: true
+                    }, {
                         "fieldName": "Name",
                         "label": "By",
                         visible: true
                     }, {
                         "fieldName": "Link",
                         "label": "On Instagram",
-                        visible: false
+                        visible: true
                     }]
                 });
 
@@ -371,7 +374,7 @@
                 var red = new PictureMarkerSymbol(picBaseUrl + "RedPin1LargeB.png", 72, 72).setOffset(0, 15);
                 renderer.addBreak(0, 2, blue);
                 renderer.addBreak(2, 200, green);
-                renderer.addBreak(200, 2001, red);
+                renderer.addBreak(200, 1001, red);
 
                 clusterLayer.setRenderer(renderer);
 
@@ -385,8 +388,6 @@
                         cleanUp();
                     }
                 });
-
-                map.infoWindow.hide();
             }
 
             function cleanUp() {
@@ -398,10 +399,8 @@
                 console.log("something failed: ", err);
             }
 
-            function LoadRoute(ID) {
-                
-            };
-
+            // show cluster extents...
+            // never called directly but useful from the console
             window.showExtents = function () {
                 var extents = map.getLayer("clusterExtents");
                 if (extents) {

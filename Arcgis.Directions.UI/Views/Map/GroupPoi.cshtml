@@ -42,7 +42,7 @@
         }
       };
     </script>
-    <script src="https://js.arcgis.com/3.20/"></script>
+    <script src="https://js.arcgis.com/3.18/"></script>
     <script>
       // helpful for understanding dojoConfig.packages vs. dojoConfig.paths:
       // http://www.sitepen.com/blog/2013/06/20/dojo-faq-what-is-the-difference-packages-vs-paths-vs-aliases/
@@ -52,7 +52,7 @@
         }
       };
     </script>
-    <script src="https://js.arcgis.com/3.20/"></script>
+    <script src="https://js.arcgis.com/3.18/"></script>
     <script>
 
         
@@ -141,7 +141,7 @@
           function addClusters(resp) {
             var photoInfo = {};
             var wgs = new SpatialReference({
-                "wkid": "@System.Configuration.ConfigurationManager.AppSettings["routeTaskUrl"]" 
+                "wkid": "@System.Configuration.ConfigurationManager.AppSettings["wkid"]" 
             });
             photoInfo.data = arrayUtils.map(resp, function(p) {
                 var latlng = new Point(parseFloat(p.lat), parseFloat(p.lng), wgs);
