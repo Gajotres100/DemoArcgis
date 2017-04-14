@@ -2,7 +2,6 @@
 @{
     Layout = "~/Views/Shared/_LayoutGdi.cshtml";
 }
-
 <script>
 
 
@@ -19,12 +18,15 @@
       "dojo/dom-style",
       "dojo/query",
 
+
       "esri/map",
       "esri/dijit/Directions",
       "esri/tasks/locator",
       "esri/request",
       "esri/graphic",
       "esri/geometry/Extent",
+      "esri/symbols/SimpleLineSymbol",
+
 
       "esri/symbols/SimpleMarkerSymbol",
       "esri/symbols/SimpleFillSymbol",
@@ -37,7 +39,7 @@
       "esri/geometry/Point",
       "esri/geometry/webMercatorUtils",
 
-       "@(HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + @HttpContext.Current.Request.ApplicationPath )/ClusterLayer.js",
+      "@(HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + @HttpContext.Current.Request.ApplicationPath )/ClusterLayer.js",
 
       "dijit/layout/BorderContainer",
       "dijit/layout/ContentPane",
@@ -46,22 +48,20 @@
       parser, ready, arrayUtils, Color, domStyle, query,
       Map, Directions, Locator, esriRequest, Graphic, Extent,
       SimpleMarkerSymbol, SimpleFillSymbol, PictureMarkerSymbol, ClassBreaksRenderer,
-      GraphicsLayer, SpatialReference, PopupTemplate, Point, webMercatorUtils,
+      GraphicsLayer, SpatialReference, PopupTemplate, Point, webMercatorUtils, SimpleLineSymbol,
       ClusterLayer
     ) {
         ready(function () {
             parser.parse();
-
             var clusterLayer;
+            var directions;
+            var routeData;
             var popupOptions = {
                 "markerSymbol": new SimpleMarkerSymbol("circle", 20, null, new Color([0, 0, 0, 0.25])),
                 "marginLeft": "20",
                 "marginTop": "20"
             };
-            var directions;
-            var routeData;
-
-            map = new Map("map", {
+            var map = new Map("map", {
                 basemap: "streets",
                 center: [15.20, 45.10],
                 autoResize: true,
@@ -103,29 +103,6 @@
                 showSaveButton: true,
                 showPrintPage: true,
                 dragging: false,
-                @*searchOptions: {
-                    sources: [
-                      {
-                          locator: new Locator("@System.Configuration.ConfigurationManager.AppSettings["GeoCoder"]"),
-                          searchFields: [],
-                          exactMatch: false,
-                          searchExtent: null,
-                          localSearchOptions: {
-                              minScale: 300000,
-                              distance: 50000
-                          },
-                          outFields: ["Addr_type"],
-                          name: "Custom Geocoding Service",
-                          placeholder: "Search Geocoder",
-                          maxResults: 10,
-                          maxSuggestions: 10,
-                          enableSuggestions: true,
-                          enableSearchingAll: true,
-                          autoComplete: true,
-                          minCharacters: 1
-                      }
-                    ]
-                },*@
                 autoSolve: true
             }, "dir");
 
@@ -342,16 +319,14 @@
             function addClusters(resp) {
                 var photoInfo = {};
                 var wgs = new SpatialReference({
-                    "wkid": "@System.Configuration.ConfigurationManager.AppSettings["wkid"]"
+                    "wkid": "@System.Configuration.ConfigurationManager.AppSettings["routeTaskUrl"]"
                 });
                 photoInfo.data = arrayUtils.map(resp, function (p) {
                     var latlng = new Point(parseFloat(p.lat), parseFloat(p.lng), wgs);
                     var webMercator = webMercatorUtils.geographicToWebMercator(latlng);
                     var attributes = {
                         "Caption": latlng.x,
-                        "Name": latlng.y,
-                        "Image": p.image,
-                        "Link": p.link
+                        "Name": p.full_name,
                     };
                     return {
                         "x": latlng.x,
@@ -364,16 +339,13 @@
                 var popupTemplate = new PopupTemplate({
                     "title": "",
                     "fieldInfos": [{
-                        "fieldName": "Caption",
-                        visible: true
-                    }, {
                         "fieldName": "Name",
                         "label": "By",
                         visible: true
                     }, {
                         "fieldName": "Link",
                         "label": "On Instagram",
-                        visible: true
+                        visible: false
                     }]
                 });
 
@@ -398,7 +370,7 @@
                 var red = new PictureMarkerSymbol(picBaseUrl + "RedPin1LargeB.png", 72, 72).setOffset(0, 15);
                 renderer.addBreak(0, 2, blue);
                 renderer.addBreak(2, 200, green);
-                renderer.addBreak(200, 1001, red);
+                renderer.addBreak(200, 2001, red);
 
                 clusterLayer.setRenderer(renderer);
 
@@ -412,6 +384,8 @@
                         cleanUp();
                     }
                 });
+
+                map.infoWindow.hide();
             }
 
             function cleanUp() {
@@ -423,8 +397,10 @@
                 console.log("something failed: ", err);
             }
 
-            // show cluster extents...
-            // never called directly but useful from the console
+            function LoadRoute(ID) {
+
+            };
+
             window.showExtents = function () {
                 var extents = map.getLayer("clusterExtents");
                 if (extents) {
@@ -443,12 +419,11 @@
     });
 
 </script>
-<input type="text" name="routeData2" id="routeData2" value="" style="margin-top:0px !important;" />
+@*<input type="text" name="routeData2" id="routeData2" value="" style="margin-top:0px !important;" />*@
 @Html.HiddenFor(m => m.CusPoiInput)
 <div id="vmap_world" class="vmaps" style="height:100vh">
     <div id="map" dir="ltr"></div>
 </div>
-
 <script>
 
 </script>
