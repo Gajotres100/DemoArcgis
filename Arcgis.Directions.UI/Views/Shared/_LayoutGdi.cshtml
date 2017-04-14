@@ -21,8 +21,8 @@
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    
     <script src="https://js.arcgis.com/3.18/"></script>
+    
     <script src="~/Script/circular-json.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://js.arcgis.com/3.18/dijit/themes/claro/claro.css">
@@ -206,7 +206,7 @@
                         </div>
                     </div>
                 </li>
-                <li>
+                <li class="">
                     <a href="#">
                         <i class="mdi mdi-map-marker-multiple mdi-fw"></i>
                     </a>
@@ -220,12 +220,12 @@
                                     <!-- BEGIN SIDEBAR MENU -->
                                     <form class="sidebar-search">
                                         <div class="input-box group-check">
-                                            @foreach (var names in @Model.GroupPoiList)
+                                            @foreach (var names in Model.GroupPoiList)
                                             {
                                                 var checkBoxId = "chk" + names.PoiGroupID;
                                                 var tdId = "td" + names.PoiGroupID;
                                                 <div width="400px">
-                                                    <div style="display:inline-block; width: 40px; height: 25px;" id="listOfClusters">
+                                                    <div style="display:inline-block; width: 40px; height: 25px;">
                                                         <input type="checkbox" id="@checkBoxId" style="margin-left: 15px;" class="chkclass" value="@names.PoiGroupID" />
                                                     </div>
                                                     <div id="@tdId" style="display:inline-block; width: 350px; height: 25px;">
@@ -240,7 +240,7 @@
                         </div>
                     </div>
                 </li>
-                <li id="liRouteList">
+                <li id="liRouteList" class="">
                     <a href="#">
                         <i class="mdi mdi-content-save mdi-fw"></i>
                     </a>
@@ -254,7 +254,7 @@
                                     <input type="text" name="routeName" id="routeName" value="" style="margin:0 0 0 10px !important;" maxlength="40"/>  
                                     <input type="submit" value="Spremi" id="saveDirection"><br />
                                     <div class="input-box group-check" id="routeListDiv"> 
-                                        @foreach (var names in @Model.RouteDataList)
+                                        @foreach (var names in Model.RouteDataList)
                                         {
                                             <div class="@("route"+ names.ID)" style="margin-left: 10px;"><span>@names.Name</span><a id="@names.ID" href="#" class="routeDelete" style="float: right; margin-right: 5px;">Obriši</a><a id="@names.ID" href="#" class="routeLoad" style="float: right; margin-right: 5px;">Učitaj</a></div>
                                         }

@@ -2,7 +2,7 @@
 $(document).ready(function () {
     $(".menu-toggle").click(function () {
         $('#sidebar li').removeClass();
-        $("ul.main-menu li").toggleClass('selected cnt-none');
+        $("ul.main-menu li").toggleClass('');
         $('.menu-toggle').hide();
 
     });

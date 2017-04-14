@@ -21,6 +21,7 @@
 
       "esri/map",
       "esri/dijit/Directions",
+      "esri/tasks/locator",
       "esri/request",
       "esri/graphic",
       "esri/geometry/Extent",
@@ -43,7 +44,7 @@
       "dojo/domReady!"
     ], function (
       parser, ready, arrayUtils, Color, domStyle, query,
-      Map, Directions, esriRequest, Graphic, Extent,
+      Map, Directions, Locator, esriRequest, Graphic, Extent,
       SimpleMarkerSymbol, SimpleFillSymbol, PictureMarkerSymbol, ClassBreaksRenderer,
       GraphicsLayer, SpatialReference, PopupTemplate, Point, webMercatorUtils,
       ClusterLayer
@@ -60,7 +61,7 @@
             var directions;
             var routeData;
 
-             map = new Map("map", {
+            map = new Map("map", {
                 basemap: "streets",
                 center: [15.20, 45.10],
                 autoResize: true,
@@ -102,6 +103,29 @@
                 showSaveButton: true,
                 showPrintPage: true,
                 dragging: false,
+                @*searchOptions: {
+                    sources: [
+                      {
+                          locator: new Locator("@System.Configuration.ConfigurationManager.AppSettings["GeoCoder"]"),
+                          searchFields: [],
+                          exactMatch: false,
+                          searchExtent: null,
+                          localSearchOptions: {
+                              minScale: 300000,
+                              distance: 50000
+                          },
+                          outFields: ["Addr_type"],
+                          name: "Custom Geocoding Service",
+                          placeholder: "Search Geocoder",
+                          maxResults: 10,
+                          maxSuggestions: 10,
+                          enableSuggestions: true,
+                          enableSearchingAll: true,
+                          autoComplete: true,
+                          minCharacters: 1
+                      }
+                    ]
+                },*@
                 autoSolve: true
             }, "dir");
 
