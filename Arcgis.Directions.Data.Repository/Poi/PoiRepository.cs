@@ -146,6 +146,24 @@ namespace Arcgis.Directions.Data.Repository.Poi
             }
         }
 
+        public List<GroupPoi> GetPoiGroupsFromView(int userID)
+        {
+            using (var context = new EntitiesPortalOracle())
+            {
+                return context.V_ROUTING_POIS.Where(g => g.USER_ID == userID).OrderBy(g => g.POI_GROUP_ID).AsEnumerable().Select(x => new GroupPoi
+                {                    
+                    PoiGroupID = x.POI_GROUP_ID,
+                    PoiGroupName = x.POI_GROUP_NAME,
+                    PoiGroupType = x.POI_GROUP_TYPE,
+                    ServiceID = x.SERVICE_ID.GetValueOrDefault(),
+                    UserID = x.USER_ID,
+                    PoiCount = Convert.ToInt32(x.POI_COUNT)
+                }).ToList();
+            }
+        }
+
+        
+
         public int SaveRoute(int userID, string routeData, string routeName, bool optimalRoute, bool returnToStar)
         {
             using (var context = new EntitiesPortalOracle())

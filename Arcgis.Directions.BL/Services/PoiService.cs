@@ -83,7 +83,7 @@ namespace Arcgis.Directions.BL.Services
                     }).ToList();
                     item.Applications = app;
                 }
-                item.GroupPoiList = _poiRepository.GetPoiGroups(userID);
+                item.GroupPoiList = _poiRepository.GetPoiGroupsFromView(userID);
                 item.RouteDataList =  _poiRepository.GetRoutesForUser(userID);
                 return item;
             }

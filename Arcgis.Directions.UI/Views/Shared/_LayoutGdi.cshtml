@@ -193,7 +193,7 @@
                                 <div class="page-sidebar nav-collapse collapse">
                                     <form class="sidebar-search">
                                         <div class="input-box">
-                                            @Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keyword" })
+                                            @Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keyword", @placeholder = "Unesite ime POI-a" })
                                         </div>
                                     </form>
                                     <form class="sidebar-search">
@@ -229,7 +229,7 @@
                                                         <input type="checkbox" id="@checkBoxId" style="margin-left: 15px;" class="chkclass" value="@names.PoiGroupID" />
                                                     </div>
                                                     <div id="@tdId" style="display:inline-block; width: 350px; height: 25px;">
-                                                        @names.PoiGroupName
+                                                        @names.PoiGroupName (@names.PoiCount)
                                                     </div>
                                                 </div>
                                             }
@@ -287,7 +287,7 @@
     </div>
     <div id="footer" class="text-left">
         <img id="imgFooterLogo" src="~/Content/2/img/sharedui-footer-logo.png" />
-        <h6 id="logoText">GDi auto nadzor 7.9.1 | © 2009 - 2017 GDi Convivo | Sva prava pridržana.</h6>
+        <h6 id="logoText">@Resources.Resource.FooterText</h6>
     </div>
 
 

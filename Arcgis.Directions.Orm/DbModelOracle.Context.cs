@@ -30,5 +30,6 @@ namespace Arcgis.Directions.Orm
         public DbSet<POI_GROUP_ACCESS_RIGHTS> POI_GROUP_ACCESS_RIGHTS { get; set; }
         public DbSet<POI_GROUPS> POI_GROUPS { get; set; }
         public DbSet<USER_ROUTE> USER_ROUTE { get; set; }
+        public DbSet<V_ROUTING_POIS> V_ROUTING_POIS { get; set; }
     }
 }

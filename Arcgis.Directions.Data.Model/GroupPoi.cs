@@ -15,5 +15,7 @@ namespace Arcgis.Directions.Data.Model
         public string PoiGroupName { get; set; }
         public int PoiGroupType { get; set; }
         public bool Selected { get; set; }
+        public int PoiCount { get; set; }
+
     }
 }

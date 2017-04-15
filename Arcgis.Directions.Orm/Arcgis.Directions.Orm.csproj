@@ -168,6 +168,9 @@
     <Compile Include="USER_ROUTE.cs">
       <DependentUpon>DbModelOracle.tt</DependentUpon>
     </Compile>
+    <Compile Include="V_ROUTING_POIS.cs">
+      <DependentUpon>DbModelOracle.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

@@ -11,6 +11,7 @@
         <EntityTypeShape EntityType="ModelProtalOracleDb.POI_GROUPS" Width="1.5" PointX="0.75" PointY="7" />
         <AssociationConnector Association="ModelProtalOracleDb.POI_PLACES_POI_GROUPS_FK" />
         <EntityTypeShape EntityType="ModelProtalOracleDb.USER_ROUTE" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ModelProtalOracleDb.V_ROUTING_POIS" Width="1.5" PointX="6.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

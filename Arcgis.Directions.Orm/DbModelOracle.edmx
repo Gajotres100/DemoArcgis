@@ -77,6 +77,22 @@
           <Property Name="OPTIMALROUTE" Type="number" Precision="9" Scale="0" />
           <Property Name="RETURNTOSTART" Type="number" Precision="9" Scale="0" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DEV_FMS_7X.V_ROUTING_POIS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_ROUTING_POIS">
+          <Key>
+            <PropertyRef Name="POI_GROUP_ID" />
+            <PropertyRef Name="POI_GROUP_NAME" />
+            <PropertyRef Name="POI_GROUP_TYPE" />
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="POI_GROUP_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="POI_GROUP_NAME" Type="nvarchar2" MaxLength="50" Nullable="false" />
+          <Property Name="POI_GROUP_TYPE" Type="number" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="SERVICE_ID" Type="number" Precision="2" Scale="0" />
+          <Property Name="USER_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="POI_COUNT" Type="number" Precision="38" Scale="0" />
+        </EntityType>
         <Association Name="POI_PLACES_POI_GROUPS_FK">
           <End Role="POI_GROUPS" Type="Self.POI_GROUPS" Multiplicity="1" />
           <End Role="POI_PLACES" Type="Self.POI_PLACES" Multiplicity="*" />
@@ -95,6 +111,16 @@
           <EntitySet Name="POI_GROUPS" EntityType="Self.POI_GROUPS" Schema="DEV_FMS_7X" store:Type="Tables" />
           <EntitySet Name="POI_PLACES" EntityType="Self.POI_PLACES" Schema="DEV_FMS_7X" store:Type="Tables" />
           <EntitySet Name="USER_ROUTE" EntityType="Self.USER_ROUTE" Schema="DEV_FMS_7X" store:Type="Tables" />
+          <EntitySet Name="V_ROUTING_POIS" EntityType="Self.V_ROUTING_POIS" store:Type="Views" store:Schema="DEV_FMS_7X">
+            <DefiningQuery>SELECT 
+"V_ROUTING_POIS"."POI_GROUP_ID" AS "POI_GROUP_ID", 
+"V_ROUTING_POIS"."POI_GROUP_NAME" AS "POI_GROUP_NAME", 
+"V_ROUTING_POIS"."POI_GROUP_TYPE" AS "POI_GROUP_TYPE", 
+"V_ROUTING_POIS"."SERVICE_ID" AS "SERVICE_ID", 
+"V_ROUTING_POIS"."USER_ID" AS "USER_ID", 
+"V_ROUTING_POIS"."POI_COUNT" AS "POI_COUNT"
+FROM "DEV_FMS_7X"."V_ROUTING_POIS" "V_ROUTING_POIS"</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="POI_PLACES_POI_GROUPS_FK" Association="Self.POI_PLACES_POI_GROUPS_FK">
             <End Role="POI_GROUPS" EntitySet="POI_GROUPS" />
             <End Role="POI_PLACES" EntitySet="POI_PLACES" />
@@ -142,6 +168,7 @@
             <End Role="POI_PLACES" EntitySet="POI_PLACES" />
           </AssociationSet>
           <EntitySet Name="USER_ROUTE" EntityType="ModelProtalOracleDb.USER_ROUTE" />
+          <EntitySet Name="V_ROUTING_POIS" EntityType="ModelProtalOracleDb.V_ROUTING_POIS" />
         </EntityContainer>
         <EntityType Name="LANGUAGE">
           <Key>
@@ -200,6 +227,20 @@
           <Property Name="ROUTE" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="OPTIMALROUTE" Type="Int32" />
           <Property Name="RETURNTOSTART" Type="Int32" />
+        </EntityType>
+        <EntityType Name="V_ROUTING_POIS">
+          <Key>
+            <PropertyRef Name="POI_GROUP_ID" />
+            <PropertyRef Name="POI_GROUP_NAME" />
+            <PropertyRef Name="POI_GROUP_TYPE" />
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="POI_GROUP_ID" Type="Int32" Nullable="false" />
+          <Property Name="POI_GROUP_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="POI_GROUP_TYPE" Type="Int16" Nullable="false" />
+          <Property Name="SERVICE_ID" Type="Int16" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="POI_COUNT" Type="Decimal" Precision="38" Scale="0" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -281,6 +322,18 @@
                 <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_ROUTING_POIS">
+            <EntityTypeMapping TypeName="ModelProtalOracleDb.V_ROUTING_POIS">
+              <MappingFragment StoreEntitySet="V_ROUTING_POIS">
+                <ScalarProperty Name="POI_COUNT" ColumnName="POI_COUNT" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
+                <ScalarProperty Name="POI_GROUP_TYPE" ColumnName="POI_GROUP_TYPE" />
+                <ScalarProperty Name="POI_GROUP_NAME" ColumnName="POI_GROUP_NAME" />
+                <ScalarProperty Name="POI_GROUP_ID" ColumnName="POI_GROUP_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
