@@ -14,6 +14,8 @@ using System.Web.Script.Serialization;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json;
 using System.Dynamic;
+using System.Threading;
+using System.Globalization;
 
 namespace Arcgis.Directions.UI.Controllers
 {
@@ -74,7 +76,12 @@ namespace Arcgis.Directions.UI.Controllers
             return Redirect(ConfigurationManager.AppSettings[@"LoginRedirect"]);
         }
 
-        public ActionResult ChangeLanguage(string lang) => Redirect($"~/{lang}");
+        public ActionResult ChangeLanguage(string lang)
+        {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+            Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture;
+            return Redirect($"~/{lang}");
+        }  
 
 
         GetPOIVM GetPois()

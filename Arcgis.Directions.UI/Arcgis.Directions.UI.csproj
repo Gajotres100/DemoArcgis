@@ -2705,15 +2705,15 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_GlobalResources\Resource.Designer.cs">
+    <Compile Include="App_GlobalResources\Resource.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\Resource.en-us.designer.cs">
+    <Compile Include="App_GlobalResources\Resource.en-US.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Resource.en-us.resx</DependentUpon>
+      <DependentUpon>Resource.en-US.resx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController .cs" />
@@ -3220,13 +3220,13 @@
   <ItemGroup>
     <Content Include="App_GlobalResources\Resource.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resource.designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\Resource.en-us.resx">
+    <Content Include="App_GlobalResources\Resource.en-US.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Resource.en-us.designer.cs</LastGenOutput>
+      <LastGenOutput>Resource.en-US.designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <PropertyGroup>
