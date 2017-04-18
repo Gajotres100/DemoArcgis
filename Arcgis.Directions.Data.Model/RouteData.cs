@@ -14,6 +14,7 @@ namespace Arcgis.Directions.Data.Model
         public dynamic Route { get; set; }
         public bool OptimalRoute { get; set; }
         public bool ReturnToStart { get; set; }
+        public DateTime? CreationDate { get; set; }
 
     }
 }

@@ -192,6 +192,7 @@ namespace Arcgis.Directions.Data.Repository.Poi
                     ID = x.ID,
                     Name = x.NAME,
                     UserID = x.USER_ID,
+                    CreationDate = x.CREATED_DT
                     //Route = JObject.Parse(Encoding.ASCII.GetString(x.ROUTE))
                 }).ToList();
             }            
