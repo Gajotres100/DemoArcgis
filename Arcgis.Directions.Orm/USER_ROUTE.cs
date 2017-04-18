@@ -20,5 +20,6 @@ namespace Arcgis.Directions.Orm
         public byte[] ROUTE { get; set; }
         public Nullable<int> OPTIMALROUTE { get; set; }
         public Nullable<int> RETURNTOSTART { get; set; }
+        public Nullable<System.DateTime> CREATED_DT { get; set; }
     }
 }

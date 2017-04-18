@@ -76,6 +76,7 @@
           <Property Name="ROUTE" Type="blob" />
           <Property Name="OPTIMALROUTE" Type="number" Precision="9" Scale="0" />
           <Property Name="RETURNTOSTART" Type="number" Precision="9" Scale="0" />
+          <Property Name="CREATED_DT" Type="date" StoreGeneratedPattern="Computed" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'DEV_FMS_7X.V_ROUTING_POIS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -227,6 +228,7 @@ FROM "DEV_FMS_7X"."V_ROUTING_POIS" "V_ROUTING_POIS"</DefiningQuery>
           <Property Name="ROUTE" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="OPTIMALROUTE" Type="Int32" />
           <Property Name="RETURNTOSTART" Type="Int32" />
+          <Property Name="CREATED_DT" Type="DateTime" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="V_ROUTING_POIS">
           <Key>
@@ -316,6 +318,7 @@ FROM "DEV_FMS_7X"."V_ROUTING_POIS" "V_ROUTING_POIS"</DefiningQuery>
           <EntitySetMapping Name="USER_ROUTE">
             <EntityTypeMapping TypeName="ModelProtalOracleDb.USER_ROUTE">
               <MappingFragment StoreEntitySet="USER_ROUTE">
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
                 <ScalarProperty Name="RETURNTOSTART" ColumnName="RETURNTOSTART" />
                 <ScalarProperty Name="OPTIMALROUTE" ColumnName="OPTIMALROUTE" />
                 <ScalarProperty Name="ROUTE" ColumnName="ROUTE" />
