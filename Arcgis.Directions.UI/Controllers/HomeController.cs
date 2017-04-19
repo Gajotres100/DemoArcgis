@@ -40,41 +40,9 @@ namespace Arcgis.Directions.UI.Controllers
                 return RedirectToAction(nameof(Index), @"Home");
             }
 
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
-            Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture;
-
             var vm = GetPois();
             return View(vm);
         }
-
-        //public static int CurrentUICulture
-        //{
-        //    get
-        //    {
-        //        if (Thread.CurrentThread.CurrentUICulture.Name == "ro-RO")
-        //            return 1;
-        //        else if (Thread.CurrentThread.CurrentUICulture.Name == "de-DE")
-        //            return 2;
-        //        else
-        //            return 0;
-        //    }
-        //    set
-        //    {
-        //        //
-        //        // Set the thread's CurrentUICulture.
-        //        //
-        //        if (value == 1)
-        //            Thread.CurrentThread.CurrentUICulture = new CultureInfo("ro-RO");
-        //        else if (value == 2)
-        //            Thread.CurrentThread.CurrentUICulture = new CultureInfo("de-DE");
-        //        else
-        //            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
-        //        //
-        //        // Set the thread's CurrentCulture the same as CurrentUICulture.
-        //        //
-        //        Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture;
-        //    }
-        //}
 
         public ActionResult Login()
         {
@@ -132,6 +100,10 @@ namespace Arcgis.Directions.UI.Controllers
             var defaultLang = vm.LanguageList.FirstOrDefault(l => l.Name.Equals(lang));
             if (defaultLang == null) defaultLang = vm.LanguageList.FirstOrDefault();
             vm.Langugae = defaultLang;
+
+
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(defaultLang.Code);
+            Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture;
 
             return vm;
         }
