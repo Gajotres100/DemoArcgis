@@ -297,8 +297,15 @@
                     dataFilter: function (data) { return data; },
                     success: function (data) {
                         $("#routeName").val('');
+                        var currentdate = new Date();
+                        var datetime = currentdate.getDate() + "."
+                                    + (currentdate.getMonth() + 1) + "."
+                                    + currentdate.getFullYear() + ". "
+                                    + currentdate.getHours() + ":"
+                                    + currentdate.getMinutes() + ":"
+                                    + currentdate.getSeconds();
                         //$("#routeListDiv").append("<div class='route" + data + "' style='margin-left: 10px;'><span>" + name + "</span><a id='" + data + "' href='#' class='routeDelete' style='float: right; margin-right: 5px;'>Obriši</a><a id='" + data + "' href='#' class='routeLoad' style='float: right; margin-right: 5px;'>Učitaj</a></div>");
-                        $(".tablesorter").append("<tr class='route" + data + "'><td><span>" + name + "</span></td><td><span>Datum staviti</span></td> <td><a id='" + data + "' href='#' class='routeDelete' style='float: right; margin-right: 5px;'><i class='mdi mdi-16px mdi-minus-circle' style='color:red'></i></a><a id='" + data + "' href='#' class='routeLoad' style='float: right; margin-right: 5px;'><i class='mdi mdi-16px mdi-plus-circle' style='color:green'></i></a></td></tr>");
+                        $(".tablesorter").append("<tr class='route" + data + "'><td><span>" + name + "</span></td><td><span>" + datetime + "</span></td> <td><a id='" + data + "' href='#' class='routeDelete' style='float: right; margin-right: 5px;'><i class='mdi mdi-16px mdi-minus-circle' style='color:red'></i></a><a id='" + data + "' href='#' class='routeLoad' style='float: right; margin-right: 5px;'><i class='mdi mdi-16px mdi-plus-circle' style='color:green'></i></a></td></tr>");
 
                     }
                 });
