@@ -17,4 +17,6 @@ $(document).ready(function () {
         $(this).find('ul').toggle();
     });
 
+    $("#myTable").tablesorter();
+
 });

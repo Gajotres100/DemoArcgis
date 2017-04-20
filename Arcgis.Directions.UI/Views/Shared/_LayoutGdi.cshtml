@@ -1,5 +1,6 @@
 ﻿@model Arcgis.Directions.VM.GetPOIVM
 @using Arcgis.Directions.BL.SSOAuth;
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +19,86 @@
             }
         };
     </script>
+   
+
+  <style>
+      table {
+  border-collapse: separate;
+  background:#fff;
+  border-radius:5px;
+  margin:50px auto;
+  /*box-shadow:0px 0px 5px rgba(0,0,0,0.3);*/
+  padding-top:20px;
+  padding-left:10px;
+  width: 410px;
+}
+
+thead {
+   border-radius:5px;
+   padding-top:20px;
+    padding-left:10px;
+}
+
+thead th {
+  font-family: Arial;
+  font-size:16px;
+  font-weight:400;
+  color:#fff;
+   text-shadow:1px 1px 0px rgba(0,0,0,0.5);
+  text-align:left;
+  padding:20px;
+   background-image:linear-gradient(#646f7f, #4a5564);
+  border-top:1px solid #858d99;
+  
+  &:first-child {
+    border-top-left-radius:5px; 
+  }
+
+  &:last-child {
+     border-top-right-radius:5px; 
+  }
+}
+
+tbody tr td {
+  font-family: 'Open Sans', sans-serif;
+  font-weight:400;
+  color:#5f6062;
+  font-size:13px;
+  padding:20px 20px 20px 20px;
+  border-bottom:1px solid #e0e0e0;
+  
+}
+
+tbody tr:nth-child(2n) {
+  background:#f0f3f5;
+}
+
+tbody tr:last-child td {
+  border-bottom:none;
+  &:first-child {
+     border-bottom-left-radius:5px;
+  }
+  &:last-child {
+     border-bottom-right-radius:5px;
+  }
+}
+
+tbody:hover > tr td {
+   opacity:0.5;
+  
+  /* uncomment for blur effect */
+  /* color:transparent;
+   text-shadow(0px 0px 2px rgba(0,0,0,0.8));*/
+}
+
+tbody:hover > tr:hover td {
+   text-shadow:none;
+  color:#2d2d2d;
+   opacity:1.0;
+}
+
+  </style>
+
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -26,7 +107,8 @@
     <script src="~/Script/circular-json.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://js.arcgis.com/3.18/dijit/themes/claro/claro.css">
-
+    <script type="text/javascript" src="~/Content/2/scripts/jquery-latest.js"></script>
+    <script type="text/javascript" src="~/Content/2/scripts/jquery.tablesorter.js"></script> 
 
 
     @Scripts.Render("~/Content/2/scripts/")
@@ -254,12 +336,30 @@
                                     <input type="text" name="routeName" id="routeName" value="" style="margin:0 0 0 10px !important;" maxlength="40" />
                                     <input type="submit" value="Spremi" id="saveDirection"><br />
                                     <div class="input-box group-check" id="routeListDiv">
-                                        @foreach (var names in @Model.RouteDataList)
-                                        {
-                                            <div class="@("route"+ names.ID)" style="margin-left: 10px;"><span>@names.Name</span><a id="@names.ID" href="#" class="routeDelete" style="float: right; margin-right: 5px;">Obriši</a><a id="@names.ID" href="#" class="routeLoad" style="float: right; margin-right: 5px;">Učitaj</a></div>
-                                        }
+                                        <table id="myTable" class="tablesorter" @*style="padding-top:10px;margin-left:10px"*@>
+                                            <thead>
+                                                <tr>
+                                                    <th @*style="border-bottom: 1px solid black;font-family:Arial;font-size:16px;font-weight: bold;"*@>Name</th>
+                                                    <th @*style="border-bottom: 1px solid black;font-family:Arial;font-size:16px;font-weight: bold;"*@>Date</th>
+                                                    <th @*style="border-bottom: 1px solid black;font-family:Arial;font-size:16px;font-weight: bold;"*@>Action</th>
+                                                </tr>
+                                               
+                                            </thead>
+                                            <tbody>
+                                            @foreach (var names in @Model.RouteDataList)
+                                            {
+                                                //<div class="@("route"+ names.ID)" style="margin-left: 10px;"><span>@names.Name</span><a id="@names.ID" href="#" class="routeDelete" style="float: right; margin-right: 5px;">Obriši</a><a id="@names.ID" href="#" class="routeLoad" style="float: right; margin-right: 5px;">Učitaj</a></div>
+                                               
+                                                    <tr class="@("route"+ names.ID)" @*style="padding-top:10px"*@>
+                                                        <td @*style="padding-right:50px;font-size:14px"*@><span>@names.Name</span></td>
+                                                        <td @*style="padding-right:60px;font-size:14px"*@><span>@names.CreationDate</span></td>
+                                                        <td><a id="@names.ID" href="#" class="routeDelete" style="float: right; margin-right: 5px;"><i class="mdi mdi-16px mdi-minus-circle" style="color:red"></i></a><a id="@names.ID" href="#" class="routeLoad" style="float: right; margin-right: 5px;"><i class="mdi mdi-16px mdi-plus-circle" style="color:green"></i></a></td>
+                                                    </tr>
+                                                
+                                            }
+                                                </tbody>
+                                        </table>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

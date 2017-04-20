@@ -2646,8 +2646,12 @@
     <Content Include="Content\2\scripts\gallery.js" />
     <Content Include="Content\2\scripts\inbox.js" />
     <Content Include="Content\2\scripts\index.js" />
+    <Content Include="Content\2\scripts\jquery-latest.js" />
+    <Content Include="Content\2\scripts\jquery.metadata.js" />
     <Content Include="Content\2\scripts\jquery.slimscroll.js" />
     <Content Include="Content\2\scripts\jquery.slimscroll.min.js" />
+    <Content Include="Content\2\scripts\jquery.tablesorter.js" />
+    <Content Include="Content\2\scripts\jquery.tablesorter.min.js" />
     <Content Include="Content\2\scripts\login.js" />
     <Content Include="Content\2\scripts\maps-google.js" />
     <Content Include="Content\2\scripts\maps-vector.js" />
