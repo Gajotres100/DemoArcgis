@@ -20,8 +20,9 @@
         };
     </script>
    
-<style>
-     table {
+    <style>
+        
+table {
   border-collapse: separate;
   background:#fff;
   border-radius:5px;
@@ -38,7 +39,7 @@ thead {
     padding-left:10px;
 }
 
-thead th {
+thead  th {
   font-family: Arial;
   font-size:16px;
   font-weight:400;
@@ -95,7 +96,10 @@ tbody:hover > tr:hover td {
   color:#2d2d2d;
    opacity:1.0;
 }
-</style>
+
+
+    </style>
+
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -332,13 +336,15 @@ tbody:hover > tr:hover td {
                                 <div class="page-sidebar nav-collapse collapse">
                                     <input type="text" name="routeName" id="routeName" value="" style="margin:0 0 0 10px !important;" maxlength="40" />
                                     <input type="submit" value="Spremi" id="saveDirection"><br />
+                                    <input class="form-control ui-autocomplete-input" id="search" placeholder="Search" type="text" value=""
+                                            autocomplete="off" style="border-top:hidden;border-right:hidden;border-left:hidden;padding-top:10px;">
                                     <div class="input-box group-check" id="routeListDiv">
-                                        <table id="myTable" class="tablesorter" @*style="padding-top:10px;margin-left:10px"*@>
+                                        <table id="myTable" class="tablesorter">
                                             <thead>
                                                 <tr>
-                                                    <th @*style="border-bottom: 1px solid black;font-family:Arial;font-size:16px;font-weight: bold;"*@>Name</th>
-                                                    <th @*style="border-bottom: 1px solid black;font-family:Arial;font-size:16px;font-weight: bold;"*@>Date</th>
-                                                    <th @*style="border-bottom: 1px solid black;font-family:Arial;font-size:16px;font-weight: bold;"*@>Action</th>
+                                                    <th>Name</th>
+                                                    <th>Date</th>
+                                                    <th>Action</th>
                                                 </tr>
                                                
                                             </thead>
@@ -347,9 +353,9 @@ tbody:hover > tr:hover td {
                                             {
                                                 //<div class="@("route"+ names.ID)" style="margin-left: 10px;"><span>@names.Name</span><a id="@names.ID" href="#" class="routeDelete" style="float: right; margin-right: 5px;">Obriši</a><a id="@names.ID" href="#" class="routeLoad" style="float: right; margin-right: 5px;">Učitaj</a></div>
                                                
-                                                    <tr class="@("route"+ names.ID)" @*style="padding-top:10px"*@>
-                                                        <td @*style="padding-right:50px;font-size:14px"*@><span>@names.Name</span></td>
-                                                        <td @*style="padding-right:60px;font-size:14px"*@><span>@names.CreationDate</span></td>
+                                                    <tr class="@("route"+ names.ID)">
+                                                        <td><span>@names.Name</span></td>
+                                                        <td><span>@names.CreationDate</span></td>
                                                         <td><a id="@names.ID" href="#" class="routeDelete" style="float: right; margin-right: 5px;"><i class="mdi mdi-16px mdi-minus-circle" style="color:red"></i></a><a id="@names.ID" href="#" class="routeLoad" style="float: right; margin-right: 5px;"><i class="mdi mdi-16px mdi-plus-circle" style="color:green"></i></a></td>
                                                     </tr>
                                                 

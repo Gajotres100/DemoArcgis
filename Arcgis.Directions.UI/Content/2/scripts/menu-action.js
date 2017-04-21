@@ -18,5 +18,25 @@ $(document).ready(function () {
     });
 
     $("#myTable").tablesorter();
+    $("#search").on("keyup", function () {
+        var value = $(this).val().toUpperCase();
+        $("table > tbody  > tr").each(function (index) {
+            if (index !== 0) {
+               
+                $row = $(this);
+
+                var name = $row.find("td:first").text().toString().toUpperCase();
+                
+
+                if (name.indexOf(value) !== 0) {
+                    $row.hide();
+                }
+                else {
+                    $row.show();
+                }
+            }
+            
+        });
+    });
 
 });
