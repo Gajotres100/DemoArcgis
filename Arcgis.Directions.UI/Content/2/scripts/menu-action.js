@@ -29,7 +29,7 @@ $(document).ready(function () {
                
                 //if (name.indexOf(value) !== -1) {
                 for(var i = 0; i< name.length; i++){
-                if (name.includes(value,i)) {
+                if (name.includes(value,0)) {
                     
                     $row.show();
                 }
