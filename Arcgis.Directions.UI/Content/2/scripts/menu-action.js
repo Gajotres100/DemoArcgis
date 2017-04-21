@@ -26,13 +26,17 @@ $(document).ready(function () {
                 $row = $(this);
 
                 var name = $row.find("td:first").text().toString().toUpperCase();
-                
-
-                if (name.indexOf(value) !== 0) {
-                    $row.hide();
+               
+                //if (name.indexOf(value) !== -1) {
+                for(var i = 0; i< name.length; i++){
+                if (name.includes(value,1)) {
+                    
+                    $row.show();
                 }
                 else {
-                    $row.show();
+                    
+                    $row.hide();
+                }
                 }
             }
             
