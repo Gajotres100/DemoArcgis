@@ -61,7 +61,10 @@
             var directions;
             var routeData;
 
+            var customExtentAndSR = new esri.geometry.Extent(1435961, 5153248, 2199656, 5903895, new esri.SpatialReference({ "wkid": @System.Configuration.ConfigurationManager.AppSettings["wkid"] }));
+
             map = new Map("map", {
+                extent: customExtentAndSR,
                 basemap: "streets",
                 center: [15.20, 45.10],
                 autoResize: true,
@@ -236,7 +239,9 @@
                 var obj = JSON.parse(resp.Route);
 
                 for (index = 0; index < obj.length; ++index) {
-                    directions.addStop(obj[index].name, countStops);
+                    var arr = obj[index].name.split(',');
+                    var point = new Point(obj[index].feature.geometry.x,obj[index].feature.geometry.y ,new SpatialReference({ wkid: obj[index].feature.geometry.spatialReference.wkid }));
+                    directions.addStop(point, countStops);
                     countStops++;
                 }
 
@@ -341,7 +346,8 @@
                         contentType: "application/json; charset=utf-8",
                         dataFilter: function (data) { return data; },
                         success: function (data) {
-                            directions.addStop(data.Address, countStops);
+                            var point = new Point([data.WmX,data.WmY],new SpatialReference({ wkid: @System.Configuration.ConfigurationManager.AppSettings["wkid"] }));
+                            directions.addStop(point, countStops);
                             $('#keyword').val('');
                             countStops++;
                         }
