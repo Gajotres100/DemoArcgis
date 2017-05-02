@@ -276,7 +276,7 @@ tbody:hover > tr:hover td {
                                 <div class="page-sidebar nav-collapse collapse">
                                     <form class="sidebar-search">
                                         <div class="input-box">
-                                            @Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keyword", @placeholder = "Unesite ime POI-a" })
+                                            @Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keyword", @placeholder = Resources.Resource.CusPoiInputPlaceHolder })
                                         </div>
                                     </form>
                                     <form class="sidebar-search">
@@ -294,7 +294,7 @@ tbody:hover > tr:hover td {
                         <i class="mdi mdi-map-marker-multiple mdi-fw"></i>
                     </a>
                     <div class="sidebar-menu">
-                        <h3 class='menu-title'>Klaster</h3>
+                        <h3 class='menu-title'>@Resources.Resource.PoiGroupsTab</h3>
                         <div class="slimScrollDiv">
                             <div class="container-fluid">
 
@@ -311,7 +311,7 @@ tbody:hover > tr:hover td {
                                                     <div style="display:inline-block; width: 40px; height: 25px;" id="listOfClusters">
                                                         <input type="checkbox" id="@checkBoxId" style="margin-left: 15px;" class="chkclass" value="@names.PoiGroupID" />
                                                     </div>
-                                                    <div id="@tdId" style="display:inline-block; width: 350px; height: 25px;">
+                                                    <div id="@tdId" style="display:inline-block; width: 350px; height: 25px;" class="clusterName">
                                                         @names.PoiGroupName (@names.PoiCount)
                                                     </div>
                                                 </div>
@@ -328,31 +328,29 @@ tbody:hover > tr:hover td {
                         <i class="mdi mdi-content-save mdi-fw"></i>
                     </a>
                     <div class="sidebar-menu">
-                        <h3 class='menu-title'>Save</h3>
+                        <h3 class='menu-title'>@Resources.Resource.SaveRouteTab</h3>
                         <div class="slimScrollDiv">
                             <div class="container-fluid">
 
                                 <!-- BEGIN SIDEBAR -->
                                 <div class="page-sidebar nav-collapse collapse">
-                                    <input type="text" name="routeName" id="routeName" value="" style="margin:0 0 0 10px !important;" maxlength="40" />
+                                    <input class="form-control ui-autocomplete-input" type="text" name="routeName" id="routeName" value="" style="border-top:hidden;border-right:hidden;border-left:hidden;margin:0 0 0 0px !important;" maxlength="40"  placeholder="@Resources.Resource.SavbeInputPlaceHolder"/>
                                     <input type="submit" value="Spremi" id="saveDirection"><br />
-                                    <input class="form-control ui-autocomplete-input" id="search" placeholder="Search" type="text" value=""
+                                    <input class="form-control ui-autocomplete-input" id="search" placeholder="@Resources.Resource.SearchInputPlaceHolder" type="text" value=""
                                             autocomplete="off" style="border-top:hidden;border-right:hidden;border-left:hidden;padding-top:10px;">
                                     <div class="input-box group-check" id="routeListDiv">
                                         <table id="myTable" class="tablesorter">
                                             <thead>
                                                 <tr>
-                                                    <th>Name</th>
-                                                    <th>Date</th>
-                                                    <th>Action</th>
+                                                    <th>@Resources.Resource.TableColName</th>
+                                                    <th>@Resources.Resource.TableColDate</th>
+                                                    <th>@Resources.Resource.TableColAction</th>
                                                 </tr>
                                                
                                             </thead>
                                             <tbody>
                                             @foreach (var names in @Model.RouteDataList)
-                                            {
-                                                //<div class="@("route"+ names.ID)" style="margin-left: 10px;"><span>@names.Name</span><a id="@names.ID" href="#" class="routeDelete" style="float: right; margin-right: 5px;">Obriši</a><a id="@names.ID" href="#" class="routeLoad" style="float: right; margin-right: 5px;">Učitaj</a></div>
-                                               
+                                            {  
                                                     <tr class="@("route"+ names.ID)">
                                                         <td><span>@names.Name</span></td>
                                                         <td><span>@names.CreationDate</span></td>

@@ -61,11 +61,83 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pretraživanje po mojim mjestima.
+        /// </summary>
+        internal static string CusPoiInputPlaceHolder {
+            get {
+                return ResourceManager.GetString("CusPoiInputPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to GDi auto nadzor 7.9.1 | &amp;#169; 2009 - 2017 GDi Convivo | Sva prava pridržana.
         /// </summary>
         internal static string FooterText {
             get {
                 return ResourceManager.GetString("FooterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Moja mjesta.
+        /// </summary>
+        internal static string PoiGroupsTab {
+            get {
+                return ResourceManager.GetString("PoiGroupsTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unesite ime route koju spremate.
+        /// </summary>
+        internal static string SavbeInputPlaceHolder {
+            get {
+                return ResourceManager.GetString("SavbeInputPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Route.
+        /// </summary>
+        internal static string SaveRouteTab {
+            get {
+                return ResourceManager.GetString("SaveRouteTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pretraživanje ruta.
+        /// </summary>
+        internal static string SearchInputPlaceHolder {
+            get {
+                return ResourceManager.GetString("SearchInputPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Akcija.
+        /// </summary>
+        internal static string TableColAction {
+            get {
+                return ResourceManager.GetString("TableColAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datum.
+        /// </summary>
+        internal static string TableColDate {
+            get {
+                return ResourceManager.GetString("TableColDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naziv.
+        /// </summary>
+        internal static string TableColName {
+            get {
+                return ResourceManager.GetString("TableColName", resourceCulture);
             }
         }
         

@@ -117,8 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CusPoiInputPlaceHolder" xml:space="preserve">
+    <value>Search for my places</value>
+  </data>
   <data name="FooterText" xml:space="preserve">
     <value>Tekst drugi</value>
+  </data>
+  <data name="PoiGroupsTab" xml:space="preserve">
+    <value>Place groups</value>
+  </data>
+  <data name="SavbeInputPlaceHolder" xml:space="preserve">
+    <value>Enter route name for saveing</value>
+  </data>
+  <data name="SaveRouteTab" xml:space="preserve">
+    <value>Routes</value>
+  </data>
+  <data name="SearchInputPlaceHolder" xml:space="preserve">
+    <value>Search routes</value>
+  </data>
+  <data name="TableColAction" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="TableColDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="TableColName" xml:space="preserve">
+    <value>Name</value>
   </data>
   <data name="TabRouting" xml:space="preserve">
     <value>Routing</value>

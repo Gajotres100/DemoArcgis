@@ -204,6 +204,34 @@
                     photos.then(addClusters, error);
                 });
 
+                $('.clusterName').click(function () {
+
+                    var getlabelID = $(this).attr('id').replace("td","");
+                    var isChecked = $('#' + getlabelID).is(':checked');                    
+
+                    if(isChecked)
+                    {                        
+                        $('#chk' + getlabelID).prop('checked', false);
+                    }
+                    else
+                    {
+                        $('#chk' + getlabelID).prop('checked', true);
+                    }
+
+
+                    var studentListVal = null;
+                    studentListVal = [];
+
+                    $('.group-check :checkbox:checked').each(function () {
+                        studentListVal.push($(this).attr('value'));
+                    });
+
+                    var photos = null;
+                    photos = esriRequest({ url: '@Url.Action("GetPoiGroupList", "Map", new { lang = "ID" })'.replace("ID", studentListVal), handleAs: "json" });
+                    photos.then(addClusters, error);
+                });
+
+
                 $('#routeListDiv').on('click', '.routeLoad', function () {
                     var routeID = $(this).attr('id');
                     var stops = esriRequest({ url: '@Url.Action("GetRouteData", "Home", new { lang = "ID" })'.replace("ID", routeID), handleAs: "json" });
