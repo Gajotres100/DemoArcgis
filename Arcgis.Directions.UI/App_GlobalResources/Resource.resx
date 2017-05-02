@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FooterText" xml:space="preserve">
-    <value>GDi auto nadzor 7.9.1 | © 2009 - 2017 GDi Convivo | Sva prava pridržana</value>
+    <value>GDi auto nadzor 7.9.1 | &amp;#169; 2009 - 2017 GDi Convivo | Sva prava pridržana</value>
+  </data>
+  <data name="TabRouting" xml:space="preserve">
+    <value>Rutiranje</value>
   </data>
 </root>

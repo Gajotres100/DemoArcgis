@@ -120,4 +120,7 @@
   <data name="FooterText" xml:space="preserve">
     <value>Tekst drugi</value>
   </data>
+  <data name="TabRouting" xml:space="preserve">
+    <value>Routing</value>
+  </data>
 </root>

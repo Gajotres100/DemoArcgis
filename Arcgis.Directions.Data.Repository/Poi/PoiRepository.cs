@@ -124,8 +124,8 @@ namespace Arcgis.Directions.Data.Repository.Poi
                     lng = $"{x.WM_Y}",
                     full_name = x.DESCRIPTION,
                     caption = x.ADDRESS,
-                    image = "https://cdn.geek.hr/wp-content/uploads/sites/10/store/mali-zec-slika.jpg",
-                    link = "https://cdn.geek.hr/wp-content/uploads/sites/10/store/mali-zec-slika.jpg"
+                    image = "",
+                    link = ""
                 }).ToList();
             }
         }
@@ -158,7 +158,7 @@ namespace Arcgis.Directions.Data.Repository.Poi
                     ServiceID = x.SERVICE_ID.GetValueOrDefault(),
                     UserID = x.USER_ID,
                     PoiCount = Convert.ToInt32(x.POI_COUNT)
-                }).ToList();
+                }).Where(g => g.PoiCount > 0).ToList();
             }
         }
 
