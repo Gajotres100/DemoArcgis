@@ -409,10 +409,10 @@
                 var defaultSym = new SimpleMarkerSymbol().setSize(4);
                 var renderer = new ClassBreaksRenderer(defaultSym, "clusterCount");
 
-                var picBaseUrl = "https://static.arcgis.com/images/Symbols/Shapes/";
-                var blue = new PictureMarkerSymbol(picBaseUrl + "BluePin1LargeB.png", 32, 32).setOffset(0, 15);
-                var green = new PictureMarkerSymbol(picBaseUrl + "GreenPin1LargeB.png", 64, 64).setOffset(0, 15);
-                var red = new PictureMarkerSymbol(picBaseUrl + "RedPin1LargeB.png", 72, 72).setOffset(0, 15);
+                var picBaseUrl = "@(HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + @HttpContext.Current.Request.ApplicationPath )/Content/2/img/cluster/";
+                var blue = new PictureMarkerSymbol(picBaseUrl + "poi-blue.png", 32, 32).setOffset(0, 5);
+                var green = new PictureMarkerSymbol(picBaseUrl + "poi-green.png", 64, 64).setOffset(0, 5);
+                var red = new PictureMarkerSymbol(picBaseUrl + "poi-red.png", 72, 72).setOffset(0, 5);
                 renderer.addBreak(0, 2, blue);
                 renderer.addBreak(2, 200, green);
                 renderer.addBreak(200, 1001, red);

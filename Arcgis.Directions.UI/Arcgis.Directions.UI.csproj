@@ -1684,6 +1684,33 @@
     <Content Include="Content\2\img\car.png" />
     <Content Include="Content\2\img\chart-bar.png" />
     <Content Include="Content\2\img\cloud.png" />
+    <Content Include="Content\2\img\cluster\poi-black.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\2\img\cluster\poi-blue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\2\img\cluster\poi-cyan.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\2\img\cluster\poi-green.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\2\img\cluster\poi-group.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\2\img\cluster\poi-magenta.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\2\img\cluster\poi-orange.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\2\img\cluster\poi-red.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\2\img\cluster\poi-yellow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\2\img\earth.png" />
     <Content Include="Content\2\img\flags.png" />
     <Content Include="Content\2\img\GDi_logo.png" />

@@ -150,7 +150,7 @@ namespace Arcgis.Directions.Data.Repository.Poi
         {
             using (var context = new EntitiesPortalOracle())
             {
-                return context.V_ROUTING_POIS.Where(g => g.USER_ID == userID).OrderBy(g => g.POI_GROUP_ID).AsEnumerable().Select(x => new GroupPoi
+                return context.V_ROUTING_POIS.Where(g => g.USER_ID == userID).OrderBy(g => g.POI_GROUP_ID).OrderBy(g => g.POI_GROUP_NAME).AsEnumerable().Select(x => new GroupPoi
                 {                    
                     PoiGroupID = x.POI_GROUP_ID,
                     PoiGroupName = x.POI_GROUP_NAME,
