@@ -150,4 +150,7 @@
   <data name="DirectionsSearchGeocoder" xml:space="preserve">
     <value>Pretraži Geokoder</value>
   </data>
+  <data name="ButtonSave" xml:space="preserve">
+    <value>Spremi</value>
+  </data>
 </root>

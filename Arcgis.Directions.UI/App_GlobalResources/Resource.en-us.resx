@@ -150,4 +150,7 @@
   <data name="TabRouting" xml:space="preserve">
     <value>Routing</value>
   </data>
+  <data name="ButtonSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
 </root>
