@@ -121,7 +121,7 @@
     <value>Pretraživanje po mojim mjestima</value>
   </data>
   <data name="FooterText" xml:space="preserve">
-    <value>GDi auto nadzor 7.9.1 | &amp;#169; 2009 - 2017 GDi Convivo | Sva prava pridržana</value>
+    <value>GDi auto nadzor 7.9.1 | 2009 - 2017 GDi Convivo | Sva prava pridržana</value>
   </data>
   <data name="PoiGroupsTab" xml:space="preserve">
     <value>Moja mjesta</value>
@@ -146,5 +146,8 @@
   </data>
   <data name="TabRouting" xml:space="preserve">
     <value>Rutiranje</value>
+  </data>
+  <data name="DirectionsSearchGeocoder" xml:space="preserve">
+    <value>Pretraži Geokoder</value>
   </data>
 </root>

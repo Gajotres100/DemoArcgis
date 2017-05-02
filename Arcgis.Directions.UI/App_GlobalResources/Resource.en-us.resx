@@ -120,8 +120,11 @@
   <data name="CusPoiInputPlaceHolder" xml:space="preserve">
     <value>Search for my places</value>
   </data>
+  <data name="DirectionsSearchGeocoder" xml:space="preserve">
+    <value>Search Geocoder</value>
+  </data>
   <data name="FooterText" xml:space="preserve">
-    <value>Tekst drugi</value>
+    <value>GDi auto nadzor 7.9.1 | 2009 - 2017 GDi Convivo | All rights reserved.</value>
   </data>
   <data name="PoiGroupsTab" xml:space="preserve">
     <value>Place groups</value>

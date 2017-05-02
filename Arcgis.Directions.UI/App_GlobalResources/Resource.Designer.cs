@@ -70,7 +70,16 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GDi auto nadzor 7.9.1 | &amp;#169; 2009 - 2017 GDi Convivo | Sva prava pridržana.
+        ///   Looks up a localized string similar to Pretraži Geokoder.
+        /// </summary>
+        internal static string DirectionsSearchGeocoder {
+            get {
+                return ResourceManager.GetString("DirectionsSearchGeocoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GDi auto nadzor 7.9.1 | 2009 - 2017 GDi Convivo | Sva prava pridržana.
         /// </summary>
         internal static string FooterText {
             get {
