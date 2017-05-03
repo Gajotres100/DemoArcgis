@@ -18,6 +18,39 @@ $(document).ready(function () {
     });
 
     $("#myTable").tablesorter();
+
+    var i = 0;
+    $("#colName").click(function () {
+        
+        if(i == 0){
+            $('#ascName').removeClass('mdi mdi-16px mdi-sort-ascending');
+            $("#ascName").toggleClass('mdi mdi-16px mdi-sort-descending');
+             i++;
+        }
+        else {
+            $('#ascName').removeClass('mdi mdi-16px mdi-sort-descending');
+            $("#ascName").toggleClass('mdi mdi-16px mdi-sort-ascending');
+            i = 0;
+        }
+
+    });
+
+    var z = 0;
+    $("#colDate").click(function () {
+
+        if (z == 0) {
+            $('#ascDate').removeClass('mdi mdi-16px mdi-sort-ascending');
+            $("#ascDate").toggleClass('mdi mdi-16px mdi-sort-descending');
+            z++;
+        }
+        else {
+            $('#ascDate').removeClass('mdi mdi-16px mdi-sort-descending');
+            $("#ascDate").toggleClass('mdi mdi-16px mdi-sort-ascending');
+            z = 0;
+        }
+
+    });
+
     $("#search").on("keyup", function () {
         var value = $(this).val().toUpperCase();
         $("table > tbody  > tr").each(function (index) {
