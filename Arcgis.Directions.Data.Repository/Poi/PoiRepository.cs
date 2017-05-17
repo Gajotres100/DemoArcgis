@@ -6,6 +6,7 @@ using System.Text;
 using System;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Drawing;
 
 namespace Arcgis.Directions.Data.Repository.Poi
 {
@@ -125,7 +126,8 @@ namespace Arcgis.Directions.Data.Repository.Poi
                     full_name = x.DESCRIPTION,
                     caption = x.ADDRESS,
                     image = "",
-                    link = ""
+                    link = "",
+                    mapIconColour = ColorTranslator.FromHtml(x.MAP_ICON_COLOR).Name.ToLower()
                 }).ToList();
             }
         }
@@ -157,7 +159,7 @@ namespace Arcgis.Directions.Data.Repository.Poi
                     PoiGroupType = x.POI_GROUP_TYPE,
                     ServiceID = x.SERVICE_ID.GetValueOrDefault(),
                     UserID = x.USER_ID,
-                    PoiCount = Convert.ToInt32(x.POI_COUNT)
+                    PoiCount = Convert.ToInt32(x.POI_COUNT),                    
                 }).Where(g => g.PoiCount > 0).ToList();
             }
         }

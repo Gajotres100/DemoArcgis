@@ -207,10 +207,10 @@
                 $('.clusterName').click(function () {
 
                     var getlabelID = $(this).attr('id').replace("td","");
-                    var isChecked = $('#chk' + getlabelID).is(':checked');                    
+                    var isChecked = $('#chk' + getlabelID).is(':checked');
 
                     if(isChecked)
-                    {                        
+                    {
                         $('#chk' + getlabelID).prop('checked', false);
                     }
                     else
@@ -396,7 +396,8 @@
                         "Caption": latlng.x,
                         "Name": latlng.y,
                         "Image": p.image,
-                        "Link": p.link
+                        "Link": p.link,
+                        "Colour": p.mapIconColour,
                     };
                     return {
                         "x": latlng.x,
@@ -434,16 +435,61 @@
                     "singleColor": "#888",
                     "singleTemplate": popupTemplate
                 });
-                var defaultSym = new SimpleMarkerSymbol().setSize(4);
-                var renderer = new ClassBreaksRenderer(defaultSym, "clusterCount");
 
-                var picBaseUrl = "https://static.arcgis.com/images/Symbols/Shapes/";
-                var blue = new PictureMarkerSymbol(picBaseUrl + "BluePin1LargeB.png", 32, 32).setOffset(0, 15);
-                var green = new PictureMarkerSymbol(picBaseUrl + "GreenPin1LargeB.png", 64, 64).setOffset(0, 15);
-                var red = new PictureMarkerSymbol(picBaseUrl + "RedPin1LargeB.png", 72, 72).setOffset(0, 15);
-                renderer.addBreak(0, 2, blue);
-                renderer.addBreak(2, 200, green);
-                renderer.addBreak(200, 1001, red);
+                calculateRenderer = function (value) {
+
+
+                    if (value.attributes.clusterCount > 1)
+                        return value.attributes.clusterCount;
+                    else {
+                        switch (value.attributes.Colour) {
+                            case "black":
+                                return 100001;
+                            case "blue":
+                                return 100002;
+                            case "cyan":
+                                return 100003;
+                            case "green":
+                                return 100004;
+                            case "magenta":
+                                return 100005;
+                            case "orange":
+                                return 100006;
+                            case "red":
+                                return 100007;
+                        }
+                        return 100008;
+                    }
+                }
+
+                var defaultSym = new SimpleMarkerSymbol().setSize(4);
+                var renderer = new ClassBreaksRenderer(defaultSym, calculateRenderer);
+                alert(resp[0].mapIconColour);
+                var picBaseUrl = "@(HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + @HttpContext.Current.Request.ApplicationPath )/Content/2/img/cluster/";
+
+                var black = new PictureMarkerSymbol(picBaseUrl + "poi-black.png", 40, 40).setOffset(0, 15);
+                var blue = new PictureMarkerSymbol(picBaseUrl + "poi-blue.png", 40, 40).setOffset(0, 15);
+                var cyan = new PictureMarkerSymbol(picBaseUrl + "poi-cyan.png", 40, 40).setOffset(0, 15);
+                var green = new PictureMarkerSymbol(picBaseUrl + "poi-green.png", 40, 40).setOffset(0, 15);
+                var magenta = new PictureMarkerSymbol(picBaseUrl + "poi-magenta.png", 40, 40).setOffset(0, 15);
+                var orange = new PictureMarkerSymbol(picBaseUrl + "poi-orange.png", 40, 40).setOffset(0, 15);
+                var red = new PictureMarkerSymbol(picBaseUrl + "poi-red.png", 40, 40).setOffset(0, 15);
+                var yellow = new PictureMarkerSymbol(picBaseUrl + "poi-yellow.png", 40, 40).setOffset(0, 15);
+
+                var group = new PictureMarkerSymbol(picBaseUrl + "poi-group.png", 40, 40).setOffset(0, 15);
+
+                //renderer.addBreak(0, 1, blue);
+                renderer.addBreak(1, 200, group);
+                renderer.addBreak(200, 1001, group);
+
+                renderer.addBreak(100001, 100001, black);
+                renderer.addBreak(100002, 100002, blue);
+                renderer.addBreak(100003, 100003, cyan);
+                renderer.addBreak(100004, 100004, green);
+                renderer.addBreak(100006, 100005, magenta);
+                renderer.addBreak(100007, 100006, orange);
+                renderer.addBreak(100008, 100007, red);
+                renderer.addBreak(100008, 100008, yellow);
 
                 clusterLayer.setRenderer(renderer);
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,5 +15,6 @@ namespace Arcgis.Directions.Data.Model
         public string full_name { get; set; }
         public string lat { get; set; }
         public string lng { get; set; }
+        public string mapIconColour { get; set; }
     }
 }
