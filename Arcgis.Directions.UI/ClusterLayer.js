@@ -61,7 +61,7 @@ define([
 
       this._webmap = options.hasOwnProperty("webmap") ? options.webmap : false;
 
-      this._sr = options.spatialReference || new SpatialReference({ "wkid": 4671 });
+      this._sr = options.spatialReference || new SpatialReference({ "wkid": 3857 });
 
       this._zoomEnd = null;
     },
@@ -159,7 +159,7 @@ define([
       } else {
         // stop the click from bubbling to the map
         e.stopPropagation();
-        //this._map.infoWindow.show(e.graphic.geometry);
+        this._map.infoWindow.show(e.graphic.geometry);
         this._addSingles(singles);
       }
     },

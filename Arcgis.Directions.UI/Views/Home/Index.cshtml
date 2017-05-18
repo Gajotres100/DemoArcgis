@@ -392,12 +392,10 @@
                 photoInfo.data = arrayUtils.map(resp, function (p) {
                     var latlng = new Point(parseFloat(p.lat), parseFloat(p.lng), wgs);
                     var webMercator = webMercatorUtils.geographicToWebMercator(latlng);
+                    
                     var attributes = {
-                        "Caption": latlng.x,
-                        "Name": latlng.y,
-                        "Image": p.image,
-                        "Link": p.link,
                         "Colour": p.mapIconColour,
+                        "symbol": p.mapIconColour
                     };
                     return {
                         "x": latlng.x,
@@ -405,23 +403,18 @@
                         "attributes": attributes
                     };
                 });
+                
 
                 // popupTemplate to work with attributes specific to this dataset
-                var popupTemplate = new PopupTemplate({
+                var popupTemplate = PopupTemplate({
                     "title": "",
                     "fieldInfos": [{
-                        "fieldName": "Caption",
-                        visible: true
-                    }, {
-                        "fieldName": "Name",
-                        "label": "By",
-                        visible: true
-                    }, {
-                        "fieldName": "Link",
-                        "label": "On Instagram",
+                        "fieldName": "Colour",
+                        "label": "Colour:",
                         visible: true
                     }]
                 });
+
 
                 // cluster layer that uses OpenLayers style clustering
                 if (clusterLayer != null) map.removeLayer(clusterLayer);
@@ -436,13 +429,13 @@
                     "singleTemplate": popupTemplate
                 });
 
-                calculateRenderer = function (value) {
-
-
-                    if (value.attributes.clusterCount > 1)
-                        return value.attributes.clusterCount;
+                var defaultSymbol = new SimpleMarkerSymbol().setSize(4);
+                var renderer = new ClassBreaksRenderer(defaultSymbol, function(feature){
+                    if (feature.attributes.clusterCount > 1)
+                        return feature.attributes.clusterCount;
                     else {
-                        switch (value.attributes.Colour) {
+                        //alert(feature._layer._clusterData[feature.attributes.clusterId].attributes.Colour);
+                        switch (feature._layer._clusterData[feature.attributes.clusterId].attributes.Colour) {
                             case "black":
                                 return 100001;
                             case "blue":
@@ -457,14 +450,13 @@
                                 return 100006;
                             case "red":
                                 return 100007;
+                            case "yellow":
+                                return 100008;
                         }
-                        return 100008;
+                        return 100005;
                     }
-                }
-
-                var defaultSym = new SimpleMarkerSymbol().setSize(4);
-                var renderer = new ClassBreaksRenderer(defaultSym, calculateRenderer);
-                alert(resp[0].mapIconColour);
+                });
+               
                 var picBaseUrl = "@(HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + @HttpContext.Current.Request.ApplicationPath )/Content/2/img/cluster/";
 
                 var black = new PictureMarkerSymbol(picBaseUrl + "poi-black.png", 40, 40).setOffset(0, 15);
@@ -476,20 +468,21 @@
                 var red = new PictureMarkerSymbol(picBaseUrl + "poi-red.png", 40, 40).setOffset(0, 15);
                 var yellow = new PictureMarkerSymbol(picBaseUrl + "poi-yellow.png", 40, 40).setOffset(0, 15);
 
-                var group = new PictureMarkerSymbol(picBaseUrl + "poi-group.png", 40, 40).setOffset(0, 15);
+                var group = new PictureMarkerSymbol(picBaseUrl + "poi-group.png", 60, 60).setOffset(0, 5);
 
                 //renderer.addBreak(0, 1, blue);
-                renderer.addBreak(1, 200, group);
-                renderer.addBreak(200, 1001, group);
+                //renderer.addBreak(1, 200, group);
+                renderer.addBreak(1, 1001, group);
 
                 renderer.addBreak(100001, 100001, black);
                 renderer.addBreak(100002, 100002, blue);
                 renderer.addBreak(100003, 100003, cyan);
                 renderer.addBreak(100004, 100004, green);
-                renderer.addBreak(100006, 100005, magenta);
-                renderer.addBreak(100007, 100006, orange);
-                renderer.addBreak(100008, 100007, red);
+                renderer.addBreak(100005, 100005, magenta);
+                renderer.addBreak(100006, 100006, orange);
+                renderer.addBreak(100007, 100007, red);
                 renderer.addBreak(100008, 100008, yellow);
+                renderer.addBreak(100009, 100009, group);
 
                 clusterLayer.setRenderer(renderer);
 
