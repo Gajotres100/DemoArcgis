@@ -336,8 +336,7 @@
                                     + currentdate.getFullYear() + ". "
                                     + currentdate.getHours() + ":"
                                     + currentdate.getMinutes() + ":"
-                                    + currentdate.getSeconds();
-                        //$("#routeListDiv").append("<div class='route" + data + "' style='margin-left: 10px;'><span>" + name + "</span><a id='" + data + "' href='#' class='routeDelete' style='float: right; margin-right: 5px;'>Obriši</a><a id='" + data + "' href='#' class='routeLoad' style='float: right; margin-right: 5px;'>Učitaj</a></div>");
+                                    + currentdate.getSeconds();                        
                         $(".tablesorter").append("<tr class='route" + data + "'><td><span>" + name + "</span></td><td><span>" + datetime + "</span></td> <td><a id='" + data + "' href='#' class='routeDelete' style='float: right; margin-right: 5px;'><i class='mdi mdi-16px mdi-minus-circle' style='color:red'></i></a><a id='" + data + "' href='#' class='routeLoad' style='float: right; margin-right: 5px;'><i class='mdi mdi-16px mdi-plus-circle' style='color:green'></i></a></td></tr>");
 
                     }
@@ -404,8 +403,6 @@
                     };
                 });
                 
-
-                // popupTemplate to work with attributes specific to this dataset
                 var popupTemplate = PopupTemplate({
                     "title": "",
                     "fieldInfos": [{
@@ -415,8 +412,6 @@
                     }]
                 });
 
-
-                // cluster layer that uses OpenLayers style clustering
                 if (clusterLayer != null) map.removeLayer(clusterLayer);
                 clusterLayer = new ClusterLayer({
                     "data": photoInfo.data,
@@ -434,7 +429,6 @@
                     if (feature.attributes.clusterCount > 1)
                         return feature.attributes.clusterCount;
                     else {
-                        //alert(feature._layer._clusterData[feature.attributes.clusterId].attributes.Colour);
                         switch (feature._layer._clusterData[feature.attributes.clusterId].attributes.Colour) {
                             case "black":
                                 return 100001;
@@ -468,11 +462,10 @@
                 var red = new PictureMarkerSymbol(picBaseUrl + "poi-red.png", 40, 40).setOffset(0, 15);
                 var yellow = new PictureMarkerSymbol(picBaseUrl + "poi-yellow.png", 40, 40).setOffset(0, 15);
 
-                var group = new PictureMarkerSymbol(picBaseUrl + "poi-group.png", 60, 60).setOffset(0, 5);
-
-                //renderer.addBreak(0, 1, blue);
-                //renderer.addBreak(1, 200, group);
-                renderer.addBreak(1, 1001, group);
+                picBaseUrl = "https://static.arcgis.com/images/Symbols/Shapes/";
+                var group = new PictureMarkerSymbol(picBaseUrl + "GreenPin1LargeB.png", 64, 64).setOffset(0, 15);
+               
+                renderer.addBreak(1, 2000, group);
 
                 renderer.addBreak(100001, 100001, black);
                 renderer.addBreak(100002, 100002, blue);
@@ -481,16 +474,13 @@
                 renderer.addBreak(100005, 100005, magenta);
                 renderer.addBreak(100006, 100006, orange);
                 renderer.addBreak(100007, 100007, red);
-                renderer.addBreak(100008, 100008, yellow);
-                renderer.addBreak(100009, 100009, group);
+                renderer.addBreak(100008, 100008, yellow);               
 
                 clusterLayer.setRenderer(renderer);
 
                 map.addLayer(clusterLayer);
 
-                // close the info window when the map is clicked
                 map.on("click", cleanUp);
-                // close the info window when esc is pressed
                 map.on("key-down", function (e) {
                     if (e.keyCode === 27) {
                         cleanUp();
