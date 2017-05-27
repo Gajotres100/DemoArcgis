@@ -3160,6 +3160,7 @@
     <Content Include="Content\2\fonts\OpenSans-Regular.woff" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <Content Include="Views\Map\GroupPoi.cshtml" />
+    <Content Include="Views\Shared\_LayoutGdi2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

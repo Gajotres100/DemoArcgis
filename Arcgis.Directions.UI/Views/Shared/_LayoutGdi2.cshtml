@@ -1,0 +1,412 @@
+﻿@model Arcgis.Directions.VM.GetPOIVM
+@using Arcgis.Directions.BL.SSOAuth;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <title></title>
+
+    <script type="text/javascript">
+        var dojoConfig = {
+            parseOnLoad: true,
+            locale: "@Model.Langugae.Code",
+            paths: {
+                extras: location.pathname.replace(/\/[^/]+$/, "") + "/extras"
+            }
+        };
+    </script>
+
+    <style>
+             table {
+                 border-collapse: separate;
+                 background: #fff;
+                 border-radius: 5px;
+                 margin: 50px auto;
+                 /*box-shadow:0px 0px 5px rgba(0,0,0,0.3);*/
+                 padding-top: 20px;
+                 padding-left: 10px;
+                 width: 410px;
+             }
+
+             thead {
+                 border-radius: 5px;
+                 padding-top: 20px;
+                 padding-left: 10px;
+             }
+
+                 thead th {
+                     font-family: Arial;
+                     font-size: 16px;
+                     font-weight: 400;
+                     color: #fff;
+                     text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
+                     text-align: left;
+                     padding: 10px;
+                     background-image: linear-gradient(#646f7f, #4a5564);
+                     border-top: 1px solid #858d99;
+                     &:first-child;
+
+             {
+                 border-top-left-radius: 5px;
+             }
+
+             &:last-child {
+                 border-top-right-radius: 5px;
+             }
+
+             }
+
+             tbody tr td {
+                 font-family: 'Open Sans', sans-serif;
+                 font-weight: 400;
+                 color: #5f6062;
+                 font-size: 13px;
+                 padding: 10px 10px 10px 10px;
+                 border-bottom: 1px solid #e0e0e0;
+             }
+
+             tbody tr:nth-child(2n) {
+                 background: #f0f3f5;
+             }
+
+             tbody tr:last-child td {
+                 border-bottom: none;
+                 &:first-child;
+
+             {
+                 border-bottom-left-radius: 5px;
+             }
+
+             &:last-child {
+                 border-bottom-right-radius: 5px;
+             }
+
+             }
+
+             tbody:hover > tr td {
+                 opacity: 0.5;
+                 /* uncomment for blur effect */
+                 /* color:transparent;
+        text-shadow(0px 0px 2px rgba(0,0,0,0.8));*/
+             }
+
+             tbody:hover > tr:hover td {
+                 text-shadow: none;
+                 color: #2d2d2d;
+                 opacity: 1.0;
+             }
+    </style>
+
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <script src="https://js.arcgis.com/3.18/"></script>
+    <script src="~/Script/circular-json.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+    <script src="~/Content/2/scripts/jquery.tablesorter.js"></script>
+
+
+    @Scripts.Render("~/Content/2/scripts/")
+    @Scripts.Render("~/Content/2/plugins/")
+
+    <link rel="stylesheet" href="~/Content/2/css/esri.css">
+    <link rel="stylesheet" href="~/Content/2/css/style.css">
+    <link rel="stylesheet" href="~/Content/2/css/style-metro.css">
+    <link rel="stylesheet" href="~/Content/2/css/style-responsive.css">
+    <link rel="stylesheet" href="~/Content/2/css/pages/inbox.css">
+    <link rel="stylesheet" href="~/Content/2/css/autocomplete-ui-input.css">
+    <link rel="stylesheet" href="~/Content/2/css/flags.min.css">
+    <link rel="stylesheet" href="~/Content/2/css/style-body.css">
+    <link rel="stylesheet" href="~/Content/2/css/Common.css">
+
+    <link rel="stylesheet" href="https://js.arcgis.com/3.20/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.20/esri/css/esri.css">
+
+</head>
+<body id="siteBody" style="position:relative;" class="nihilo gecko56 hr-hr gdidemo vehicle content-wrapper">
+    <div id="preloader" style="opacity: 0; display: none;" class="hidden">
+        &nbsp;
+    </div>
+    <div id="wrapper">
+
+        <div id="header" class="navbar navbar-fixed-top">
+            <div class="navbar-header">
+
+                <div class="logo">
+                    <a class="logo-image" href="@Url.Action("Index","Home")">
+                        <img id="imgHeaderLogo" src="~/Content/2/img/sharedui-header-logo.png" alt="logo" />
+                    </a>
+                    <a id="logoName" class="logo-text hidden-xs">
+
+                    </a>
+                </div>
+                <ul id="account" class="top-menu nav navbar-right pull-right right-margin-10">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+
+                            <i class="mdi mdi-account-outline"></i>
+
+                            @if (!String.IsNullOrEmpty((string)HttpContext.Current.Session[nameof(UserData)].ToString()))
+                            {
+                                @HttpContext.Current.Session["Username"]
+                            }
+                            <i class="fa fa-fw fa-angle-down"></i>
+
+                        </a>
+                        <ul id="accountDropDown" class="dropdown-menu">
+                            @*<li class="divider"></li>*@
+                            <li>
+                                <a id="lsLoggedInUser" href="@Url.Action("Logout","Home")"> </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+
+
+
+                <ul id="ulSsoApplications" class="top-menu nav navbar-right pull-right">
+
+                    <li class="dropdown">
+                        @if (Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings[@"SSOveriden"]) == true)
+                        {
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="mdi mdi-16px mdi-cloud-outline"></i>
+
+                                <label id="choosApp1">SSO overridden</label>
+                                <i class="fa fa-fw fa-angle-down"></i>
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="mdi mdi-16px mdi-cloud-outline"></i>
+
+                                <label id="choosApp2"> Odaberi aplikaciju </label>
+                                <i class="fa fa-fw fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+
+                                @foreach (var item in Model.Applications)
+                                {
+                                    <li>
+                                        <a id="@item.Name" href="@item.Url">@item.Name</a>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </li>
+                </ul>
+
+                <ul id="ulLanguages" class="top-menu nav navbar-right pull-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+
+
+                            <span id="flagChange" class="flag-icon flag-icon-hr"></span>
+
+                            <label id="languagetext">Hrvatski</label>
+
+
+                            <i class="fa fa-fw fa-angle-down"></i>
+
+                        </a>
+
+                        <ul id="languageDropDown" class="dropdown-menu">
+
+                            @{ int counter = 1;}
+                            @foreach (var item in Model.LanguageList)
+                            {
+                                if (Model.Langugae.Name == "HR")
+                                {
+                                    if (counter == 1)
+                                    {
+                                        <li>
+                                            <a id="@item.LangID" onclick="return CallChangefunc('HR');" href="#"><span id="flagslanguage" class="flag-icon flag-icon-hr" alt="Croatia"></span>&nbsp;&nbsp Hrvatski</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a id="@item.LangID" onclick="return CallChangefunc('EN');" href="#"><span id="flagslanguage" class="flag-icon flag-icon-gb" alt="UnitedKingdom"></span>&nbsp;&nbsp Engleski</a>
+                                        </li>
+                                    }
+                                }
+                                else if (Model.Langugae.Name == "EN")
+                                {
+                                    if (counter == 1)
+                                    {
+                                        <li>
+                                            <a id="@item.LangID" onclick="return CallChangefunc('HR');" href="#"><span id="flagslanguage" class="flag-icon flag-icon-hr" alt="Croatia"></span>&nbsp;&nbsp Croatian</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a id="@item.LangID" onclick="return CallChangefunc('EN');" href="#"><span id="flagslanguage" class="flag-icon flag-icon-gb" alt="UnitedKingdom"></span>&nbsp;&nbsp English</a>
+                                        </li>
+                                    }
+
+                                }
+                                counter++;
+                            }
+                        </ul>
+
+
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div id="sidebar">
+
+
+            <ul class="main-menu">
+
+                <a class="menu-toggle" href="javascript:">
+                    <i class="mdi mdi-menu"></i>
+                </a>
+                <li id="liMapMenu" class="selected">
+                    <a href="#">
+                        <i class="mdi mdi-earth"></i>
+                    </a>
+                    <div class="sidebar-menu">
+                        <h3 class="menu-title">@Resources.Resource.TabRouting</h3>
+                        <div class="slimScrollDiv">
+                            <div class="container-fluid">
+                                <div class="page-sidebar nav-collapse collapse">
+                                    <form class="sidebar-search">
+                                        <div class="input-box">
+                                            @Html.TextBoxFor(m => m.CusPoiInput.Name, new { @class = "form-control", @id = "keyword", @placeholder = Resources.Resource.CusPoiInputPlaceHolder })
+                                        </div>
+                                    </form>
+                                    <form class="sidebar-search">
+                                        <div class="input-box">
+                                            <div id="dir" dir="ltr"></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="mdi mdi-map-marker-multiple mdi-fw"></i>
+                    </a>
+                    <div class="sidebar-menu">
+                        <h3 class='menu-title'>@Resources.Resource.PoiGroupsTab</h3>
+                        <div class="slimScrollDiv">
+                            <div class="container-fluid">
+
+                                <!-- BEGIN SIDEBAR -->
+                                <div class="page-sidebar nav-collapse collapse">
+                                    <!-- BEGIN SIDEBAR MENU -->
+                                    <form class="sidebar-search">
+                                        <div class="input-box group-check">
+                                            @foreach (var names in @Model.GroupPoiList)
+                                            {
+                                                var checkBoxId = "chk" + names.PoiGroupID;
+                                                var tdId = "td" + names.PoiGroupID;
+                                                <div width="400px">
+                                                    <div style="display:inline-block; width: 40px; height: 25px;" id="listOfClusters">
+                                                        <input type="checkbox" id="@checkBoxId" style="margin-left: 15px;" class="chkclass" value="@names.PoiGroupID" />
+                                                    </div>
+                                                    <div id="@tdId" style="display:inline-block; width: 350px; height: 25px;" class="clusterName">
+                                                        @names.PoiGroupName (@names.PoiCount)
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li id="liRouteList">
+                    <a href="#">
+                        <i class="mdi mdi-content-save mdi-fw"></i>
+                    </a>
+                    <div class="sidebar-menu">
+                        <h3 class='menu-title'>@Resources.Resource.SaveRouteTab</h3>
+                        <div class="slimScrollDiv">
+                            <div class="container-fluid">
+
+                                <!-- BEGIN SIDEBAR -->
+                                <div class="page-sidebar nav-collapse collapse">
+                                    <input class="form-control ui-autocomplete-input" type="text" name="routeName" id="routeName" value="" style="border-top:hidden;border-right:hidden;border-left:hidden;" maxlength="40" placeholder="@Resources.Resource.SavbeInputPlaceHolder" />
+                                    <input type="submit" value="@Resources.Resource.ButtonSave" id="saveDirection" style="float: right;position: relative;margin-top: -28px;color: #fff;background-color: #5cace1;border:0" data-blur-on-click="true"><br />
+                                    <input class="form-control ui-autocomplete-input" id="search" placeholder="@Resources.Resource.SearchInputPlaceHolder" type="text" value=""
+                                           autocomplete="off" style="border-top:hidden;border-right:hidden;border-left:hidden;padding-top:10px;">
+                                    <div class="input-box group-check" id="routeListDiv">
+                                        <table id="myTable" class="tablesorter">
+                                            <thead>
+                                                <tr>
+                                                    <th id="colName">@Resources.Resource.TableColName<i id="ascName" class="mdi mdi-16px mdi-sort-ascending" style="padding-left:3px"></i></th>
+                                                    <th id="colDate">@Resources.Resource.TableColDate<i id="ascDate" class="mdi mdi-16px mdi-sort-ascending" style="padding-left:3px"></i></th>
+                                                    <th>@Resources.Resource.TableColAction</th>
+                                                </tr>
+
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var names in @Model.RouteDataList)
+                                                {
+                                                    <tr class="@("route"+ names.ID)">
+                                                        <td><span>@names.Name</span></td>
+                                                        <td><span>@names.CreationDate</span></td>
+                                                        <td><a id="@names.ID" href="#" class="routeDelete" style="float: right; margin-right: 5px;"><i class="mdi mdi-16px mdi-minus-circle" style="color:red"></i></a><a id="@names.ID" href="#" class="routeLoad" style="float: right; margin-right: 5px;"><i class="mdi mdi-16px mdi-plus-circle" style="color:green"></i></a></td>
+                                                    </tr>
+
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+        <div id="content">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        @RenderBody()
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <div id="footer" class="text-left">
+        <img id="imgFooterLogo" src="~/Content/2/img/sharedui-footer-logo.png" />
+        <h6 id="logoText">@Resources.Resource.FooterText</h6>
+    </div>
+
+
+    @*<script>
+
+            jQuery(document).ready(function () {
+                                    App.init();
+                                });
+        </script>*@
+
+</body>
+</html>
