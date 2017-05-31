@@ -1,7 +1,7 @@
 ﻿@model Arcgis.Directions.VM.GetPOIVM
 @using Arcgis.Directions.BL.SSOAuth;
 
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
     <meta charset="utf-8" />
@@ -11,6 +11,7 @@
     <title></title>
 
     <script type="text/javascript">
+
         var dojoConfig = {
             parseOnLoad: true,
             locale: "@Model.Langugae.Code",
@@ -111,22 +112,24 @@
 
     <script src="~/Content/2/scripts/jquery.tablesorter.js"></script>
 
+    <script type="text/javascript">
+        $(window).resize(function () {
+            if ($(window).width() < 1280) {
+                $('#sidebar ul.main-menu > li').removeClass('selected');
+            }          
+        });
+    </script>
 
     @Scripts.Render("~/Content/2/scripts/")
     @Scripts.Render("~/Content/2/plugins/")
 
-    <link rel="stylesheet" href="~/Content/2/css/esri.css">
-    <link rel="stylesheet" href="~/Content/2/css/style.css">
-    <link rel="stylesheet" href="~/Content/2/css/style-metro.css">
-    <link rel="stylesheet" href="~/Content/2/css/style-responsive.css">
-    <link rel="stylesheet" href="~/Content/2/css/pages/inbox.css">
-    <link rel="stylesheet" href="~/Content/2/css/autocomplete-ui-input.css">
-    <link rel="stylesheet" href="~/Content/2/css/flags.min.css">
-    <link rel="stylesheet" href="~/Content/2/css/style-body.css">
-    <link rel="stylesheet" href="~/Content/2/css/Common.css">
-
     <link rel="stylesheet" href="https://js.arcgis.com/3.20/dijit/themes/tundra/tundra.css">
     <link rel="stylesheet" href="https://js.arcgis.com/3.20/esri/css/esri.css">
+    
+    <link rel="stylesheet" href="~/Content/3/css/Common.css">
+    <link rel="stylesheet" href="~/Content/3/css/style.css">
+    <link rel="stylesheet" href="~/Content/3/css/style-body.css">
+    
 
 </head>
 <body id="siteBody" style="position:relative;" class="nihilo gecko56 hr-hr gdidemo vehicle content-wrapper">
