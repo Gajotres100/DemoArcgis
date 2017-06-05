@@ -1,0 +1,107 @@
+﻿#preloader {
+    background: #FFF url(Themes/VipRS/Img/app-loader.gif) no-repeat 50% 50%;
+}
+
+#header {
+    background: #FFF;
+}
+
+    #header .navbar-header {
+        height: 52px;
+    background: #00ADEE;
+    border-bottom: 3px solid #FFFF00;
+    }
+
+    #header .logo-image {
+        height: 49px;
+    background-color: #00ADEE;
+    }
+
+        #header .logo-image img {
+            position: absolute;
+            top: 4px;
+            left: 10px;
+            width: 40px;
+            height: 40px;
+        }
+
+    #header .logo-text {
+        font-weight: normal;
+        color: #FFF;
+        font-size:18px;
+        line-height:49px;
+    }
+
+#sidebar {
+    background: #333;
+}
+
+    #sidebar ul.main-menu > li > a {
+        color: #AAA;
+        border-left: none;
+    }
+
+    #sidebar ul.main-menu > li:hover > a, #sidebar ul.main-menu > li.selected > a {
+        color: #00ADEE;
+        border-left: none;
+    }
+
+    #sidebar ul.main-menu > li.selected > a {
+        background: #333;
+    }
+
+    #sidebar .menu-toggle i {
+        color: #FFF;
+    }
+
+        #sidebar .menu-toggle i:hover, #sidebar .menu-toggle i:focus {
+            color: #444;
+        }
+
+    #sidebar .menu-title {
+        color: #FFF;
+        background-color: #00ADEE;
+    }
+
+    #sidebar .menu-tabs > ul {
+        background: #FF8409;
+    }
+
+    #sidebar .menu-tabs .dxtc-spacer {
+        width: 0 !important;
+    }
+
+    #sidebar .menu-tabs .tab {
+        padding: 11px 4px 10px 4px;
+        text-align: center;
+        background: none;
+        border: none;
+        flex-grow: 1;
+    }
+
+        #sidebar .menu-tabs .tab a {
+            color: #FFF;
+        }
+
+        #sidebar .menu-tabs .tab:hover, #sidebar .menu-tabs .tab:hover a {
+            color: #FFF;
+        }
+
+        #sidebar .menu-tabs .tab:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        #sidebar .menu-tabs .tab.active, #sidebar .menu-tabs .tab.active a {
+            color: #FFF;
+            background: none;
+        }
+
+        #sidebar .menu-tabs .tab.active {
+            background: rgba(255,255,255,0.2);
+        }
+
+#footer {
+        background-color: #282A2B;
+}
+
+#keyword{ margin-top:5px !important; }
