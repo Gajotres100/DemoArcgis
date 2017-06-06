@@ -1,6 +1,7 @@
 ﻿@model Arcgis.Directions.VM.GetPOIVM
 @{
-    Layout = "~/Views/Shared/_LayoutGdi4.cshtml";
+    string template = System.Configuration.ConfigurationManager.AppSettings["Template"];
+    Layout = "~/Views/Shared/_Layout" + template + ".cshtml";
 }
 
 <script>

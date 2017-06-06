@@ -4063,7 +4063,7 @@
     <Content Include="assets\plugins\select2\select2.jquery.json" />
     <Content Include="assets\plugins\select2\select2_locale_en.js.template" />
     <Content Include="assets\plugins\uniform\README.textile" />
-    <Content Include="Views\Shared\_LayoutGdi.cshtml" />
+    <Content Include="Views\Shared\_LayoutGdiDemo.cshtml" />
     <Content Include="Content\2\fonts\cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff" />
     <Content Include="Content\2\fonts\DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff" />
     <Content Include="Content\2\fonts\k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff" />
@@ -4433,9 +4433,9 @@
     <Content Include="Content\3\fonts\OpenSans-Regular.woff" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <Content Include="Views\Map\GroupPoi.cshtml" />
-    <Content Include="Views\Shared\_LayoutGdi2.cshtml" />
-    <Content Include="Views\Shared\_LayoutGdi3.cshtml" />
-    <Content Include="Views\Shared\_LayoutGdi4.cshtml" />
+    <Content Include="Views\Shared\_LayoutVipSr.cshtml" />
+    <Content Include="Views\Shared\_LayoutGdiPlus.cshtml" />
+    <Content Include="Views\Shared\_LayoutVipHr.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
