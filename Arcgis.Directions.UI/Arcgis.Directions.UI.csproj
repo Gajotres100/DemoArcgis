@@ -4435,6 +4435,7 @@
     <Content Include="Views\Map\GroupPoi.cshtml" />
     <Content Include="Views\Shared\_LayoutGdi2.cshtml" />
     <Content Include="Views\Shared\_LayoutGdi3.cshtml" />
+    <Content Include="Views\Shared\_LayoutGdi4.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
