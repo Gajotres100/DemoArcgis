@@ -2694,6 +2694,7 @@
     <Content Include="Content\2\scripts\ui-sliders.js" />
     <Content Include="Content\2\scripts\ui-tree.js" />
     <Content Include="Content\3\css\Common-v2.css" />
+    <Content Include="Content\3\css\Common-v3.css" />
     <Content Include="Content\3\css\Common.css" />
     <Content Include="Content\3\css\pages\about-us.css" />
     <Content Include="Content\3\css\pages\blog.css" />
@@ -2708,8 +2709,10 @@
     <Content Include="Content\3\css\pages\promo.css" />
     <Content Include="Content\3\css\pages\search.css" />
     <Content Include="Content\3\css\style-body-v2.css" />
+    <Content Include="Content\3\css\style-body-v3.css" />
     <Content Include="Content\3\css\style-body.css" />
     <Content Include="Content\3\css\style-v2.css" />
+    <Content Include="Content\3\css\style-v3.css" />
     <Content Include="Content\3\css\style.css" />
     <Content Include="Content\3\css\themes\blue.css" />
     <Content Include="Content\3\css\themes\brown.css" />

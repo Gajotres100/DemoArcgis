@@ -269,8 +269,9 @@
 
                 for (index = 0; index < obj.length; ++index) {
                     var arr = obj[index].name.split(',');
-                    var point = new Point(obj[index].feature.geometry.x,obj[index].feature.geometry.y ,new SpatialReference({ wkid: obj[index].feature.geometry.spatialReference.wkid }));
-                    directions.addStop(point, countStops);
+                    //var point = new Point(obj[index].feature.geometry.x,obj[index].feature.geometry.y ,new SpatialReference({ wkid: obj[index].feature.geometry.spatialReference.wkid }));
+                    //directions.addStop(point, countStops);
+                    directions.addStop(obj[index].name, countStops);
                     countStops++;
                 }
 
@@ -374,8 +375,9 @@
                         contentType: "application/json; charset=utf-8",
                         dataFilter: function (data) { return data; },
                         success: function (data) {
-                            var point = new Point([data.WmX,data.WmY],new SpatialReference({ wkid: @System.Configuration.ConfigurationManager.AppSettings["wkid"] }));
-                            directions.addStop(point, countStops);
+                            @*var point = new Point([data.WmX,data.WmY],new SpatialReference({ wkid: @System.Configuration.ConfigurationManager.AppSettings["wkid"] }));
+                            directions.addStop(point, countStops);*@
+                            directions.addStop(data.Address, countStops);
                             $('#keyword').val('');
                             countStops++;
                         }
