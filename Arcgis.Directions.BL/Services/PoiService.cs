@@ -89,9 +89,9 @@ namespace Arcgis.Directions.BL.Services
             }
             catch (Exception e)
             {
-                
-                logger.Error("error = " + e);
-                return null;
+                //logger.Error("error = " + e);
+                //return null;
+                throw;
             }
         }
 
