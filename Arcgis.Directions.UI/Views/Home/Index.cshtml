@@ -175,7 +175,7 @@
                     $('#lsLoggedInUser').text('Odjava').css('font-size', '16px');
                     $('#choosApp1').text('SSO overridden');
                     $('#choosApp2').text('Odaberi aplikaciju');
-                    $('#logoName').text('GDi auto nadzor').css('font-size', '18px');
+                    $('#logoName').text('@Resources.Resource.TabRouting').css('font-size', '18px');
                     $('#flagChange').removeClass();
                     $('#flagChange').toggleClass('flag-icon flag-icon-hr');
                     $('#logoText').text('@Resources.Resource.FooterText');
@@ -338,7 +338,7 @@
                                     + currentdate.getFullYear() + ". "
                                     + currentdate.getHours() + ":"
                                     + currentdate.getMinutes() + ":"
-                                    + currentdate.getSeconds();                        
+                                    + currentdate.getSeconds();
                         $(".tablesorter").append("<tr class='route" + data + "'><td><span>" + name + "</span></td><td><span>" + datetime + "</span></td> <td><a id='" + data + "' href='#' class='routeDelete' style='float: right; margin-right: 5px;'><i class='mdi mdi-16px mdi-minus-circle' style='color:red'></i></a><a id='" + data + "' href='#' class='routeLoad' style='float: right; margin-right: 5px;'><i class='mdi mdi-16px mdi-plus-circle' style='color:green'></i></a></td></tr>");
 
                     }
@@ -394,7 +394,7 @@
                 photoInfo.data = arrayUtils.map(resp, function (p) {
                     var latlng = new Point(parseFloat(p.lat), parseFloat(p.lng), wgs);
                     var webMercator = webMercatorUtils.geographicToWebMercator(latlng);
-                    
+
                     var attributes = {
                         "Colour": p.mapIconColour,
                         "symbol": p.mapIconColour
@@ -405,7 +405,7 @@
                         "attributes": attributes
                     };
                 });
-                
+
                 var popupTemplate = PopupTemplate({
                     "title": "",
                     "fieldInfos": [{
@@ -453,7 +453,7 @@
                         return 100005;
                     }
                 });
-               
+
                 var picBaseUrl = "@(HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + @HttpContext.Current.Request.ApplicationPath )/Content/2/img/cluster/";
 
                 var black = new PictureMarkerSymbol(picBaseUrl + "poi-black.png", 40, 40).setOffset(0, 15);
@@ -467,7 +467,7 @@
 
                 picBaseUrl = "//static.arcgis.com/images/Symbols/Shapes/";
                 var group = new PictureMarkerSymbol(picBaseUrl + "GreenPin1LargeB.png", 64, 64).setOffset(0, 15);
-               
+
                 renderer.addBreak(1, 2000, group);
 
                 renderer.addBreak(100001, 100001, black);
@@ -477,7 +477,7 @@
                 renderer.addBreak(100005, 100005, magenta);
                 renderer.addBreak(100006, 100006, orange);
                 renderer.addBreak(100007, 100007, red);
-                renderer.addBreak(100008, 100008, yellow);               
+                renderer.addBreak(100008, 100008, yellow);
 
                 clusterLayer.setRenderer(renderer);
 
