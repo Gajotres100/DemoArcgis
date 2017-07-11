@@ -107,12 +107,12 @@ warning 6002: The table/view 'DEV_FMS_7X.V_ROUTING_POIS' does not have a primary
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ModelProtalOracleDbStoreContainer">
-          <EntitySet Name="LANGUAGES" EntityType="Self.LANGUAGES" Schema="DEV_FMS_7X" store:Type="Tables" />
-          <EntitySet Name="POI_GROUP_ACCESS_RIGHTS" EntityType="Self.POI_GROUP_ACCESS_RIGHTS" Schema="DEV_FMS_7X" store:Type="Tables" />
-          <EntitySet Name="POI_GROUPS" EntityType="Self.POI_GROUPS" Schema="DEV_FMS_7X" store:Type="Tables" />
-          <EntitySet Name="POI_PLACES" EntityType="Self.POI_PLACES" Schema="DEV_FMS_7X" store:Type="Tables" />
-          <EntitySet Name="USER_ROUTE" EntityType="Self.USER_ROUTE" Schema="DEV_FMS_7X" store:Type="Tables" />
-          <EntitySet Name="V_ROUTING_POIS" EntityType="Self.V_ROUTING_POIS" store:Type="Views" store:Schema="DEV_FMS_7X">
+          <EntitySet Name="LANGUAGES" EntityType="Self.LANGUAGES" store:Type="Tables" />
+          <EntitySet Name="POI_GROUP_ACCESS_RIGHTS" EntityType="Self.POI_GROUP_ACCESS_RIGHTS" store:Type="Tables" />
+          <EntitySet Name="POI_GROUPS" EntityType="Self.POI_GROUPS" store:Type="Tables" />
+          <EntitySet Name="POI_PLACES" EntityType="Self.POI_PLACES" store:Type="Tables" />
+          <EntitySet Name="USER_ROUTE" EntityType="Self.USER_ROUTE" store:Type="Tables" />
+          <EntitySet Name="V_ROUTING_POIS" EntityType="Self.V_ROUTING_POIS" store:Type="Views" >
             <DefiningQuery>SELECT 
 "V_ROUTING_POIS"."POI_GROUP_ID" AS "POI_GROUP_ID", 
 "V_ROUTING_POIS"."POI_GROUP_NAME" AS "POI_GROUP_NAME", 
@@ -120,7 +120,7 @@ warning 6002: The table/view 'DEV_FMS_7X.V_ROUTING_POIS' does not have a primary
 "V_ROUTING_POIS"."SERVICE_ID" AS "SERVICE_ID", 
 "V_ROUTING_POIS"."USER_ID" AS "USER_ID", 
 "V_ROUTING_POIS"."POI_COUNT" AS "POI_COUNT"
-FROM "DEV_FMS_7X"."V_ROUTING_POIS" "V_ROUTING_POIS"</DefiningQuery>
+FROM "V_ROUTING_POIS" "V_ROUTING_POIS"</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="POI_PLACES_POI_GROUPS_FK" Association="Self.POI_PLACES_POI_GROUPS_FK">
             <End Role="POI_GROUPS" EntitySet="POI_GROUPS" />
