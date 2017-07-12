@@ -110,10 +110,10 @@ warning 6002: The table/view 'DEV_FMS_7X.V_ROUTING_POIS' does not have a primary
           <Property Name="POI_COUNT" Type="number" Precision="38" Scale="0" />
         </EntityType>
         <EntityContainer Name="ModelProtalOracleDbStoreContainer">
-          <EntitySet Name="LANGUAGES" EntityType="Self.LANGUAGES" Schema="DEV_FMS_7X" store:Type="Tables" />
-          <EntitySet Name="POI_GROUP_ACCESS_RIGHTS" EntityType="Self.POI_GROUP_ACCESS_RIGHTS" Schema="DEV_FMS_7X" store:Type="Tables" />
-          <EntitySet Name="USER_ROUTE" EntityType="Self.USER_ROUTE" Schema="DEV_FMS_7X" store:Type="Tables" />
-          <EntitySet Name="V_ROUTING_POI_GROUPS" EntityType="Self.V_ROUTING_POI_GROUPS" store:Type="Views" store:Schema="DEV_FMS_7X">
+          <EntitySet Name="LANGUAGES" EntityType="Self.LANGUAGES" store:Type="Tables" />
+          <EntitySet Name="POI_GROUP_ACCESS_RIGHTS" EntityType="Self.POI_GROUP_ACCESS_RIGHTS" store:Type="Tables" />
+          <EntitySet Name="USER_ROUTE" EntityType="Self.USER_ROUTE" store:Type="Tables" />
+          <EntitySet Name="V_ROUTING_POI_GROUPS" EntityType="Self.V_ROUTING_POI_GROUPS" store:Type="Views" >
             <DefiningQuery>SELECT 
 "V_ROUTING_POI_GROUPS"."POI_GROUP_ID" AS "POI_GROUP_ID", 
 "V_ROUTING_POI_GROUPS"."USER_ID" AS "USER_ID", 
@@ -124,9 +124,9 @@ warning 6002: The table/view 'DEV_FMS_7X.V_ROUTING_POIS' does not have a primary
 "V_ROUTING_POI_GROUPS"."CREATED_DT" AS "CREATED_DT", 
 "V_ROUTING_POI_GROUPS"."MODIFIED_DT" AS "MODIFIED_DT", 
 "V_ROUTING_POI_GROUPS"."MODIFIED_BY" AS "MODIFIED_BY"
-FROM "DEV_FMS_7X"."V_ROUTING_POI_GROUPS" "V_ROUTING_POI_GROUPS"</DefiningQuery>
+FROM "V_ROUTING_POI_GROUPS" "V_ROUTING_POI_GROUPS"</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="V_ROUTING_POI_PLACES" EntityType="Self.V_ROUTING_POI_PLACES" store:Type="Views" store:Schema="DEV_FMS_7X">
+          <EntitySet Name="V_ROUTING_POI_PLACES" EntityType="Self.V_ROUTING_POI_PLACES" store:Type="Views" >
             <DefiningQuery>SELECT 
 "V_ROUTING_POI_PLACES"."POI_PLACE_ID" AS "POI_PLACE_ID", 
 "V_ROUTING_POI_PLACES"."USER_ID" AS "USER_ID", 
@@ -150,9 +150,9 @@ FROM "DEV_FMS_7X"."V_ROUTING_POI_GROUPS" "V_ROUTING_POI_GROUPS"</DefiningQuery>
 "V_ROUTING_POI_PLACES"."CREATED_DT" AS "CREATED_DT", 
 "V_ROUTING_POI_PLACES"."MODIFIED_DT" AS "MODIFIED_DT", 
 "V_ROUTING_POI_PLACES"."MODIFIED_BY" AS "MODIFIED_BY"
-FROM "DEV_FMS_7X"."V_ROUTING_POI_PLACES" "V_ROUTING_POI_PLACES"</DefiningQuery>
+FROM "V_ROUTING_POI_PLACES" "V_ROUTING_POI_PLACES"</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="V_ROUTING_POIS" EntityType="Self.V_ROUTING_POIS" store:Type="Views" store:Schema="DEV_FMS_7X">
+          <EntitySet Name="V_ROUTING_POIS" EntityType="Self.V_ROUTING_POIS" store:Type="Views" >
             <DefiningQuery>SELECT 
 "V_ROUTING_POIS"."POI_GROUP_ID" AS "POI_GROUP_ID", 
 "V_ROUTING_POIS"."POI_GROUP_NAME" AS "POI_GROUP_NAME", 
@@ -160,7 +160,7 @@ FROM "DEV_FMS_7X"."V_ROUTING_POI_PLACES" "V_ROUTING_POI_PLACES"</DefiningQuery>
 "V_ROUTING_POIS"."SERVICE_ID" AS "SERVICE_ID", 
 "V_ROUTING_POIS"."USER_ID" AS "USER_ID", 
 "V_ROUTING_POIS"."POI_COUNT" AS "POI_COUNT"
-FROM "DEV_FMS_7X"."V_ROUTING_POIS" "V_ROUTING_POIS"</DefiningQuery>
+FROM "V_ROUTING_POIS" "V_ROUTING_POIS"</DefiningQuery>
           </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>

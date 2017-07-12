@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="ModelProtalOracleDb.V_ROUTING_POI_GROUPS" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="ModelProtalOracleDb.V_ROUTING_POI_PLACES" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="ModelProtalOracleDb.V_ROUTING_POIS" Width="1.5" PointX="5.375" PointY="0.75" />
-        <EntityTypeShape EntityType="ModelProtalOracleDb.LANGUAGE" Width="1.5" PointX="5.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ModelProtalOracleDb.LANGUAGE" Width="1.5" PointX="7.625" PointY="0.75" />
         <EntityTypeShape EntityType="ModelProtalOracleDb.POI_GROUP_ACCESS_RIGHTS" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="ModelProtalOracleDb.USER_ROUTE" Width="1.5" PointX="2.75" PointY="6.75" />
       </Diagram>
