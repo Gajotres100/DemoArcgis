@@ -54,7 +54,7 @@ namespace Arcgis.Directions.Data.Repository.Poi
         {
             using (var context = new EntitiesPortalOracle())
             {
-                return context.POI_PLACES.Where(p => p.POI_PLACE_ID == id).Select(x => new CusPoi
+                return context.V_ROUTING_POI_PLACES.Where(p => p.POI_PLACE_ID == id).Select(x => new CusPoi
                 {
                     PoiID = x.POI_PLACE_ID,
                     Address = x.ADDRESS,
@@ -73,7 +73,7 @@ namespace Arcgis.Directions.Data.Repository.Poi
         {
             using (var context = new EntitiesPortalOracle())
             {
-                return context.POI_PLACES.Where(p => (p.ADDRESS.ToLower().Contains(keyword.ToLower()) || p.DESCRIPTION.ToLower().Contains(keyword.ToLower()) || p.POI_PLACE_NAME.ToLower().Contains(keyword.ToLower())) && p.USER_ID == userID).Select(x => new CusPoi
+                return context.V_ROUTING_POI_PLACES.Where(p => (p.ADDRESS.ToLower().Contains(keyword.ToLower()) || p.DESCRIPTION.ToLower().Contains(keyword.ToLower()) || p.POI_PLACE_NAME.ToLower().Contains(keyword.ToLower())) && p.USER_ID == userID).Select(x => new CusPoi
                 {
                     PoiID = x.POI_PLACE_ID,
                     Address = x.ADDRESS,
@@ -119,7 +119,7 @@ namespace Arcgis.Directions.Data.Repository.Poi
         {
             using (var context = new EntitiesPortalOracle())
             {
-                return context.POI_PLACES.Where(p => poiGroup.Contains(p.POI_GROUP_ID)).AsEnumerable().Select(x => new ClusterPoi
+                return context.V_ROUTING_POI_PLACES.Where(p => poiGroup.Contains(p.POI_GROUP_ID)).AsEnumerable().Select(x => new ClusterPoi
                 {
                     lat = $"{x.WM_X}",
                     lng = $"{x.WM_Y}",
@@ -136,7 +136,7 @@ namespace Arcgis.Directions.Data.Repository.Poi
         {
             using (var context = new EntitiesPortalOracle())
             {
-                return context.POI_GROUPS.Where(g => g.USER_ID == userID).AsEnumerable().Select(x => new GroupPoi
+                return context.V_ROUTING_POI_GROUPS.Where(g => g.USER_ID == userID).AsEnumerable().Select(x => new GroupPoi
                 {
                     ChildUserID = x.CHILD_USER_ID.GetValueOrDefault(),
                     PoiGroupID = x.POI_GROUP_ID,

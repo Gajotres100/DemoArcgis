@@ -146,13 +146,7 @@
     <Compile Include="LANGUAGE.cs">
       <DependentUpon>DbModelOracle.tt</DependentUpon>
     </Compile>
-    <Compile Include="POI_GROUPS.cs">
-      <DependentUpon>DbModelOracle.tt</DependentUpon>
-    </Compile>
     <Compile Include="POI_GROUP_ACCESS_RIGHTS.cs">
-      <DependentUpon>DbModelOracle.tt</DependentUpon>
-    </Compile>
-    <Compile Include="POI_PLACES.cs">
       <DependentUpon>DbModelOracle.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -169,6 +163,12 @@
       <DependentUpon>DbModelOracle.tt</DependentUpon>
     </Compile>
     <Compile Include="V_ROUTING_POIS.cs">
+      <DependentUpon>DbModelOracle.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_ROUTING_POI_GROUPS.cs">
+      <DependentUpon>DbModelOracle.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_ROUTING_POI_PLACES.cs">
       <DependentUpon>DbModelOracle.tt</DependentUpon>
     </Compile>
   </ItemGroup>

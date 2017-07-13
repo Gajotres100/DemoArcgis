@@ -25,9 +25,27 @@
           <Property Name="MASTER_USER_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
           <Property Name="CREATED_DT" Type="date" Nullable="false" />
         </EntityType>
-        <EntityType Name="POI_GROUPS">
+        <EntityType Name="USER_ROUTE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="USER_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ROUTE" Type="blob" />
+          <Property Name="OPTIMALROUTE" Type="number" Precision="9" Scale="0" />
+          <Property Name="RETURNTOSTART" Type="number" Precision="9" Scale="0" />
+          <Property Name="CREATED_DT" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DEV_FMS_7X.V_ROUTING_POI_GROUPS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_ROUTING_POI_GROUPS">
           <Key>
             <PropertyRef Name="POI_GROUP_ID" />
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="POI_GROUP_NAME" />
+            <PropertyRef Name="POI_GROUP_TYPE" />
+            <PropertyRef Name="CREATED_DT" />
           </Key>
           <Property Name="POI_GROUP_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
           <Property Name="USER_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
@@ -39,9 +57,18 @@
           <Property Name="MODIFIED_DT" Type="date" />
           <Property Name="MODIFIED_BY" Type="number" Precision="9" Scale="0" />
         </EntityType>
-        <EntityType Name="POI_PLACES">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DEV_FMS_7X.V_ROUTING_POI_PLACES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_ROUTING_POI_PLACES">
           <Key>
             <PropertyRef Name="POI_PLACE_ID" />
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="POI_GROUP_ID" />
+            <PropertyRef Name="POI_PLACE_NAME" />
+            <PropertyRef Name="POI_PLACE_TYPE" />
+            <PropertyRef Name="WM_X" />
+            <PropertyRef Name="WM_Y" />
+            <PropertyRef Name="CREATED_DT" />
           </Key>
           <Property Name="POI_PLACE_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
           <Property Name="USER_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
@@ -66,18 +93,6 @@
           <Property Name="MODIFIED_DT" Type="date" />
           <Property Name="MODIFIED_BY" Type="number" Precision="9" Scale="0" />
         </EntityType>
-        <EntityType Name="USER_ROUTE">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="number" Precision="9" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="NAME" Type="varchar2" MaxLength="255" Nullable="false" />
-          <Property Name="USER_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
-          <Property Name="ROUTE" Type="blob" />
-          <Property Name="OPTIMALROUTE" Type="number" Precision="9" Scale="0" />
-          <Property Name="RETURNTOSTART" Type="number" Precision="9" Scale="0" />
-          <Property Name="CREATED_DT" Type="date" StoreGeneratedPattern="Computed" />
-        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'DEV_FMS_7X.V_ROUTING_POIS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="V_ROUTING_POIS">
@@ -94,24 +109,49 @@ warning 6002: The table/view 'DEV_FMS_7X.V_ROUTING_POIS' does not have a primary
           <Property Name="USER_ID" Type="number" Precision="9" Scale="0" Nullable="false" />
           <Property Name="POI_COUNT" Type="number" Precision="38" Scale="0" />
         </EntityType>
-        <Association Name="POI_PLACES_POI_GROUPS_FK">
-          <End Role="POI_GROUPS" Type="Self.POI_GROUPS" Multiplicity="1" />
-          <End Role="POI_PLACES" Type="Self.POI_PLACES" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="POI_GROUPS">
-              <PropertyRef Name="POI_GROUP_ID" />
-            </Principal>
-            <Dependent Role="POI_PLACES">
-              <PropertyRef Name="POI_GROUP_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ModelProtalOracleDbStoreContainer">
           <EntitySet Name="LANGUAGES" EntityType="Self.LANGUAGES" store:Type="Tables" />
           <EntitySet Name="POI_GROUP_ACCESS_RIGHTS" EntityType="Self.POI_GROUP_ACCESS_RIGHTS" store:Type="Tables" />
-          <EntitySet Name="POI_GROUPS" EntityType="Self.POI_GROUPS" store:Type="Tables" />
-          <EntitySet Name="POI_PLACES" EntityType="Self.POI_PLACES" store:Type="Tables" />
           <EntitySet Name="USER_ROUTE" EntityType="Self.USER_ROUTE" store:Type="Tables" />
+          <EntitySet Name="V_ROUTING_POI_GROUPS" EntityType="Self.V_ROUTING_POI_GROUPS" store:Type="Views" >
+            <DefiningQuery>SELECT 
+"V_ROUTING_POI_GROUPS"."POI_GROUP_ID" AS "POI_GROUP_ID", 
+"V_ROUTING_POI_GROUPS"."USER_ID" AS "USER_ID", 
+"V_ROUTING_POI_GROUPS"."CHILD_USER_ID" AS "CHILD_USER_ID", 
+"V_ROUTING_POI_GROUPS"."SERVICE_ID" AS "SERVICE_ID", 
+"V_ROUTING_POI_GROUPS"."POI_GROUP_NAME" AS "POI_GROUP_NAME", 
+"V_ROUTING_POI_GROUPS"."POI_GROUP_TYPE" AS "POI_GROUP_TYPE", 
+"V_ROUTING_POI_GROUPS"."CREATED_DT" AS "CREATED_DT", 
+"V_ROUTING_POI_GROUPS"."MODIFIED_DT" AS "MODIFIED_DT", 
+"V_ROUTING_POI_GROUPS"."MODIFIED_BY" AS "MODIFIED_BY"
+FROM "V_ROUTING_POI_GROUPS" "V_ROUTING_POI_GROUPS"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_ROUTING_POI_PLACES" EntityType="Self.V_ROUTING_POI_PLACES" store:Type="Views" >
+            <DefiningQuery>SELECT 
+"V_ROUTING_POI_PLACES"."POI_PLACE_ID" AS "POI_PLACE_ID", 
+"V_ROUTING_POI_PLACES"."USER_ID" AS "USER_ID", 
+"V_ROUTING_POI_PLACES"."CHILD_USER_ID" AS "CHILD_USER_ID", 
+"V_ROUTING_POI_PLACES"."SERVICE_ID" AS "SERVICE_ID", 
+"V_ROUTING_POI_PLACES"."POI_GROUP_ID" AS "POI_GROUP_ID", 
+"V_ROUTING_POI_PLACES"."POI_PLACE_NAME" AS "POI_PLACE_NAME", 
+"V_ROUTING_POI_PLACES"."POI_PLACE_TYPE" AS "POI_PLACE_TYPE", 
+"V_ROUTING_POI_PLACES"."POI_PLACE_CODE" AS "POI_PLACE_CODE", 
+"V_ROUTING_POI_PLACES"."WM_X" AS "WM_X", 
+"V_ROUTING_POI_PLACES"."WM_Y" AS "WM_Y", 
+"V_ROUTING_POI_PLACES"."ADDRESS" AS "ADDRESS", 
+"V_ROUTING_POI_PLACES"."HOUSE_NUMBER" AS "HOUSE_NUMBER", 
+"V_ROUTING_POI_PLACES"."ZIP" AS "ZIP", 
+"V_ROUTING_POI_PLACES"."CITY" AS "CITY", 
+"V_ROUTING_POI_PLACES"."JURISDICTION_ZONE" AS "JURISDICTION_ZONE", 
+"V_ROUTING_POI_PLACES"."DESCRIPTION" AS "DESCRIPTION", 
+"V_ROUTING_POI_PLACES"."REMARK" AS "REMARK", 
+"V_ROUTING_POI_PLACES"."MAP_ICON_NAME" AS "MAP_ICON_NAME", 
+"V_ROUTING_POI_PLACES"."MAP_ICON_COLOR" AS "MAP_ICON_COLOR", 
+"V_ROUTING_POI_PLACES"."CREATED_DT" AS "CREATED_DT", 
+"V_ROUTING_POI_PLACES"."MODIFIED_DT" AS "MODIFIED_DT", 
+"V_ROUTING_POI_PLACES"."MODIFIED_BY" AS "MODIFIED_BY"
+FROM "V_ROUTING_POI_PLACES" "V_ROUTING_POI_PLACES"</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="V_ROUTING_POIS" EntityType="Self.V_ROUTING_POIS" store:Type="Views" >
             <DefiningQuery>SELECT 
 "V_ROUTING_POIS"."POI_GROUP_ID" AS "POI_GROUP_ID", 
@@ -122,29 +162,58 @@ warning 6002: The table/view 'DEV_FMS_7X.V_ROUTING_POIS' does not have a primary
 "V_ROUTING_POIS"."POI_COUNT" AS "POI_COUNT"
 FROM "V_ROUTING_POIS" "V_ROUTING_POIS"</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="POI_PLACES_POI_GROUPS_FK" Association="Self.POI_PLACES_POI_GROUPS_FK">
-            <End Role="POI_GROUPS" EntitySet="POI_GROUPS" />
-            <End Role="POI_PLACES" EntitySet="POI_PLACES" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ModelProtalOracleDb" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="POI_PLACES">
+        <EntityContainer Name="EntitiesPortalOracle" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="V_ROUTING_POI_GROUPS" EntityType="ModelProtalOracleDb.V_ROUTING_POI_GROUPS" />
+          <EntitySet Name="V_ROUTING_POI_PLACES" EntityType="ModelProtalOracleDb.V_ROUTING_POI_PLACES" />
+          <EntitySet Name="V_ROUTING_POIS" EntityType="ModelProtalOracleDb.V_ROUTING_POIS" />
+          <EntitySet Name="LANGUAGES" EntityType="ModelProtalOracleDb.LANGUAGE" />
+          <EntitySet Name="POI_GROUP_ACCESS_RIGHTS" EntityType="ModelProtalOracleDb.POI_GROUP_ACCESS_RIGHTS" />
+          <EntitySet Name="USER_ROUTE" EntityType="ModelProtalOracleDb.USER_ROUTE" />
+        </EntityContainer>
+        <EntityType Name="V_ROUTING_POI_GROUPS">
+          <Key>
+            <PropertyRef Name="POI_GROUP_ID" />
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="POI_GROUP_NAME" />
+            <PropertyRef Name="POI_GROUP_TYPE" />
+            <PropertyRef Name="CREATED_DT" />
+          </Key>
+          <Property Name="POI_GROUP_ID" Type="Int32" Nullable="false" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="CHILD_USER_ID" Type="Int32" />
+          <Property Name="SERVICE_ID" Type="Int16" />
+          <Property Name="POI_GROUP_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="POI_GROUP_TYPE" Type="Int16" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" />
+          <Property Name="MODIFIED_DT" Type="DateTime" />
+          <Property Name="MODIFIED_BY" Type="Int32" />
+        </EntityType>
+        <EntityType Name="V_ROUTING_POI_PLACES">
           <Key>
             <PropertyRef Name="POI_PLACE_ID" />
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="POI_GROUP_ID" />
+            <PropertyRef Name="POI_PLACE_NAME" />
+            <PropertyRef Name="POI_PLACE_TYPE" />
+            <PropertyRef Name="WM_X" />
+            <PropertyRef Name="WM_Y" />
+            <PropertyRef Name="CREATED_DT" />
           </Key>
           <Property Name="POI_PLACE_ID" Type="Int32" Nullable="false" />
           <Property Name="USER_ID" Type="Int32" Nullable="false" />
           <Property Name="CHILD_USER_ID" Type="Int32" />
           <Property Name="SERVICE_ID" Type="Int16" />
           <Property Name="POI_GROUP_ID" Type="Int32" Nullable="false" />
-          <Property Name="POI_PLACE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="POI_PLACE_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="POI_PLACE_TYPE" Type="Int16" Nullable="false" />
           <Property Name="POI_PLACE_CODE" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="WM_X" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="WM_Y" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="WM_X" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="WM_Y" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="ADDRESS" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="HOUSE_NUMBER" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ZIP" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
@@ -157,20 +226,21 @@ FROM "V_ROUTING_POIS" "V_ROUTING_POIS"</DefiningQuery>
           <Property Name="CREATED_DT" Type="DateTime" Nullable="false" />
           <Property Name="MODIFIED_DT" Type="DateTime" />
           <Property Name="MODIFIED_BY" Type="Int32" />
-          <NavigationProperty Name="POI_GROUPS" Relationship="ModelProtalOracleDb.POI_PLACES_POI_GROUPS_FK" FromRole="POI_PLACES" ToRole="POI_GROUPS" />
         </EntityType>
-        <EntityContainer Name="EntitiesPortalOracle" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="POI_PLACES" EntityType="Self.POI_PLACES" />
-          <EntitySet Name="LANGUAGES" EntityType="ModelProtalOracleDb.LANGUAGE" />
-          <EntitySet Name="POI_GROUP_ACCESS_RIGHTS" EntityType="ModelProtalOracleDb.POI_GROUP_ACCESS_RIGHTS" />
-          <EntitySet Name="POI_GROUPS" EntityType="ModelProtalOracleDb.POI_GROUPS" />
-          <AssociationSet Name="POI_PLACES_POI_GROUPS_FK" Association="ModelProtalOracleDb.POI_PLACES_POI_GROUPS_FK">
-            <End Role="POI_GROUPS" EntitySet="POI_GROUPS" />
-            <End Role="POI_PLACES" EntitySet="POI_PLACES" />
-          </AssociationSet>
-          <EntitySet Name="USER_ROUTE" EntityType="ModelProtalOracleDb.USER_ROUTE" />
-          <EntitySet Name="V_ROUTING_POIS" EntityType="ModelProtalOracleDb.V_ROUTING_POIS" />
-        </EntityContainer>
+        <EntityType Name="V_ROUTING_POIS">
+          <Key>
+            <PropertyRef Name="POI_GROUP_ID" />
+            <PropertyRef Name="POI_GROUP_NAME" />
+            <PropertyRef Name="POI_GROUP_TYPE" />
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="POI_GROUP_ID" Type="Int32" Nullable="false" />
+          <Property Name="POI_GROUP_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="POI_GROUP_TYPE" Type="Int16" Nullable="false" />
+          <Property Name="SERVICE_ID" Type="Int16" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="POI_COUNT" Type="Decimal" Precision="38" Scale="0" />
+        </EntityType>
         <EntityType Name="LANGUAGE">
           <Key>
             <PropertyRef Name="LANG_ID" />
@@ -191,58 +261,17 @@ FROM "V_ROUTING_POIS" "V_ROUTING_POIS"</DefiningQuery>
           <Property Name="MASTER_USER_ID" Type="Int32" Nullable="false" />
           <Property Name="CREATED_DT" Type="DateTime" Nullable="false" />
         </EntityType>
-        <EntityType Name="POI_GROUPS">
-          <Key>
-            <PropertyRef Name="POI_GROUP_ID" />
-          </Key>
-          <Property Name="POI_GROUP_ID" Type="Int32" Nullable="false" />
-          <Property Name="USER_ID" Type="Int32" Nullable="false" />
-          <Property Name="CHILD_USER_ID" Type="Int32" />
-          <Property Name="SERVICE_ID" Type="Int16" />
-          <Property Name="POI_GROUP_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="POI_GROUP_TYPE" Type="Int16" Nullable="false" />
-          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" />
-          <Property Name="MODIFIED_DT" Type="DateTime" />
-          <Property Name="MODIFIED_BY" Type="Int32" />
-          <NavigationProperty Name="POI_PLACES" Relationship="ModelProtalOracleDb.POI_PLACES_POI_GROUPS_FK" FromRole="POI_GROUPS" ToRole="POI_PLACES" />
-        </EntityType>
-        <Association Name="POI_PLACES_POI_GROUPS_FK">
-          <End Type="ModelProtalOracleDb.POI_GROUPS" Role="POI_GROUPS" Multiplicity="1" />
-          <End Type="ModelProtalOracleDb.POI_PLACES" Role="POI_PLACES" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="POI_GROUPS">
-              <PropertyRef Name="POI_GROUP_ID" />
-            </Principal>
-            <Dependent Role="POI_PLACES">
-              <PropertyRef Name="POI_GROUP_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="USER_ROUTE">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="NAME" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="USER_ID" Type="Int32" Nullable="false" />
           <Property Name="ROUTE" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="OPTIMALROUTE" Type="Int32" />
           <Property Name="RETURNTOSTART" Type="Int32" />
-          <Property Name="CREATED_DT" Type="DateTime" annotation:StoreGeneratedPattern="Computed" />
-        </EntityType>
-        <EntityType Name="V_ROUTING_POIS">
-          <Key>
-            <PropertyRef Name="POI_GROUP_ID" />
-            <PropertyRef Name="POI_GROUP_NAME" />
-            <PropertyRef Name="POI_GROUP_TYPE" />
-            <PropertyRef Name="USER_ID" />
-          </Key>
-          <Property Name="POI_GROUP_ID" Type="Int32" Nullable="false" />
-          <Property Name="POI_GROUP_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="POI_GROUP_TYPE" Type="Int16" Nullable="false" />
-          <Property Name="SERVICE_ID" Type="Int16" />
-          <Property Name="USER_ID" Type="Int32" Nullable="false" />
-          <Property Name="POI_COUNT" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="CREATED_DT" Type="DateTime" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -250,31 +279,58 @@ FROM "V_ROUTING_POIS" "V_ROUTING_POIS"</DefiningQuery>
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ModelProtalOracleDbStoreContainer" CdmEntityContainer="EntitiesPortalOracle">
-          <EntitySetMapping Name="POI_PLACES">
-            <EntityTypeMapping TypeName="ModelProtalOracleDb.POI_PLACES">
-              <MappingFragment StoreEntitySet="POI_PLACES">
-                <ScalarProperty Name="POI_PLACE_ID" ColumnName="POI_PLACE_ID" />
-                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
-                <ScalarProperty Name="CHILD_USER_ID" ColumnName="CHILD_USER_ID" />
-                <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
-                <ScalarProperty Name="POI_GROUP_ID" ColumnName="POI_GROUP_ID" />
-                <ScalarProperty Name="POI_PLACE_NAME" ColumnName="POI_PLACE_NAME" />
-                <ScalarProperty Name="POI_PLACE_TYPE" ColumnName="POI_PLACE_TYPE" />
-                <ScalarProperty Name="POI_PLACE_CODE" ColumnName="POI_PLACE_CODE" />
-                <ScalarProperty Name="WM_X" ColumnName="WM_X" />
-                <ScalarProperty Name="WM_Y" ColumnName="WM_Y" />
-                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
-                <ScalarProperty Name="HOUSE_NUMBER" ColumnName="HOUSE_NUMBER" />
-                <ScalarProperty Name="ZIP" ColumnName="ZIP" />
-                <ScalarProperty Name="CITY" ColumnName="CITY" />
-                <ScalarProperty Name="JURISDICTION_ZONE" ColumnName="JURISDICTION_ZONE" />
-                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
-                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
-                <ScalarProperty Name="MAP_ICON_NAME" ColumnName="MAP_ICON_NAME" />
-                <ScalarProperty Name="MAP_ICON_COLOR" ColumnName="MAP_ICON_COLOR" />
-                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
-                <ScalarProperty Name="MODIFIED_DT" ColumnName="MODIFIED_DT" />
+          <EntitySetMapping Name="V_ROUTING_POI_GROUPS">
+            <EntityTypeMapping TypeName="ModelProtalOracleDb.V_ROUTING_POI_GROUPS">
+              <MappingFragment StoreEntitySet="V_ROUTING_POI_GROUPS">
                 <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                <ScalarProperty Name="MODIFIED_DT" ColumnName="MODIFIED_DT" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="POI_GROUP_TYPE" ColumnName="POI_GROUP_TYPE" />
+                <ScalarProperty Name="POI_GROUP_NAME" ColumnName="POI_GROUP_NAME" />
+                <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
+                <ScalarProperty Name="CHILD_USER_ID" ColumnName="CHILD_USER_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="POI_GROUP_ID" ColumnName="POI_GROUP_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_ROUTING_POI_PLACES">
+            <EntityTypeMapping TypeName="ModelProtalOracleDb.V_ROUTING_POI_PLACES">
+              <MappingFragment StoreEntitySet="V_ROUTING_POI_PLACES">
+                <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                <ScalarProperty Name="MODIFIED_DT" ColumnName="MODIFIED_DT" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="MAP_ICON_COLOR" ColumnName="MAP_ICON_COLOR" />
+                <ScalarProperty Name="MAP_ICON_NAME" ColumnName="MAP_ICON_NAME" />
+                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="JURISDICTION_ZONE" ColumnName="JURISDICTION_ZONE" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+                <ScalarProperty Name="HOUSE_NUMBER" ColumnName="HOUSE_NUMBER" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="WM_Y" ColumnName="WM_Y" />
+                <ScalarProperty Name="WM_X" ColumnName="WM_X" />
+                <ScalarProperty Name="POI_PLACE_CODE" ColumnName="POI_PLACE_CODE" />
+                <ScalarProperty Name="POI_PLACE_TYPE" ColumnName="POI_PLACE_TYPE" />
+                <ScalarProperty Name="POI_PLACE_NAME" ColumnName="POI_PLACE_NAME" />
+                <ScalarProperty Name="POI_GROUP_ID" ColumnName="POI_GROUP_ID" />
+                <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
+                <ScalarProperty Name="CHILD_USER_ID" ColumnName="CHILD_USER_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="POI_PLACE_ID" ColumnName="POI_PLACE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_ROUTING_POIS">
+            <EntityTypeMapping TypeName="ModelProtalOracleDb.V_ROUTING_POIS">
+              <MappingFragment StoreEntitySet="V_ROUTING_POIS">
+                <ScalarProperty Name="POI_COUNT" ColumnName="POI_COUNT" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
+                <ScalarProperty Name="POI_GROUP_TYPE" ColumnName="POI_GROUP_TYPE" />
+                <ScalarProperty Name="POI_GROUP_NAME" ColumnName="POI_GROUP_NAME" />
+                <ScalarProperty Name="POI_GROUP_ID" ColumnName="POI_GROUP_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -300,21 +356,6 @@ FROM "V_ROUTING_POIS" "V_ROUTING_POIS"</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="POI_GROUPS">
-            <EntityTypeMapping TypeName="ModelProtalOracleDb.POI_GROUPS">
-              <MappingFragment StoreEntitySet="POI_GROUPS">
-                <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
-                <ScalarProperty Name="MODIFIED_DT" ColumnName="MODIFIED_DT" />
-                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
-                <ScalarProperty Name="POI_GROUP_TYPE" ColumnName="POI_GROUP_TYPE" />
-                <ScalarProperty Name="POI_GROUP_NAME" ColumnName="POI_GROUP_NAME" />
-                <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
-                <ScalarProperty Name="CHILD_USER_ID" ColumnName="CHILD_USER_ID" />
-                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
-                <ScalarProperty Name="POI_GROUP_ID" ColumnName="POI_GROUP_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="USER_ROUTE">
             <EntityTypeMapping TypeName="ModelProtalOracleDb.USER_ROUTE">
               <MappingFragment StoreEntitySet="USER_ROUTE">
@@ -325,18 +366,6 @@ FROM "V_ROUTING_POIS" "V_ROUTING_POIS"</DefiningQuery>
                 <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="V_ROUTING_POIS">
-            <EntityTypeMapping TypeName="ModelProtalOracleDb.V_ROUTING_POIS">
-              <MappingFragment StoreEntitySet="V_ROUTING_POIS">
-                <ScalarProperty Name="POI_COUNT" ColumnName="POI_COUNT" />
-                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
-                <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
-                <ScalarProperty Name="POI_GROUP_TYPE" ColumnName="POI_GROUP_TYPE" />
-                <ScalarProperty Name="POI_GROUP_NAME" ColumnName="POI_GROUP_NAME" />
-                <ScalarProperty Name="POI_GROUP_ID" ColumnName="POI_GROUP_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
