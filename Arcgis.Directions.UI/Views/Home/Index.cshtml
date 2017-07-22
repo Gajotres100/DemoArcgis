@@ -2,10 +2,11 @@
 @{
     string template = System.Configuration.ConfigurationManager.AppSettings["Template"];
     Layout = "~/Views/Shared/_Layout" + template + ".cshtml";
+
 }
 
 <script>
-
+            
 
     function CallChangefunc(val) {
         window.location.href = '@Url.Action("ChangeLanguage", "Home", new { lang = "ID" })'.replace("ID", val);
@@ -133,8 +134,10 @@
                 autoSolve: true
             }, "dir");
 
-            directions.on("load", function (e) {
+            
 
+            directions.on("load", function (e) {
+                directions.setDirectionsLanguage("en");
             });
 
             directions.startup();
