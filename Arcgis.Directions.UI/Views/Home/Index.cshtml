@@ -275,8 +275,10 @@
                 for (index = 0; index < obj.length; ++index) {
                     var arr = obj[index].name.split(',');
                     //var point = new Point(obj[index].feature.geometry.x,obj[index].feature.geometry.y ,new SpatialReference({ wkid: obj[index].feature.geometry.spatialReference.wkid }));
-                    //directions.addStop(point, countStops);
-                    directions.addStop(obj[index].name, countStops);
+                    //var test1 =  directions.addStop(point, countStops);
+                    
+                    var test2 = directions.addStop(obj[index].name, countStops);
+                    
                     countStops++;
                 }
 
