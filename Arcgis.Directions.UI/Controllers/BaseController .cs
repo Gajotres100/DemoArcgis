@@ -14,20 +14,20 @@ namespace DemoArcgis.Controllers
     {
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var controllerName = filterContext.Controller.GetType().Name;
-            var actionName = filterContext.ActionDescriptor.ActionName;
+           // var controllerName = filterContext.Controller.GetType().Name;
+           // var actionName = filterContext.ActionDescriptor.ActionName;
 
-            //SessionManager.Instance().GetUser()
+           // //SessionManager.Instance().GetUser()
 
-            if (Session[nameof(UserData)] == null && !actionName.Equals("Login"))
-            {
-                if ((!controllerName.Equals(typeof(HomeController).Name, StringComparison.InvariantCultureIgnoreCase)
-                || !actionName.Equals("LogOn", StringComparison.InvariantCultureIgnoreCase)))
-                    filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary {
-                { "Controller", "Home" },
-                { "Action", "Login" }
-           });
-            }
+           // if (Session[nameof(UserData)] == null && !actionName.Equals("Login"))
+           // {
+           //    // if ((!controllerName.Equals(typeof(HomeController).Name, StringComparison.InvariantCultureIgnoreCase)
+           //   //  || !actionName.Equals("LogOn", StringComparison.InvariantCultureIgnoreCase)))
+           //         filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary {
+           //     { "Controller", "Home" },
+           //     { "Action", "Index" }
+           //});
+           // }
 
             base.OnActionExecuting(filterContext);
         }

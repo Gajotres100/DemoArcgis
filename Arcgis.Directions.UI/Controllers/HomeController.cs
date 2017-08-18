@@ -16,12 +16,15 @@ using Newtonsoft.Json;
 using System.Dynamic;
 using System.Threading;
 using System.Globalization;
+using log4net;
+using System.Reflection;
 
 namespace Arcgis.Directions.UI.Controllers
 {
     public class HomeController : BaseController
     {
 
+        static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         PoiService _poiService;
         public ActionResult Index()
@@ -30,14 +33,42 @@ namespace Arcgis.Directions.UI.Controllers
             bool.TryParse(ConfigurationManager.AppSettings[@"SSOveriden"], out ssoOvreiden);
             if (ssoOvreiden && Session[nameof(UserData)] == null)
             {
-                var user = new UserData
+                var user1 = new UserData
                 {
                     UserID = ConfigurationManager.AppSettings[@"User_id"],
                     Username = ConfigurationManager.AppSettings[@"Username"]
                 };
-                Session[nameof(UserData)] = user;
-                Session["Username"] = user.Username;
+                Session[nameof(UserData)] = user1;
+                Session["Username"] = user1.Username;
                 return RedirectToAction(nameof(Index), @"Home");
+            }
+
+
+            var user = new UserData();
+            user = Session[nameof(UserData)] as UserData;
+            if (!ssoOvreiden && user == null)
+            {
+                
+                var authToken = Request.QueryString["SSO_AUTH_TOKEN"];
+                logger.Info("VALIDATE USER0-->" + authToken );
+                if (!string.IsNullOrEmpty(authToken))
+                {
+                    logger.Info("VALIDATE USER1");
+                    _poiService = new PoiService();
+                    user = _poiService.ValidateUser(authToken);
+                    logger.Info("VALIDATE USER DONE1-->" + user.UserID);
+                    if (user == null || user.UserID == null)
+                        return Redirect(ConfigurationManager.AppSettings[@"LoginRedirect"]);
+                    Session[nameof(UserData)] = user;
+                    var vm1 = GetPois();
+                    return View(vm1);
+                    // return RedirectToAction(nameof(Index), @"Home");
+                }
+                else
+                {
+                    return Redirect(ConfigurationManager.AppSettings[@"LoginRedirect"]);
+                }
+
             }
 
             var vm = GetPois();
@@ -48,6 +79,8 @@ namespace Arcgis.Directions.UI.Controllers
         {
             var authToken = Request.QueryString["SSO_AUTH_TOKEN"];
             var ssoOvreiden = false;
+
+            logger.Info("AUTH TOKEN--> " + authToken);
             bool.TryParse(ConfigurationManager.AppSettings[@"SSOveriden"], out ssoOvreiden);
             if (ssoOvreiden)
             {
@@ -59,15 +92,28 @@ namespace Arcgis.Directions.UI.Controllers
                 Session[nameof(UserData)] = user;
                 return RedirectToAction(nameof(Index), @"Home");
             }
+            logger.Info("SSO OVERRIDE OFF");
             if (!string.IsNullOrEmpty(authToken))
             {
+                logger.Info("VALIDATE USER");
                 _poiService = new PoiService();
                 var user = _poiService.ValidateUser(authToken);
+                logger.Info("VALIDATE USER DONE-->" + user.UserID);
                 Session[nameof(UserData)] = user;
+                var vm = GetPois();
+                return RedirectToAction(nameof(Index), @"Home");
+            }
+            else
+            {
+                return Redirect(ConfigurationManager.AppSettings[@"LoginRedirect"]);
             }
 
-            var vm = GetPois();
-            return View(vm);
+
+
+
+
+
+
         }
 
         public ActionResult Logout()
@@ -81,7 +127,7 @@ namespace Arcgis.Directions.UI.Controllers
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
             Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture;
             return Redirect($"~/{lang}");
-        }  
+        }
 
 
         GetPOIVM GetPois()
@@ -134,7 +180,7 @@ namespace Arcgis.Directions.UI.Controllers
             _poiService = new PoiService();
             var vm = _poiService.GetRoutesByRouteId(lang);
             return Json(vm?.RouteData ?? null, JsonRequestBehavior.AllowGet);
-        }        
+        }
 
         [HttpPost]
         [ValidateInput(false)]
@@ -143,14 +189,14 @@ namespace Arcgis.Directions.UI.Controllers
             string jsonRouteData = Newtonsoft.Json.JsonConvert.SerializeObject(routeData);
             _poiService = new PoiService();
             var userID = GetUserIDFromSession();
-            int routeID = _poiService.SaveRoute(userID, jsonRouteData, name, optimalRoute, returnToStart);            
+            int routeID = _poiService.SaveRoute(userID, jsonRouteData, name, optimalRoute, returnToStart);
             return Json(routeID, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public ActionResult DeleteRoute(int routeID)
-        {            
-            _poiService = new PoiService();         
+        {
+            _poiService = new PoiService();
             _poiService.DeleteRoute(routeID);
             return Json(routeID, JsonRequestBehavior.AllowGet);
         }

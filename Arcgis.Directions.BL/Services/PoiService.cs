@@ -78,7 +78,7 @@ namespace Arcgis.Directions.BL.Services
                     var app = new List<Application>();
                     app = applications.Select(x => new Application
                     {
-                        Name = x.Name,
+                        Name = x.Title,
                         Url = x.URL
                     }).ToList();
                     item.Applications = app;
@@ -89,7 +89,7 @@ namespace Arcgis.Directions.BL.Services
             }
             catch (Exception e)
             {
-                //logger.Error("error = " + e);
+                logger.Error("error = " + e);
                 //return null;
                 throw;
             }

@@ -6,7 +6,7 @@
 }
 
 <script>
-            
+
 
     function CallChangefunc(val) {
         window.location.href = '@Url.Action("ChangeLanguage", "Home", new { lang = "ID" })'.replace("ID", val);
@@ -108,7 +108,7 @@
                 showSaveButton: true,
                 showPrintPage: true,
                 dragging: false,
-                showBarriersButton: false,                
+                showBarriersButton: false,
                 showTravelModesOption: true,
                 searchOptions: {
                     sources: [
@@ -136,7 +136,7 @@
                 autoSolve: true
             }, "dir");
 
-            
+
 
             directions.on("load", function (e) {
                 directions.setDirectionsLanguage("en");
@@ -169,7 +169,7 @@
                     $('#lsLoggedInUser').text('Logout').css('font-size', '16px');
                     $('#choosApp1').text('SSO overridden');
                     $('#choosApp2').text('Select app');
-                    $('#logoName').text('GDi car control').css('font-size', '18px');
+                    $('#logoName').text('Routing').css('font-size', '18px');
                     $('#flagChange').removeClass();
                     $('#flagChange').toggleClass('flag-icon flag-icon-gb');
                     $('#logoText').text('@Resources.Resource.FooterText');
@@ -206,7 +206,7 @@
                     });
 
                     var photos = null;
-                    photos = esriRequest({ url: '@Url.Action("GetPoiGroupList", "Map", new { lang = "ID" })'.replace("ID", studentListVal), handleAs: "json" });
+                   photos = esriRequest({ url: '@Url.Action("GetPoiGroupList", "Map", new { lang = "ID" })'.replace("ID", studentListVal), handleAs: "json" });
                     photos.then(addClusters, error);
                 });
 
@@ -234,6 +234,7 @@
 
                     var photos = null;
                     photos = esriRequest({ url: '@Url.Action("GetPoiGroupList", "Map", new { lang = "ID" })'.replace("ID", studentListVal), handleAs: "json" });
+                   
                     photos.then(addClusters, error);
                 });
 
@@ -276,9 +277,9 @@
                     var arr = obj[index].name.split(',');
                     //var point = new Point(obj[index].feature.geometry.x,obj[index].feature.geometry.y ,new SpatialReference({ wkid: obj[index].feature.geometry.spatialReference.wkid }));
                     //var test1 =  directions.addStop(point, countStops);
-                    
+
                     var test2 = directions.addStop(obj[index].name, countStops);
-                    
+
                     countStops++;
                 }
 

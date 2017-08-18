@@ -133,6 +133,7 @@
                   });               
 
                   var photos = null;
+                 
                   photos = esriRequest({ url: '@Url.Action("GetPoiGroupList", "Map", new { lang = "ID" })'.replace("ID", studentListVal), handleAs: "json" });
                   photos.then(addClusters, error);
               });
